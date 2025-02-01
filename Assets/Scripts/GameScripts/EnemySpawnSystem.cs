@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnEnemy : MonoBehaviour
+public class EnemySpawnSystem : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawnEnemy;
     [SerializeField] private Transform[] spawnPoint;
