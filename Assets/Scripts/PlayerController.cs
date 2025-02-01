@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (Time.timeScale == 0)
-        { 
+        {
             losePanel.SetActive(true);
         }
 
@@ -113,8 +113,8 @@ public class PlayerController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(bulletsRate);
-            if (characterController.isGrounded) 
-                Fire(); 
+            if (characterController.isGrounded)
+                Fire();
         }
     }
 
