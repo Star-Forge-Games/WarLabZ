@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Time.timeScale = 1;
+        Time.timeScale = 1; // remove
         StartCoroutine(PeriodicFireSpawn());
     }
 

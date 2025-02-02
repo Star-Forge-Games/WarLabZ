@@ -21,11 +21,10 @@ public class EnemyMovement : MonoBehaviour
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-
         if (hit.gameObject.tag == "obstacle")
         {
-           //Debug.Log("Столкнулись");
             Time.timeScale = 0;
+            // add invoked action to stop zombies + anims
         }
     }
 
