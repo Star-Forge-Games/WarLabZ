@@ -25,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
         {
             Time.timeScale = 0;
             // add invoked action to stop zombies + anims
+            //GetComponent<Animator>().speed = 0;
+            //this.enabled = false;
         }
     }
 
