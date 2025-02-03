@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be2b46147a0a674ab01d7f7a5edacad, type: 3}
+  m_Name: Wave1
+  m_EditorClassIdentifier: 
+  parts:
+  - zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
+    amount: 2
+    interval: 1
+    nextPartDelay: 0.5
+  - zombiePrefab: {fileID: 7143858245785905579, guid: f3b972b22792f3d43bc109d270f87eb4, type: 3}
+    amount: 2
+    interval: 0.5
+    nextPartDelay: 1

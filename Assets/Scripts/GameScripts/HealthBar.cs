@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 public class HealthBar : MonoBehaviour
 {
-    public GameObject CanvasHealth; //—сылка на объект  анвас, содержащий ’елсЅар
     public Image Bar; // —сылка на ёјй »маге, полоска здоровь€
 
 

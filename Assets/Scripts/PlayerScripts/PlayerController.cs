@@ -1,8 +1,6 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -14,7 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     Vector3 movement;
 
-    [SerializeField] private GameObject losePanel;
+    //[SerializeField] private GameObject losePanel;
 
     [SerializeField] float jumpSpeed = 15f;
     [SerializeField] float jumpGravity = 0.75f;
@@ -27,26 +25,41 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float fireForce; // Скорость полёта снаряда
     [SerializeField] float bulletsRate; // Частота выстерлов
 
+    [SerializeField] private Animator anim;
+    [SerializeField] private Transform bulletContainer;
+
 
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Time.timeScale = 1; // remove
-        StartCoroutine(PeriodicFireSpawn());
+        StartCoroutine(nameof(PeriodicFireSpawn));
+        EnemyZombie.OnZombieHitPlayer += OnHit;
     }
 
+    private void OnDestroy()
+    {
+        EnemyZombie.OnZombieHitPlayer -= OnHit;
+    }
 
     void Update()
     {
-        if (Time.timeScale == 0)
-        {
-            losePanel.SetActive(true);
-        }
 
         if (Input.GetKey(KeyCode.S))
         {
             StartCoroutine(Slide());
+        }
+    }
+
+    private void OnHit()
+    {
+        // Start Death Animation
+        StopCoroutine(nameof(PeriodicFireSpawn));
+        anim.speed = 0;
+        enabled = false;
+        foreach (Transform bullet in bulletContainer)
+        {
+            bullet.GetComponent<Bullet>().Stop();
         }
     }
 
@@ -78,20 +91,11 @@ public class PlayerController : MonoBehaviour
         {
             movement.y -= jumpGravity * (movement.y > 0 ? 1 : 1.25f);
         }
-
         characterController.Move(movement * Time.fixedDeltaTime);
+        if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
+        else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
+        else anim.SetInteger("MoveDirection", 0);
     }
-
-    /* private void OnControllerColliderHit(ControllerColliderHit hit)
-     {
-
-         if (hit.gameObject.tag == "obstacle")
-         {
-            Debug.Log("ZHopa");
-            losePanel.SetActive(true);
-             Time.timeScale = 0;
-         }
-     }*/
 
     private IEnumerator Slide()
     {
@@ -121,12 +125,21 @@ public class PlayerController : MonoBehaviour
     private void Fire()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //создаём снаряд из префаба
+        bullet.transform.parent = bulletContainer;
         Rigidbody bulletRB = bullet.GetComponent<Rigidbody>(); //получаем rigidbody для префаба 
 
         bulletRB.AddForce(firePoint.forward * fireForce, ForceMode.Impulse); //применяем силу к Rigidbody снаряда, чтобы запустить снаряд
-
-        Destroy(bullet, 3f);
-
     }
+
+    /* private void OnControllerColliderHit(ControllerColliderHit hit)
+     {
+
+         if (hit.gameObject.tag == "obstacle")
+         {
+            Debug.Log("ZHopa");
+            losePanel.SetActive(true);
+             Time.timeScale = 0;
+         }
+     }*/
 
 }
