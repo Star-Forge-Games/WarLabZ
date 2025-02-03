@@ -52,6 +52,11 @@ public class EnemyZombie : MonoBehaviour
         {
             OnZombieHitPlayer?.Invoke();
         }
+        else if (hit.collider.TryGetComponent<Bullet>(out Bullet b))
+        {
+            TakeDamage(b.damage);
+            Destroy(b.gameObject);
+        }
     }
 
     public void Stop()

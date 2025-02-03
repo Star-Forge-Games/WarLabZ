@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    [SerializeField] private int damage;
+    public int damage;
 
 
     private void Start()
@@ -16,17 +16,6 @@ public class Bullet : MonoBehaviour
     private IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(3);
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        /*EnemyZombie enemyZombie = other.GetComponent<EnemyZombie>();
-        if (enemyZombie != null)
-        {
-            enemyZombie.TakeDamage(Damage);
-        }*/
-        if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z)) z.TakeDamage(damage);
         Destroy(gameObject);
     }
 
