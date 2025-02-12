@@ -24,5 +24,14 @@ public class Bullet : MonoBehaviour
         StopCoroutine(nameof(DestroyBullet));
         GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
+        {
+            z.TakeDamage(damage);
+            Destroy(gameObject);
+        }
+    }
 }
 

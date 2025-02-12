@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class EnemyZombie : MonoBehaviour
 {
@@ -10,12 +11,16 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private TMP_Text healthAmount;
     [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int damage;
+
     private int currentHealth;
     [SerializeField] private float speed;
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
+    private bool wall = false;
 
     public static Action OnZombieHitPlayer;
+    public static Action<int> OnZombieHitWall;
 
     public void Start()
     {
@@ -27,6 +32,7 @@ public class EnemyZombie : MonoBehaviour
 
     private void Update()
     {
+        if (!wall)
         characterController.Move(direction * Time.deltaTime);
     }
 
@@ -43,19 +49,19 @@ public class EnemyZombie : MonoBehaviour
     public void UpdateHealthUI(int maxHealth, int currentHealth)
     {
         healthBar.fillAmount = (float) currentHealth / maxHealth; // Update healthbar based on health percentage
-        healthAmount.text = $"{currentHealth}"; // Update health text
+        healthAmount.text = $"{currentHealth}";
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Player"))
         {
-            OnZombieHitPlayer?.Invoke();
+            OnZombieHitPlayer?.Invoke(); // death
         }
-        else if (hit.collider.TryGetComponent<Bullet>(out Bullet b))
+        if (hit.gameObject.CompareTag("Wall"))
         {
-            TakeDamage(b.damage);
-            Destroy(b.gameObject);
+            wall = true;
+            anim.Play("Attack");
         }
     }
 
@@ -63,6 +69,11 @@ public class EnemyZombie : MonoBehaviour
     {
         anim.speed = 0;
         enabled = false;
+    }
+
+    public void Attack()
+    {
+        OnZombieHitWall?.Invoke(damage);
     }
 
 }

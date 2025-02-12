@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static Wave;
 
 public class EnemySpawnSystem : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class EnemySpawnSystem : MonoBehaviour
     //[SerializeField] private Transform[] spawnpoints;
     [SerializeField] private Wave[] waves;
 
-    private int wave = 0;
-    private int wavePart = 0;
-    private int wavePartCounter = 0;
+    public int wave = 0;
+    public int spawnedEnemies = 0, waveEnemies = 0;
+    //private int wavePart = 0;
+    //private int wavePartCounter = 0;
 
     /*public float startSpawnerInterval;
     private float spawnerInterval;
@@ -23,12 +25,46 @@ public class EnemySpawnSystem : MonoBehaviour
     public int randEnemy;
     private int randPoint;*/
 
-
     void Start()
     {
-        //spawnerInterval = startSpawnerInterval;
-        StartCoroutine(nameof(SpawnLoop));
+        // spawnerInterval = startSpawnerInterval;
+        CalculateEnemiesAmount();
+        ProcessWaveSpawns();
         EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
+    }
+
+    private void CalculateEnemiesAmount()
+    {
+        waveEnemies = 0;
+        foreach (var part in waves[wave].parts)
+        {
+            waveEnemies += part.amount;
+        }
+    }
+
+    private void ProcessWaveSpawns()
+    {
+        foreach (WavePart part in waves[wave].parts)
+        {
+            StartCoroutine(SpawnEnemies(part, wave == 0));
+        }
+    }
+
+    private IEnumerator SpawnEnemies(WavePart part, bool first)
+    {
+        yield return new WaitForSeconds(part.delay + (first ? 0 : waves[wave - 1].nextWaveDelay));
+        for (int i = 0; i < part.amount; i++)
+        {
+            SpawnEnemy(part.zombiePrefab);
+            yield return new WaitForSeconds(part.interval);
+        }
+    }
+
+    private void SpawnEnemy(GameObject prefab)
+    {
+        spawnedEnemies++;
+        GameObject enemy = Instantiate(prefab, GeneratePoint(), Quaternion.identity);
+        enemy.transform.parent = enemyContainer;
     }
 
     private void OnDestroy()
@@ -38,37 +74,15 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private IEnumerator SpawnLoop()
     {
+        yield return new WaitForSeconds(waves[wave - 1].nextWaveDelay);
         while (true)
         {
-            if (wave >= waves.Length)
-            {
-                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
-                enemy.transform.parent = enemyContainer;
-                yield return new WaitForSeconds(randomSpawnInterval);
-            }
-            else
-            {
-                GameObject enemy = Instantiate(waves[wave].parts[wavePart].zombiePrefab, GeneratePoint(), Quaternion.identity);
-                enemy.transform.parent = enemyContainer;
-                wavePartCounter++;
-                if (wavePartCounter == waves[wave].parts[wavePart].amount)
-                {
-                    wavePartCounter = 0;
-                    yield return new WaitForSeconds(waves[wave].parts[wavePart].nextPartDelay);
-                    wavePart++;
-                    if (wavePart == waves[wave].parts.Length)
-                    {
-                        wavePart = 0;
-                        wave++;
-                    }
-                }
-                else
-                {
-                    yield return new WaitForSeconds(waves[wave].parts[wavePart].interval);
-                }
-            }
+            GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
+            enemy.transform.parent = enemyContainer;
+            yield return new WaitForSeconds(randomSpawnInterval);
         }
     }
+
 
     private Vector3 GeneratePoint()
     {
@@ -93,9 +107,22 @@ public class EnemySpawnSystem : MonoBehaviour
     }
 
 
-    /*void Update()
+    void Update()
     {
-        if (spawnerInterval <= 0 && nowTheEnemies < numberOfEnemies)
+        if (wave >= waves.Length) return;
+        if (spawnedEnemies == waveEnemies)
+        {
+            spawnedEnemies = 0;
+            wave++;
+            if (wave >= waves.Length)
+            {
+                StartCoroutine(nameof(SpawnLoop));
+                return;
+            }
+            CalculateEnemiesAmount();
+            ProcessWaveSpawns();
+        }
+        /*if (spawnerInterval <= 0 && nowTheEnemies < numberOfEnemies)
         {
             randEnemy = Random.Range(0, spawnEnemy.Length);
             randPoint = Random.Range(0, spawnPoint.Length);
@@ -107,7 +134,7 @@ public class EnemySpawnSystem : MonoBehaviour
         else
         {
             spawnerInterval -= Time.deltaTime;
-        }
-    }*/
+        }*/
+    }
 
 }

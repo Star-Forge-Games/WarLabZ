@@ -7,11 +7,15 @@ public class Wave : ScriptableObject
     [Serializable]
     public struct WavePart
     {
+        public int delay;
         public GameObject zombiePrefab;
         public int amount;
         public float interval;
-        public float nextPartDelay;
+        //public float approximateTime;
+        //public float nextPartDelay;
     }
 
     public WavePart[] parts;
+    public float nextWaveDelay;
+
 }
