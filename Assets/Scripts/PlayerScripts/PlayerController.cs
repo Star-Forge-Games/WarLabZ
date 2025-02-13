@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
+using TMPro;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -28,6 +29,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private Transform bulletContainer;
 
+    public static int money;
+    [SerializeField] private TMP_Text moneyText;
+
 
 
     void Start()
@@ -35,6 +39,9 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         StartCoroutine(nameof(PeriodicFireSpawn));
         EnemyZombie.OnZombieHitPlayer += OnHit;
+
+        money = PlayerPrefs.GetInt("money");
+        moneyText.text = "$: " + money;
     }
 
     private void OnDestroy()
@@ -44,15 +51,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        moneyText.text = "$: " + money;
         if (Input.GetKey(KeyCode.S))
         {
             StartCoroutine(Slide());
+            
         }
     }
 
     private void OnHit()
     {
+        PlayerPrefs.SetInt("money", money);
+        PlayerPrefs.Save();
         // Start Death Animation
         StopCoroutine(nameof(PeriodicFireSpawn));
         anim.speed = 0;

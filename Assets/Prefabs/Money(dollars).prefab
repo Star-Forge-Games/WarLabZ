@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6673146979953280666}
   - component: {fileID: 3972150622572309814}
   - component: {fileID: 2766084468111043499}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5326157030169105250
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 932981336412097347}
   - component: {fileID: 9161692387305731034}
   - component: {fileID: 8519777020284492593}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Money(dollars)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 6919801354691146265}
   - component: {fileID: 8757660781655016029}
   - component: {fileID: 1285500072308968088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7369040877935209402
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 5200821789263397272}
   - component: {fileID: 5962503536950475964}
   - component: {fileID: 7764911616438528472}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,9 +462,9 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8231715129954345340
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 5843718219440713052}
   - component: {fileID: 7986516952005867541}
   - component: {fileID: 7279935032362451110}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,6 +573,6 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}

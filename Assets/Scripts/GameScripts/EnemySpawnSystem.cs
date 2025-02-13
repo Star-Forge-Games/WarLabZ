@@ -10,24 +10,15 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private float spawnZ;
     [SerializeField] private float spawnpointWidth;
     [SerializeField] private GameObject losePanel;
-    //[SerializeField] private Transform[] spawnpoints;
     [SerializeField] private Wave[] waves;
 
     public int wave = 0;
     public int spawnedEnemies = 0, waveEnemies = 0;
-    //private int wavePart = 0;
-    //private int wavePartCounter = 0;
 
-    /*public float startSpawnerInterval;
-    private float spawnerInterval;
-    public int numberOfEnemies;
-    public int nowTheEnemies;
-    public int randEnemy;
-    private int randPoint;*/
 
     void Start()
     {
-        // spawnerInterval = startSpawnerInterval;
+
         CalculateEnemiesAmount();
         ProcessWaveSpawns();
         EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
@@ -122,19 +113,7 @@ public class EnemySpawnSystem : MonoBehaviour
             CalculateEnemiesAmount();
             ProcessWaveSpawns();
         }
-        /*if (spawnerInterval <= 0 && nowTheEnemies < numberOfEnemies)
-        {
-            randEnemy = Random.Range(0, spawnEnemy.Length);
-            randPoint = Random.Range(0, spawnPoint.Length);
-            GameObject enemy = Instantiate(spawnEnemy[randEnemy], spawnPoint[randPoint].transform.position, Quaternion.identity);
-            enemy.transform.parent = enemyContainer;
-            spawnerInterval = startSpawnerInterval;
-            nowTheEnemies++;
-        }
-        else
-        {
-            spawnerInterval -= Time.deltaTime;
-        }*/
+
     }
 
 }

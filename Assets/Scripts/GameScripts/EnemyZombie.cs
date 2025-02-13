@@ -3,9 +3,14 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class EnemyZombie : MonoBehaviour
 {
+
+
+    [SerializeField] private GameObject dollars;
+    [SerializeField] private float moneyDropChance;
 
     [SerializeField] private Animator anim;
     [SerializeField] private Image healthBar;
@@ -22,18 +27,21 @@ public class EnemyZombie : MonoBehaviour
     public static Action OnZombieHitPlayer;
     public static Action<int> OnZombieHitWall;
 
+    float random;
+
     public void Start()
     {
         direction.z = -speed;
         characterController = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         UpdateHealthUI(maxHealth, currentHealth);
+
     }
 
     private void Update()
     {
         if (!wall)
-        characterController.Move(direction * Time.deltaTime);
+            characterController.Move(direction * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
@@ -41,14 +49,27 @@ public class EnemyZombie : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            random = Random.Range(0, 100);
+            if (random <= moneyDropChance)
+            {
+                dollars = Instantiate(dollars, transform.position, Quaternion.identity);
+                KillsCount.kills += 1;
+                PlayerController.money += 1;
+                Destroy(gameObject);
+            }
+            else
+            {
+                KillsCount.kills += 1;
+                Destroy(gameObject);
+            }
+
         }
         UpdateHealthUI(maxHealth, currentHealth);
     }
 
     public void UpdateHealthUI(int maxHealth, int currentHealth)
     {
-        healthBar.fillAmount = (float) currentHealth / maxHealth; // Update healthbar based on health percentage
+        healthBar.fillAmount = (float)currentHealth / maxHealth; // Update healthbar based on health percentage
         healthAmount.text = $"{currentHealth}";
     }
 
