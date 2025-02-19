@@ -18,6 +18,7 @@ public class Timer : MonoBehaviour
 
     IEnumerator ITimer()
     {
+        yield return new WaitForSeconds(4);
         while (true)
         {
             if (sec == 59)

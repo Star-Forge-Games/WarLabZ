@@ -15,10 +15,10 @@ MonoBehaviour:
   parts:
   - delay: 0
     zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
-    amount: 6
+    amount: 2
     interval: 1.5
   - delay: 5
     zombiePrefab: {fileID: 7143858245785905579, guid: f3b972b22792f3d43bc109d270f87eb4, type: 3}
-    amount: 4
+    amount: 2
     interval: 1
-  nextWaveDelay: 5
+  nextWaveDelay: 1000

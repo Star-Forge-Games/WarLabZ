@@ -1514,7 +1514,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   firePoint: {fileID: 1959370579}
   fireForce: 50
-  bulletsRate: 0.1
+  bulletsRate: 1
   anim: {fileID: 714218979}
   bulletContainer: {fileID: 506493578}
   moneyText: {fileID: 700696934}
@@ -2227,7 +2227,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
   - {fileID: 7143858245785905579, guid: aebc01b30313f324b80958862c43aa67, type: 3}
-  randomSpawnInterval: 0.1
+  randomSpawnInterval: 500
   spawnZ: 99
   spawnpointWidth: 5.5
   losePanel: {fileID: 350896424}
@@ -2711,8 +2711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c58f1b38ab0de3c46aa2d44e8ba70355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
-  moneyText: {fileID: 0}
 --- !u!1 &1865784540
 GameObject:
   m_ObjectHideFlags: 0
