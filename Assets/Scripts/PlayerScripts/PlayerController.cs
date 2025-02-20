@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         StartCoroutine(nameof(PeriodicFireSpawn));
         EnemyZombie.OnZombieHitPlayer += OnHit;
-
         money = PlayerPrefs.GetInt("money");
         moneyText.text = "$: " + money;
     }
@@ -55,7 +54,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S))
         {
             StartCoroutine(Slide());
-            
         }
     }
 
@@ -86,7 +84,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         movement.x = moveInput.x * moveSpeed;
-
         if (characterController.isGrounded)
         {
             movement.y = -jumpGravity * 0.1f;
@@ -134,22 +131,9 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); //создаём снаряд из префаба
+        Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //создаём снаряд из префаба
         bullet.transform.parent = bulletContainer;
-        Rigidbody bulletRB = bullet.GetComponent<Rigidbody>(); //получаем rigidbody для префаба 
-
-        bulletRB.AddForce(firePoint.forward * fireForce, ForceMode.Impulse); //применяем силу к Rigidbody снаряда, чтобы запустить снаряд
+        bullet.Launch(fireForce, firePoint.forward);
     }
-
-    /* private void OnControllerColliderHit(ControllerColliderHit hit)
-     {
-
-         if (hit.gameObject.tag == "obstacle")
-         {
-            Debug.Log("ZHopa");
-            losePanel.SetActive(true);
-             Time.timeScale = 0;
-         }
-     }*/
 
 }

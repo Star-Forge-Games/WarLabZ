@@ -2,32 +2,26 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using System.Collections;
-using Random = UnityEngine.Random;
 
 public class EnemyZombie : MonoBehaviour
 {
 
-
-    [SerializeField] private GameObject dollars;
     [SerializeField] private float moneyDropChance;
-
     [SerializeField] private Animator anim;
     [SerializeField] private Image healthBar;
     [SerializeField] private TMP_Text healthAmount;
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int damage;
+    [SerializeField] private float speed;
 
     private int currentHealth;
-    [SerializeField] private float speed;
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
     private bool wall = false;
 
     public static Action OnZombieHitPlayer;
     public static Action<int> OnZombieHitWall;
-
-    float random;
+    public static Action<EnemyZombie, float> OnZombieDie;
 
     public void Start()
     {
@@ -35,13 +29,11 @@ public class EnemyZombie : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         UpdateHealthUI(maxHealth, currentHealth);
-
     }
 
     private void Update()
     {
-        if (!wall)
-            characterController.Move(direction * Time.deltaTime);
+        if (!wall) characterController.Move(direction * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
@@ -49,27 +41,17 @@ public class EnemyZombie : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            random = Random.Range(0, 100);
-            if (random <= moneyDropChance)
-            {
-                dollars = Instantiate(dollars, transform.position, Quaternion.identity);
-                KillsCount.kills += 1;
-                PlayerController.money += 1;
-                Destroy(gameObject);
-            }
-            else
-            {
-                KillsCount.kills += 1;
-                Destroy(gameObject);
-            }
-
+            OnZombieDie?.Invoke(this, moneyDropChance);
+            KillsCount.kills += 1;
+            Destroy(gameObject);
+            return;
         }
         UpdateHealthUI(maxHealth, currentHealth);
     }
 
     public void UpdateHealthUI(int maxHealth, int currentHealth)
     {
-        healthBar.fillAmount = (float)currentHealth / maxHealth; // Update healthbar based on health percentage
+        healthBar.fillAmount = (float)currentHealth / maxHealth;
         healthAmount.text = $"{currentHealth}";
     }
 
@@ -77,7 +59,7 @@ public class EnemyZombie : MonoBehaviour
     {
         if (hit.gameObject.CompareTag("Player"))
         {
-            OnZombieHitPlayer?.Invoke(); // death
+            OnZombieHitPlayer?.Invoke();
         }
         if (hit.gameObject.CompareTag("Wall"))
         {

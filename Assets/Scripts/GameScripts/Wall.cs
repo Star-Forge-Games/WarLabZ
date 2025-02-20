@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    [SerializeField] private int health;
+    private int health;
     [SerializeField] public int maxHealth;
 
     private void Start()

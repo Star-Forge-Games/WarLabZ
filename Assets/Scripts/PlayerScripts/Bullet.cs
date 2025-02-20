@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
 
     public int damage;
 
-
     private void Start()
     {
         StartCoroutine(nameof(DestroyBullet));
@@ -23,6 +22,13 @@ public class Bullet : MonoBehaviour
     {
         StopCoroutine(nameof(DestroyBullet));
         GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+    }
+
+    public void Launch(float fireForce, Vector3 direction)
+    {
+        StartCoroutine(nameof(DestroyBullet));
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.AddForce(direction * fireForce, ForceMode.Impulse);
     }
 
     private void OnTriggerEnter(Collider other)
