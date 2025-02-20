@@ -15,29 +15,21 @@ public class PlayerController : MonoBehaviour
 
     //[SerializeField] private GameObject losePanel;
 
-    [SerializeField] float jumpSpeed = 15f;
-    [SerializeField] float jumpGravity = 0.75f;
-    bool isJumping = false;
-
     private bool isSlide;
 
-    public GameObject bulletPrefab;// префаб снаряда
-    public Transform firePoint; // откуда стреляем
-    [SerializeField] float fireForce; // Скорость полёта снаряда
-    [SerializeField] float bulletsRate; // Частота выстерлов
-
     [SerializeField] private Animator anim;
-    [SerializeField] private Transform bulletContainer;
+    
 
     public static int money;
     [SerializeField] private TMP_Text moneyText;
 
+    [SerializeField] Weapon weapon;
 
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        StartCoroutine(nameof(PeriodicFireSpawn));
+        weapon.UnPause();
         EnemyZombie.OnZombieHitPlayer += OnHit;
         money = PlayerPrefs.GetInt("money");
         moneyText.text = "$: " + money;
@@ -62,13 +54,10 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetInt("money", money);
         PlayerPrefs.Save();
         // Start Death Animation
-        StopCoroutine(nameof(PeriodicFireSpawn));
+
         anim.speed = 0;
         enabled = false;
-        foreach (Transform bullet in bulletContainer)
-        {
-            bullet.GetComponent<Bullet>().Stop();
-        }
+
     }
 
     void OnMove(InputValue value)
@@ -76,28 +65,10 @@ public class PlayerController : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
-    void OnJump()
-    {
-        if (characterController.isGrounded && !isJumping) isJumping = true;
-    }
 
     private void FixedUpdate()
     {
         movement.x = moveInput.x * moveSpeed;
-        if (characterController.isGrounded)
-        {
-            movement.y = -jumpGravity * 0.1f;
-
-            if (isJumping)
-            {
-                movement.y = jumpSpeed;
-                isJumping = false;
-            }
-        }
-        else
-        {
-            movement.y -= jumpGravity * (movement.y > 0 ? 1 : 1.25f);
-        }
         characterController.Move(movement * Time.fixedDeltaTime);
         if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
         else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
@@ -119,21 +90,5 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private IEnumerator PeriodicFireSpawn()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(bulletsRate);
-            if (characterController.isGrounded)
-                Fire();
-        }
-    }
-
-    private void Fire()
-    {
-        Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //создаём снаряд из префаба
-        bullet.transform.parent = bulletContainer;
-        bullet.Launch(fireForce, firePoint.forward);
-    }
-
+   
 }

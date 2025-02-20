@@ -7,6 +7,11 @@ public class ButtonsScript : MonoBehaviour
 
     [SerializeField] private Animator fader;
 
+    public void LoadQuestsScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(2);
+    }
     public void StartGame()
     {
         fader.Play("Fade");
@@ -18,5 +23,7 @@ public class ButtonsScript : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene(1);
     }
+
+
 
 }
