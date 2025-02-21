@@ -27,8 +27,14 @@ public class EnemyZombie : MonoBehaviour
     {
         direction.z = -speed;
         characterController = GetComponent<CharacterController>();
-        currentHealth = maxHealth;
+     
         UpdateHealthUI(maxHealth, currentHealth);
+    }
+
+    public void MultiplyHp(float health)
+    {
+        maxHealth = (int)(health * maxHealth);
+        currentHealth = maxHealth;
     }
 
     private void Update()

@@ -46,16 +46,17 @@ public class EnemySpawnSystem : MonoBehaviour
         yield return new WaitForSeconds(part.delay + (first ? 0 : waves[wave - 1].nextWaveDelay));
         for (int i = 0; i < part.amount; i++)
         {
-            SpawnEnemy(part.zombiePrefab);
+            SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier:1);
             yield return new WaitForSeconds(part.interval);
         }
     }
 
-    private void SpawnEnemy(GameObject prefab)
+    private void SpawnEnemy(GameObject prefab, float mult)
     {
         spawnedEnemies++;
         GameObject enemy = Instantiate(prefab, GeneratePoint(), Quaternion.identity);
         enemy.transform.parent = enemyContainer;
+        enemy.GetComponent<EnemyZombie>().MultiplyHp(mult);
     }
 
     private void OnDestroy()

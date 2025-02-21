@@ -11,6 +11,7 @@ public class Wave : ScriptableObject
         public GameObject zombiePrefab;
         public int amount;
         public float interval;
+        public float hpMultiplier;
         //public float approximateTime;
         //public float nextPartDelay;
     }

@@ -19,6 +19,8 @@ public class Weapon : MonoBehaviour
     private float flatSpeedModifier = 0, expSpeedModifier = 1;
 
 
+
+
     private IEnumerator PeriodicFireSpawn()
     {
         while (true)

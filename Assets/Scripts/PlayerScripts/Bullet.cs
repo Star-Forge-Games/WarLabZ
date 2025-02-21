@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
 
     public int damage;
 
+    [SerializeField] float bulletLifeTime;
+
     private void Start()
     {
         StartCoroutine(nameof(DestroyBullet));
@@ -14,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(bulletLifeTime);
         Destroy(gameObject);
     }
 
