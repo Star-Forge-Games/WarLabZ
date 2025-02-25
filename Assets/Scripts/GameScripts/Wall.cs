@@ -1,13 +1,15 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class Wall : MonoBehaviour
 {
 
     [SerializeField] public int maxHealth;
     [SerializeField] private TMP_Text healthAmount;
+
+    public static Action OnWallDeath;
     private int health;
     public Image wallHpBar;
 
@@ -25,6 +27,7 @@ public class Wall : MonoBehaviour
         if (health <= 0)
         {
             EnemyZombie.OnZombieHitWall -= TakeDamage;
+            OnWallDeath?.Invoke();
             Destroy(gameObject);
             // death
         }

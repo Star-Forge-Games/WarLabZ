@@ -23,6 +23,11 @@ public class EnemyZombie : MonoBehaviour
     public static Action<int> OnZombieHitWall;
     public static Action<EnemyZombie, float> OnZombieDie;
 
+    private void Awake()
+    {
+        Wall.OnWallDeath += RunFurther;
+    }
+
     public void Start()
     {
         direction.z = -speed;
@@ -88,6 +93,16 @@ public class EnemyZombie : MonoBehaviour
     public void Attack()
     {
         OnZombieHitWall?.Invoke(damage);
+    }
+
+    private void RunFurther()
+    {
+        wall = false;
+    }
+
+    private void OnDestroy()
+    {
+        Wall.OnWallDeath -= RunFurther;
     }
 
 }

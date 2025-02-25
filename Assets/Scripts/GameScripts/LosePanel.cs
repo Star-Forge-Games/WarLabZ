@@ -9,7 +9,7 @@ public class LosePanel : MonoBehaviour
 
     public void RestartLevel()
     {
-        SwitchScene(1);
+        SwitchScene(-1);
     }
 
     public void BackToHub()
@@ -26,7 +26,8 @@ public class LosePanel : MonoBehaviour
     private IEnumerator SwitchSceneCoroutine(int i)
     {
         yield return new WaitForSeconds(1.2f);
-        SceneManager.LoadScene(i);
+        if (i != -1) SceneManager.LoadScene(i);
+        else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
