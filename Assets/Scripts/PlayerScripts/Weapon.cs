@@ -34,7 +34,7 @@ public class Weapon : MonoBehaviour
     {
         Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         bullet.transform.parent = bulletContainer;
-        bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int) ((bulletDamage + flatDamageModifier) * expDamageModifier));
+        bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int) ((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime);
     }
 
     public void Pause()

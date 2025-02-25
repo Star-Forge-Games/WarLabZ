@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
 
     private int damage;
-    [SerializeField] float bulletLifeTime;
+    private float bulletLifeTime;
     private float speed;
     float timeLived = 0;
     private bool paused = true;
@@ -21,10 +21,11 @@ public class Bullet : MonoBehaviour
         if (!paused) timeLived += Time.deltaTime;
     }
 
-    public void Setup(float speed, int damage)
+    public void Setup(float speed, int damage, float bulletLifeTime)
     {
         this.speed = speed;
         this.damage = damage;
+        this.bulletLifeTime = bulletLifeTime;
         Unpause();
     }
 
