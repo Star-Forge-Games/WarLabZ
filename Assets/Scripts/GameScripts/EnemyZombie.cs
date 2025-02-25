@@ -6,7 +6,7 @@ using System;
 public class EnemyZombie : MonoBehaviour
 {
 
-    [SerializeField] private float moneyDropChance;
+    [SerializeField] private int moneyDropChance;
     [SerializeField] private Animator anim;
     [SerializeField] private Image healthBar;
     [SerializeField] private TMP_Text healthAmount;

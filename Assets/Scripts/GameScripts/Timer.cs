@@ -1,36 +1,35 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class Timer : MonoBehaviour
 {
-    private int sec = 0;
-    private int min = 0;
+    private float time = 0;
+    private bool paused;
     private TMP_Text timerText;
-    [SerializeField] private int delta = 0;
 
 
     void Start()
     {
         timerText = GetComponent<TMP_Text>();
-        StartCoroutine(ITimer());
     }
 
-    IEnumerator ITimer()
+    private void Update()
     {
-        yield return new WaitForSeconds(4);
-        while (true)
-        {
-            if (sec == 59)
-            {
-                min++;
-                sec = -1;
-            }
-            sec += delta;
-            timerText.text = min.ToString("D2") + " : " + sec.ToString("D2");
-            yield return new WaitForSeconds(1);
-        }
+        if (!paused) time += Time.deltaTime;
+        int timeSeconds = (int)time;
+        int mins = timeSeconds / 60;
+        int secs = timeSeconds % 60;
+        timerText.text = (mins > 9 ? mins : "0" + mins) + " : " + (secs > 9 ? secs : "0" + secs);
     }
 
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Unpause()
+    {
+        paused = false;
+    }
 
 }

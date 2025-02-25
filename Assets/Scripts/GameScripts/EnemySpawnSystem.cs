@@ -11,6 +11,8 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private float spawnpointWidth;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private Wave[] waves;
+    [SerializeField] private bool endless;
+    private bool lastZombieSpawned = false;
 
     public int wave = 0;
     public int spawnedEnemies = 0, waveEnemies = 0;
@@ -18,10 +20,10 @@ public class EnemySpawnSystem : MonoBehaviour
 
     void Start()
     {
-
         CalculateEnemiesAmount();
         ProcessWaveSpawns();
         EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
+        EnemyZombie.OnZombieDie += ProcessZombieDeath;
     }
 
     private void CalculateEnemiesAmount()
@@ -98,7 +100,6 @@ public class EnemySpawnSystem : MonoBehaviour
         // Process other death effects
     }
 
-
     void Update()
     {
         if (wave >= waves.Length) return;
@@ -108,13 +109,25 @@ public class EnemySpawnSystem : MonoBehaviour
             wave++;
             if (wave >= waves.Length)
             {
-                StartCoroutine(nameof(SpawnLoop));
+                lastZombieSpawned = true;
+                if (endless)
+                {
+                    StartCoroutine(nameof(SpawnLoop));
+                }
                 return;
             }
             CalculateEnemiesAmount();
             ProcessWaveSpawns();
         }
 
+    }
+
+    public void ProcessZombieDeath(EnemyZombie z, float chance)
+    {
+        if (lastZombieSpawned && !endless && enemyContainer.childCount == 0)
+        {
+            PauseSystem.Win();
+        }
     }
 
 }

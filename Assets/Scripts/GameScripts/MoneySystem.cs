@@ -12,7 +12,7 @@ public class MoneySystem : MonoBehaviour
 
     public void ZombieDeath(EnemyZombie z, float chance)
     {
-        float random = Random.Range(0, 100);
+        int random = Random.Range(0, 100);
         if (random <= chance)
         {
             Instantiate(dollars, z.transform.position, Quaternion.identity);
