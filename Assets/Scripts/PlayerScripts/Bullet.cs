@@ -49,13 +49,6 @@ public class Bullet : MonoBehaviour
         GetComponent<Rigidbody>().linearVelocity = transform.forward * speed;
     }
 
-    public void Launch(float fireForce, Vector3 direction)
-    {
-        StartCoroutine(nameof(DestroyBullet));
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.AddForce(direction * fireForce, ForceMode.Impulse);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
