@@ -14,6 +14,7 @@ public class Cutscene : MonoBehaviour
     private void Start()
     {
         fader.Play("Unfade");
+        if (instaTimer) timer.enabled = true;
     }
 
     public void StartGame()
