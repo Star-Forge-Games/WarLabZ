@@ -5,25 +5,47 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    public int damage;
-
+    private int damage;
     [SerializeField] float bulletLifeTime;
+    private float speed;
+    float timeLived = 0;
+    private bool paused = true;
 
     private void Start()
     {
         StartCoroutine(nameof(DestroyBullet));
     }
 
+    private void Update()
+    {
+        if (!paused) timeLived += Time.deltaTime;
+    }
+
+    public void Setup(float speed, int damage)
+    {
+        this.speed = speed;
+        this.damage = damage;
+        Unpause();
+    }
+
     private IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(bulletLifeTime);
+        yield return new WaitForSeconds(Mathf.Clamp(bulletLifeTime - timeLived, 0.01f, bulletLifeTime));
         Destroy(gameObject);
     }
 
     public void Stop()
     {
+        paused = true;
         StopCoroutine(nameof(DestroyBullet));
         GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+    }
+
+    public void Unpause()
+    {
+        paused = false;
+        StartCoroutine(nameof(DestroyBullet));
+        GetComponent<Rigidbody>().linearVelocity = transform.forward * speed;
     }
 
     public void Launch(float fireForce, Vector3 direction)

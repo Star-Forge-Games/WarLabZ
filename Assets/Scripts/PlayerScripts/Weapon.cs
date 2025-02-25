@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] float bulletsRate;
     [SerializeField] float fireForce;
-    [SerializeField] float bulletDamage;
+    [SerializeField] int bulletDamage;
     [SerializeField] float bulletLifeTime;
 
     [SerializeField] private Transform bulletContainer;
@@ -25,16 +25,16 @@ public class Weapon : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(bulletsRate);
+            yield return new WaitForSeconds(1f/((bulletsRate + flatRateModifier) * expRateModifier));
             Fire();
         }
     }
 
     private void Fire()
     {
-        Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>(); //создаём снаряд из префаба
+        Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
         bullet.transform.parent = bulletContainer;
-        bullet.Launch(fireForce, firePoint.forward);
+        bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int) ((bulletDamage + flatDamageModifier) * expDamageModifier));
     }
 
     public void Pause()
@@ -46,7 +46,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void UnPause()
+    public void Unpause()
     {
         StartCoroutine(nameof(PeriodicFireSpawn));
         foreach (Transform bullet in bulletContainer)

@@ -25,11 +25,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Weapon weapon;
 
-
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        weapon.UnPause();
+        weapon.Unpause();
         EnemyZombie.OnZombieHitPlayer += OnHit;
         money = PlayerPrefs.GetInt("money");
         moneyText.text = "$: " + money;
@@ -54,10 +53,21 @@ public class PlayerController : MonoBehaviour
         PlayerPrefs.SetInt("money", money);
         PlayerPrefs.Save();
         // Start Death Animation
+        Pause();
+    }
 
+    public void Pause()
+    {
+        weapon.Pause();
         anim.speed = 0;
         enabled = false;
+    }
 
+    public void Unpause()
+    {
+        weapon.Unpause();
+        anim.speed = 1;
+        enabled = true;
     }
 
     void OnMove(InputValue value)

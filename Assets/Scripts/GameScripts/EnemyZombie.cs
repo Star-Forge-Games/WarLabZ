@@ -80,6 +80,12 @@ public class EnemyZombie : MonoBehaviour
         enabled = false;
     }
 
+    public void Unpause()
+    {
+        anim.speed = 1;
+        enabled = true;
+    }
+
     public void Attack()
     {
         OnZombieHitWall?.Invoke(damage);
