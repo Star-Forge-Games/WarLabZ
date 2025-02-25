@@ -76,6 +76,7 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
             enemy.transform.parent = enemyContainer;
+            enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
             yield return new WaitForSeconds(randomSpawnInterval);
         }
     }
