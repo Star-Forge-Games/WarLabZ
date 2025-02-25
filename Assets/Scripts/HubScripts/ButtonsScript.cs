@@ -7,6 +7,11 @@ public class ButtonsScript : MonoBehaviour
 
     [SerializeField] private Animator fader;
 
+    public void LoadShopScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(3);
+    }
     public void LoadQuestsScene()
     {
         Time.timeScale = 1;
