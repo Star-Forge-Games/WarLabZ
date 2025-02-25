@@ -17,13 +17,15 @@ public class EnemySpawnSystem : MonoBehaviour
     public int wave = 0;
     public int spawnedEnemies = 0, waveEnemies = 0;
 
-
+    private void Awake()
+    {
+        EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
+        EnemyZombie.OnZombieDie += ProcessZombieDeath;
+    }
     void Start()
     {
         CalculateEnemiesAmount();
         ProcessWaveSpawns();
-        EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
-        EnemyZombie.OnZombieDie += ProcessZombieDeath;
     }
 
     private void CalculateEnemiesAmount()
@@ -64,6 +66,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private void OnDestroy()
     {
         EnemyZombie.OnZombieHitPlayer -= ProcessZombieHit;
+        EnemyZombie.OnZombieDie -= ProcessZombieDeath;
     }
 
     private IEnumerator SpawnLoop()

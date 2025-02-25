@@ -50,10 +50,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnHit()
     {
-        PlayerPrefs.SetInt("money", money);
-        PlayerPrefs.Save();
+        SaveMoney();
         // Start Death Animation
         Pause();
+    }
+
+    public void SaveMoney()
+    {
+        PlayerPrefs.SetInt("money", money);
+        PlayerPrefs.Save();
     }
 
     public void Pause()
