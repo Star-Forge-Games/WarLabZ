@@ -128,7 +128,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     public void ProcessZombieDeath(EnemyZombie z, float chance)
     {
-        if (lastZombieSpawned && !endless && enemyContainer.childCount == 0)
+        if (lastZombieSpawned && !endless && enemyContainer.childCount == 1)
         {
             PauseSystem.Win();
         }

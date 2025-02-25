@@ -2994,10 +2994,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1959370579}
-  bulletsRate: 50
+  bulletsRate: 1
   fireForce: 50
   bulletDamage: 1
-  bulletLifeTime: 3
+  bulletLifeTime: 0.5
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
 --- !u!65 &1406914554
@@ -3112,8 +3112,8 @@ MonoBehaviour:
   spawnpointWidth: 5.5
   losePanel: {fileID: 350896424}
   waves:
-  - {fileID: 11400000, guid: 1421d375c2444014d815b1515d79ba23, type: 2}
-  endless: 1
+  - {fileID: 11400000, guid: 87c5e27349a60834586d9590f747edbd, type: 2}
+  endless: 0
   wave: 0
   spawnedEnemies: 0
   waveEnemies: 0
