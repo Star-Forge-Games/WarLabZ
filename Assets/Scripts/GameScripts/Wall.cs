@@ -11,7 +11,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private TMP_Text healthAmount;
 
     private int health;
-    
+
 
     public Image WallHpBar; // —сылка на ёјй »маге, полоска здоровь€
 
@@ -40,6 +40,11 @@ public class Wall : MonoBehaviour
     {
         WallHpBar.fillAmount = (float)currentHealth / maxHealth;
         healthAmount.text = $"{currentHealth}";
+    }
+
+    private void OnDestroy()
+    {
+        EnemyZombie.OnZombieHitWall -= TakeDamage;
     }
 
 }
