@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,17 +9,15 @@ public class LosePanel : MonoBehaviour
 
     public void RestartLevel()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(1);
+        SwitchScene(1);
     }
 
     public void BackToHub()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SwitchScene(0);
     }
 
-    /*public void SwitchScene(int i)
+    public void SwitchScene(int i)
     {
         fader.Play("Fade");
         StartCoroutine(nameof(SwitchSceneCoroutine), i);
@@ -28,7 +27,7 @@ public class LosePanel : MonoBehaviour
     {
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene(i);
-    }*/
+    }
 
 
 

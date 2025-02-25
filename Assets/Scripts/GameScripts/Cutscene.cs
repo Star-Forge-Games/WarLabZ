@@ -6,7 +6,10 @@ public class Cutscene : MonoBehaviour
 
     [SerializeField] private PlayerController player;
     [SerializeField] private EnemySpawnSystem ess;
-    [SerializeField] Animator fader;
+    [SerializeField] private Animator fader;
+    [SerializeField] private PauseSystem pauseSystem;
+    [SerializeField] private Timer timer;
+    [SerializeField] private bool instaTimer = true;
 
     private void Start()
     {
@@ -20,6 +23,8 @@ public class Cutscene : MonoBehaviour
         GetComponent<AudioSource>().Play();
         player.enabled = true;
         ess.enabled = true;
+        pauseSystem.enabled = true;
+        if (!instaTimer) timer.enabled = true;
         Destroy(this);
     }
 }

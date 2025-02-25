@@ -1,8 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-using System;
-using System.Collections;
 
 public class KillsCount : MonoBehaviour
 {

@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
     Vector2 moveInput;
     Vector3 movement;
 
-    //[SerializeField] private GameObject losePanel;
-
     private bool isSlide;
 
     [SerializeField] private Animator anim;
@@ -75,7 +73,7 @@ public class PlayerController : MonoBehaviour
         enabled = true;
     }
 
-    void OnMove(InputValue value)
+    public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }

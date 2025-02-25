@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,25 +8,20 @@ public class Wall : MonoBehaviour
 
     [SerializeField] public int maxHealth;
     [SerializeField] private TMP_Text healthAmount;
-
     private int health;
-
-
-    public Image WallHpBar; // —сылка на ёјй »маге, полоска здоровь€
+    public Image wallHpBar;
 
 
     private void Start()
     {
         EnemyZombie.OnZombieHitWall += TakeDamage;
         health = maxHealth;
-
         UpdateWallHp(maxHealth, health);
     }
 
     public void TakeDamage(int damage)
     {
         health -= damage;
-
         if (health <= 0)
         {
             EnemyZombie.OnZombieHitWall -= TakeDamage;
@@ -38,7 +32,7 @@ public class Wall : MonoBehaviour
     }
     public void UpdateWallHp(int maxHealth, int currentHealth)
     {
-        WallHpBar.fillAmount = (float)currentHealth / maxHealth;
+        wallHpBar.fillAmount = (float)currentHealth / maxHealth;
         healthAmount.text = $"{currentHealth}";
     }
 

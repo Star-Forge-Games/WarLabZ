@@ -12,8 +12,6 @@ public class Wave : ScriptableObject
         public int amount;
         public float interval;
         public float hpMultiplier;
-        //public float approximateTime;
-        //public float nextPartDelay;
     }
 
     public WavePart[] parts;

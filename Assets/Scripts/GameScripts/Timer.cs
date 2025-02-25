@@ -7,7 +7,6 @@ public class Timer : MonoBehaviour
     private bool paused;
     private TMP_Text timerText;
 
-
     void Start()
     {
         timerText = GetComponent<TMP_Text>();
