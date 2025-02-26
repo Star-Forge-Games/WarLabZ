@@ -51,8 +51,8 @@ public class EnemyZombie : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            OnZombieDie?.Invoke(this, moneyDropChance);
             KillsCount.kills += 1;
+            OnZombieDie?.Invoke(this, moneyDropChance);
             Destroy(gameObject);
             return;
         }

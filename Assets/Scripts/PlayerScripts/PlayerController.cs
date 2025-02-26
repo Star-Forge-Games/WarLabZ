@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     
 
-    public static int money;
-    [SerializeField] private TMP_Text moneyText;
+
 
     [SerializeField] Weapon weapon;
 
@@ -28,8 +27,6 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         weapon.Unpause();
         EnemyZombie.OnZombieHitPlayer += OnHit;
-        money = PlayerPrefs.GetInt("money");
-        moneyText.text = "$: " + money;
     }
 
     private void OnDestroy()
@@ -39,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moneyText.text = "$: " + money;
+       
         if (Input.GetKey(KeyCode.S))
         {
             StartCoroutine(Slide());
@@ -48,16 +45,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnHit()
     {
-        SaveMoney();
+        MoneySystem.SaveMoney();
         // Start Death Animation
         Pause();
     }
 
-    public void SaveMoney()
-    {
-        PlayerPrefs.SetInt("money", money);
-        PlayerPrefs.Save();
-    }
 
     public void Pause()
     {

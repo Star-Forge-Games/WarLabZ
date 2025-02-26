@@ -1263,6 +1263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dollars: {fileID: 5326157030169105250, guid: 18f12b5511ac732418e213a43c7d2462, type: 3}
   moneyText: {fileID: 700696934}
+  money: 0
 --- !u!4 &695290674
 Transform:
   m_ObjectHideFlags: 0
@@ -1973,6 +1974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   anim: {fileID: 714218979}
+  moneyText: {fileID: 700696934}
   weapon: {fileID: 1406914553}
 --- !u!1 &993528947
 GameObject:
@@ -2960,7 +2962,7 @@ GameObject:
   - component: {fileID: 1406914554}
   - component: {fileID: 1406914553}
   m_Layer: 0
-  m_Name: Weapon(Test)
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3112,7 +3114,7 @@ MonoBehaviour:
   spawnpointWidth: 5.5
   losePanel: {fileID: 350896424}
   waves:
-  - {fileID: 11400000, guid: 1421d375c2444014d815b1515d79ba23, type: 2}
+  - {fileID: 11400000, guid: fd0349c51f2d0b149a112ed75d528004, type: 2}
   endless: 0
   wave: 0
   spawnedEnemies: 0

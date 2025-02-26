@@ -24,7 +24,7 @@ public class PauseSystem : MonoBehaviour
         instance.win = true;
         instance.timer.Pause();
         instance.paused = true;
-        instance.player.SaveMoney();
+        MoneySystem.SaveMoney();
         instance.player.Pause();
         foreach (Transform enemy in instance.zombies)
         {
