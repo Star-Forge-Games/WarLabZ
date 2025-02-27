@@ -8,7 +8,6 @@ public class MenuUI : MonoBehaviour
 {
 
     [SerializeField] private Animator fader;
-
     [SerializeField] private TextMeshProUGUI cash, donateCash, keys;
 
     private void Start()
