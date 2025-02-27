@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using YG;
 
 public class Weapon : MonoBehaviour
 {
@@ -10,13 +11,16 @@ public class Weapon : MonoBehaviour
     [SerializeField] float bulletLifeTime;
     [SerializeField] private Transform bulletContainer;
     [SerializeField] GameObject bulletPrefab;
-
+    [SerializeField] private int weaponId;
    
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     private float flatSpeedModifier = 0, expSpeedModifier = 1;
 
-
+    private void Awake()
+    {
+        if (YG2.saves.selectedWeapon != weaponId) gameObject.SetActive(false);
+    }
 
 
     private IEnumerator PeriodicFireSpawn()

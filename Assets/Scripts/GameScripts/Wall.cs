@@ -2,21 +2,28 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class Wall : MonoBehaviour
 {
-
-    [SerializeField] public int maxHealth;
     [SerializeField] private TMP_Text healthAmount;
+    [SerializeField] private Image wallHpBar;
+    [SerializeField] private WallSettings settings;
 
     public static Action OnWallDeath;
+
     private int health;
-    public Image wallHpBar;
+    private int maxHealth;
 
 
     private void Start()
     {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
+        }
         EnemyZombie.OnZombieHitWall += TakeDamage;
+        maxHealth = settings.wallLevelsHp[YG2.saves.wallLevel];
         health = maxHealth;
         UpdateWallHp(maxHealth, health);
     }

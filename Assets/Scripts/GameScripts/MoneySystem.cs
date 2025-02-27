@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using YG;
 
 
 public class MoneySystem : MonoBehaviour
@@ -13,7 +14,7 @@ public class MoneySystem : MonoBehaviour
     private void Awake()
     {
         EnemyZombie.OnZombieDie += ZombieDeath;
-        money = PlayerPrefs.GetInt("money");
+        money = YG2.saves.cash;
         moneyText.text = "$: " + money;
 
     }
@@ -31,8 +32,8 @@ public class MoneySystem : MonoBehaviour
 
     public static void SaveMoney()
     {
-        PlayerPrefs.SetInt("money", money);
-        PlayerPrefs.Save();
+        YG2.saves.cash = money;
+        YG2.SaveProgress();
     }
 
     private void OnDestroy()

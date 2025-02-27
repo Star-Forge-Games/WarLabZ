@@ -13,5 +13,6 @@ namespace YG
         public int keys;
         public int wallLevel;
         public int[,] upgrades;
+        public int selectedWeapon;
     }
 }
