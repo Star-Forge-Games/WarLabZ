@@ -7,20 +7,30 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
+<<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
+=======
+>>>>>>> Stashed changes
   m_Name: FloorMenu
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
+<<<<<<< Updated upstream
 ========
   m_Name: Ch35_1001_Diffuse
+========
+  m_Name: Ch35_1002_Diffuse
+>>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1002_Diffuse.mat
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _NORMALMAP
 >>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1001_Diffuse.mat
+=======
+>>>>>>> Stashed changes
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -35,12 +45,17 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
+<<<<<<< Updated upstream
 <<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
+<<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
+=======
+>>>>>>> Stashed changes
         m_Texture: {fileID: 2800000, guid: eed890db0db29b94bbd03bf1dc1f1b83, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
+<<<<<<< Updated upstream
 ========
         m_Texture: {fileID: 2800000, guid: db9beabefaa3bc84080c46016d28b45d, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -48,6 +63,15 @@ Material:
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: ab08c45646981ee4aa14e429ea83afd5, type: 3}
 >>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1001_Diffuse.mat
+========
+        m_Texture: {fileID: 2800000, guid: 1e4d5bba6292d2f4883ae53aad3f71b7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 69276bab73f1a4141b088612d021a701, type: 3}
+>>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1002_Diffuse.mat
+=======
+>>>>>>> Stashed changes
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -67,11 +91,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
 <<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
         m_Texture: {fileID: 2800000, guid: eed890db0db29b94bbd03bf1dc1f1b83, type: 3}
 ========
         m_Texture: {fileID: 2800000, guid: db9beabefaa3bc84080c46016d28b45d, type: 3}
 >>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1001_Diffuse.mat
+========
+        m_Texture: {fileID: 2800000, guid: 1e4d5bba6292d2f4883ae53aad3f71b7, type: 3}
+>>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1002_Diffuse.mat
+=======
+        m_Texture: {fileID: 2800000, guid: eed890db0db29b94bbd03bf1dc1f1b83, type: 3}
+>>>>>>> Stashed changes
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -136,17 +168,30 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+<<<<<<< Updated upstream
     - _BaseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+=======
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+>>>>>>> Stashed changes
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
 <<<<<<<< Updated upstream:Assets/Materials/FloorMenu.mat
 --- !u!114 &5095826755517038448
 ========
 --- !u!114 &5458703845169159806
 >>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1001_Diffuse.mat
+========
+--- !u!114 &4218821695953664057
+>>>>>>>> Stashed changes:Assets/ImportedAssets/Mixamo/SWAT/Materials/Ch35_1002_Diffuse.mat
+=======
+--- !u!114 &5095826755517038448
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -600,9 +600,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_text: 'Shop
 
 '
+=======
+  m_text: Shop
+>>>>>>> Stashed changes
 =======
   m_text: Shop
 >>>>>>> Stashed changes
@@ -2762,7 +2766,11 @@ GameObject:
   - component: {fileID: 2056085114}
   m_Layer: 5
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Name: PlayerButton
+=======
+  m_Name: Button
+>>>>>>> Stashed changes
 =======
   m_Name: Button
 >>>>>>> Stashed changes
@@ -2837,7 +2845,11 @@ MonoBehaviour:
       - m_Target: {fileID: 490076719}
         m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         m_MethodName: 
+=======
+        m_MethodName: StartGame
+>>>>>>> Stashed changes
 =======
         m_MethodName: StartGame
 >>>>>>> Stashed changes
