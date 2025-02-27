@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 132710466924847441}
   - component: {fileID: 8856531992393155393}
   - component: {fileID: 559977673064678048}
+  - component: {fileID: 6999816912586112335}
   m_Layer: 6
   m_Name: Enemy3
   m_TagString: EnemyZombie
@@ -387,7 +388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f48bc36b6061cd419099ac5598a844e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dollars: {fileID: 5326157030169105250, guid: 18f12b5511ac732418e213a43c7d2462, type: 3}
   moneyDropChance: 100
   anim: {fileID: 7112768241958756894}
   healthBar: {fileID: 7789753011265524503}
@@ -395,6 +395,33 @@ MonoBehaviour:
   maxHealth: 10
   damage: 3
   speed: 5
+--- !u!54 &6999816912586112335
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143858245785905579}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7664687753805338784
 GameObject:
   m_ObjectHideFlags: 0
