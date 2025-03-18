@@ -1,18 +1,21 @@
+using System;
 using UnityEngine;
 
 public class PauseSystem : MonoBehaviour
 {
 
-    private static PauseSystem instance;
+    public static PauseSystem instance;
 
     [SerializeField] PlayerController player;
     [SerializeField] Transform bullets, zombies;
     [SerializeField] GameObject pausePanel, winPanel;
     [SerializeField] Timer timer;
 
-    private bool win = false;
+    public bool win = false;
 
-    private bool paused = false;
+    public bool paused = false;
+
+    public static Action<bool> PauseChange;
 
     private void Awake()
     {
@@ -22,6 +25,7 @@ public class PauseSystem : MonoBehaviour
     public static void Win()
     {
         instance.win = true;
+        PauseChange?.Invoke(true);
         instance.timer.Pause();
         instance.paused = true;
         MoneySystem.SaveMoney();
@@ -37,17 +41,12 @@ public class PauseSystem : MonoBehaviour
         instance.winPanel.SetActive(true);
     }
 
-    public void OnPause()
-    {
-        if (win) return;
-        if (instance.paused) Unpause();
-        else Pause();
-    }
-
     public static void Pause()
     {
         instance.timer.Pause();
         instance.paused = true;
+        instance.pausePanel.SetActive(true);
+        PauseChange?.Invoke(true);
         instance.player.Pause();
         foreach (Transform enemy in instance.zombies)
         {
@@ -57,7 +56,6 @@ public class PauseSystem : MonoBehaviour
         {
             bullet.GetComponent<Bullet>().Stop();
         }
-        instance.pausePanel.SetActive(true);
     }
 
     public static void Unpause()
@@ -74,6 +72,7 @@ public class PauseSystem : MonoBehaviour
             bullet.GetComponent<Bullet>().Unpause();
         }
         instance.pausePanel.SetActive(false);
+        PauseChange?.Invoke(false);
     }
 
 }

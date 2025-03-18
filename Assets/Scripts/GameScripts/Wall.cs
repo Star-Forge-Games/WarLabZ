@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,21 @@ public class Wall : MonoBehaviour
     [SerializeField] private Image wallHpBar;
     [SerializeField] private WallSettings settings;
 
+    private bool invulnerable = false;
+
     public static Action OnWallDeath;
+
+    public void Protect(float time)
+    {
+        invulnerable = true;
+        StartCoroutine(StopProtection(time));
+    }
+
+    private IEnumerator StopProtection(float time)
+    {
+        yield return new WaitForSeconds(time);
+        invulnerable = false;
+    }
 
     private int health;
     private int maxHealth;
@@ -30,6 +45,7 @@ public class Wall : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (invulnerable) return;
         health -= damage;
         if (health <= 0)
         {

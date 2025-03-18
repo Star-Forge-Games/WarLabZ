@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     [SerializeField] float moveSpeed = 6f;
+    [SerializeField] Timer timer;
     Vector2 moveInput;
     Vector3 movement;
 
@@ -48,6 +49,15 @@ public class PlayerController : MonoBehaviour
         MoneySystem.SaveMoney();
         // Start Death Animation(THIS COMMENT HAS A COPY IN ENEMYSPAWNSYSTEM, WILL FIX LATER)
         Pause();
+        timer.Pause();
+        PauseSystem.PauseChange?.Invoke(true);
+    }
+
+    public void OnPause()
+    {
+        if (PauseSystem.instance.win) return;
+        if (PauseSystem.instance.paused) Unpause();
+        else Pause();
     }
 
 

@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
 using NaughtyAttributes;
 using UnityEngine;
-using YG;
 
-public class Weapon : MonoBehaviour
+public class Turret : MonoBehaviour
 {
     [SerializeField] Transform firePoint;
     [SerializeField] float bulletsRate;
     [SerializeField] float fireForce;
     [SerializeField] int bulletDamage;
     [SerializeField] float bulletLifeTime;
+    [SerializeField] private float range;
     [SerializeField] private Transform bulletContainer;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] private int weaponId;
     [Header("Shotgun Settings")]
     [SerializeField] private bool shotgun;
     [ShowIf("shotgun")]
@@ -24,22 +24,80 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int multishots = 1;
     [Range(0.01f, 0.33f)]
     [SerializeField] private float baseAttackTimePercentage = 0.1f;
-
+    [SerializeField] private Transform enemyContainer;
+    [SerializeField] private float rotationSpeed;
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     private float flatSpeedModifier = 0, expSpeedModifier = 1;
     private float critChance = 75, critDamageMultiplier = 2;
+    private bool targeting = false;
+    Vector3 targetPosition;
 
     private void Awake()
     {
-        if (YG2.saves.selectedWeapon != weaponId)
+        PauseSystem.PauseChange += pause =>
         {
-            gameObject.SetActive(false);
-            return;
-        }
-        // attach upgrades from SAVES YG
+            Debug.Log(pause);
+            if (!pause) Unpause();
+            else Pause();
+        };
     }
 
+    private void Update()
+    {
+        Transform target = null;
+        float min = range;
+        foreach (Transform t in enemyContainer)
+        {
+            if (t.position.z < range)
+            {
+                if (t.position.z < min)
+                {
+                    min = t.position.z;
+                    target = t;
+                }
+            }
+        }
+        if (targeting)
+        {
+            if (target == null)
+            {
+                StopCoroutine(nameof(PeriodicFireSpawn));
+                targeting = false;
+            }
+            else
+            {
+                targetPosition = target.position;
+                RotateTowardsTarget();
+            }
+        } else
+        {
+            if (target != null)
+            {
+                targetPosition = target.position;
+                RotateTowardsTarget();
+                StartCoroutine(nameof(PeriodicFireSpawn));
+                targeting = true;
+            }
+        }
+    }
+
+    private void RotateTowardsTarget()
+    {
+        Quaternion q = Quaternion.LookRotation(targetPosition - transform.position);
+        q.x = 0;
+        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * rotationSpeed);
+    }
+
+    public void Pause()
+    {
+        StopCoroutine(nameof(PeriodicFireSpawn));
+    }
+
+    public void Unpause()
+    {
+        StartCoroutine(nameof(PeriodicFireSpawn));
+    }
 
     private IEnumerator PeriodicFireSpawn()
     {
@@ -48,7 +106,7 @@ public class Weapon : MonoBehaviour
             if (multishots > 0)
             {
                 float rate = 1f / ((bulletsRate + flatRateModifier) * expRateModifier);
-                yield return new WaitForSeconds(rate * (1-baseAttackTimePercentage * multishots));
+                yield return new WaitForSeconds(rate * (1 - baseAttackTimePercentage * multishots));
                 Fire();
                 for (int i = 0; i < multishots; i++)
                 {
@@ -71,62 +129,27 @@ public class Weapon : MonoBehaviour
             Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
             bullet.transform.parent = bulletContainer;
             bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
-        } else
+        }
+        else
         {
             for (int i = 0; i < shots; i++)
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
-                bullet.transform.Rotate(0, -(arc / 2) + (arc/(shots-1)) * i, 0);
+                bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
                 bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
             }
         }
     }
 
-    public void Pause()
+    private void OnDestroy()
     {
-        StopCoroutine(nameof(PeriodicFireSpawn));
-        foreach (Transform bullet in bulletContainer)
+        PauseSystem.PauseChange -= paused =>
         {
-            bullet.GetComponent<Bullet>().Stop();
-        }
+            if (paused) Unpause();
+            else Pause();
+        };
     }
 
-    public void Unpause()
-    {
-        StartCoroutine(nameof(PeriodicFireSpawn));
-        foreach (Transform bullet in bulletContainer)
-        {
-            bullet.GetComponent<Bullet>().Stop();
-        }
-    }
-
-    public void IncreaseRateModifier(bool flat, float value)
-    {
-        if (flat) flatRateModifier += value;
-        else expRateModifier += value;
-    }
-
-    public void IncreaseDamageModifier(bool flat, float value)
-    {
-        if (flat) flatDamageModifier += value;
-        else expDamageModifier += value;
-    }
-
-    public void IncreaseSpeedModifier(bool flat, float value)
-    {
-        if (flat) flatSpeedModifier += value;
-        else expSpeedModifier += value;
-    }
-
-    public void IncreaseCritChance(float value)
-    {
-        critChance += value;
-    }
-
-    public void IncreaseCritDamage(float value)
-    {
-        critChance += value;
-    }
 
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -14,12 +15,20 @@ public class Bomb : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
         EnemyZombie[] objects = (from col in Physics.OverlapSphere(transform.position, explosionRadius) where col.gameObject.TryGetComponent<EnemyZombie>(out _) select col.GetComponent<EnemyZombie>()).ToArray();
         Instantiate(explosion, gameObject.transform.transform.position, Quaternion.identity);
-        foreach (EnemyZombie obj in objects)
+        StartCoroutine(EnqueueDamage(objects));
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+    }
+
+    private IEnumerator EnqueueDamage(EnemyZombie[] zombies)
+    {
+        foreach (EnemyZombie z in zombies)
         {
-            obj.TakeDamage(damage);
+            yield return new WaitForEndOfFrame();
+            if (z != null) z.TakeDamage(damage);
         }
+        Destroy(gameObject);
     }
 }
