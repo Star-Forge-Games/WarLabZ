@@ -39,7 +39,4 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-
-
-
 }

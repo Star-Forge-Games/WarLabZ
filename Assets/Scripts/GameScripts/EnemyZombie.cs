@@ -53,6 +53,7 @@ public class EnemyZombie : MonoBehaviour
         {
             KillsCount.kills += 1;
             OnZombieDie?.Invoke(this, moneyDropChance);
+            // DEATH ANIMATION
             Destroy(gameObject);
             return;
         }

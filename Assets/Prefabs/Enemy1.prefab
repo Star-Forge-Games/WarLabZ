@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 132710466924847441}
   - component: {fileID: 8856531992393155393}
   - component: {fileID: 559977673064678048}
+  - component: {fileID: 5033716229429919098}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: EnemyZombie
@@ -387,7 +388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f48bc36b6061cd419099ac5598a844e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dollars: {fileID: 5326157030169105250, guid: 18f12b5511ac732418e213a43c7d2462, type: 3}
   moneyDropChance: 100
   anim: {fileID: 4431731601041406502}
   healthBar: {fileID: 7789753011265524503}
@@ -395,6 +395,27 @@ MonoBehaviour:
   maxHealth: 10
   damage: 1
   speed: 5
+--- !u!65 &5033716229429919098
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143858245785905579}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6, y: 0.1, z: 0.6}
+  m_Center: {x: 0, y: -0.8, z: 0}
 --- !u!1 &7664687753805338784
 GameObject:
   m_ObjectHideFlags: 0

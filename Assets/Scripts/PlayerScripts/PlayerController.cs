@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private void OnHit()
     {
         MoneySystem.SaveMoney();
-        // Start Death Animation
+        // Start Death Animation(THIS COMMENT HAS A COPY IN ENEMYSPAWNSYSTEM, WILL FIX LATER)
         Pause();
     }
 

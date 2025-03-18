@@ -10,6 +10,7 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private GameObject pauseSystem;
     [SerializeField] private Timer timer;
     [SerializeField] private bool instaTimer = true;
+    [SerializeField] private GameObject suppliesPanel;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class Cutscene : MonoBehaviour
         ess.enabled = true;
         pauseSystem.SetActive(true);
         if (!instaTimer) timer.enabled = true;
+        suppliesPanel.SetActive(true);
         Destroy(this);
     }
 }

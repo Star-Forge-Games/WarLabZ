@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     private float speed;
     float timeLived = 0;
     private bool paused = true;
+    private bool crit;
 
     private void Start()
     {
@@ -20,11 +21,18 @@ public class Bullet : MonoBehaviour
         if (!paused) timeLived += Time.deltaTime;
     }
 
-    public void Setup(float speed, int damage, float bulletLifeTime)
+    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier)
     {
         this.speed = speed;
         this.damage = damage;
         this.bulletLifeTime = bulletLifeTime;
+        float chance = Random.Range(0.0000001f, 100f);
+        if (chance <= critChance)
+        {
+            this.damage = (int) (this.damage * critMultiplier);
+            crit = true;
+            // some other crit effect(visual maybe)
+        }
         Unpause();
     }
 
