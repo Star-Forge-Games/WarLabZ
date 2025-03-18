@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] Transform firePoint;
+    [SerializeField] Transform[] firePoints;
     [SerializeField] float bulletsRate;
     [SerializeField] float fireForce;
     [SerializeField] int bulletDamage;
@@ -124,20 +124,23 @@ public class Turret : MonoBehaviour
 
     private void Fire()
     {
-        if (!shotgun)
+        foreach (Transform firePoint in firePoints)
         {
-            Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
-            bullet.transform.parent = bulletContainer;
-            bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
-        }
-        else
-        {
-            for (int i = 0; i < shots; i++)
+            if (!shotgun)
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
-                bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
                 bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
+            }
+            else
+            {
+                for (int i = 0; i < shots; i++)
+                {
+                    Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
+                    bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
+                    bullet.transform.parent = bulletContainer;
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
+                }
             }
         }
     }
