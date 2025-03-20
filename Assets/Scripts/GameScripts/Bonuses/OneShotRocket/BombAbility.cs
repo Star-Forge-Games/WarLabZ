@@ -9,7 +9,7 @@ public class BombAbility : MonoBehaviour
 
     private void Start()
     {
-        //if (!supplies exist) button.interactible = false;
+        //if (!supplies exist) button.interactible = false;//
     }
 
     public void Fire()

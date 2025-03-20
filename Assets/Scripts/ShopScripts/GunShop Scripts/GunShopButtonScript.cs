@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GunShopButtonScript : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class GunShopButtonScript : MonoBehaviour
     {
         pistolsPanel.SetActive(true);
         Time.timeScale = 1;
+    }
+
+    public void LoadShopScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(3);
     }
     public void pistolsPanelController()
     {
