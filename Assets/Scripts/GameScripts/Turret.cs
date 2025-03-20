@@ -152,5 +152,5 @@ public class Turret : MonoBehaviour
         PauseSystem.OnPauseStateChanged -= action;
     }
 
-
+    //опять скрипт слетел
 }
