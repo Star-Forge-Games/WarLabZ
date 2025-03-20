@@ -33,14 +33,16 @@ public class Turret : MonoBehaviour
     private bool targeting = false;
     Vector3 targetPosition;
 
+    private Action<bool> action;
+
     private void Awake()
     {
-        PauseSystem.PauseChange += pause =>
+        action = (pause =>
         {
-            Debug.Log(pause);
-            if (!pause) Unpause();
-            else Pause();
-        };
+            if (!pause) SelfUnpause();
+            else SelfPause();
+        });
+        PauseSystem.OnPauseStateChanged += action;
     }
 
     private void Update()
@@ -89,12 +91,12 @@ public class Turret : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * rotationSpeed);
     }
 
-    public void Pause()
+    public void SelfPause()
     {
         StopCoroutine(nameof(PeriodicFireSpawn));
     }
 
-    public void Unpause()
+    public void SelfUnpause()
     {
         StartCoroutine(nameof(PeriodicFireSpawn));
     }
@@ -147,11 +149,7 @@ public class Turret : MonoBehaviour
 
     private void OnDestroy()
     {
-        PauseSystem.PauseChange -= paused =>
-        {
-            if (paused) Unpause();
-            else Pause();
-        };
+        PauseSystem.OnPauseStateChanged -= action;
     }
 
 

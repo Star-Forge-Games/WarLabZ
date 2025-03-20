@@ -1,11 +1,24 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Timer : MonoBehaviour
 {
     private float time = 0;
     private bool paused;
     private TMP_Text timerText;
+
+    private Action<bool> action;
+
+    private void Awake()
+    {
+        action = (pause =>
+        {
+            if (!pause) SelfUnpause();
+            else SelfPause();
+        });
+        PauseSystem.OnPauseStateChanged += action;
+    }
 
     void Start()
     {
@@ -21,12 +34,12 @@ public class Timer : MonoBehaviour
         timerText.text = (mins > 9 ? mins : "0" + mins) + " : " + (secs > 9 ? secs : "0" + secs);
     }
 
-    public void Pause()
+    public void SelfPause()
     {
         paused = true;
     }
 
-    public void Unpause()
+    public void SelfUnpause()
     {
         paused = false;
     }

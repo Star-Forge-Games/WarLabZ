@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -8,6 +9,18 @@ public class Bomb : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
     [SerializeField] GameObject explosion;
+    private Action<bool> action;
+
+    private void Awake()
+    {
+        action = (pause =>
+        {
+            if (!pause) SelfUnpause();
+            else SelfPause();
+        });
+        PauseSystem.OnPauseStateChanged += action;
+    }
+
     void Start()
     {
         GetComponent<Rigidbody>().linearVelocity = new Vector3(0, -fallSpeed, 0);
@@ -31,4 +44,17 @@ public class Bomb : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+
+    private void SelfPause()
+    {
+        GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+    }
+
+    private void SelfUnpause()
+    {
+        GetComponent<Rigidbody>().linearVelocity = new Vector3(0, -fallSpeed, 0);
+    }
+
+    
 }

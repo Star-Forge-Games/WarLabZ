@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using static Wave;
@@ -13,14 +14,26 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private Wave[] waves;
     [SerializeField] private bool endless;
     private bool lastZombieSpawned = false;
+    private bool paused = false;
 
     public int wave = 0;
     public int spawnedEnemies = 0, waveEnemies = 0;
+
+    private float timeWaveLived;
+
+    private Action<bool> action;
+
 
     private void Awake()
     {
         EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
         EnemyZombie.OnZombieDie += ProcessZombieDeath;
+        action = (pause =>
+        {
+            if (!pause) SelfUnpause();
+            else SelfPause();
+        });
+        PauseSystem.OnPauseStateChanged += action;
     }
     void Start()
     {
@@ -84,29 +97,31 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private Vector3 GeneratePoint()
     {
-        return new Vector3(Random.Range(-spawnpointWidth, spawnpointWidth), 1, spawnZ);
+        return new Vector3(UnityEngine.Random.Range(-spawnpointWidth, spawnpointWidth), 1, spawnZ);
     }
 
     private GameObject GetRandomEnemy()
     {
-        return enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        return enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
     }
 
     private void ProcessZombieHit()
     {
         // Start Death Animation
         StopCoroutine(nameof(SpawnLoop));
-        foreach (Transform enemy in enemyContainer)
+        /*foreach (Transform enemy in enemyContainer)
         {
             enemy.GetComponent<EnemyZombie>().Stop();
-        }
+        }*/
         losePanel.SetActive(true);
         // Process other death effects
     }
 
     void Update()
     {
+        if (paused) return;
         if (wave >= waves.Length) return;
+        timeWaveLived += Time.deltaTime;
         if (spawnedEnemies == waveEnemies)
         {
             spawnedEnemies = 0;
@@ -130,8 +145,19 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         if (lastZombieSpawned && !endless && enemyContainer.childCount == 1)
         {
-            PauseSystem.Win();
+            PauseSystem.instance.Win();
         }
     }
+    
+    private void SelfPause()
+    {
+        paused = true;
+    }
+
+    private void SelfUnpause()
+    {
+        paused = false;
+    }
+
 
 }

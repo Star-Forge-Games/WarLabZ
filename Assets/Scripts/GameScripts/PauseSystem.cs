@@ -6,73 +6,60 @@ public class PauseSystem : MonoBehaviour
 
     public static PauseSystem instance;
 
-    [SerializeField] PlayerController player;
-    [SerializeField] Transform bullets, zombies;
-    [SerializeField] GameObject pausePanel, winPanel;
-    [SerializeField] Timer timer;
+    [SerializeField] private GameObject pausePanel, winPanel, losePanel;
+    [SerializeField] private Transform bulletContainer, enemyContainer;
 
-    public bool win = false;
+    private bool end = false;
 
-    public bool paused = false;
-
-    public static Action<bool> PauseChange;
+    public static Action<bool> OnPauseStateChanged;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public static void Win()
+    public void Lose()
     {
-        instance.win = true;
-        PauseChange?.Invoke(true);
-        instance.timer.Pause();
-        instance.paused = true;
-        MoneySystem.SaveMoney();
-        instance.player.Pause();
-        foreach (Transform enemy in instance.zombies)
-        {
-            enemy.GetComponent<EnemyZombie>().Stop();
-        }
-        foreach (Transform bullet in instance.bullets)
-        {
-            bullet.GetComponent<Bullet>().Stop();
-        }
-        instance.winPanel.SetActive(true);
+        end = true;
+        Pause(true);
+        losePanel.SetActive(true);
     }
 
-    public static void Pause()
+    public  void Win()
     {
-        instance.timer.Pause();
-        instance.paused = true;
-        instance.pausePanel.SetActive(true);
-        PauseChange?.Invoke(true);
-        instance.player.Pause();
-        foreach (Transform enemy in instance.zombies)
-        {
-            enemy.GetComponent<EnemyZombie>().Stop();
-        }
-        foreach (Transform bullet in instance.bullets)
-        {
-            bullet.GetComponent<Bullet>().Stop();
-        }
+        end = true;
+        Pause(true);
+        winPanel.SetActive(true);
     }
 
-    public static void Unpause()
+    public void Pause(bool end)
     {
-        instance.timer.Unpause();
-        instance.paused = false;
-        instance.player.Unpause();
-        foreach (Transform enemy in instance.zombies)
+        if (this.end && !end) return;
+        OnPauseStateChanged?.Invoke(true);
+        foreach (Transform t in enemyContainer)
         {
-            enemy.GetComponent<EnemyZombie>().Unpause();
+            t.GetComponent<EnemyZombie>().SelfPause();
         }
-        foreach (Transform bullet in instance.bullets)
+        foreach (Transform t in bulletContainer)
         {
-            bullet.GetComponent<Bullet>().Unpause();
+            t.GetComponent<Bullet>().SelfPause();
         }
-        instance.pausePanel.SetActive(false);
-        PauseChange?.Invoke(false);
+       if (!end) pausePanel.SetActive(true);
+    }
+
+    public void Unpause()
+    {
+        if (end) return;
+        OnPauseStateChanged?.Invoke(false);
+        foreach (Transform t in enemyContainer)
+        {
+            t.GetComponent<EnemyZombie>().SelfUnpause();
+        }
+        foreach (Transform t in bulletContainer)
+        {
+            t.GetComponent<Bullet>().SelfUnpause();
+        }
+        pausePanel.SetActive(false);
     }
 
 }

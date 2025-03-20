@@ -83,22 +83,14 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void Pause()
+    public void SelfPause()
     {
         StopCoroutine(nameof(PeriodicFireSpawn));
-        foreach (Transform bullet in bulletContainer)
-        {
-            bullet.GetComponent<Bullet>().Stop();
-        }
     }
 
-    public void Unpause()
+    public void SelfUnpause()
     {
         StartCoroutine(nameof(PeriodicFireSpawn));
-        foreach (Transform bullet in bulletContainer)
-        {
-            bullet.GetComponent<Bullet>().Stop();
-        }
     }
 
     public void IncreaseRateModifier(bool flat, float value)

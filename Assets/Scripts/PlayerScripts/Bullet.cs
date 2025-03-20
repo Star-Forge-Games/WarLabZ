@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
             crit = true;
             // some other crit effect(visual maybe)
         }
-        Unpause();
+        SelfUnpause();
     }
 
     private IEnumerator DestroyBullet()
@@ -42,14 +42,14 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Stop()
+    public void SelfPause()
     {
         paused = true;
         StopCoroutine(nameof(DestroyBullet));
         GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
     }
 
-    public void Unpause()
+    public void SelfUnpause()
     {
         paused = false;
         StartCoroutine(nameof(DestroyBullet));

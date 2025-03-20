@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.InputSystem;
-using TMPro;
+using System;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -11,22 +11,28 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] Timer timer;
+    [SerializeField] private Animator anim;
+    private Weapon weapon;
     Vector2 moveInput;
     Vector3 movement;
-
     private bool isSlide;
 
-    [SerializeField] private Animator anim;
-    
+    private Action<bool> action;
 
-
-
-    [SerializeField] Weapon weapon;
+    private void Awake()
+    {
+        action = (pause =>
+        {
+            if (!pause) SelfUnpause();
+            else SelfPause();
+        });
+        PauseSystem.OnPauseStateChanged += action;
+    }
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        weapon.Unpause();
+        weapon.SelfUnpause();
         EnemyZombie.OnZombieHitPlayer += OnHit;
     }
 
@@ -46,31 +52,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnHit()
     {
-        MoneySystem.SaveMoney();
-        // Start Death Animation(THIS COMMENT HAS A COPY IN ENEMYSPAWNSYSTEM, WILL FIX LATER)
-        Pause();
-        timer.Pause();
-        PauseSystem.PauseChange?.Invoke(true);
+        PauseSystem.instance.Lose();
     }
 
     public void OnPause()
     {
-        if (PauseSystem.instance.win) return;
-        if (PauseSystem.instance.paused) Unpause();
-        else Pause();
+        PauseSystem.instance.Pause(false);
     }
 
 
-    public void Pause()
+    public void SelfPause()
     {
-        weapon.Pause();
         anim.speed = 0;
         enabled = false;
     }
 
-    public void Unpause()
+    public void SelfUnpause()
     {
-        weapon.Unpause();
         anim.speed = 1;
         enabled = true;
     }
@@ -95,14 +93,10 @@ public class PlayerController : MonoBehaviour
         characterController.center = new Vector3(0, -0.5f, 0);
         characterController.height = 1f;
         isSlide = true;
-
-
         yield return new WaitForSeconds(0.9f);
-
         characterController.center = new Vector3(0, 0, 0);
         characterController.height = 2;
         isSlide = false;
-
     }
 
    
