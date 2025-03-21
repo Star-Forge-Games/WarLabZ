@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        weapon.SelfUnpause();
+        //weapon.SelfUnpause(); //была удалена строчка 35: weapon.SelfUnpause();
         EnemyZombie.OnZombieHitPlayer += OnHit;
     }
 

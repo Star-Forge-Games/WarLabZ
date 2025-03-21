@@ -83,6 +83,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        SelfUnpause();
+    }
+
     public void SelfPause()
     {
         StopCoroutine(nameof(PeriodicFireSpawn));
@@ -91,6 +96,7 @@ public class Weapon : MonoBehaviour
     public void SelfUnpause()
     {
         StartCoroutine(nameof(PeriodicFireSpawn));
+        
     }
 
     public void IncreaseRateModifier(bool flat, float value)
