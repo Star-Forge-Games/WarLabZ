@@ -28,6 +28,7 @@ public class EnemyZombie : MonoBehaviour
         direction.z = -speed;
         characterController = GetComponent<CharacterController>();
         UpdateHealthUI(maxHealth, currentHealth);
+        Wall.OnWallDeath += RunFurther;
     }
 
     public void MultiplyHp(float health)

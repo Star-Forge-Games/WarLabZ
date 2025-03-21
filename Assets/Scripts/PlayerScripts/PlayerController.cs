@@ -10,14 +10,14 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     [SerializeField] float moveSpeed = 6f;
-    [SerializeField] Timer timer;
     [SerializeField] private Animator anim;
+    [SerializeField] private Transform weapons;
     private Weapon weapon;
     Vector2 moveInput;
     Vector3 movement;
     private bool isSlide;
-
     private Action<bool> action;
+    private bool paused;
 
     private void Awake()
     {
@@ -32,8 +32,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        //weapon.SelfUnpause(); //была удалена строчка 35: weapon.SelfUnpause();
         EnemyZombie.OnZombieHitPlayer += OnHit;
+        weapon = weapons.GetComponentInChildren<Weapon>();
+        weapon.SelfUnpause();
     }
 
     private void OnDestroy()
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-       
+
         if (Input.GetKey(KeyCode.S))
         {
             StartCoroutine(Slide());
@@ -57,20 +58,26 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-        PauseSystem.instance.Pause(false);
+        if (!paused)
+        {
+            PauseSystem.instance.Pause(false);
+        } else
+        {
+            PauseSystem.instance.Unpause();
+        }
     }
 
 
     public void SelfPause()
     {
         anim.speed = 0;
-        enabled = false;
+        paused = true;
     }
 
     public void SelfUnpause()
     {
         anim.speed = 1;
-        enabled = true;
+        paused = false;
     }
 
     public void OnMove(InputValue value)
@@ -81,11 +88,14 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement.x = moveInput.x * moveSpeed;
-        characterController.Move(movement * Time.fixedDeltaTime);
-        if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
-        else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
-        else anim.SetInteger("MoveDirection", 0);
+        if (!paused)
+        {
+            movement.x = moveInput.x * moveSpeed;
+            characterController.Move(movement * Time.fixedDeltaTime);
+            if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
+            else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
+            else anim.SetInteger("MoveDirection", 0);
+        }
     }
 
     private IEnumerator Slide()
@@ -99,5 +109,5 @@ public class PlayerController : MonoBehaviour
         isSlide = false;
     }
 
-   
+
 }

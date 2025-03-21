@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Wave;
 
@@ -15,18 +16,23 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private bool endless;
     private bool lastZombieSpawned = false;
     private bool paused = false;
-
     public int wave = 0;
     public int spawnedEnemies = 0, waveEnemies = 0;
-
-    private float timeWaveLived;
-
     private Action<bool> action;
+    private float endlessTimer;
+    private bool endlessStarted;
+    private PartProgress[] partsProgress;
+
+    private struct PartProgress
+    {
+        public WavePart part;
+        public int amountSpawned;
+        public float timeSinceLastSpawn;
+    }
 
 
     private void Awake()
     {
-        EnemyZombie.OnZombieHitPlayer += ProcessZombieHit;
         EnemyZombie.OnZombieDie += ProcessZombieDeath;
         action = (pause =>
         {
@@ -43,6 +49,11 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void CalculateEnemiesAmount()
     {
+        partsProgress = new PartProgress[waves[wave].parts.Length];
+        for (int i = 0; i < partsProgress.Length; i++)
+        {
+            partsProgress[i] = new PartProgress { part = waves[wave].parts[i], amountSpawned = 0, timeSinceLastSpawn = 0 };
+        }
         waveEnemies = 0;
         foreach (var part in waves[wave].parts)
         {
@@ -52,18 +63,56 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void ProcessWaveSpawns()
     {
-        foreach (WavePart part in waves[wave].parts)
+        for (int i = 0; i < waves[wave].parts.Length; i++)
         {
-            StartCoroutine(SpawnEnemies(part, wave == 0));
+            StartCoroutine(SpawnEnemies(i, wave == 0));
         }
     }
 
-    private IEnumerator SpawnEnemies(WavePart part, bool first)
+    private void ReProcessWaveSpawns()
     {
+        for (int i = 0; i < partsProgress.Length; i++)
+        {
+            StartCoroutine(ReSpawnEnemies(i, wave == 0));
+        }
+    }
+
+    private IEnumerator ReSpawnEnemies(int index, bool first)
+    {
+        WavePart part = partsProgress[index].part;
+        if (partsProgress[index].amountSpawned == 0)
+        {
+            yield return new WaitForSeconds(part.delay + (first ? 0 : waves[wave - 1].nextWaveDelay) - partsProgress[index].timeSinceLastSpawn);
+            for (int i = 0; i < part.amount; i++)
+            {
+                partsProgress[index].amountSpawned++;
+                partsProgress[index].timeSinceLastSpawn = 0;
+                SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
+                yield return new WaitForSeconds(part.interval);
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(part.interval - partsProgress[index].timeSinceLastSpawn);
+            for (int i = 0; i < part.amount - partsProgress[index].amountSpawned; i++)
+            {
+                partsProgress[index].amountSpawned++;
+                partsProgress[index].timeSinceLastSpawn = 0;
+                SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
+                yield return new WaitForSeconds(part.interval);
+            }
+        }
+    }
+
+    private IEnumerator SpawnEnemies(int partIndex, bool first)
+    {
+        WavePart part = waves[wave].parts[partIndex];
         yield return new WaitForSeconds(part.delay + (first ? 0 : waves[wave - 1].nextWaveDelay));
         for (int i = 0; i < part.amount; i++)
         {
-            SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier:1);
+            partsProgress[partIndex].amountSpawned++;
+            partsProgress[partIndex].timeSinceLastSpawn = 0;
+            SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
             yield return new WaitForSeconds(part.interval);
         }
     }
@@ -78,19 +127,35 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        EnemyZombie.OnZombieHitPlayer -= ProcessZombieHit;
         EnemyZombie.OnZombieDie -= ProcessZombieDeath;
     }
 
     private IEnumerator SpawnLoop()
     {
-        yield return new WaitForSeconds(waves[wave - 1].nextWaveDelay);
-        while (true)
+        if (endlessStarted)
         {
-            GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
-            enemy.transform.parent = enemyContainer;
-            enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
-            yield return new WaitForSeconds(randomSpawnInterval);
+            yield return new WaitForSeconds(randomSpawnInterval - endlessTimer);
+            while (true)
+            {
+                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
+                enemy.transform.parent = enemyContainer;
+                enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
+                endlessTimer = 0;
+                yield return new WaitForSeconds(randomSpawnInterval);
+            }
+        }
+        else
+        {
+            endlessStarted = true;
+            yield return new WaitForSeconds(waves[wave - 1].nextWaveDelay);
+            while (true)
+            {
+                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
+                enemy.transform.parent = enemyContainer;
+                enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
+                endlessTimer = 0;
+                yield return new WaitForSeconds(randomSpawnInterval);
+            }
         }
     }
 
@@ -105,23 +170,14 @@ public class EnemySpawnSystem : MonoBehaviour
         return enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
     }
 
-    private void ProcessZombieHit()
-    {
-        // Start Death Animation
-        StopCoroutine(nameof(SpawnLoop));
-        /*foreach (Transform enemy in enemyContainer)
-        {
-            enemy.GetComponent<EnemyZombie>().Stop();
-        }*/
-        losePanel.SetActive(true);
-        // Process other death effects
-    }
-
     void Update()
     {
         if (paused) return;
-        if (wave >= waves.Length) return;
-        timeWaveLived += Time.deltaTime;
+        if (endlessStarted)
+        {
+            endlessTimer += Time.deltaTime;
+            return;
+        }
         if (spawnedEnemies == waveEnemies)
         {
             spawnedEnemies = 0;
@@ -138,7 +194,10 @@ public class EnemySpawnSystem : MonoBehaviour
             CalculateEnemiesAmount();
             ProcessWaveSpawns();
         }
-
+        for (int i = 0; i < partsProgress.Length; i++)
+        {
+            partsProgress[i].timeSinceLastSpawn += Time.deltaTime;
+        }
     }
 
     public void ProcessZombieDeath(EnemyZombie z, float chance)
@@ -148,14 +207,31 @@ public class EnemySpawnSystem : MonoBehaviour
             PauseSystem.instance.Win();
         }
     }
-    
+
     private void SelfPause()
     {
         paused = true;
+        if (endlessStarted)
+        {
+            StopCoroutine(nameof(SpawnLoop));
+        }
+        else
+        {
+            StopAllCoroutines();
+        }
     }
 
     private void SelfUnpause()
     {
+        if (endlessStarted)
+        {
+            StartCoroutine(nameof(SpawnLoop));
+        }
+        else
+        {
+            if (!lastZombieSpawned)
+                ReProcessWaveSpawns();
+        }
         paused = false;
     }
 

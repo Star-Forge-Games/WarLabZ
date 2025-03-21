@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using NaughtyAttributes;
 using UnityEngine;
@@ -27,8 +28,9 @@ public class Weapon : MonoBehaviour
 
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
-    private float flatSpeedModifier = 0, expSpeedModifier = 1;
-    private float critChance = 75, critDamageMultiplier = 2;
+    [SerializeField] private float critChance = 75, critDamageMultiplier = 2;
+
+    private Action<bool> action;
 
     private void Awake()
     {
@@ -37,6 +39,13 @@ public class Weapon : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+        action = (pause =>
+        {
+            if (!pause) SelfUnpause();
+            else SelfPause();
+        });
+        PauseSystem.OnPauseStateChanged += action;
+        // attach upgrades from SAVES YG
         // attach upgrades from SAVES YG
     }
 
@@ -70,7 +79,7 @@ public class Weapon : MonoBehaviour
         {
             Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
             bullet.transform.parent = bulletContainer;
-            bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
+            bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
         } else
         {
             for (int i = 0; i < shots; i++)
@@ -78,14 +87,9 @@ public class Weapon : MonoBehaviour
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                 bullet.transform.Rotate(0, -(arc / 2) + (arc/(shots-1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
             }
         }
-    }
-
-    private void Start()
-    {
-        SelfUnpause();
     }
 
     public void SelfPause()
@@ -111,12 +115,6 @@ public class Weapon : MonoBehaviour
         else expDamageModifier += value;
     }
 
-    public void IncreaseSpeedModifier(bool flat, float value)
-    {
-        if (flat) flatSpeedModifier += value;
-        else expSpeedModifier += value;
-    }
-
     public void IncreaseCritChance(float value)
     {
         critChance += value;
@@ -125,6 +123,11 @@ public class Weapon : MonoBehaviour
     public void IncreaseCritDamage(float value)
     {
         critChance += value;
+    }
+
+    private void OnDestroy()
+    {
+        if (action != null) PauseSystem.OnPauseStateChanged -= action;
     }
 
 }
