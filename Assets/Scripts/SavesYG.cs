@@ -2,17 +2,17 @@ namespace YG
 {
     public partial class SavesYG
     {
-        public int[] levelStars;
-        public int cash;
-        public int donateCash;
-        public int[] unlockedWeapons;
-        public int[] supplies;
-        public int points;
-        public int level;
-        public int[] achievements;
-        public int keys;
-        public int wallLevel;
-        public int[,] upgrades;
-        public int selectedWeapon;
+        public int[] levelStars = new int[] { -1, -1, -1, -1 };
+        public int cash = 0;
+        public int donateCash = 0;
+        public int[] unlockedWeapons = new int[] { 0 };
+        public int[] supplies = new int[] { 0, 0, 0 };
+        public int points = 0; // wat
+        public int level = 0;
+        public int[] achievements; // useless
+        public int keys = 0;
+        public int wallLevel = 0;
+        public int[] weaponLevels = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        public int selectedWeapon = 0;
     }
 }

@@ -39,14 +39,19 @@ public class Weapon : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+        int level = YG2.saves.weaponLevels[weaponId];
         action = (pause =>
         {
             if (!pause) SelfUnpause();
             else SelfPause();
         });
         PauseSystem.OnPauseStateChanged += action;
-        // attach upgrades from SAVES YG
-        // attach upgrades from SAVES YG
+        WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(weaponId);
+        WeaponSettings.Level l = settings.levels[level];
+        bulletDamage += l.damageBuff;
+        critChance += l.critChanceBuff;
+        critDamageMultiplier += l.critBuff;
+        bulletsRate += l.aspdBuff;
     }
 
 
@@ -99,8 +104,7 @@ public class Weapon : MonoBehaviour
 
     public void SelfUnpause()
     {
-        StartCoroutine(nameof(PeriodicFireSpawn));
-        
+        StartCoroutine(nameof(PeriodicFireSpawn));   
     }
 
     public void IncreaseRateModifier(bool flat, float value)
