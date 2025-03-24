@@ -29,7 +29,9 @@ public class Bomb : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         EnemyZombie[] objects = (from col in Physics.OverlapSphere(transform.position, explosionRadius) where col.gameObject.TryGetComponent<EnemyZombie>(out _) select col.GetComponent<EnemyZombie>()).ToArray();
-        Instantiate(explosion, gameObject.transform.transform.position, Quaternion.identity);
+       PauseSystem.OnPauseStateChanged -= action;
+        Quaternion q = Quaternion.Euler(-90, 0, 0);
+        Instantiate(explosion, gameObject.transform.transform.position, q);
         StartCoroutine(EnqueueDamage(objects));
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;

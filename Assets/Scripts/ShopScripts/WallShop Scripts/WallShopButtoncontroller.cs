@@ -1,226 +1,62 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class WallShopButtonScript : MonoBehaviour
 {
 
-    [SerializeField] private GameObject lvl1Panel;
-    [SerializeField] private GameObject lvl2Panel;
-    [SerializeField] private GameObject lvl3Panel;
-    [SerializeField] private GameObject lvl4Panel;
-    [SerializeField] private GameObject lvl5Panel;
-    [SerializeField] private GameObject lvl6Panel;
-    [SerializeField] private GameObject lvl7Panel;
-    [SerializeField] private GameObject lvl8Panel;
-    [SerializeField] private GameObject lvl9Panel;
-    [SerializeField] private GameObject lvl10Panel;
-    [SerializeField] private GameObject lvl11Panel;
-    [SerializeField] private GameObject lvl12Panel;
+    [SerializeField] private GameObject[] walls;
+    [SerializeField] private GameObject nextButton, previousButton;
 
+    private int lvl;
+    [SerializeField] private string[] descriptions;
+    [SerializeField] TextMeshProUGUI wallsText;
+    [SerializeField] Transform wallsTransform;
+    [SerializeField] float speedRotation;
 
 
 
     private void Start()
     {
-        lvl1Panel.SetActive(true);//Должно быть чтобы подгружалось из сейвов и запускало ту, которая у игрока
-        Time.timeScale = 1;
+        lvl = YG2.saves.wallLevel;
+        walls[lvl].gameObject.SetActive(true);
+        UpdateButtons();
+
+    }
+    private void Update()
+    {
+        wallsTransform.Rotate(0, Time.deltaTime * speedRotation, 0);
+    }
+
+    private void UpdateButtons()
+    {
+        nextButton.SetActive(lvl != walls.Length - 1);
+
+        previousButton.SetActive(lvl != 0);
+
+        wallsText.text = $"Уровень {lvl+1}\n{descriptions[lvl]}";
     }
 
     public void BackToShopScene()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(3);
     }
-    public void LvL1PanelController()
+
+    public void Next()
     {
-        lvl1Panel.SetActive(true);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
+        walls[lvl].gameObject.SetActive(false);
+        lvl++;
+        walls[lvl].gameObject.SetActive(true);
+        UpdateButtons();
     }
 
-    public void LvL2PanelController()
+    public void Previous()
     {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(true);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
+        walls[lvl].gameObject.SetActive(false);
+        lvl--;
+        walls[lvl].gameObject.SetActive(true);
+        UpdateButtons();
     }
-
-    public void LvL3PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(true);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL4PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(true);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL5PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(true);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL6PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(true);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL7PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(true);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL8PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(true);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL9PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(true);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL10PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(true);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL11PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(true);
-        lvl12Panel.SetActive(false);
-    }
-
-    public void LvL12PanelController()
-    {
-        lvl1Panel.SetActive(false);
-        lvl2Panel.SetActive(false);
-        lvl3Panel.SetActive(false);
-        lvl4Panel.SetActive(false);
-        lvl5Panel.SetActive(false);
-        lvl6Panel.SetActive(false);
-        lvl7Panel.SetActive(false);
-        lvl8Panel.SetActive(false);
-        lvl9Panel.SetActive(false);
-        lvl10Panel.SetActive(false);
-        lvl11Panel.SetActive(false);
-        lvl12Panel.SetActive(true);
-    }
-
 }
