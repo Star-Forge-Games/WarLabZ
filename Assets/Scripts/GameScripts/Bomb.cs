@@ -21,6 +21,11 @@ public class Bomb : MonoBehaviour
         PauseSystem.OnPauseStateChanged += action;
     }
 
+    private void OnDestroy()
+    {
+        PauseSystem.OnPauseStateChanged -= action;
+    }
+
     void Start()
     {
         GetComponent<Rigidbody>().linearVelocity = new Vector3(0, -fallSpeed, 0);

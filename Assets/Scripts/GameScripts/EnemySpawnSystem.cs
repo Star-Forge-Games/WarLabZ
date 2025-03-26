@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static Wave;
 
@@ -128,6 +127,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private void OnDestroy()
     {
         EnemyZombie.OnZombieDie -= ProcessZombieDeath;
+        PauseSystem.OnPauseStateChanged -= action;
     }
 
     private IEnumerator SpawnLoop()

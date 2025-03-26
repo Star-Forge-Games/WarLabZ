@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         EnemyZombie.OnZombieHitPlayer -= OnHit;
+        PauseSystem.OnPauseStateChanged -= action;
     }
 
     void Update()

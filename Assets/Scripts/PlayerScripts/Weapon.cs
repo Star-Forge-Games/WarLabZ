@@ -26,6 +26,9 @@ public class Weapon : MonoBehaviour
     [Range(0.01f, 0.33f)]
     [SerializeField] private float baseAttackTimePercentage = 0.1f;
 
+    [SerializeField] GameObject gunFireFront;
+    [SerializeField] GameObject gunFireBack;
+
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     [SerializeField] private float critChance = 75, critDamageMultiplier = 2;
@@ -80,6 +83,15 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
+        GameObject gunFireFrontFirePoint = Instantiate(gunFireFront, firePoint.position, firePoint.rotation);
+        gunFireFrontFirePoint.transform.parent = firePoint;
+        Destroy(gunFireFrontFirePoint,0.03f);        
+
+        GameObject gunFireBackFirePoint = Instantiate(gunFireBack, firePoint.position, firePoint.rotation);
+        gunFireBackFirePoint.transform.parent = firePoint;
+        Destroy(gunFireBackFirePoint,0.03f);
+
+
         if (!shotgun)
         {
             Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
@@ -96,6 +108,8 @@ public class Weapon : MonoBehaviour
             }
         }
     }
+
+
 
     public void SelfPause()
     {

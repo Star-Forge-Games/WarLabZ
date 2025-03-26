@@ -11,7 +11,7 @@ namespace YG
         public int level = 0;
         public int[] achievements; // useless
         public int keys = 0;
-        public int wallLevel = 0;
+        public int wallLevel = 9;
         public int[] weaponLevels = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public int selectedWeapon = 0;
     }

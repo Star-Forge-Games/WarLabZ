@@ -11,6 +11,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private Image wallHpBar;
     [SerializeField] private WallSettings settings;
     [SerializeField] private float protectionTime;
+    [SerializeField] GameObject WallShield;
 
     private bool invulnerable = false;
 
@@ -34,6 +35,7 @@ public class Wall : MonoBehaviour
     {
         invulnerable = true;
         StartCoroutine(StopProtection(protectionTime));
+        WallShield.SetActive(true);
     }
 
     private IEnumerator StopProtection(float time)
@@ -41,6 +43,7 @@ public class Wall : MonoBehaviour
         yield return new WaitForSeconds(time);
         invulnerable = false;
         protectedTime = 0;
+        WallShield.SetActive(false);
     }
 
     private int health;
@@ -49,11 +52,11 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
-        for (int i = transform.childCount - 1; i >= 0; i--)
+      /*  for (int i = transform.childCount - 1; i >= 0; i--)
         {
             if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
             else transform.GetChild(i).gameObject.SetActive(true);
-        }
+        }*/
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevelsHp[YG2.saves.wallLevel];
         health = maxHealth;
@@ -90,6 +93,7 @@ public class Wall : MonoBehaviour
     private void OnDestroy()
     {
         EnemyZombie.OnZombieHitWall -= TakeDamage;
+        PauseSystem.OnPauseStateChanged -= action;
     }
 
     private void SelfPause()

@@ -26,6 +26,11 @@ public class LavaAbility : MonoBehaviour
         PauseSystem.OnPauseStateChanged += action;
     }
 
+    private void OnDestroy()
+    {
+        PauseSystem.OnPauseStateChanged -= action;
+    }
+
     public void Fire()
     {
         fired = true;
