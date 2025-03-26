@@ -28,10 +28,12 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] GameObject gunFireFront;
     [SerializeField] GameObject gunFireBack;
-
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     [SerializeField] private float critChance = 75, critDamageMultiplier = 2;
+
+
+    public static Weapon instance;
 
     private Action<bool> action;
 
@@ -43,6 +45,7 @@ public class Weapon : MonoBehaviour
             return;
         }
         int level = YG2.saves.weaponLevels[weaponId];
+        instance = this;
         action = (pause =>
         {
             if (!pause) SelfUnpause();

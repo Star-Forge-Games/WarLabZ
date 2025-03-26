@@ -28,6 +28,7 @@ public class Cutscene : MonoBehaviour
         pauseSystem.SetActive(true);
         if (!instaTimer) timer.enabled = true;
         suppliesPanel.SetActive(true);
+        Weapon.instance.SelfUnpause();
         Destroy(this);
     }
 }
