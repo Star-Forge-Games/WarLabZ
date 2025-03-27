@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] private Animator anim;
     [SerializeField] private Transform weapons;
-    private Weapon weapon;
     Vector2 moveInput;
     Vector3 movement;
     private bool isSlide;
@@ -33,8 +32,6 @@ public class PlayerController : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         EnemyZombie.OnZombieHitPlayer += OnHit;
-        weapon = weapons.GetComponentInChildren<Weapon>();
-        weapon.SelfUnpause();
     }
 
     private void OnDestroy()
