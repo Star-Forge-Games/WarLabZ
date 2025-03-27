@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] private Animator anim;
-    [SerializeField] private Transform weapons;
     Vector2 moveInput;
     Vector3 movement;
     private bool isSlide;
@@ -92,7 +91,7 @@ public class PlayerController : MonoBehaviour
             characterController.Move(movement * Time.fixedDeltaTime);
             if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
             else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
-            else anim.SetInteger("MoveDirection", 0);
+            else anim.SetInteger("MoveDirection", 0);   
         }
     }
 
