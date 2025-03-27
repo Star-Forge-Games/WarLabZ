@@ -32,6 +32,8 @@ public class Weapon : MonoBehaviour
     private float flatDamageModifier = 0, expDamageModifier = 1;
     [SerializeField] private float critChance = 75, critDamageMultiplier = 2;
 
+    // Weapon.instance.IncreaseDamageModifier(false, 2); x2 damage
+    // Weapon.instance.IncreaseDamageModifier(true, 1); + 1 damage
 
     public static Weapon instance;
 
@@ -98,6 +100,7 @@ public class Weapon : MonoBehaviour
         if (!shotgun)
         {
             Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
+            bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
             bullet.transform.parent = bulletContainer;
             bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
         } else
@@ -111,8 +114,6 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-
-
 
     public void SelfPause()
     {
