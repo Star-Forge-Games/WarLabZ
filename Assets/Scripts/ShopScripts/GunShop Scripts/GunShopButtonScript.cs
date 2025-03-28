@@ -1,61 +1,52 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
-public class GunShopButtonScript : MonoBehaviour
+public class GunShopUIScript : MonoBehaviour
 {
 
-    [SerializeField] private GameObject pistolsPanel;
-    [SerializeField] private GameObject smgPanel;
-    [SerializeField] private GameObject arPanel;
-    [SerializeField] private GameObject legendaryPanel;
+    [SerializeField] private GameObject[] panels;
+    [SerializeField] private TextMeshProUGUI cash, dCash, level;
+    private int selectedPanel = 0;
+    private Action action;
 
     private void Start()
     {
-        pistolsPanel.SetActive(true);
-        Time.timeScale = 1;
+        action = () =>
+        {
+            cash.text = $"{YG2.saves.cash} $";
+            dCash.text = $"{YG2.saves.donateCash} G";
+            level.text = $"Lv. {YG2.saves.level + 1}";
+        };
+        WeaponUI.OnUpgrade += action;
+        cash.text = $"{YG2.saves.cash} $";
+        dCash.text = $"{YG2.saves.donateCash} G";
+        level.text = $"Lv. {YG2.saves.level + 1}";
+        panels[0].SetActive(true);
     }
 
     public void LoadShopScene()
     {
-        Time.timeScale = 1;
         SceneManager.LoadScene(3);
-    }
-    public void pistolsPanelController()
-    {
-        pistolsPanel.SetActive(true);
-        smgPanel.SetActive(false);
-        arPanel.SetActive(false);
-        legendaryPanel.SetActive(false);
-    }   
-    
-    public void smgPanelController()
-    {
-        smgPanel.SetActive(true);
-        pistolsPanel.SetActive(false);
-        arPanel.SetActive(false);
-        legendaryPanel.SetActive(false);
+        // fader
     }
 
-    public void arPanelController()
+    public void ActivatePanel(int index)
     {
-        arPanel.SetActive(true);
-        smgPanel.SetActive(false);
-        pistolsPanel.SetActive(false);
-        legendaryPanel.SetActive(false);
+        panels[selectedPanel].SetActive(false);
+        selectedPanel = index;
+        for (int i = 0; i < panels[selectedPanel].transform.childCount; i++)
+        {
+            panels[selectedPanel].transform.GetChild(i).GetComponent<WeaponUI>().Refresh();
+        }
+        panels[selectedPanel].SetActive(true);
     }
 
-    public void legendaryPanelController()
+    private void OnDestroy()
     {
-        legendaryPanel.SetActive(true);
-        arPanel.SetActive(false);
-        smgPanel.SetActive(false);
-        pistolsPanel.SetActive(false);
+        WeaponUI.OnUpgrade -= action;
     }
-
-
-
-
-
-
 
 }
