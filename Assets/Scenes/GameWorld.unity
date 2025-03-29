@@ -1560,7 +1560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &378000621
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1635,11 +1635,11 @@ MonoBehaviour:
   b1: {fileID: 1849623757}
   b2: {fileID: 1331156468}
   modifiers:
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 21300000, guid: 6ed2add25a2c4b34998698aec73818a4, type: 3}
     text: "\u041C\u0433\u043D\u043E\u0432\u0435\u043D\u043D\u043E\u0435 \u0443\u0431\u0438\u0439\u0441\u0442\u0432\u043E"
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 21300004, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     text: "\u0421\u043A\u0432\u043E\u0437\u043D\u044B\u0435 \u043F\u0443\u043B\u0438"
-  - sprite: {fileID: 0}
+  - sprite: {fileID: 21300048, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
     text: "\u0414\u0432\u043E\u0439\u043D\u043E\u0439 \u0432\u044B\u0441\u0442\u0440\u0435\u043B"
 --- !u!1 &403706988
 GameObject:
@@ -5290,7 +5290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1959370579}
-  bulletsRate: 1
+  bulletsRate: 10
   fireForce: 50
   bulletDamage: 1
   bulletLifeTime: 0.5
@@ -5483,6 +5483,7 @@ MonoBehaviour:
   waves:
   - {fileID: 11400000, guid: 1421d375c2444014d815b1515d79ba23, type: 2}
   - {fileID: 11400000, guid: 8ce25121890ef65419705e903ae27bdc, type: 2}
+  - {fileID: 11400000, guid: e12936bc5da229c4688bf38a298a18d9, type: 2}
   endless: 0
   wave: 0
   spawnedEnemies: 0

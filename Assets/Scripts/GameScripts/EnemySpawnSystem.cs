@@ -32,7 +32,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void Awake()
     {
-        EnemyZombie.OnZombieDie += ProcessZombieDeath;
+
         action = (pause =>
         {
             if (!pause) SelfUnpause();
@@ -126,7 +126,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        EnemyZombie.OnZombieDie -= ProcessZombieDeath;
+
         PauseSystem.OnPauseStateChanged -= action;
     }
 
@@ -191,6 +191,10 @@ public class EnemySpawnSystem : MonoBehaviour
                     {
                         StartCoroutine(nameof(SpawnLoop));
                     }
+                    else
+                    {
+                        PauseSystem.instance.Win();
+                    }
                     return;
                 }
                 CalculateEnemiesAmount();
@@ -204,13 +208,7 @@ public class EnemySpawnSystem : MonoBehaviour
         }
     }
 
-    public void ProcessZombieDeath(EnemyZombie z, float chance)
-    {
-        if (lastZombieSpawned && !endless && enemyContainer.childCount == 1)
-        {
-            PauseSystem.instance.Win();
-        }
-    }
+
 
     private void SelfPause()
     {

@@ -166,6 +166,7 @@ public class Weapon : MonoBehaviour
 
     public void SetInstaKill()
     {
+        Debug.Log("сахиярбн уси");
         instakill = true;
     }
 

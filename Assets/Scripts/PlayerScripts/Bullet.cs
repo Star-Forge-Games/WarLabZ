@@ -34,9 +34,9 @@ public class Bullet : MonoBehaviour
         this.through = through;
         if (instakill)
         {
-            if (Random.Range(0, 100f) > 5)
+            if (Random.Range(0, 100f) < 1.5f)
             {
-                damage = 99999;
+                this.damage = 99999;
             }
         }
         else
