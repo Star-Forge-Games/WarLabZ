@@ -6,7 +6,7 @@ public class PauseSystem : MonoBehaviour
 
     public static PauseSystem instance;
 
-    [SerializeField] private GameObject pausePanel, winPanel, losePanel;
+    [SerializeField] private GameObject pausePanel, winPanel, losePanel, skillsPanel;
     [SerializeField] private Transform bulletContainer, enemyContainer;
 
     private bool end = false;
@@ -25,11 +25,25 @@ public class PauseSystem : MonoBehaviour
         losePanel.SetActive(true);
     }
 
-    public  void Win()
+    public void Win()
     {
         end = true;
         Pause(true);
         winPanel.SetActive(true);
+    }
+
+    public void SkillSelect()
+    {
+        OnPauseStateChanged?.Invoke(true);
+        foreach (Transform t in enemyContainer)
+        {
+            t.GetComponent<EnemyZombie>().SelfPause();
+        }
+        foreach (Transform t in bulletContainer)
+        {
+            t.GetComponent<Bullet>().SelfPause();
+        }
+        skillsPanel.SetActive(true);
     }
 
     public void Pause(bool end)

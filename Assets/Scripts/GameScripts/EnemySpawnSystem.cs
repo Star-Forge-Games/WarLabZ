@@ -180,19 +180,23 @@ public class EnemySpawnSystem : MonoBehaviour
         }
         if (spawnedEnemies == waveEnemies)
         {
-            spawnedEnemies = 0;
-            wave++;
-            if (wave >= waves.Length)
+            if (enemyContainer.childCount == 0)
             {
-                lastZombieSpawned = true;
-                if (endless)
+                spawnedEnemies = 0;
+                wave++;
+                if (wave >= waves.Length)
                 {
-                    StartCoroutine(nameof(SpawnLoop));
+                    lastZombieSpawned = true;
+                    if (endless)
+                    {
+                        StartCoroutine(nameof(SpawnLoop));
+                    }
+                    return;
                 }
-                return;
+                CalculateEnemiesAmount();
+                ProcessWaveSpawns();
+                PauseSystem.instance.SkillSelect();
             }
-            CalculateEnemiesAmount();
-            ProcessWaveSpawns();
         }
         for (int i = 0; i < partsProgress.Length; i++)
         {
