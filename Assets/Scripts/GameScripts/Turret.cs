@@ -26,17 +26,32 @@ public class Turret : MonoBehaviour
     [SerializeField] private float baseAttackTimePercentage = 0.1f;
     [SerializeField] private Transform enemyContainer;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float twinShotDistance = 0.1f;
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     private float flatSpeedModifier = 0, expSpeedModifier = 1;
     private float critChance = 75, critDamageMultiplier = 2;
     private bool targeting = false;
     Vector3 targetPosition;
-
     private Action<bool> action;
+    private Action<int> skillAction;
+
+    private bool twinShot, instakill;
 
     private void Awake()
     {
+        skillAction = id =>
+        {
+            if (id == 0)
+            {
+                SetInstaKill();
+            }
+            else
+            {
+                SetTwinShot();
+            }
+        };
+        SkillsPanel.OnSkillSelect += skillAction;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
@@ -130,9 +145,20 @@ public class Turret : MonoBehaviour
         {
             if (!shotgun)
             {
-                Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
-                bullet.transform.parent = bulletContainer;
-                bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
+                if (twinShot)
+                {
+                    Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
+                    b1.transform.parent = bulletContainer;
+                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
+                    Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
+                    b2.transform.parent = bulletContainer;
+                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
+                } else
+                {
+                    Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
+                    bullet.transform.parent = bulletContainer;
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
+                }
             }
             else
             {
@@ -141,7 +167,7 @@ public class Turret : MonoBehaviour
                     Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                     bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
                 }
             }
         }
@@ -150,7 +176,16 @@ public class Turret : MonoBehaviour
     private void OnDestroy()
     {
         PauseSystem.OnPauseStateChanged -= action;
+        SkillsPanel.OnSkillSelect -= skillAction;
     }
 
-    //опять скрипт слетел
+    public void SetInstaKill()
+    {
+        instakill = true;
+    }
+
+    public void SetTwinShot()
+    {
+        twinShot = true;
+    }
 }

@@ -1,6 +1,5 @@
 
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -14,6 +13,7 @@ public class Bullet : MonoBehaviour
     float timeLived = 0;
     private bool paused = true;
     private bool crit;
+    private bool through;
 
     private void Start()
     {
@@ -23,19 +23,31 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         if (!paused) timeLived += Time.deltaTime;
+        if (transform.position.z > 105) Destroy(gameObject);
     }
 
-    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier)
+    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through)
     {
         this.speed = speed;
         this.damage = damage;
         this.bulletLifeTime = bulletLifeTime;
-        float chance = Random.Range(0.0000001f, 100f);
-        if (chance <= critChance)
+        this.through = through;
+        if (instakill)
         {
-            this.damage = (int)(this.damage * critMultiplier);
-            crit = true;
-            // some other crit effect(visual maybe)
+            if (Random.Range(0, 100f) > 5)
+            {
+                damage = 99999;
+            }
+        }
+        else
+        {
+            float chance = Random.Range(0.0000001f, 100f);
+            if (chance <= critChance)
+            {
+                this.damage = (int)(this.damage * critMultiplier);
+                crit = true;
+                // some other crit effect(visual maybe)
+            }
         }
         SelfUnpause();
     }
@@ -66,7 +78,10 @@ public class Bullet : MonoBehaviour
         {
             z.TakeDamage(damage);
             GameObject hitPrefabPoint = Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
-            Destroy(gameObject);
+            if (!through)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

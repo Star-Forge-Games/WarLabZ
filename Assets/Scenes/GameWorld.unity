@@ -342,6 +342,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 0}
   rotationSpeed: 0
+  twinShotDistance: 0.1
 --- !u!1 &94755890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1448,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}
   gunFireBack: {fileID: 7548978193842274518, guid: 5196e40357a4d7a40a37723011ee3113, type: 3}
+  twinShotDistance: 0.1
   critChance: 75
   critDamageMultiplier: 2
 --- !u!1 &350896424
@@ -1551,7 +1553,7 @@ GameObject:
   - component: {fileID: 378000621}
   - component: {fileID: 378000624}
   - component: {fileID: 378000623}
-  - component: {fileID: 378000622}
+  - component: {fileID: 378000625}
   m_Layer: 0
   m_Name: SkillPanel
   m_TagString: Untagged
@@ -1580,19 +1582,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &378000622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378000620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe502cc2ec9e8554eacecfc150a852b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fader: {fileID: 1721230800}
 --- !u!114 &378000623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1631,6 +1620,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378000620}
   m_CullTransparentMesh: 1
+--- !u!114 &378000625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378000620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d30c34d66d65045bea903eb5cda062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  b1: {fileID: 1849623757}
+  b2: {fileID: 1331156468}
+  modifiers:
+  - sprite: {fileID: 0}
+    text: "\u041C\u0433\u043D\u043E\u0432\u0435\u043D\u043D\u043E\u0435 \u0443\u0431\u0438\u0439\u0441\u0442\u0432\u043E"
+  - sprite: {fileID: 0}
+    text: "\u0421\u043A\u0432\u043E\u0437\u043D\u044B\u0435 \u043F\u0443\u043B\u0438"
+  - sprite: {fileID: 0}
+    text: "\u0414\u0432\u043E\u0439\u043D\u043E\u0439 \u0432\u044B\u0441\u0442\u0440\u0435\u043B"
 --- !u!1 &403706988
 GameObject:
   m_ObjectHideFlags: 0
@@ -4274,6 +4284,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 0}
   rotationSpeed: 0
+  twinShotDistance: 0.1
 --- !u!23 &1123234167
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5024,7 +5035,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1331156468}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 378000625}
+        m_TargetAssemblyTypeName: SkillsPanel, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1331156468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5281,6 +5304,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}
   gunFireBack: {fileID: 7548978193842274518, guid: 5196e40357a4d7a40a37723011ee3113, type: 3}
+  twinShotDistance: 0.1
   critChance: 1.5
   critDamageMultiplier: 2
 --- !u!1 &1426459586
@@ -11748,7 +11772,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1849623757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 378000625}
+        m_TargetAssemblyTypeName: SkillsPanel, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1849623757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19000,6 +19036,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!33 &1148122624397756410
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26833,6 +26870,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!23 &2564939743458140793
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28558,6 +28596,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!1 &2874971054668419253
 GameObject:
   m_ObjectHideFlags: 0
@@ -31626,6 +31665,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!4 &3507534419247715852
 Transform:
   m_ObjectHideFlags: 0
@@ -33873,6 +33913,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!1 &4026509476694903325
 GameObject:
   m_ObjectHideFlags: 0
@@ -37409,6 +37450,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!64 &4778827570320906459
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38241,6 +38283,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!1 &4944255658553018393
 GameObject:
   m_ObjectHideFlags: 0
@@ -38412,6 +38455,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!1 &4978847336732341833
 GameObject:
   m_ObjectHideFlags: 0
@@ -41647,6 +41691,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!23 &5472212226777038565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43596,6 +43641,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!1 &5827984061600031826
 GameObject:
   m_ObjectHideFlags: 0
@@ -43736,6 +43782,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!23 &5839772528353733788
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -46156,6 +46203,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!4 &6347247779490815117
 Transform:
   m_ObjectHideFlags: 0
@@ -47417,6 +47465,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!4 &6702615224594606204
 Transform:
   m_ObjectHideFlags: 0
@@ -48819,6 +48868,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!23 &7030447584060800938
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -49410,6 +49460,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!1 &7141570056447030396
 GameObject:
   m_ObjectHideFlags: 0
@@ -54595,6 +54646,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!23 &8134520047154555574
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -54852,6 +54904,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!33 &8174510163932132685
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -57367,6 +57420,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!33 &8609062832949959098
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -57598,6 +57652,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 689676792}
   rotationSpeed: 15
+  twinShotDistance: 0.1
 --- !u!4 &8643867191030686998
 Transform:
   m_ObjectHideFlags: 0
