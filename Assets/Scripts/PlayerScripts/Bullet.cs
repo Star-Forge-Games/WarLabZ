@@ -1,9 +1,12 @@
 
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] GameObject hitPrefab;
+    [SerializeField] Transform hitPoint;
 
     private int damage;
     private float bulletLifeTime;
@@ -62,7 +65,9 @@ public class Bullet : MonoBehaviour
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
             z.TakeDamage(damage);
-            Destroy(gameObject);
+            GameObject hitPrefabPoint = Instantiate(hitPrefab, hitPoint.position, hitPoint.rotation);
+            hitPrefabPoint.transform.parent = hitPoint;
+            Destroy(gameObject, 0.005f);//Œ““¿À »¬¿≈“ Õ≈ »«-«¿ ›“Œ√Œ
         }
     }
 }

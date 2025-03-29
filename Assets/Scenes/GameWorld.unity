@@ -4886,8 +4886,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1959370579}
-  bulletsRate: 12
-  fireForce: 50
+  bulletsRate: 10
+  fireForce: 40
   bulletDamage: 1
   bulletLifeTime: 1.5
   bulletContainer: {fileID: 506493578}
@@ -12317,7 +12317,7 @@ MonoBehaviour:
   healthAmount: {fileID: 1770473538853997195}
   wallHpBar: {fileID: 5393603743321756984}
   settings: {fileID: 11400000, guid: f23df38032bed494b8353b3c39716330, type: 2}
-  protectionTime: 5
+  protectionTime: 10000
   WallShield: {fileID: 1882247903}
 --- !u!1 &2092687495
 GameObject:

@@ -14,6 +14,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float speed;
 
+
     private int currentHealth;
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
