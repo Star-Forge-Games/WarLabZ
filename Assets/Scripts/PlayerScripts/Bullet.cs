@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
     private void Update()
     {
         if (!paused) timeLived += Time.deltaTime;
-        if (transform.position.z > 105) Destroy(gameObject);
     }
 
     public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through)
