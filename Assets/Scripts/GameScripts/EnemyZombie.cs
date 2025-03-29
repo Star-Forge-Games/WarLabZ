@@ -14,6 +14,8 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float speed;
 
+    /*[SerializeField] GameObject hitPrefab;
+    [SerializeField] Transform hitPoint;*/
 
     private int currentHealth;
     private Vector3 direction = Vector3.zero;
@@ -46,6 +48,8 @@ public class EnemyZombie : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+       /*GameObject hitPrefabPoint = Instantiate(hitPrefab, hitPoint.position, hitPoint.rotation);
+        hitPrefabPoint.transform.parent = hitPoint;*/
         if (currentHealth <= 0)
         {
             KillsCount.kills += 1;

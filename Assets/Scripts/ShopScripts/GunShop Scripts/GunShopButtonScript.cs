@@ -12,8 +12,12 @@ public class GunShopUIScript : MonoBehaviour
     private int selectedPanel = 0;
     private Action action;
 
+
     private void Start()
     {
+        YG2.saves.cash = 1000;
+        YG2.saves.weaponLevels = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        YG2.SaveProgress();
         action = () =>
         {
             cash.text = $"{YG2.saves.cash} $";

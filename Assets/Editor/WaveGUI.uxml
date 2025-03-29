@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
-    <ui:FloatField label="Delay" value="1" max-length="3" />
-    <ui:IntegerField label="Amount" value="5" max-length="4" />
-    <ui:FloatField label="Interval" value="1" max-length="5" />
-    <ui:Label text="Approximate Length" />
-</ui:UXML>

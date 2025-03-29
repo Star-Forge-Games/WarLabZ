@@ -4886,10 +4886,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1959370579}
-  bulletsRate: 10
-  fireForce: 40
+  bulletsRate: 1
+  fireForce: 50
   bulletDamage: 1
-  bulletLifeTime: 1.5
+  bulletLifeTime: 0.5
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 0
@@ -4900,7 +4900,7 @@ MonoBehaviour:
   baseAttackTimePercentage: 0.1
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}
   gunFireBack: {fileID: 7548978193842274518, guid: 5196e40357a4d7a40a37723011ee3113, type: 3}
-  critChance: 75
+  critChance: 1.5
   critDamageMultiplier: 2
 --- !u!1 &1461915503
 GameObject:

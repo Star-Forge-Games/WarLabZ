@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject hitPrefab;
-    [SerializeField] Transform hitPoint;
+
 
     private int damage;
     private float bulletLifeTime;
@@ -33,7 +33,7 @@ public class Bullet : MonoBehaviour
         float chance = Random.Range(0.0000001f, 100f);
         if (chance <= critChance)
         {
-            this.damage = (int) (this.damage * critMultiplier);
+            this.damage = (int)(this.damage * critMultiplier);
             crit = true;
             // some other crit effect(visual maybe)
         }
@@ -65,9 +65,8 @@ public class Bullet : MonoBehaviour
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
             z.TakeDamage(damage);
-            GameObject hitPrefabPoint = Instantiate(hitPrefab, hitPoint.position, hitPoint.rotation);
-            hitPrefabPoint.transform.parent = hitPoint;
-            Destroy(gameObject, 0.005f);//Œ““¿À »¬¿≈“ Õ≈ »«-«¿ ›“Œ√Œ
+            GameObject hitPrefabPoint = Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
