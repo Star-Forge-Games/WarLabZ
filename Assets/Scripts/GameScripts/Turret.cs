@@ -158,6 +158,7 @@ public class Turret : MonoBehaviour
                 } else
                 {
                     Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
+                    bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.parent = bulletContainer;
                     bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
                 }
@@ -167,6 +168,7 @@ public class Turret : MonoBehaviour
                 for (int i = 0; i < shots; i++)
                 {
                     Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
+                    bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                     bullet.transform.parent = bulletContainer;
                     bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
