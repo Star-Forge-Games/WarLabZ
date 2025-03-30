@@ -148,9 +148,11 @@ public class Turret : MonoBehaviour
                 if (twinShot)
                 {
                     Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
+                    b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b1.transform.parent = bulletContainer;
                     b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
                     Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
+                    b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b2.transform.parent = bulletContainer;
                     b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
                 } else

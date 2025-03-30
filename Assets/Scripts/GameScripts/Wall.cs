@@ -12,6 +12,8 @@ public class Wall : MonoBehaviour
     [SerializeField] private WallSettings settings;
     [SerializeField] private float protectionTime;
     [SerializeField] GameObject WallShield;
+    [SerializeField] private int bonusHealth;
+    [SerializeField] Button button;
 
     private bool invulnerable = false;
 
@@ -21,18 +23,26 @@ public class Wall : MonoBehaviour
 
     private Action<bool> action;
 
+    public static Wall instance;
+
     private void Awake()
     {
+        instance = this;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
             else SelfPause();
         });
         PauseSystem.OnPauseStateChanged += action;
+        if (YG2.saves.supplies[0] == 0) button.interactable = false;
     }
 
     public void Protect()
     {
+        var temp = YG2.saves.supplies;
+        temp[0]--;
+        YG2.saves.supplies = temp;
+        YG2.SaveProgress();
         invulnerable = true;
         StartCoroutine(StopProtection(protectionTime));
         WallShield.SetActive(true);
@@ -44,6 +54,7 @@ public class Wall : MonoBehaviour
         invulnerable = false;
         protectedTime = 0;
         WallShield.SetActive(false);
+        if (YG2.saves.supplies[0] != 0) button.interactable = true;
     }
 
     private int health;
@@ -106,6 +117,12 @@ public class Wall : MonoBehaviour
     {
         if (!invulnerable) return;
         StartCoroutine(StopProtection(protectionTime - protectedTime));
+    }
+
+    public void Heal()
+    {
+        health += bonusHealth;
+        if (health > maxHealth) maxHealth = health;
     }
 
 }

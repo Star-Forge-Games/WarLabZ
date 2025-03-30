@@ -20,6 +20,7 @@ public class PauseSystem : MonoBehaviour
 
     public void Lose()
     {
+        MoneySystem.instance.SaveMoney();
         end = true;
         Pause(true);
         losePanel.SetActive(true);
@@ -27,6 +28,7 @@ public class PauseSystem : MonoBehaviour
 
     public void Win()
     {
+        MoneySystem.instance.SaveMoney();
         end = true;
         Pause(true);
         winPanel.SetActive(true);

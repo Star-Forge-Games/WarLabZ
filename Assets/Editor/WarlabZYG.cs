@@ -10,12 +10,12 @@ public class WarlabZYG
         YG2.saves.cash = 0;
         YG2.saves.donateCash = 0;
         YG2.saves.unlockedWeapons = new int[] { 0 };
-        YG2.saves.supplies = new int[] { 0, 0, 0 };
+        YG2.saves.supplies = new int[] { 1, 2, 0 };
         YG2.saves.points = 0;
         YG2.saves.level = 0;
         YG2.saves.achievements = new int[] { 0 };
         YG2.saves.keys = 0;
-        YG2.saves.wallLevel = 9;
+        YG2.saves.wallLevel = 0;
         YG2.saves.weaponLevels = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         YG2.saves.selectedWeapon = 0;
         YG2.SaveProgress();

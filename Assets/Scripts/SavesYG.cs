@@ -6,7 +6,7 @@ namespace YG
         public int cash = 0;
         public int donateCash = 0;
         public int[] unlockedWeapons = new int[] { 0 };
-        public int[] supplies = new int[] { 0, 0, 0 };
+        public int[] supplies = new int[] { 2, 1, 0 };
         public int points = 0; // wat
         public int level = 0;
         public int[] achievements; // useless

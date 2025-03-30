@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
+using YG;
 
 public class LavaAbility : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class LavaAbility : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float damageDelay;
     [SerializeField] Transform enemyContainer;
+    [SerializeField] Button button;
 
     private float timeLived;
     private float ticksPassed;
@@ -24,6 +27,7 @@ public class LavaAbility : MonoBehaviour
             else SelfPause();
         });
         PauseSystem.OnPauseStateChanged += action;
+        if (YG2.saves.supplies[2] == 0) button.interactable = false;
     }
 
     private void OnDestroy()
@@ -33,6 +37,10 @@ public class LavaAbility : MonoBehaviour
 
     public void Fire()
     {
+        var temp = YG2.saves.supplies;
+        temp[2]--;
+        YG2.saves.supplies = temp;
+        YG2.SaveProgress();
         fired = true;
         rain.SetActive(true);
         StartCoroutine(DamageCoroutine());
@@ -57,6 +65,7 @@ public class LavaAbility : MonoBehaviour
         fired = false;
         lava.SetActive(false);
         rain.SetActive(false);
+        if (YG2.saves.supplies[2] != 0) button.interactable = true;
         timeLived = 0;
         ticksPassed = 0;
     }

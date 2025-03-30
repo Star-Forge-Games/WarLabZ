@@ -8,8 +8,8 @@ public class Bomb : MonoBehaviour
     [SerializeField] float fallSpeed;
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
-    [SerializeField] GameObject explosion;
     private Action<bool> action;
+    public int id;
 
     private void Awake()
     {
@@ -34,9 +34,9 @@ public class Bomb : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         EnemyZombie[] objects = (from col in Physics.OverlapSphere(transform.position, explosionRadius) where col.gameObject.TryGetComponent<EnemyZombie>(out _) select col.GetComponent<EnemyZombie>()).ToArray();
-       PauseSystem.OnPauseStateChanged -= action;
+        PauseSystem.OnPauseStateChanged -= action;
         Quaternion q = Quaternion.Euler(-90, 0, 0);
-        Instantiate(explosion, gameObject.transform.transform.position, q);
+        ExplosionTestOptimization.instance.Activate(id);
         StartCoroutine(EnqueueDamage(objects));
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;

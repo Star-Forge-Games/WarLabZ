@@ -108,9 +108,9 @@ public class Weapon : MonoBehaviour
                 b1.transform.parent = bulletContainer;
                 b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
                 Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
-                b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
-                b1.transform.parent = bulletContainer;
-                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
+                b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
+                b2.transform.parent = bulletContainer;
+                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
             } else
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
@@ -166,7 +166,6 @@ public class Weapon : MonoBehaviour
 
     public void SetInstaKill()
     {
-        Debug.Log("сахиярбн уси");
         instakill = true;
     }
 

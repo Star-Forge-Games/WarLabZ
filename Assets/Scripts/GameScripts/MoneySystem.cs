@@ -8,15 +8,17 @@ public class MoneySystem : MonoBehaviour
 
     [SerializeField] private GameObject dollars;
     [SerializeField] private TMP_Text moneyText;
+    private int money, levelMoney;
+    private bool bonusMoney;
 
-    private static int money;
+    public static MoneySystem instance;
 
     private void Awake()
     {
+        instance = this;
         EnemyZombie.OnZombieDie += ZombieDeath;
         money = YG2.saves.cash;
         moneyText.text = "$: " + money;
-
     }
 
     public void ZombieDeath(EnemyZombie z, float chance)
@@ -30,15 +32,20 @@ public class MoneySystem : MonoBehaviour
         }
     }
 
-    public static void SaveMoney()
+    public void SaveMoney()
     {
-        YG2.saves.cash = money;
+        YG2.saves.cash = money + levelMoney * (bonusMoney? 2 : 1);
         YG2.SaveProgress();
     }
 
     private void OnDestroy()
     {
         EnemyZombie.OnZombieDie -= ZombieDeath;
+    }
+
+    public void SetBonus()
+    {
+        bonusMoney = true;
     }
 
 }
