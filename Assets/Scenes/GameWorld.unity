@@ -369,7 +369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -417,7 +417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8362476577395678931, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475149968593514501, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -425,7 +425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: stopAction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -1003,7 +1003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1051,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8362476577395678931, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475149968593514501, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -1059,7 +1059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: stopAction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -1620,7 +1620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1668,7 +1668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8362476577395678931, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475149968593514501, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -1676,11 +1676,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: stopAction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
+      propertyPath: autoRandomSeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6124,7 +6128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6172,7 +6176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8362476577395678931, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475149968593514501, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -6180,7 +6184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: stopAction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -6483,7 +6487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2804868979646489455, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6531,7 +6535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8362476577395678931, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8475149968593514501, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake
@@ -6539,7 +6543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: stopAction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8837416781491540284, guid: 5e7327bc46a77974e9b6d135784352cc, type: 3}
       propertyPath: playOnAwake

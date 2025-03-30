@@ -22,11 +22,6 @@ public class MenuUI : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(3);
     }
-    public void LoadQuestsScene()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(2);
-    }
 
     public void StartGame()
     {
@@ -38,5 +33,11 @@ public class MenuUI : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene(1);
     }
+
+   /* public void LoadQuestsScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(2);
+    }*/
 
 }
