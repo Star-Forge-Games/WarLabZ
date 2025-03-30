@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class QuestsButtonScript : MonoBehaviour
 {
-    public void LoadHubScene()
+    public void BackToChooseGameScene()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(8);
     }
 
     public void LoadLvL_1_Scene()

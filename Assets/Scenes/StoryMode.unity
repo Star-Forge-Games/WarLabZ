@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 1875589458}
   - component: {fileID: 1875589457}
   m_Layer: 0
-  m_Name: BackToHubButton
+  m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1379,7 +1379,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 978555796}
         m_TargetAssemblyTypeName: QuestsButtonScript, Assembly-CSharp
-        m_MethodName: LoadHubScene
+        m_MethodName: BackToChooseGameScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

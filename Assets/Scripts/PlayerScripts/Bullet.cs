@@ -75,7 +75,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
-            z.TakeDamage(damage);
+            z.TakeDamage(damage /*crit*/);
+        
             GameObject hitPrefabPoint = Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
             if (!through)
             {

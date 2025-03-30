@@ -34,10 +34,9 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-   /* public void LoadQuestsScene()
+    public void LoadChooseGameScene()
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(2);
-    }*/
+        SceneManager.LoadScene(8);
+    }
 
 }

@@ -45,11 +45,15 @@ public class EnemyZombie : MonoBehaviour
         if (!wall) characterController.Move(direction * Time.deltaTime);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage /*bool cri*/)
     {
         currentHealth -= damage;
-       /*GameObject hitPrefabPoint = Instantiate(hitPrefab, hitPoint.position, hitPoint.rotation);
-        hitPrefabPoint.transform.parent = hitPoint;*/
+
+        /*if (crit)
+        {
+            //—юда вставить по€вление партикла крита (вылет от зомби)
+        }*/
+
         if (currentHealth <= 0)
         {
             KillsCount.kills += 1;
