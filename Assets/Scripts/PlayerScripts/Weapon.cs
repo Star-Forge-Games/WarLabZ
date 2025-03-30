@@ -125,6 +125,7 @@ public class Weapon : MonoBehaviour
             for (int i = 0; i < mShots; i++)
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
+                bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.Rotate(0, -(arc / 2) + (arc/(mShots-1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
                 bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
