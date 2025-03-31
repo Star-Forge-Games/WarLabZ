@@ -51,10 +51,10 @@ public class Turret : MonoBehaviour
                     critChance += 10;
                     break;
                 case 19:
-                    flatRateModifier += 1;
+                    expRateModifier += 1;
                     break;
                 case 20:
-                    expRateModifier += 1;
+                    flatRateModifier += 1;
                     break;
                 case 21:
                     through = true;

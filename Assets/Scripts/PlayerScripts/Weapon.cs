@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
 
     private bool twinShot, instakill, through, bomb;
 
-    [SerializeField] private float critChance = 75, critDamageMultiplier = 2;
+    [SerializeField] private float critChance = 75, critDamageMultiplier = 1.5f;
 
     // Weapon.instance.IncreaseDamageModifier(false, 2); x2 damage
     // Weapon.instance.IncreaseDamageModifier(true, 1); + 1 damage
@@ -158,7 +158,7 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseCritDamage(float value)
     {
-        critChance += value;
+        critDamageMultiplier += 0.1f;
     }
 
     public void SetShotgun()
