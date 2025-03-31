@@ -63,10 +63,10 @@ public class Turret : MonoBehaviour
                     multishots = 1;
                     break;
                 case 23:
-                    flatDamageModifier += 1;
+                    expDamageModifier += 1;
                     break;
                 case 24:
-                    expDamageModifier += 1;
+                    flatDamageModifier += 1;
                     break;
                 default:
                     critDamageMultiplier += 1;
