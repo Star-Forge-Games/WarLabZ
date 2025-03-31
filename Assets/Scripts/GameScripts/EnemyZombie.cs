@@ -14,9 +14,6 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float speed;
 
-    /*[SerializeField] GameObject hitPrefab;
-    [SerializeField] Transform hitPoint;*/
-
     private int currentHealth;
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
@@ -45,21 +42,13 @@ public class EnemyZombie : MonoBehaviour
         if (!wall) characterController.Move(direction * Time.deltaTime);
     }
 
-<<<<<<< Updated upstream
-    public void TakeDamage(int damage /*bool cri*/)
-    {
-        currentHealth -= damage;
-
-        /*if (crit)
-        {
-            //—юда вставить по€вление партикла крита (вылет от зомби)
-        }*/
-
-=======
     public void TakeDamage(int damage, bool crit)
     {
         currentHealth -= damage;
->>>>>>> Stashed changes
+        if (crit)
+        {
+            // визуал крита
+        }
         if (currentHealth <= 0)
         {
             KillsCount.kills += 1;

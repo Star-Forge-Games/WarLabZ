@@ -84,13 +84,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
-<<<<<<< Updated upstream
-            z.TakeDamage(damage /*crit*/);
-        
-=======
-            z.TakeDamage(damage, false);
->>>>>>> Stashed changes
-            GameObject hitPrefabPoint = Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
+            z.TakeDamage(damage, crit);
+            Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
             if (bomb)
             {
                 BombSystem.instance.ThrowAt(transform.position.x, transform.position.z);
