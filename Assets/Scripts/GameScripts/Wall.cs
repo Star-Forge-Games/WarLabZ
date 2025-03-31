@@ -15,7 +15,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private int bonusHealth;
     [SerializeField] Button button;
 
-    private bool invulnerable = false;
+    private bool invulnerable = false, blademail = false;
 
     private float protectedTime;
 
@@ -82,10 +82,14 @@ public class Wall : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(EnemyZombie z, int damage)
     {
         if (invulnerable) return;
         health -= damage;
+        if (blademail)
+        {
+            z.TakeDamage(damage / 2, false);
+        }
         if (health <= 0)
         {
             EnemyZombie.OnZombieHitWall -= TakeDamage;
@@ -123,6 +127,11 @@ public class Wall : MonoBehaviour
     {
         health += bonusHealth;
         if (health > maxHealth) maxHealth = health;
+    }
+
+    public void SetBlademail()
+    {
+        blademail = true;
     }
 
 }

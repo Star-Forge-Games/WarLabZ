@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using NaughtyAttributes;
 using UnityEngine;
 using YG;
 
@@ -17,9 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private int weaponId;
     [Header("Shotgun Settings")]
     [SerializeField] private bool shotgun;
-    [ShowIf("shotgun")]
     [SerializeField] private int shots;
-    [ShowIf("shotgun")]
     [SerializeField] private float arc;
     [Header("Multishot Settings")]
     [Range(0f, 2f)]
@@ -33,7 +29,7 @@ public class Weapon : MonoBehaviour
     private float flatDamageModifier = 0, expDamageModifier = 1;
 
 
-    private bool twinShot, instakill, through;
+    private bool twinShot, instakill, through, bomb;
 
     [SerializeField] private float critChance = 75, critDamageMultiplier = 2;
 
@@ -106,17 +102,17 @@ public class Weapon : MonoBehaviour
                 Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                 b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b1.transform.parent = bulletContainer;
-                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
+                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
                 Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                 b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b2.transform.parent = bulletContainer;
-                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
+                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
             } else
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
             }
         } else
         {
@@ -128,7 +124,7 @@ public class Weapon : MonoBehaviour
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.Rotate(0, -(arc / 2) + (arc/(mShots-1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
             }
         }
     }
@@ -165,6 +161,16 @@ public class Weapon : MonoBehaviour
         critChance += value;
     }
 
+    public void SetShotgun()
+    {
+        shotgun = true;
+    }
+
+    public void SetBomb()
+    {
+        bomb = true;
+    }
+
     public void SetInstaKill()
     {
         instakill = true;
@@ -178,6 +184,11 @@ public class Weapon : MonoBehaviour
     public void SetTwinShot()
     {
         twinShot = true;
+    }
+
+    public void SetMultiShot()
+    {
+        multishots = 1;
     }
 
     private void OnDestroy()

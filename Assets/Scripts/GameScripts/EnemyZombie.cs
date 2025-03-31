@@ -23,7 +23,7 @@ public class EnemyZombie : MonoBehaviour
     private bool wall = false;
 
     public static Action OnZombieHitPlayer;
-    public static Action<int> OnZombieHitWall;
+    public static Action<EnemyZombie, int> OnZombieHitWall;
     public static Action<EnemyZombie, float> OnZombieDie;
 
     public void Start()
@@ -45,6 +45,7 @@ public class EnemyZombie : MonoBehaviour
         if (!wall) characterController.Move(direction * Time.deltaTime);
     }
 
+<<<<<<< Updated upstream
     public void TakeDamage(int damage /*bool cri*/)
     {
         currentHealth -= damage;
@@ -54,6 +55,11 @@ public class EnemyZombie : MonoBehaviour
             //—юда вставить по€вление партикла крита (вылет от зомби)
         }*/
 
+=======
+    public void TakeDamage(int damage, bool crit)
+    {
+        currentHealth -= damage;
+>>>>>>> Stashed changes
         if (currentHealth <= 0)
         {
             KillsCount.kills += 1;
@@ -98,7 +104,7 @@ public class EnemyZombie : MonoBehaviour
 
     public void Attack()
     {
-        OnZombieHitWall?.Invoke(damage);
+        OnZombieHitWall?.Invoke(this, damage);
     }
 
     private void RunFurther()

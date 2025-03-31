@@ -58,7 +58,7 @@ public class LavaAbility : MonoBehaviour
                 EnemyZombie z = t.GetComponent<EnemyZombie>();
                 yield return new WaitForEndOfFrame();
                 if (z != null)
-                z.TakeDamage(damage);
+                z.TakeDamage(damage, false);
             }
             timeLived = 0;
         }

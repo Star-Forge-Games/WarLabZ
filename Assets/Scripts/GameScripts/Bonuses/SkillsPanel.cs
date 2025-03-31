@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SkillsPanel : MonoBehaviour
 {
 
-    private List<int> modifiersLeft = new() { 0, 1, 2, 3, 4 };
-    public static Action<int> OnSkillSelect;
+    private List<int> modifiersLeft = new() { 0, 1, 2, 3, 4, 5, 6, 7 };
+    public static Action<int> OnTurretSkillSelect;
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
 
@@ -37,25 +37,59 @@ public class SkillsPanel : MonoBehaviour
 
     public void Select(int id)
     {
-        int i = id == 0? b1id : b2id;
-        switch(i)
+        int i = id == 0 ? b1id : b2id;
+        switch (i)
         {
             case 0:
-                OnSkillSelect?.Invoke(i);
                 Weapon.instance.SetInstaKill();
                 break;
             case 1:
                 Weapon.instance.SetThrough();
                 break;
             case 2:
-                OnSkillSelect?.Invoke(i);
                 Weapon.instance.SetTwinShot();
                 break;
             case 3:
                 MoneySystem.instance.SetBonus();
                 break;
-            default:
+            case 4:
                 Wall.instance.Heal();
+                break;
+            case 5:
+                BombSystem.instance.Enable();
+                break;
+            case 6:
+                Wall.instance.SetBlademail();
+                break;
+            case 7:
+                Weapon.instance.SetShotgun();
+                break;
+            case 8:
+                Weapon.instance.IncreaseCritChance(10);
+                break;
+            case 9:
+                Weapon.instance.IncreaseDamageModifier(true, 2);
+                break;
+            case 10:
+                Weapon.instance.IncreaseDamageModifier(false, 1);
+                break;
+            case 11:
+                Weapon.instance.IncreaseRateModifier(true, 2);
+                break;
+            case 12:
+                Weapon.instance.IncreaseRateModifier(false, 1);
+                break;
+            case 13:
+                Weapon.instance.SetBomb();
+                break;
+            case 14:
+                Weapon.instance.SetMultiShot();
+                break;
+            case 15:
+                Weapon.instance.IncreaseCritDamage(0.1f);
+                break;
+            default:
+                OnTurretSkillSelect?.Invoke(i);
                 break;
         }
         modifiersLeft.Remove(i);

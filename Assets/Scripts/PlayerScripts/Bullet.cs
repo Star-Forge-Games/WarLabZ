@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject hitPrefab;
+    [SerializeField] float bombChance = 5, instaKillChance = 1.5f;
 
 
     private int damage;
@@ -14,6 +15,7 @@ public class Bullet : MonoBehaviour
     private bool paused = true;
     private bool crit;
     private bool through;
+    private bool bomb;
 
     private void Start()
     {
@@ -25,15 +27,22 @@ public class Bullet : MonoBehaviour
         if (!paused) timeLived += Time.deltaTime;
     }
 
-    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through)
+    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through, bool bomb)
     {
+        if (bomb)
+        {
+            if (Random.Range(0, 100f) < bombChance)
+            {
+                this.bomb = true;
+            }
+        }
         this.speed = speed;
         this.damage = damage;
         this.bulletLifeTime = bulletLifeTime;
         this.through = through;
         if (instakill)
         {
-            if (Random.Range(0, 100f) < 1.5f)
+            if (Random.Range(0, 100f) < instaKillChance)
             {
                 this.damage = 99999;
             }
@@ -75,9 +84,17 @@ public class Bullet : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
+<<<<<<< Updated upstream
             z.TakeDamage(damage /*crit*/);
         
+=======
+            z.TakeDamage(damage, false);
+>>>>>>> Stashed changes
             GameObject hitPrefabPoint = Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
+            if (bomb)
+            {
+                BombSystem.instance.ThrowAt(transform.position.x, transform.position.z);
+            }
             if (!through)
             {
                 Destroy(gameObject);

@@ -15,9 +15,7 @@ public class Turret : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [Header("Shotgun Settings")]
     [SerializeField] private bool shotgun;
-    [ShowIf("shotgun")]
     [SerializeField] private int shots;
-    [ShowIf("shotgun")]
     [SerializeField] private float arc;
     [Header("Multishot Settings")]
     [Range(0f, 2f)]
@@ -35,23 +33,47 @@ public class Turret : MonoBehaviour
     Vector3 targetPosition;
     private Action<bool> action;
     private Action<int> skillAction;
-
-    private bool twinShot, instakill;
+    private bool twinShot, instakill, through;
 
     private void Awake()
     {
         skillAction = id =>
         {
-            if (id == 0)
+            switch (id)
             {
-                SetInstaKill();
-            }
-            else
-            {
-                SetTwinShot();
-            }
+                case 16:
+                    twinShot = true;
+                    break;
+                case 17:
+                    shotgun = true;
+                    break;
+                case 18:
+                    critChance += 10;
+                    break;
+                case 19:
+                    flatRateModifier += 1;
+                    break;
+                case 20:
+                    expRateModifier += 1;
+                    break;
+                case 21:
+                    through = true;
+                    break;
+                case 22:
+                    multishots = 1;
+                    break;
+                case 23:
+                    flatDamageModifier += 1;
+                    break;
+                case 24:
+                    expDamageModifier += 1;
+                    break;
+                default:
+                    critDamageMultiplier += 1;
+                    break;
+            };
         };
-        SkillsPanel.OnSkillSelect += skillAction;
+        SkillsPanel.OnTurretSkillSelect += skillAction;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
@@ -87,7 +109,8 @@ public class Turret : MonoBehaviour
                 targetPosition = target.position;
                 RotateTowardsTarget();
             }
-        } else
+        }
+        else
         {
             if (target != null)
             {
@@ -150,17 +173,18 @@ public class Turret : MonoBehaviour
                     Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                     b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b1.transform.parent = bulletContainer;
-                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
+                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
                     Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                     b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b2.transform.parent = bulletContainer;
-                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
-                } else
+                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                }
+                else
                 {
                     Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                     bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
                 }
             }
             else
@@ -171,7 +195,7 @@ public class Turret : MonoBehaviour
                     bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, false);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
                 }
             }
         }
@@ -180,16 +204,6 @@ public class Turret : MonoBehaviour
     private void OnDestroy()
     {
         PauseSystem.OnPauseStateChanged -= action;
-        SkillsPanel.OnSkillSelect -= skillAction;
-    }
-
-    public void SetInstaKill()
-    {
-        instakill = true;
-    }
-
-    public void SetTwinShot()
-    {
-        twinShot = true;
+        SkillsPanel.OnTurretSkillSelect -= skillAction;
     }
 }

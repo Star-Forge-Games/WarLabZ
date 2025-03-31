@@ -3,13 +3,13 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class SkillBomb : MonoBehaviour
 {
     [SerializeField] float fallSpeed;
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
     private Action<bool> action;
-    public int id;
+    private bool timed;
 
     private void Awake()
     {
@@ -31,11 +31,16 @@ public class Bomb : MonoBehaviour
         GetComponent<Rigidbody>().linearVelocity = new Vector3(0, -fallSpeed, 0);
     }
 
+    public void Setup(bool timed)
+    {
+        this.timed = timed;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         EnemyZombie[] objects = (from col in Physics.OverlapSphere(transform.position, explosionRadius) where col.gameObject.TryGetComponent<EnemyZombie>(out _) select col.GetComponent<EnemyZombie>()).ToArray();
         PauseSystem.OnPauseStateChanged -= action;
-        ExplosionTestOptimization.instance.Activate(id);
+        BombSystem.instance.Explode(timed);
         StartCoroutine(EnqueueDamage(objects));
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
