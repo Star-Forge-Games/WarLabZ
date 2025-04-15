@@ -1759,8 +1759,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 1
   shotgun: 0
-  shots: 2
-  arc: 0
+  shots: 3
+  arc: 35
   multishots: 0
   baseAttackTimePercentage: 0.1
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}
@@ -6005,8 +6005,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 0
   shotgun: 0
-  shots: 1
-  arc: 1.2
+  shots: 3
+  arc: 30
   multishots: 0
   baseAttackTimePercentage: 0.1
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}

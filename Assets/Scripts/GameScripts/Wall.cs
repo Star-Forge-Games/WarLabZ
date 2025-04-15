@@ -71,7 +71,7 @@ public class Wall : MonoBehaviour
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevelsHp[YG2.saves.wallLevel];
         health = maxHealth;
-        UpdateWallHp(maxHealth, health);
+        UpdateWallHp();
     }
 
     private void Update()
@@ -97,12 +97,12 @@ public class Wall : MonoBehaviour
             Destroy(gameObject);
             // death
         }
-        UpdateWallHp(maxHealth, health);
+        UpdateWallHp();
     }
-    public void UpdateWallHp(int maxHealth, int currentHealth)
+    public void UpdateWallHp()
     {
-        wallHpBar.fillAmount = (float)currentHealth / maxHealth;
-        healthAmount.text = $"{currentHealth}";
+        wallHpBar.fillAmount = (float)health / maxHealth;
+        healthAmount.text = $"{health}";
     }
 
     private void OnDestroy()
@@ -127,6 +127,7 @@ public class Wall : MonoBehaviour
     {
         health += bonusHealth;
         if (health > maxHealth) maxHealth = health;
+        UpdateWallHp();
     }
 
     public void SetBlademail()
