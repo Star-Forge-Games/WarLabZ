@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PauseSystem : MonoBehaviour
@@ -22,6 +23,12 @@ public class PauseSystem : MonoBehaviour
     {
         MoneySystem.instance.SaveMoney();
         end = true;
+        StartCoroutine(WaitForLose());
+    }
+
+    private IEnumerator WaitForLose()
+    {
+        yield return new WaitForSeconds(2);
         Pause(true);
         losePanel.SetActive(true);
     }

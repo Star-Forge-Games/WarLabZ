@@ -18,8 +18,6 @@ public class EnemyZombie : MonoBehaviour
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
     private bool wall = false;
-
-    public static Action OnZombieHitPlayer;
     public static Action<EnemyZombie, int> OnZombieHitWall;
     public static Action<EnemyZombie, float> OnZombieDie;
 
@@ -68,10 +66,6 @@ public class EnemyZombie : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.CompareTag("Player"))
-        {
-            OnZombieHitPlayer?.Invoke();
-        }
         if (hit.gameObject.CompareTag("Wall"))
         {
             wall = true;

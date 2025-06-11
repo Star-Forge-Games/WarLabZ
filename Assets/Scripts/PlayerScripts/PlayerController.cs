@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.InputSystem;
 using System;
 
@@ -13,44 +12,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     Vector2 moveInput;
     Vector3 movement;
-    private bool isSlide;
     private Action<bool> action;
     private bool paused;
 
+    public static Transform trans;
+
     private void Awake()
     {
+        trans = transform;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
             else SelfPause();
         });
+        Wall.OnWallDeath += RunAway;
         PauseSystem.OnPauseStateChanged += action;
     }
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        EnemyZombie.OnZombieHitPlayer += OnHit;
     }
 
     private void OnDestroy()
     {
-        EnemyZombie.OnZombieHitPlayer -= OnHit;
+        Wall.OnWallDeath -= RunAway;
         PauseSystem.OnPauseStateChanged -= action;
-    }
-
-    void Update()
-    {
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            StartCoroutine(Slide());
-        }
-    }
-
-    private void OnHit()
-    {
-        PauseSystem.instance.Lose();
     }
 
     public void OnPause()
@@ -63,8 +50,6 @@ public class PlayerController : MonoBehaviour
             PauseSystem.instance.Unpause();
         }
     }
-
-
     public void SelfPause()
     {
         anim.speed = 0;
@@ -95,16 +80,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator Slide()
+    private void RunAway()
     {
-        characterController.center = new Vector3(0, -0.5f, 0);
-        characterController.height = 1f;
-        isSlide = true;
-        yield return new WaitForSeconds(0.9f);
-        characterController.center = new Vector3(0, 0, 0);
-        characterController.height = 2;
-        isSlide = false;
+        anim.Play("Turn");
+        paused = true;
+        PauseSystem.instance.Lose();
     }
+
+
 
 
 }

@@ -119,7 +119,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private void SpawnEnemy(GameObject prefab, float mult)
     {
         spawnedEnemies++;
-        GameObject enemy = Instantiate(prefab, GeneratePoint(), Quaternion.identity);
+        GameObject enemy = Instantiate(prefab, GeneratePoint(), Quaternion.Euler(0, 180, 0));
         enemy.transform.parent = enemyContainer;
         enemy.GetComponent<EnemyZombie>().MultiplyHp(mult);
     }
@@ -137,7 +137,7 @@ public class EnemySpawnSystem : MonoBehaviour
             yield return new WaitForSeconds(randomSpawnInterval - endlessTimer);
             while (true)
             {
-                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
+                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.Euler(0, 180, 0));
                 enemy.transform.parent = enemyContainer;
                 enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
                 endlessTimer = 0;
@@ -150,7 +150,7 @@ public class EnemySpawnSystem : MonoBehaviour
             yield return new WaitForSeconds(waves[wave - 1].nextWaveDelay);
             while (true)
             {
-                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.identity);
+                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.Euler(0, 180, 0));
                 enemy.transform.parent = enemyContainer;
                 enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
                 endlessTimer = 0;
