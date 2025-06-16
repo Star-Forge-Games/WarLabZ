@@ -72,6 +72,7 @@
     <Compile Include="Assets\PluginYourGames\Scripts\InfoYG\InfoYG.cs" />
     <Compile Include="Assets\Scripts\ShopScripts\WallShop Scripts\WallShopButtoncontroller.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\CallAction.cs" />
+    <Compile Include="Assets\Loader.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\EditorScr\Attributes\LabelYGAttribute.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\InfoYG\SimulationSettings.cs" />
     <Compile Include="Assets\Scripts\GameScripts\BombSystem.cs" />

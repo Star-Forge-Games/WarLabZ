@@ -13,9 +13,6 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
-        cash.text = $"$ {YG2.saves.cash}";
-        donateCash.text = $"(G) {YG2.saves.donateCash}";
-        keys.text = $"()--E {YG2.saves.keys}";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
         if (YG2.saves.localeId == -1)
         {
@@ -25,28 +22,23 @@ public class MenuUI : MonoBehaviour
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[YG2.saves.localeId];
         }
+        // user info
     }
 
-    public void LoadShopScene()
+    public void LoadSceneNoFade(int index)
     {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(index);
     }
 
-    public void StartGame()
+    public void LoadSceneFade(int index)
     {
-        fader.Play("Fade");
-        StartCoroutine(nameof(Game));
+        StartCoroutine(SwitchScene(index));
     }
-    private IEnumerator Game()
+
+    private IEnumerator SwitchScene(int index)
     {
         yield return new WaitForSeconds(1.2f);
-        SceneManager.LoadScene(1);
-    }
-
-    public void LoadMap()
-    {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(index);
     }
 
 }
