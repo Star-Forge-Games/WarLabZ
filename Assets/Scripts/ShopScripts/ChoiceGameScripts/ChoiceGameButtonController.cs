@@ -27,5 +27,11 @@ public class ChoiceGameButtonController : MonoBehaviour
         // fader
     }
 
+    public void RunInfiniteModeScene()
+    {
+        SceneManager.LoadScene(1);
+        // fader
+    }
+
 
 }

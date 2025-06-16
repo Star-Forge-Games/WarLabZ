@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using YG;
 
@@ -15,6 +16,15 @@ public class MenuUI : MonoBehaviour
         cash.text = $"$ {YG2.saves.cash}";
         donateCash.text = $"(G) {YG2.saves.donateCash}";
         keys.text = $"()--E {YG2.saves.keys}";
+        AudioListener.volume = YG2.saves.soundOn? 1 : 0;
+        if (YG2.saves.localeId == -1)
+        {
+            YG2.saves.localeId = LocalizationSettings.SelectedLocale.SortOrder;
+            YG2.SaveProgress();
+        } else
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[YG2.saves.localeId];
+        }
     }
 
     public void LoadShopScene()
@@ -34,9 +44,9 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void LoadChooseGameScene()
+    public void LoadMap()
     {
-        SceneManager.LoadScene(8);
+        SceneManager.LoadScene(2);
     }
 
 }

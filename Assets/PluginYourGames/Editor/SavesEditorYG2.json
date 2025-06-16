@@ -7,14 +7,14 @@
         false,
         false
     ],
-    "idSave": 236,
+    "idSave": 251,
     "levelStars": [
         -1,
         -1,
         -1,
         -1
     ],
-    "cash": 0,
+    "cash": 1000,
     "donateCash": 0,
     "unlockedWeapons": [
         0
@@ -43,5 +43,7 @@
         0,
         0
     ],
-    "selectedWeapon": 0
+    "selectedWeapon": 0,
+    "soundOn": true,
+    "localeId": 1
 }

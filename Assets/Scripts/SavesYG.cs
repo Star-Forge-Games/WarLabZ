@@ -14,5 +14,7 @@ namespace YG
         public int wallLevel = 9;
         public int[] weaponLevels = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public int selectedWeapon = 0;
+        public bool soundOn = true;
+        public int localeId = -1;
     }
 }
