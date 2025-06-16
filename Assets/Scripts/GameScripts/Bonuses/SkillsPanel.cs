@@ -11,6 +11,7 @@ public class SkillsPanel : MonoBehaviour
     public static Action<int> OnTurretSkillSelect;
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
+    [SerializeField] PausePanel pausePanel;
 
     [Serializable]
     public struct Modifier
@@ -38,6 +39,7 @@ public class SkillsPanel : MonoBehaviour
     public void Select(int id)
     {
         int i = id == 0 ? b1id : b2id;
+        pausePanel.AddSkill(id == 0 ? b1.sprite : b2.sprite);
         switch (i)
         {
             case 0:

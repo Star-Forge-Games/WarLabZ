@@ -1,11 +1,20 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PausePanel : MonoBehaviour
 {
 
-    [SerializeField] Animator fader;
+    [SerializeField] private Animator fader;
+    [SerializeField] private Transform container;
+
+    public void AddSkill(Sprite skill)
+    {
+        GameObject icon = new("Skill", typeof(Image));
+        icon.transform.parent = container;
+        icon.GetComponent<Image>().sprite = skill;
+    }
 
     public void RestartLevel()
     {
