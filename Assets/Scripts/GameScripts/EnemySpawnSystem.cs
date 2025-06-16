@@ -10,7 +10,6 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private float randomSpawnInterval;
     [SerializeField] private float spawnZ;
     [SerializeField] private float spawnpointWidth;
-    [SerializeField] private GameObject losePanel;
     [SerializeField] private Wave[] waves;
     [SerializeField] private bool endless;
     private bool lastZombieSpawned = false;

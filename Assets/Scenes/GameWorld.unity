@@ -3237,7 +3237,7 @@ GameObject:
   - component: {fileID: 768384873}
   - component: {fileID: 768384876}
   - component: {fileID: 768384875}
-  - component: {fileID: 768384874}
+  - component: {fileID: 768384877}
   m_Layer: 0
   m_Name: PausePanel
   m_TagString: Untagged
@@ -3266,19 +3266,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &768384874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768384872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe502cc2ec9e8554eacecfc150a852b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fader: {fileID: 1721230800}
 --- !u!114 &768384875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3317,6 +3304,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768384872}
   m_CullTransparentMesh: 1
+--- !u!114 &768384877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768384872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd87051b0dfe4954199f7b003d9a40be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fader: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5213,8 +5213,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 768384874}
-        m_TargetAssemblyTypeName: LosePanel, Assembly-CSharp
+      - m_Target: {fileID: 768384877}
+        m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
@@ -6186,7 +6186,6 @@ MonoBehaviour:
   randomSpawnInterval: 1
   spawnZ: 99
   spawnpointWidth: 5.5
-  losePanel: {fileID: 350896424}
   waves:
   - {fileID: 11400000, guid: 1421d375c2444014d815b1515d79ba23, type: 2}
   - {fileID: 11400000, guid: 8ce25121890ef65419705e903ae27bdc, type: 2}
@@ -7239,8 +7238,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 768384874}
-        m_TargetAssemblyTypeName: LosePanel, Assembly-CSharp
+      - m_Target: {fileID: 768384877}
+        m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
         m_MethodName: BackToHub
         m_Mode: 1
         m_Arguments:
