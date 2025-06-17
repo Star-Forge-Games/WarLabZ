@@ -62,7 +62,7 @@ public class WeaponUI : MonoBehaviour
 
     public void Lock()
     {
-        // lock logic
+        
     }
 
     public void Unlock()
