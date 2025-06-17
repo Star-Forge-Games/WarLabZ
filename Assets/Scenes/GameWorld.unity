@@ -5205,7 +5205,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -5851,7 +5851,7 @@ MonoBehaviour:
   bulletsRate: 5
   fireForce: 50
   bulletDamage: 100
-  bulletLifeTime: 10
+  bulletLifeTime: 0.5
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 0
