@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de371cc4806fc8d4887cfc12ddabd00a, type: 3}
   m_Name: WallSettings
   m_EditorClassIdentifier: 
-  wallLevelsHp: 96000000c800000058020000dc050000
+  wallLevels:
+  - cost: 0
+    hp: 100
+  - cost: 100
+    hp: 200
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0
+  - cost: 0
+    hp: 0

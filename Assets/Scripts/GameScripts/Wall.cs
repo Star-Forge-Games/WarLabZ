@@ -69,7 +69,7 @@ public class Wall : MonoBehaviour
             else transform.GetChild(i).gameObject.SetActive(true);
         }*/
         EnemyZombie.OnZombieHitWall += TakeDamage;
-        maxHealth = settings.wallLevelsHp[YG2.saves.wallLevel];
+        maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;
         health = maxHealth;
         UpdateWallHp();
     }

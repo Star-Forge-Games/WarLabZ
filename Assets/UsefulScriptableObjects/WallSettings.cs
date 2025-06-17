@@ -1,7 +1,15 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WallSettings", menuName = "Scriptable Objects/WallSettings")]
 public class WallSettings : ScriptableObject
 {
-    public int[] wallLevelsHp;
+    [Serializable]
+    public struct WallData
+    {
+        public int cost;
+        public int hp;
+    }
+
+    public WallData[] wallLevels;
 }
