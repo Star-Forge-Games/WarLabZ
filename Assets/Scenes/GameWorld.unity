@@ -5851,7 +5851,7 @@ MonoBehaviour:
   bulletsRate: 5
   fireForce: 50
   bulletDamage: 100
-  bulletLifeTime: 0.5
+  bulletLifeTime: 10
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 0

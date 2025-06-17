@@ -41,8 +41,9 @@ public class BombSystem : MonoBehaviour
     public void Throw()
     {
         int z = Random.Range(1, 6) * 10;
-        timedPS.transform.position = new Vector3(10, 0, z);
-        SkillBomb sb = Instantiate(bomb, new Vector3(10, 10, z), Quaternion.identity);
+        int x = Random.Range(-5, 5);
+        timedPS.transform.position = new Vector3(x, 0, z);
+        SkillBomb sb = Instantiate(bomb, new Vector3(x, 10, z), Quaternion.identity);
         sb.Setup(true);
     }
 

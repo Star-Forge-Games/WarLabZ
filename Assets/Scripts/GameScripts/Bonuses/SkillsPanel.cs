@@ -8,7 +8,7 @@ using YG;
 public class SkillsPanel : MonoBehaviour
 {
 
-    private List<int> modifiersLeft = new() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+    private List<int> modifiersLeft = new() { 5, 13 };
     public static Action<int> OnTurretSkillSelect;
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
@@ -25,14 +25,23 @@ public class SkillsPanel : MonoBehaviour
 
     private void Start()
     {
-        if (YG2.saves.wallLevel >= 3)
+        /*if (YG2.saves.wallLevel >= 3)
         {
             modifiersLeft.AddRange(new int[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 });
-        }
+        }*/
     }
 
     public void OnEnable()
     {
+        if (modifiersLeft.Count == 1)
+        {
+            b1id = modifiersLeft[UnityEngine.Random.Range(0, modifiersLeft.Count)];
+            b1.sprite = modifiers[b1id].sprite;
+            b1.GetComponentInChildren<TextMeshProUGUI>().text = modifiers[b1id].text;
+            //b1.rectTransform.position.x = 0;
+            b2.gameObject.SetActive(false);
+            return;
+        }
         b1id = modifiersLeft[UnityEngine.Random.Range(0, modifiersLeft.Count)];
         b2id = modifiersLeft[UnityEngine.Random.Range(0, modifiersLeft.Count)];
         while (b2id == b1id)
