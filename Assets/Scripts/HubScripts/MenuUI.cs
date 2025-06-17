@@ -16,6 +16,7 @@ public class MenuUI : MonoBehaviour
     {
         cash.text = $"{YG2.saves.cash} $";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
+        LocalizationSettings.InitializationOperation.WaitForCompletion();
         if (YG2.saves.localeId == -1)
         {
             YG2.saves.localeId = LocalizationSettings.SelectedLocale.SortOrder;

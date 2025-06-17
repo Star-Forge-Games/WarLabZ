@@ -10,14 +10,20 @@ public class WeaponUI : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance, level, upgrade;
     [SerializeField] Button upgradeButton;
+    [SerializeField] GameObject weaponModel;
+    [SerializeField] GameObject lockObject;
     [SerializeField] int id;
+    private Image bg;
 
     private void Start()
     {
+        bg = GetComponent<Image>();
         Refresh();
+        RefreshWeapons += Refresh;
     }
 
     public static Action OnUpgrade;
+    public static Action RefreshWeapons;
 
     public virtual void Refresh()
     {
@@ -45,29 +51,47 @@ public class WeaponUI : MonoBehaviour
         if (!YG2.saves.unlockedWeapons.Contains(id))
         {
             Lock();
+        } else
+        {
+            Unlock();
         }
-        if (YG2.saves.selectedWeapon == id) Select();
-        else Deselect();
+        if (YG2.saves.selectedWeapon == id)
+        {
+            Select();
+        }
+        else
+        {
+            Deselect();
+        }
     }
 
     public void Select()
     {
-        // selection logic
+        bg.color = new Color(236/255f, 250/255f, 65/255f, 137/255f);
+    }
+
+    public void SelectWeapon()
+    {
+        YG2.saves.selectedWeapon = id;
+        YG2.SaveProgress();
+        RefreshWeapons.Invoke();
     }
 
     public void Deselect()
     {
-        // deselection logic
+        bg.color = new Color(196/255f, 178/255f, 150/255f, 137/255f);
     }
 
     public void Lock()
     {
-        
+        lockObject.SetActive(true);
+        weaponModel.SetActive(false);
     }
 
     public void Unlock()
     {
-        // unlock logic
+        lockObject.SetActive(false);
+        weaponModel.SetActive(true);
     }
 
     public virtual void Upgrade()
