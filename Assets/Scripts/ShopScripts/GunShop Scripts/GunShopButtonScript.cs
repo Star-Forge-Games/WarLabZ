@@ -8,7 +8,7 @@ public class GunShopUIScript : MonoBehaviour
 {
 
     [SerializeField] private GameObject[] panels;
-    [SerializeField] private TextMeshProUGUI cash, dCash, level;
+    [SerializeField] private TextMeshProUGUI cash;
     private int selectedPanel = 0;
     private Action action;
 
@@ -21,20 +21,10 @@ public class GunShopUIScript : MonoBehaviour
         action = () =>
         {
             cash.text = $"{YG2.saves.cash} $";
-            dCash.text = $"{YG2.saves.donateCash} G";
-            level.text = $"Lv. {YG2.saves.level + 1}";
         };
         WeaponUI.OnUpgrade += action;
         cash.text = $"{YG2.saves.cash} $";
-        dCash.text = $"{YG2.saves.donateCash} G";
-        level.text = $"Lv. {YG2.saves.level + 1}";
         panels[0].SetActive(true);
-    }
-
-    public void LoadShopScene()
-    {
-        SceneManager.LoadScene(3);
-        // fader
     }
 
     public void ActivatePanel(int index)

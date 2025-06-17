@@ -9,10 +9,11 @@ public class MenuUI : MonoBehaviour
 {
 
     [SerializeField] private Animator fader;
-    [SerializeField] private TextMeshProUGUI cash, donateCash, keys;
+    [SerializeField] private TextMeshProUGUI cash;
 
     private void Start()
     {
+        cash.text = $"{YG2.saves.cash} $";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
         if (YG2.saves.localeId == -1)
         {
@@ -25,20 +26,16 @@ public class MenuUI : MonoBehaviour
         // user info
     }
 
-    public void LoadSceneNoFade(int index)
+    public void LoadGame()
     {
-        SceneManager.LoadScene(index);
+        fader.Play("Fade");
+        StartCoroutine(SwitchScene());
     }
 
-    public void LoadSceneFade(int index)
-    {
-        StartCoroutine(SwitchScene(index));
-    }
-
-    private IEnumerator SwitchScene(int index)
+    private IEnumerator SwitchScene()
     {
         yield return new WaitForSeconds(1.2f);
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene("GameWorld");
     }
 
 }
