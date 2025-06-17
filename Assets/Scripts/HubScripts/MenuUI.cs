@@ -10,6 +10,7 @@ public class MenuUI : MonoBehaviour
 
     [SerializeField] private Animator fader;
     [SerializeField] private TextMeshProUGUI cash;
+    //Добавил чтобы пересобрать csproj
 
     private void Start()
     {
