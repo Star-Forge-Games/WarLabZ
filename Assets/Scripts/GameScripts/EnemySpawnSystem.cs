@@ -69,7 +69,7 @@ public class EnemySpawnSystem : MonoBehaviour
     private void CalculateEnemiesAmountEndless()
     {
         waveEnemies = 0;
-        int diff = wave + endlessFirstWaveDifficulty;
+        int diff = endlessWave + endlessFirstWaveDifficulty;
         int totalDiff = 0;
         endlessZombieIndex = 0;
         List<GameObject> totalZombies = new();
@@ -82,6 +82,7 @@ public class EnemySpawnSystem : MonoBehaviour
             Debug.Log($"Difficulty is {diff}. Added new zombie {zombieData.prefab.name} with difficulty {zombieData.difficulty}. Now total diff is {totalDiff}");
         }
         endlessWaveZombies = totalZombies.ToArray();
+        waveEnemies = endlessWaveZombies.Length;
         Debug.Log($"Total zombie amount = {totalZombies.Count}");
     }
 
@@ -179,6 +180,7 @@ public class EnemySpawnSystem : MonoBehaviour
                 if (enemyContainer.childCount == 0)
                 {
                     spawnedEnemies = 0;
+                    endlessZombieIndex = 0;
                     endlessWave++;
                     CalculateEnemiesAmountEndless();
                     ProcessWaveSpawnsEndless();
