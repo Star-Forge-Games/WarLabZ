@@ -93,7 +93,7 @@ public class EnemySpawnSystem : MonoBehaviour
         yield return new WaitForSeconds(randomSpawnInterval - endlessTimer);
         for (int i = endlessZombieIndex; i < endlessWaveZombies.Length; i++)
         {
-            GameObject enemy = Instantiate(endlessWaveZombies[endlessZombieIndex], GeneratePoint(), Quaternion.Euler(0, 180, 0));
+            GameObject enemy = Instantiate(endlessWaveZombies[i], GeneratePoint(), Quaternion.Euler(0, 180, 0));
             enemy.transform.parent = enemyContainer;
             endlessZombieIndex++;
             endlessTimer = 0;

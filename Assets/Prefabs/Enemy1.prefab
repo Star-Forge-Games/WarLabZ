@@ -395,6 +395,8 @@ MonoBehaviour:
   maxHealth: 100
   damage: 1
   speed: 5
+  difficulty: 2
+  money: 0
 --- !u!65 &5033716229429919098
 BoxCollider:
   m_ObjectHideFlags: 0

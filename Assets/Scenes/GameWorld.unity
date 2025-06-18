@@ -5849,9 +5849,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1959370579}
-  bulletsRate: 5
+  bulletsRate: 1.25
   fireForce: 50
-  bulletDamage: 100
+  bulletDamage: 2
   bulletLifeTime: 0.5
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
@@ -6033,10 +6033,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyContainer: {fileID: 689676792}
   enemyPrefabs:
-  - {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
   - {fileID: 7143858245785905579, guid: aebc01b30313f324b80958862c43aa67, type: 3}
+  - {fileID: 7143858245785905579, guid: f3b972b22792f3d43bc109d270f87eb4, type: 3}
   randomSpawnInterval: 1
-  spawnZ: 99
+  spawnZ: 60
   spawnpointWidth: 5.5
   waves:
   - {fileID: 11400000, guid: 1421d375c2444014d815b1515d79ba23, type: 2}
@@ -6044,6 +6044,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e12936bc5da229c4688bf38a298a18d9, type: 2}
   endless: 0
   wavesPerSkill: 3
+  endlessFirstWaveDifficulty: 5
   wave: 0
   spawnedEnemies: 0
   waveEnemies: 0

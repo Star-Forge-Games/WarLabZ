@@ -424,9 +424,11 @@ MonoBehaviour:
   anim: {fileID: 7112768241958756894}
   healthBar: {fileID: 7789753011265524503}
   healthAmount: {fileID: 5739539181246942191}
-  maxHealth: 50
-  damage: 3
-  speed: 5
+  maxHealth: 5
+  damage: 1
+  speed: 10
+  difficulty: 1
+  money: 1
 --- !u!65 &9067367889201910334
 BoxCollider:
   m_ObjectHideFlags: 0
