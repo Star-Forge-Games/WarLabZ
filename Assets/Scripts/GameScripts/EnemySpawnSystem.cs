@@ -12,6 +12,7 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private float spawnpointWidth;
     [SerializeField] private Wave[] waves;
     [SerializeField] private bool endless;
+    [SerializeField] private int wavesPerSkill = 3;
     private bool lastZombieSpawned = false;
     private bool paused = false;
     public int wave = 0;
@@ -198,7 +199,10 @@ public class EnemySpawnSystem : MonoBehaviour
                 }
                 CalculateEnemiesAmount();
                 ProcessWaveSpawns();
-                PauseSystem.instance.SkillSelect();
+                if (wave % wavesPerSkill == 0)
+                {
+                    PauseSystem.instance.SkillSelect();
+                }
             }
         }
         for (int i = 0; i < partsProgress.Length; i++)

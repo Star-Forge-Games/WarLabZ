@@ -13,6 +13,8 @@ public class SkillsPanel : MonoBehaviour
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
     [SerializeField] PausePanel pausePanel;
+    [SerializeField] private int maxSkills;
+    private int skillsSelected = 0;
 
     [Serializable]
     public struct Modifier
@@ -115,5 +117,11 @@ public class SkillsPanel : MonoBehaviour
         modifiersLeft.Remove(i);
         PauseSystem.instance.Unpause();
         gameObject.SetActive(false);
+        skillsSelected++;
+    }
+
+    public bool ReachedMaxSkillLimit()
+    {
+        return maxSkills == skillsSelected;
     }
 }

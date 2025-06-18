@@ -43,6 +43,7 @@ public class PauseSystem : MonoBehaviour
 
     public void SkillSelect()
     {
+        if (skillsPanel.GetComponent<SkillsPanel>().ReachedMaxSkillLimit()) return;
         OnPauseStateChanged?.Invoke(true);
         foreach (Transform t in enemyContainer)
         {

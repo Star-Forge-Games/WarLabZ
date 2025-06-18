@@ -2014,6 +2014,7 @@ MonoBehaviour:
     text: "\u041C\u043D\u043E\u0436\u0438\u0442\u0435\u043B\u044C \u043A\u0440\u0438\u0442\u0430
       \u0442\u0443\u0440\u0435\u043B\u0438 +"
   pausePanel: {fileID: 768384877}
+  maxSkills: 15
 --- !u!1 &403706988
 GameObject:
   m_ObjectHideFlags: 0
@@ -5205,7 +5206,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -6042,6 +6043,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ce25121890ef65419705e903ae27bdc, type: 2}
   - {fileID: 11400000, guid: e12936bc5da229c4688bf38a298a18d9, type: 2}
   endless: 0
+  wavesPerSkill: 3
   wave: 0
   spawnedEnemies: 0
   waveEnemies: 0
