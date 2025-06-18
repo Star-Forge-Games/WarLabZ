@@ -13,13 +13,20 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int maxHealth = 10;
     [SerializeField] private int damage;
     [SerializeField] private float speed;
+    [SerializeField] private int difficulty;
+    [SerializeField] private int money;
 
     private int currentHealth;
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
     private bool wall = false;
     public static Action<EnemyZombie, int> OnZombieHitWall;
-    public static Action<EnemyZombie, float> OnZombieDie;
+    public static Action<EnemyZombie, float, int> OnZombieDie;
+
+    public int GetDifficulty()
+    {
+        return difficulty;
+    }
 
     public void Start()
     {
@@ -50,7 +57,7 @@ public class EnemyZombie : MonoBehaviour
         if (currentHealth <= 0)
         {
             KillsCount.kills += 1;
-            OnZombieDie?.Invoke(this, moneyDropChance);
+            OnZombieDie?.Invoke(this, moneyDropChance, money);
             // DEATH ANIMATION
             Destroy(gameObject);
             return;

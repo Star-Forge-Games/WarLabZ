@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static Wave;
 
@@ -13,6 +15,10 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private Wave[] waves;
     [SerializeField] private bool endless;
     [SerializeField] private int wavesPerSkill = 3;
+    [SerializeField] private int endlessFirstWaveDifficulty = 45;
+    private GameObject[] endlessWaveZombies;
+    private int endlessZombieIndex = 0;
+    private int endlessWave = 0;
     private bool lastZombieSpawned = false;
     private bool paused = false;
     public int wave = 0;
@@ -57,6 +63,41 @@ public class EnemySpawnSystem : MonoBehaviour
         foreach (var part in waves[wave].parts)
         {
             waveEnemies += part.amount;
+        }
+    }
+
+    private void CalculateEnemiesAmountEndless()
+    {
+        waveEnemies = 0;
+        int diff = wave + endlessFirstWaveDifficulty;
+        int totalDiff = 0;
+        endlessZombieIndex = 0;
+        List<GameObject> totalZombies = new();
+        while (totalDiff < diff)
+        {
+            var availableZombieList = (from z in enemyPrefabs where z.GetComponent<EnemyZombie>().GetDifficulty() <= (diff - totalDiff) select (z, z.GetComponent<EnemyZombie>().GetDifficulty())).ToArray();
+            (GameObject prefab, int difficulty) zombieData = availableZombieList[UnityEngine.Random.Range(0, availableZombieList.Length)];
+            totalDiff += zombieData.difficulty;
+            totalZombies.Add(zombieData.prefab);
+        }
+        endlessWaveZombies = totalZombies.ToArray();
+    }
+
+    private void ProcessWaveSpawnsEndless()
+    {
+        StartCoroutine(SpawnEnemiesEndless());
+    }
+
+    private IEnumerator SpawnEnemiesEndless()
+    {
+        yield return new WaitForSeconds(randomSpawnInterval - endlessTimer);
+        for (int i = endlessZombieIndex; i < endlessWaveZombies.Length; i++)
+        {
+            GameObject enemy = Instantiate(endlessWaveZombies[endlessZombieIndex], GeneratePoint(), Quaternion.Euler(0, 180, 0));
+            enemy.transform.parent = enemyContainer;
+            endlessZombieIndex++;
+            endlessTimer = 0;
+            yield return new WaitForSeconds(randomSpawnInterval);
         }
     }
 
@@ -124,58 +165,22 @@ public class EnemySpawnSystem : MonoBehaviour
         enemy.GetComponent<EnemyZombie>().MultiplyHp(mult);
     }
 
-    private void OnDestroy()
-    {
-
-        PauseSystem.OnPauseStateChanged -= action;
-    }
-
-    private IEnumerator SpawnLoop()
-    {
-        if (endlessStarted)
-        {
-            yield return new WaitForSeconds(randomSpawnInterval - endlessTimer);
-            while (true)
-            {
-                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.Euler(0, 180, 0));
-                enemy.transform.parent = enemyContainer;
-                enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
-                endlessTimer = 0;
-                yield return new WaitForSeconds(randomSpawnInterval);
-            }
-        }
-        else
-        {
-            endlessStarted = true;
-            yield return new WaitForSeconds(waves[wave - 1].nextWaveDelay);
-            while (true)
-            {
-                GameObject enemy = Instantiate(GetRandomEnemy(), GeneratePoint(), Quaternion.Euler(0, 180, 0));
-                enemy.transform.parent = enemyContainer;
-                enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
-                endlessTimer = 0;
-                yield return new WaitForSeconds(randomSpawnInterval);
-            }
-        }
-    }
-
-
-    private Vector3 GeneratePoint()
-    {
-        return new Vector3(UnityEngine.Random.Range(-spawnpointWidth, spawnpointWidth), 1, spawnZ);
-    }
-
-    private GameObject GetRandomEnemy()
-    {
-        return enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
-    }
-
     void Update()
     {
         if (paused) return;
         if (endlessStarted)
         {
             endlessTimer += Time.deltaTime;
+            if (endlessZombieIndex == waveEnemies)
+            {
+                if (enemyContainer.childCount == 0)
+                {
+                    spawnedEnemies = 0;
+                    endlessWave++;
+                    CalculateEnemiesAmountEndless();
+                    ProcessWaveSpawnsEndless();
+                }
+            }
             return;
         }
         if (spawnedEnemies == waveEnemies)
@@ -187,22 +192,20 @@ public class EnemySpawnSystem : MonoBehaviour
                 if (wave >= waves.Length)
                 {
                     lastZombieSpawned = true;
-                    if (endless)
-                    {
-                        StartCoroutine(nameof(SpawnLoop));
-                    }
-                    else
-                    {
-                        PauseSystem.instance.Win();
-                    }
-                    return;
+                    endlessStarted = true;
                 }
-                CalculateEnemiesAmount();
-                ProcessWaveSpawns();
                 if (wave % wavesPerSkill == 0)
                 {
                     PauseSystem.instance.SkillSelect();
                 }
+                if (wave >= waves.Length)
+                {
+                    CalculateEnemiesAmountEndless();
+                    ProcessWaveSpawnsEndless();
+                    return;
+                }
+                CalculateEnemiesAmount();
+                ProcessWaveSpawns();
             }
         }
         for (int i = 0; i < partsProgress.Length; i++)
@@ -211,34 +214,27 @@ public class EnemySpawnSystem : MonoBehaviour
         }
     }
 
-
-
     private void SelfPause()
     {
         paused = true;
-        if (endlessStarted)
-        {
-            StopCoroutine(nameof(SpawnLoop));
-        }
-        else
-        {
-            StopAllCoroutines();
-        }
+        StopAllCoroutines();
+
     }
 
     private void SelfUnpause()
     {
-        if (endlessStarted)
-        {
-            StartCoroutine(nameof(SpawnLoop));
-        }
-        else
-        {
-            if (!lastZombieSpawned)
-                ReProcessWaveSpawns();
-        }
+        if (endlessStarted) ProcessWaveSpawnsEndless();
+        else if (!lastZombieSpawned) ReProcessWaveSpawns();
         paused = false;
     }
 
+    private Vector3 GeneratePoint()
+    {
+        return new Vector3(UnityEngine.Random.Range(-spawnpointWidth, spawnpointWidth), 1, spawnZ);
+    }
 
+    private void OnDestroy()
+    {
+        PauseSystem.OnPauseStateChanged -= action;
+    }
 }

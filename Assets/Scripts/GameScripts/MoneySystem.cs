@@ -21,7 +21,7 @@ public class MoneySystem : MonoBehaviour
         moneyText.text = "$: " + money;
     }
 
-    public void ZombieDeath(EnemyZombie z, float chance)
+    public void ZombieDeath(EnemyZombie z, float chance, int money)
     {
         int random = Random.Range(0, 100);
         if (random <= chance)
