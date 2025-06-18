@@ -11,6 +11,7 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private Timer timer;
     [SerializeField] private bool instaTimer = true;
     [SerializeField] private GameObject suppliesPanel;
+    [SerializeField] private GameObject wagonSystem;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class Cutscene : MonoBehaviour
         if (!instaTimer) timer.enabled = true;
         suppliesPanel.SetActive(true);
         Weapon.instance.SelfUnpause();
+        wagonSystem.SetActive(true);
         Destroy(this);
     }
 }

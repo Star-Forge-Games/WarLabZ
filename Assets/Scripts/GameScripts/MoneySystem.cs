@@ -27,8 +27,8 @@ public class MoneySystem : MonoBehaviour
         if (random <= chance)
         {
             Instantiate(dollars, z.transform.position, Quaternion.identity);
-            money += 1;
-            moneyText.text = "$: " + money;
+            this.money += money;
+            moneyText.text = "$: " + this.money;
         }
     }
 

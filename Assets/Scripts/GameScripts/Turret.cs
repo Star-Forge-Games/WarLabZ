@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using NaughtyAttributes;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -45,31 +44,28 @@ public class Turret : MonoBehaviour
                     twinShot = true;
                     break;
                 case 17:
-                    shotgun = true;
-                    break;
-                case 18:
                     critChance += 10;
                     break;
+                case 18:
+                    expRateModifier += 0.05f;
+                    break;
                 case 19:
-                    expRateModifier += 1;
+                    flatRateModifier += 0.5f;
                     break;
                 case 20:
-                    flatRateModifier += 1;
-                    break;
-                case 21:
                     through = true;
                     break;
-                case 22:
+                case 21:
                     multishots = 1;
                     break;
-                case 23:
-                    expDamageModifier += 1;
+                case 22:
+                    expDamageModifier += 0.05f;
                     break;
-                case 24:
+                case 23:
                     flatDamageModifier += 1;
                     break;
                 default:
-                    critDamageMultiplier += 1;
+                    critDamageMultiplier += 1.1f;
                     break;
             };
         };

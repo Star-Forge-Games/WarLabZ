@@ -29,7 +29,7 @@ public class SkillsPanel : MonoBehaviour
     {
         if (YG2.saves.wallLevel >= 3)
         {
-            modifiersLeft.AddRange(new int[] { 16, 17, 18, 19, 20, 21, 22, 23, 24, 25 });
+            modifiersLeft.AddRange(new int[] { 16, 17, 18, 19, 20, 21, 22, 23, 24 });
         }
     }
 
