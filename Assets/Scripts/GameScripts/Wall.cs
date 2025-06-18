@@ -12,7 +12,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private WallSettings settings;
     [SerializeField] private float protectionTime;
     [SerializeField] GameObject WallShield;
-    [SerializeField] private int bonusHealth;
+    [SerializeField] private float bonusHealthPercent = 0.1f;
     [SerializeField] Button button;
 
     private bool invulnerable = false, blademail = false;
@@ -63,11 +63,11 @@ public class Wall : MonoBehaviour
 
     private void Start()
     {
-      /*  for (int i = transform.childCount - 1; i >= 0; i--)
-        {
-            if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
-            else transform.GetChild(i).gameObject.SetActive(true);
-        }*/
+        /*  for (int i = transform.childCount - 1; i >= 0; i--)
+          {
+              if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
+              else transform.GetChild(i).gameObject.SetActive(true);
+          }*/
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;
         health = maxHealth;
@@ -125,8 +125,14 @@ public class Wall : MonoBehaviour
 
     public void Heal()
     {
-        health += bonusHealth;
+        health += (int)(maxHealth * bonusHealthPercent);
         if (health > maxHealth) maxHealth = health;
+        UpdateWallHp();
+    }
+
+    public void Lifesteal(bool boss)
+    {
+        health = Mathf.Clamp(health + (int) (maxHealth * (boss ? 0.05f : 0.01f)), 0, maxHealth);
         UpdateWallHp();
     }
 

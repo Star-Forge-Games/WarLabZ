@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
     private bool crit;
     private bool through;
     private bool bomb;
+    private float stunChance;
 
     private void Start()
     {
@@ -27,7 +28,7 @@ public class Bullet : MonoBehaviour
         if (!paused) timeLived += Time.deltaTime;
     }
 
-    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through, bool bomb)
+    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through, bool bomb, float stunChance)
     {
         if (bomb)
         {
@@ -40,6 +41,7 @@ public class Bullet : MonoBehaviour
         this.damage = damage;
         this.bulletLifeTime = bulletLifeTime;
         this.through = through;
+        this.stunChance = stunChance;
         if (instakill)
         {
             if (Random.Range(0, 100f) < instaKillChance)
@@ -86,6 +88,10 @@ public class Bullet : MonoBehaviour
         {
             z.TakeDamage(damage, crit);
             Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
+            if (Random.Range(0, 100f) < stunChance)
+            {
+                z.Stun();
+            }
             if (bomb)
             {
                 BombSystem.instance.ThrowAt(transform.position.x, transform.position.z);

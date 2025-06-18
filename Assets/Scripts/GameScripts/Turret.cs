@@ -40,32 +40,32 @@ public class Turret : MonoBehaviour
         {
             switch (id)
             {
-                case 16:
+                case 20:
                     twinShot = true;
                     break;
-                case 17:
+                case 21:
                     critChance += 10;
                     break;
-                case 18:
+                case 22:
                     expRateModifier += 0.05f;
                     break;
-                case 19:
+                case 23:
                     flatRateModifier += 0.5f;
                     break;
-                case 20:
+                case 24:
                     through = true;
                     break;
-                case 21:
+                case 25:
                     multishots = 1;
                     break;
-                case 22:
+                case 26:
                     expDamageModifier += 0.05f;
                     break;
-                case 23:
+                case 27:
                     flatDamageModifier += 1;
                     break;
                 default:
-                    critDamageMultiplier += 1.1f;
+                    critDamageMultiplier += 0.1f;
                     break;
             };
         };
@@ -169,18 +169,18 @@ public class Turret : MonoBehaviour
                     Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                     b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b1.transform.parent = bulletContainer;
-                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                     Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                     b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b2.transform.parent = bulletContainer;
-                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                 }
                 else
                 {
                     Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                     bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                 }
             }
             else
@@ -191,7 +191,7 @@ public class Turret : MonoBehaviour
                     bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                 }
             }
         }

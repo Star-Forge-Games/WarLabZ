@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     [SerializeField] float moveSpeed = 6f;
+    [SerializeField] float moveSpeedWithBonus = 12f;
     [SerializeField] private Animator anim;
     Vector2 moveInput;
     Vector3 movement;
@@ -87,7 +88,8 @@ public class PlayerController : MonoBehaviour
         PauseSystem.instance.Lose();
     }
 
-
-
-
+    internal void IncreaseSpeed()
+    {
+        moveSpeed = moveSpeedWithBonus;
+    }
 }

@@ -8,13 +8,15 @@ using YG;
 public class SkillsPanel : MonoBehaviour
 {
 
-    private List<int> modifiersLeft = new() {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+    private List<int> modifiersLeft = new() {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
     public static Action<int> OnTurretSkillSelect;
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
     [SerializeField] PausePanel pausePanel;
     [SerializeField] private int maxSkills;
+    [SerializeField] private PlayerController player;
     private int skillsSelected = 0;
+    public static bool zombieSlow, lifesteal, zHealthReduction, bossHealthReduction;
 
     [Serializable]
     public struct Modifier
@@ -29,7 +31,7 @@ public class SkillsPanel : MonoBehaviour
     {
         if (YG2.saves.wallLevel >= 3)
         {
-            modifiersLeft.AddRange(new int[] { 16, 17, 18, 19, 20, 21, 22, 23, 24 });
+            modifiersLeft.AddRange(new int[] { 20, 21, 22, 23, 24, 25, 26, 27, 28 });
         }
     }
 
@@ -40,7 +42,9 @@ public class SkillsPanel : MonoBehaviour
             b1id = modifiersLeft[UnityEngine.Random.Range(0, modifiersLeft.Count)];
             b1.sprite = modifiers[b1id].sprite;
             b1.GetComponentInChildren<TextMeshProUGUI>().text = modifiers[b1id].text;
-            //b1.rectTransform.position.x = 0;
+            Vector3 pos = b1.rectTransform.position;
+            pos.x = 0;
+            b1.rectTransform.position = pos;
             b2.gameObject.SetActive(false);
             return;
         }
@@ -93,22 +97,34 @@ public class SkillsPanel : MonoBehaviour
                 Weapon.instance.IncreaseDamageModifier(true, 2);
                 break;
             case 10:
-                Weapon.instance.IncreaseDamageModifier(false, 1);
-                break;
-            case 11:
                 Weapon.instance.IncreaseRateModifier(true, 2);
                 break;
+            case 11:
+                Weapon.instance.SetMultiShot();
+                break;
             case 12:
-                Weapon.instance.IncreaseRateModifier(false, 1);
+                Weapon.instance.IncreaseCritDamage(0.1f);
                 break;
             case 13:
                 Weapon.instance.SetBomb();
                 break;
             case 14:
-                Weapon.instance.SetMultiShot();
+                player.IncreaseSpeed();
                 break;
             case 15:
-                Weapon.instance.IncreaseCritDamage(0.1f);
+                zombieSlow = true;
+                break;
+            case 16:
+                Weapon.instance.AddStunChance(5);
+                break;
+            case 17:
+                zHealthReduction = true;
+                break;
+            case 18:
+                lifesteal = true;
+                break;
+            case 19:
+                bossHealthReduction = true;
                 break;
             default:
                 OnTurretSkillSelect?.Invoke(i);

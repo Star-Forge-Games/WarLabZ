@@ -39,6 +39,7 @@ public class Weapon : MonoBehaviour
     public static Weapon instance;
 
     private Action<bool> action;
+    private float stunChance;
 
     private void Awake()
     {
@@ -102,17 +103,17 @@ public class Weapon : MonoBehaviour
                 Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                 b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b1.transform.parent = bulletContainer;
-                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
                 Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                 b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b2.transform.parent = bulletContainer;
-                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             } else
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             }
         } else
         {
@@ -124,7 +125,7 @@ public class Weapon : MonoBehaviour
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.Rotate(0, -(arc / 2) + (arc/(mShots-1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             }
         }
     }
@@ -196,4 +197,8 @@ public class Weapon : MonoBehaviour
         if (action != null) PauseSystem.OnPauseStateChanged -= action;
     }
 
+    internal void AddStunChance(float v)
+    {
+        stunChance += v;
+    }
 }

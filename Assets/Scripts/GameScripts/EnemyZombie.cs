@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class EnemyZombie : MonoBehaviour
 {
@@ -15,11 +16,13 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int difficulty;
     [SerializeField] private int money;
+    [SerializeField] private float slowStartZ = 35, slowEndZ = 10;
+    [SerializeField] private bool boss;
 
     private int currentHealth;
     private Vector3 direction = Vector3.zero;
     private CharacterController characterController;
-    private bool wall = false;
+    private bool wall = false, stunned = false;
     public static Action<EnemyZombie, int> OnZombieHitWall;
     public static Action<EnemyZombie, float, int> OnZombieDie;
 
@@ -31,8 +34,27 @@ public class EnemyZombie : MonoBehaviour
     public void Start()
     {
         direction.z = -speed;
+        if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
+        {
+            direction.z *= 0.9f;
+        }
         characterController = GetComponent<CharacterController>();
-        UpdateHealthUI(maxHealth, currentHealth);
+        if (boss)
+        {
+            if (SkillsPanel.bossHealthReduction)
+            {
+                maxHealth = (int) (maxHealth * 0.95f);
+                currentHealth = maxHealth;
+            }
+        } else
+        {
+            if (SkillsPanel.zHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.975f);
+                currentHealth = maxHealth;
+            }
+        }
+            UpdateHealthUI(maxHealth, currentHealth);
         Wall.OnWallDeath += RunFurther;
     }
 
@@ -44,7 +66,7 @@ public class EnemyZombie : MonoBehaviour
 
     private void Update()
     {
-        if (!wall) characterController.Move(direction * Time.deltaTime);
+        if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
     }
 
     public void TakeDamage(int damage, bool crit)
@@ -57,6 +79,7 @@ public class EnemyZombie : MonoBehaviour
         if (currentHealth <= 0)
         {
             KillsCount.kills += 1;
+            if (SkillsPanel.lifesteal) Wall.instance.Lifesteal(boss);
             OnZombieDie?.Invoke(this, moneyDropChance, money);
             // DEATH ANIMATION
             Destroy(gameObject);
@@ -107,4 +130,21 @@ public class EnemyZombie : MonoBehaviour
         Wall.OnWallDeath -= RunFurther;
     }
 
+    internal void Stun()
+    {
+        stunned = true;
+        anim.Play("Stun");
+    }
+
+    public void Unstun()
+    {
+        stunned = false;
+        if (wall)
+        {
+            anim.Play("Attack");
+        } else
+        {
+            anim.Play("Walk");
+        }
+    }
 }
