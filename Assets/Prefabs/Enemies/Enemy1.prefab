@@ -392,11 +392,18 @@ MonoBehaviour:
   anim: {fileID: 4431731601041406502}
   healthBar: {fileID: 7789753011265524503}
   healthAmount: {fileID: 5739539181246942191}
-  maxHealth: 100
+  maxHealth: 10
   damage: 1
   speed: 5
   difficulty: 2
   money: 0
+  slowStartZ: 35
+  slowEndZ: 10
+  boss: 0
+  parts:
+  - obj: {fileID: 1481026553156831321}
+  - obj: {fileID: 8886026634582109176}
+  - obj: {fileID: 6078056378025523512}
 --- !u!65 &5033716229429919098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -824,6 +831,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6177729885205616462}
   m_SourcePrefab: {fileID: 100100000, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+--- !u!1 &1481026553156831321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6835093890288579312, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+  m_PrefabInstance: {fileID: 5356618753956281001}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5086782457396545528 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
@@ -866,5 +878,15 @@ MonoBehaviour:
 --- !u!4 &5610413237301353794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+  m_PrefabInstance: {fileID: 5356618753956281001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6078056378025523512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2165968031421842321, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+  m_PrefabInstance: {fileID: 5356618753956281001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8886026634582109176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5690568314566258351, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
   m_PrefabInstance: {fileID: 5356618753956281001}
   m_PrefabAsset: {fileID: 0}

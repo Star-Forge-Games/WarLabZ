@@ -356,10 +356,10 @@ GameObject:
   m_Component:
   - component: {fileID: 132710466924847441}
   - component: {fileID: 8856531992393155393}
-  - component: {fileID: 559977673064678048}
   - component: {fileID: 9067367889201910334}
+  - component: {fileID: 7141558228319394818}
   m_Layer: 6
-  m_Name: Enemy2
+  m_Name: Wagon
   m_TagString: EnemyZombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,27 +408,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: -0.12, y: 0, z: 0}
---- !u!114 &559977673064678048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7143858245785905579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f48bc36b6061cd419099ac5598a844e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyDropChance: 100
-  anim: {fileID: 7112768241958756894}
-  healthBar: {fileID: 7789753011265524503}
-  healthAmount: {fileID: 5739539181246942191}
-  maxHealth: 5
-  damage: 1
-  speed: 10
-  difficulty: 1
-  money: 1
 --- !u!65 &9067367889201910334
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -450,6 +429,34 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 0.1, z: 0.6}
   m_Center: {x: 0, y: -0.8, z: 0}
+--- !u!114 &7141558228319394818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143858245785905579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a165b8bf11589284e8e2eb68849ac27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyDropChance: 0
+  anim: {fileID: 7112768241958756894}
+  healthBar: {fileID: 7789753011265524503}
+  healthAmount: {fileID: 5739539181246942191}
+  maxHealth: 10
+  damage: 25
+  speed: 10
+  difficulty: 0
+  money: 0
+  slowStartZ: 0
+  slowEndZ: 0
+  boss: 0
+  parts:
+  - obj: {fileID: 5531333014918613452}
+  - obj: {fileID: 2530765684890528365}
+  - obj: {fileID: 871182426771749037}
 --- !u!1 &7664687753805338784
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +863,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4554271755811793929}
   m_SourcePrefab: {fileID: 100100000, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+--- !u!1 &871182426771749037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2165968031421842321, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+  m_PrefabInstance: {fileID: 1303827000704285500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1554488176624000215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
@@ -900,3 +912,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146c8af098536f46adb1c751cbc87f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2530765684890528365 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5690568314566258351, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+  m_PrefabInstance: {fileID: 1303827000704285500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5531333014918613452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6835093890288579312, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
+  m_PrefabInstance: {fileID: 1303827000704285500}
+  m_PrefabAsset: {fileID: 0}

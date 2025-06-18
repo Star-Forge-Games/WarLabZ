@@ -17,6 +17,7 @@ public class Bullet : MonoBehaviour
     private bool through;
     private bool bomb;
     private float stunChance;
+    private bool instaKill;
 
     private void Start()
     {
@@ -46,7 +47,7 @@ public class Bullet : MonoBehaviour
         {
             if (Random.Range(0, 100f) < instaKillChance)
             {
-                this.damage = 99999;
+                this.instaKill = true;
             }
         }
         else
@@ -86,7 +87,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
-            z.TakeDamage(damage, crit);
+            z.TakeDamage(damage, crit, instaKill);
             Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
             if (Random.Range(0, 100f) < stunChance)
             {

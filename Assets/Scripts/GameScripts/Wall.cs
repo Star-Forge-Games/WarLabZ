@@ -88,7 +88,7 @@ public class Wall : MonoBehaviour
         health -= damage;
         if (blademail)
         {
-            z.TakeDamage(damage / 2, false);
+            z.TakeDamage(damage / 2, false, false);
         }
         if (health <= 0)
         {

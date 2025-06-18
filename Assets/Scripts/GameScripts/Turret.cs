@@ -47,21 +47,15 @@ public class Turret : MonoBehaviour
                     critChance += 10;
                     break;
                 case 22:
-                    expRateModifier += 0.05f;
-                    break;
-                case 23:
                     flatRateModifier += 0.5f;
                     break;
-                case 24:
+                case 23:
                     through = true;
                     break;
-                case 25:
+                case 24:
                     multishots = 1;
                     break;
-                case 26:
-                    expDamageModifier += 0.05f;
-                    break;
-                case 27:
+                case 25:
                     flatDamageModifier += 1;
                     break;
                 default:

@@ -51,7 +51,7 @@ public class SkillBomb : MonoBehaviour
         foreach (EnemyZombie z in zombies)
         {
             yield return new WaitForEndOfFrame();
-            if (z != null) z.TakeDamage(damage, false);
+            if (z != null) z.TakeDamage(damage, false, false);
         }
         Destroy(gameObject);
     }

@@ -63,21 +63,45 @@ public class PlayerController : MonoBehaviour
         paused = false;
     }
 
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = value.Get<Vector2>();
+        moveInput = context.ReadValue<Vector2>();
+    }
+
+    protected Vector2 touchPosition;
+
+    public void TouchDelta(InputAction.CallbackContext context)
+    {
+        Vector2 delta = context.ReadValue<Vector2>();
+        touchPosition += delta;
+    }
+
+    public void TouchStart(InputAction.CallbackContext context)
+    {
+        if (context.performed) return;
+        touchPosition = Vector2.zero;
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (!paused)
         {
-            movement.x = moveInput.x * moveSpeed;
-            characterController.Move(movement * Time.fixedDeltaTime);
-            if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
-            else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
-            else anim.SetInteger("MoveDirection", 0);   
+            if (Application.isMobilePlatform)
+            {
+                movement.x = (touchPosition.x > 0? 1 : -1) * moveSpeed;
+                characterController.Move(movement * Time.deltaTime);
+                if (touchPosition.x > 0) anim.SetInteger("MoveDirection", 1);
+                else if (touchPosition.x < 0) anim.SetInteger("MoveDirection", -1);
+                else anim.SetInteger("MoveDirection", 0);
+            } else
+            {
+                movement.x = moveInput.x * moveSpeed;
+                characterController.Move(movement * Time.deltaTime);
+                if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
+                else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
+                else anim.SetInteger("MoveDirection", 0);
+            }
         }
     }
 
