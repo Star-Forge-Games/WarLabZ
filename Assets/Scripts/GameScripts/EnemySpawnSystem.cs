@@ -79,8 +79,10 @@ public class EnemySpawnSystem : MonoBehaviour
             (GameObject prefab, int difficulty) zombieData = availableZombieList[UnityEngine.Random.Range(0, availableZombieList.Length)];
             totalDiff += zombieData.difficulty;
             totalZombies.Add(zombieData.prefab);
+            Debug.Log($"Difficulty is {diff}. Added new zombie {zombieData.prefab.name} with difficulty {zombieData.difficulty}. Now total diff is {totalDiff}");
         }
         endlessWaveZombies = totalZombies.ToArray();
+        Debug.Log($"Total zombie amount = {totalZombies.Count}");
     }
 
     private void ProcessWaveSpawnsEndless()
@@ -95,6 +97,7 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             GameObject enemy = Instantiate(endlessWaveZombies[i], GeneratePoint(), Quaternion.Euler(0, 180, 0));
             enemy.transform.parent = enemyContainer;
+            enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
             endlessZombieIndex++;
             endlessTimer = 0;
             yield return new WaitForSeconds(randomSpawnInterval);
@@ -194,18 +197,20 @@ public class EnemySpawnSystem : MonoBehaviour
                     lastZombieSpawned = true;
                     endlessStarted = true;
                 }
-                if (wave % wavesPerSkill == 0)
-                {
-                    PauseSystem.instance.SkillSelect();
-                }
                 if (wave >= waves.Length)
                 {
                     CalculateEnemiesAmountEndless();
                     ProcessWaveSpawnsEndless();
-                    return;
                 }
-                CalculateEnemiesAmount();
-                ProcessWaveSpawns();
+                else
+                {
+                    CalculateEnemiesAmount();
+                    ProcessWaveSpawns();
+                }
+                if (wave % wavesPerSkill == 0)
+                {
+                    PauseSystem.instance.SkillSelect();
+                }
             }
         }
         for (int i = 0; i < partsProgress.Length; i++)
@@ -218,7 +223,6 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         paused = true;
         StopAllCoroutines();
-
     }
 
     private void SelfUnpause()
