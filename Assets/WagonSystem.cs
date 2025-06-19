@@ -6,6 +6,7 @@ public class WagonSystem : MonoBehaviour
 
     [SerializeField] private GameObject prefab;
     [SerializeField] private float interval;
+    [SerializeField] private Transform wagonContainer;
     private float timer = 0;
     private bool paused = false;
 
@@ -26,7 +27,8 @@ public class WagonSystem : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval - timer);
-            Instantiate(prefab, new Vector3(Random.Range(-4f, 4f), 1, 60), Quaternion.Euler(0, 180, 0));
+            GameObject g = Instantiate(prefab, new Vector3(Random.Range(-4f, 4f), 1, 60), Quaternion.Euler(0, 180, 0));
+            g.transform.parent = wagonContainer;
             timer = 0;
         }
     }
