@@ -38,6 +38,11 @@ public class EnemyZombie : MonoBehaviour
     public static Action<EnemyZombie, float, int> OnZombieDie;
     protected bool dead;
 
+    public bool IsDead()
+    {
+        return dead;
+    }
+
     public int GetDifficulty()
     {
         return difficulty;

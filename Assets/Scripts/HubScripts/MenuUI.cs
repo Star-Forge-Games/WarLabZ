@@ -10,7 +10,7 @@ public class MenuUI : MonoBehaviour
 
     [SerializeField] private Animator fader;
     [SerializeField] private TextMeshProUGUI cash;
-    //Добавил чтобы пересобрать csproj
+    [SerializeField] Energy energy;
 
     private void Start()
     {
@@ -30,6 +30,7 @@ public class MenuUI : MonoBehaviour
 
     public void LoadGame()
     {
+        energy.Spend();   
         fader.Play("Fade");
         StartCoroutine(SwitchScene());
     }

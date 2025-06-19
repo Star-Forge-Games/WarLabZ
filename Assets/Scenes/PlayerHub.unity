@@ -14522,7 +14522,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 3.7500017, y: 0}
+  m_AnchoredPosition: {x: 3.75, y: 0}
   m_SizeDelta: {x: -2.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &535731538
@@ -22171,6 +22171,7 @@ GameObject:
   m_Component:
   - component: {fileID: 783560797}
   - component: {fileID: 783560798}
+  - component: {fileID: 783560799}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -22197,7 +22198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &783560798
@@ -22251,6 +22252,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &783560799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783560796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06dba2e98701f46a3949ae26f61a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playButton: {fileID: 0}
 --- !u!1 &789278695
 GameObject:
   m_ObjectHideFlags: 0
@@ -61399,12 +61413,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 175011628}
+  - {fileID: 783560797}
   - {fileID: 531720337}
   - {fileID: 300905090}
   - {fileID: 2087789642}
   - {fileID: 602804431}
   - {fileID: 1536986351}
-  - {fileID: 783560797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -78,6 +78,7 @@ public class Turret : MonoBehaviour
         float min = range;
         foreach (Transform t in enemyContainer)
         {
+            if (t.gameObject.GetComponent<EnemyZombie>().IsDead()) continue;
             if (t.position.z < range)
             {
                 if (t.position.z < min)
