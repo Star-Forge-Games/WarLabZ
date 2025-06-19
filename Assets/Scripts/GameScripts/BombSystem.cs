@@ -40,8 +40,8 @@ public class BombSystem : MonoBehaviour
 
     public void Throw()
     {
-        int z = Random.Range(1, 6) * 10;
-        int x = Random.Range(-5, 5);
+        float z = Random.Range(1, 4.5f) * 10;
+        float x = Random.Range(-4.5f, 4.5f);
         timedPS.transform.position = new Vector3(x, 0, z);
         SkillBomb sb = Instantiate(bomb, new Vector3(x, 10, z), Quaternion.identity);
         sb.Setup(true);
