@@ -2970,6 +2970,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fader: {fileID: 0}
   container: {fileID: 1937962993}
+--- !u!1 &823084313
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823084314}
+  m_Layer: 0
+  m_Name: WagonConteiner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &823084314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823084313}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,6 +4451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7143858245785905579, guid: aebc01b30313f324b80958862c43aa67, type: 3}
   interval: 5
+  wagonContainer: {fileID: 823084314}
 --- !u!4 &1069433147
 Transform:
   m_ObjectHideFlags: 0
@@ -4693,7 +4725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1243447133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12942,6 +12974,7 @@ MonoBehaviour:
   skillsPanel: {fileID: 378000620}
   bulletContainer: {fileID: 506493578}
   enemyContainer: {fileID: 689676792}
+  wagonContainer: {fileID: 823084314}
 --- !u!1 &2021695324
 GameObject:
   m_ObjectHideFlags: 0
@@ -15296,6 +15329,7 @@ GameObject:
   - component: {fileID: 8130714793046083282}
   - component: {fileID: 5481990762835118392}
   - component: {fileID: 5393603743321756984}
+  - component: {fileID: 8130714793046083283}
   m_Layer: 0
   m_Name: WallHpBar
   m_TagString: Untagged
@@ -57070,6 +57104,7 @@ MonoBehaviour:
   WallShield: {fileID: 6771473286471559929}
   bonusHealthPercent: 0.1
   button: {fileID: 1054330113}
+  wallHpBarAnimator: {fileID: 8130714793046083283}
 --- !u!1 &6733304795414368797
 GameObject:
   m_ObjectHideFlags: 0
@@ -63578,6 +63613,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -60}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!95 &8130714793046083283
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528615683863374222}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ab7a8f6c6e8f754885cae47876a757f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!33 &8135153884637867123
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -78948,3 +79005,4 @@ SceneRoots:
   - {fileID: 415624285}
   - {fileID: 1069433147}
   - {fileID: 2804868979422589739}
+  - {fileID: 823084314}
