@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\GameScripts\Timer.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\YGInsides.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Basic\YGSendMessage.cs" />
+    <Compile Include="Assets\ZombieStunBehaviour.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Leaderboards\Scripts\LB_lang.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Other\ImageLoadYG.cs" />
     <Compile Include="Assets\UsefulScriptableObjects\Weapons\WeaponSettings.cs" />
@@ -120,11 +121,13 @@
     <Compile Include="Assets\Scripts\GameScripts\Turret.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Leaderboards\Example\Scripts\LBExample.cs" />
     <Compile Include="Assets\Scripts\GameScripts\EnemySpawnSystem.cs" />
+    <Compile Include="Assets\WagonSystem.cs" />
     <Compile Include="Assets\Scripts\GameScripts\ExplosionTestOptimization.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Leaderboards\Example\Scripts\CustomLBExample.cs" />
     <Compile Include="Assets\PluginYourGames\Modules\Storage\Scripts\Storage_info.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Platform\PlatformSettings.cs" />
     <Compile Include="Assets\Scripts\GameScripts\Cutscene.cs" />
+    <Compile Include="Assets\Wagon.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\InfoYG\InfoYGReferences.cs" />
     <Compile Include="Assets\PluginYourGames\Example\Scripts\CanvasScaleForMobile.cs" />
     <Compile Include="Assets\PluginYourGames\Scripts\Platform\PlatformSettings_langs.cs" />
