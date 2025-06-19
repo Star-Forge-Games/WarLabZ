@@ -97,7 +97,7 @@ public class Wall : MonoBehaviour
             shaking = true;
             Debug.Log("Shake");
             wallHpBarAnimator.Play("Shake");
-            StartCoroutine(StopShake());
+            StartCoroutine(nameof(StopShake));
         }
         if (health <= 0)
         {
