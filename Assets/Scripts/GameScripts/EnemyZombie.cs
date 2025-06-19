@@ -37,6 +37,7 @@ public class EnemyZombie : MonoBehaviour
     private bool wall = false, stunned = false;
     public static Action<EnemyZombie, int> OnZombieHitWall;
     public static Action<EnemyZombie, float, int> OnZombieDie;
+    private bool dead;
 
     public int GetDifficulty()
     {
@@ -84,6 +85,7 @@ public class EnemyZombie : MonoBehaviour
 
     public void Update()
     {
+        if (dead) return;
         if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
     }
 
@@ -103,11 +105,12 @@ public class EnemyZombie : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            dead = true;
+            Destroy(GetComponent<CharacterController>());
             KillsCount.kills += 1;
             if (SkillsPanel.lifesteal) Wall.instance.Lifesteal(boss);
             OnZombieDie?.Invoke(this, moneyDropChance, money);
-            // DEATH ANIMATION
-            Destroy(gameObject);
+            anim.Play("Death");
         } else
         {
             foreach (var part in parts)
@@ -195,5 +198,10 @@ public class EnemyZombie : MonoBehaviour
         {
             anim.Play("Walk");
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
