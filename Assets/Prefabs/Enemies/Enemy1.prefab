@@ -58,7 +58,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -400,6 +400,7 @@ MonoBehaviour:
   slowStartZ: 35
   slowEndZ: 10
   boss: 0
+  healthCanvas: {fileID: 436298163515129501}
   parts:
   - obj: {fileID: 1481026553156831321}
   - obj: {fileID: 8886026634582109176}

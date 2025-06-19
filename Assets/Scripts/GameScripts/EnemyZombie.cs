@@ -19,6 +19,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int money;
     [SerializeField] private float slowStartZ = 35, slowEndZ = 10;
     [SerializeField] private bool boss;
+    [SerializeField] private GameObject healthCanvas;
 
     [Serializable]
     public struct ColoredPart
@@ -105,11 +106,11 @@ public class EnemyZombie : MonoBehaviour
         {
             dead = true;
             Destroy(GetComponent<CharacterController>());
+            Destroy(healthCanvas);
             KillsCount.kills += 1;
             if (SkillsPanel.lifesteal) Wall.instance.Lifesteal(boss);
             OnZombieDie?.Invoke(this, moneyDropChance, money);
             anim.Play("Death");
-            Destroy(healthBar.gameObject);
             StartCoroutine(Die());
         } else
         {
