@@ -14,6 +14,8 @@ public class Wall : MonoBehaviour
     [SerializeField] GameObject WallShield;
     [SerializeField] private float bonusHealthPercent = 0.1f;
     [SerializeField] Button button;
+    [SerializeField] private Animator wallHpBarAnimator;
+    private bool shaking;
 
     private bool invulnerable = false, blademail = false;
 
@@ -103,6 +105,19 @@ public class Wall : MonoBehaviour
     {
         wallHpBar.fillAmount = (float)health / maxHealth;
         healthAmount.text = $"{health}";
+        if (shaking) return;
+        else
+        {
+            shaking = true;
+            wallHpBarAnimator.Play("Shake");
+            StartCoroutine(StopShake());
+        }
+    }
+
+    private IEnumerator StopShake()
+    {
+        yield return new WaitForSeconds(0.2f/*wallHpBarAnimator.GetCurrentAnimatorClipInfo(1).Length*/);
+        shaking = false;
     }
 
     private void OnDestroy()

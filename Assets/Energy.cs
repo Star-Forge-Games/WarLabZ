@@ -28,6 +28,7 @@ public class Energy : MonoBehaviour
             energy = maxEnergy;
             YG2.SaveProgress();
             UpdateEnergySlider(false, energy);
+            playButton.interactable = true;
             return;
         }
         energyRechargeInterval = energyRechargeIntervalInSeconds * 10000000;
@@ -41,6 +42,7 @@ public class Energy : MonoBehaviour
         if (energy == maxEnergy)
         {
             UpdateEnergySlider(false, energy);
+            playButton.interactable = true;
             return;
         }
         long ts = YG2.saves.lastEnergySpentTimeStamp;
@@ -53,16 +55,20 @@ public class Energy : MonoBehaviour
         }
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
+        UpdateEnergySlider(false, energy);
+        playButton.interactable = true;
         if (energy == maxEnergy) return;
         int secondsLeft = Mathf.CeilToInt((float)cts / 10000000);
         secsLeft = secondsLeft;
         if (energy == 0)
         {
+            playButton.interactable = false;
             UpdateEnergySlider(true, secondsLeft);
             StartCoroutine(nameof(TimerTick));
         } else
         {
             UpdateEnergySlider(false, energy);
+            playButton.interactable = true;
         }
         StartCoroutine(RechrageEnergy(secondsLeft));
     }
@@ -75,6 +81,7 @@ public class Energy : MonoBehaviour
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
         UpdateEnergySlider(false, energy);
+        playButton.interactable = true;
         while (true)
         {
             yield return new WaitForSeconds(energyRechargeIntervalInSeconds);
@@ -85,6 +92,7 @@ public class Energy : MonoBehaviour
                 YG2.saves.energyLeft = energy;
                 YG2.SaveProgress();
                 UpdateEnergySlider(false, energy);
+                playButton.interactable = true;
             }
         }
     }
@@ -125,6 +133,7 @@ public class Energy : MonoBehaviour
         YG2.SaveProgress();
         StopCoroutine(nameof(TimerTick));
         UpdateEnergySlider(false, energy);
+        playButton.interactable = true;
     }
 
     internal void Spend()
