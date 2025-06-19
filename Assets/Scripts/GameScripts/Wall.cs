@@ -115,8 +115,10 @@ public class Wall : MonoBehaviour
 
     private IEnumerator StopShake()
     {
+        Debug.Log("Start StopShake");
         yield return new WaitForSeconds(0.3f/*wallHpBarAnimator.GetCurrentAnimatorClipInfo(1).Length*/);
         shaking = false;
+        Debug.Log("NotShaking");
     }
 
     private void OnDestroy()
