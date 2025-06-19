@@ -61,6 +61,11 @@ public class PlayerController : MonoBehaviour
         PauseSystem.instance.Pause(false);
     }
 
+    public void Unpause()
+    {
+        PauseSystem.instance.Unpause();
+    }
+
     public void SelfPause()
     {
         anim.speed = 0;
