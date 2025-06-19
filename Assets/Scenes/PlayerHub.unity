@@ -22406,8 +22406,8 @@ MonoBehaviour:
   energySlider: {fileID: 783560798}
   energyText: {fileID: 713035624}
   energyGainPerAd: 3
-  maxEnergy: 15
-  energyRechargeIntervalInSeconds: 300
+  maxEnergy: 2
+  energyRechargeIntervalInSeconds: 60
 --- !u!1 &789278695
 GameObject:
   m_ObjectHideFlags: 0

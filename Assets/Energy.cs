@@ -21,7 +21,6 @@ public class Energy : MonoBehaviour
     private void Start()
     {
         energySlider.maxValue = maxEnergy;
-        Debug.Log("Played before: " + YG2.saves.playedBefore);
         if (!YG2.saves.playedBefore)
         {
             YG2.saves.playedBefore = true;
@@ -34,7 +33,6 @@ public class Energy : MonoBehaviour
         }
         energyRechargeInterval = (long) energyRechargeIntervalInSeconds * 10000000;
         energy = YG2.saves.energyLeft;
-        Debug.Log("Energy: " + YG2.saves.energyLeft);
         if (energy > maxEnergy)
         {
             energy = maxEnergy;
@@ -61,8 +59,7 @@ public class Energy : MonoBehaviour
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
         if (energy == maxEnergy) return;
-        int secondsLeft = (int) (cts / 10000000);
-        Debug.Log("secondsLeft = " + secondsLeft);
+        int secondsLeft = (int) ((energyRechargeInterval - cts) / 10000000);
         secsLeft = secondsLeft;
         if (energy == 0)
         {
