@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        TouchSimulation.Enable();
         characterController = GetComponent<CharacterController>();
     }
 
