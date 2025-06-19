@@ -50,6 +50,8 @@ public class Energy : MonoBehaviour
         }
         long ts = YG2.saves.lastEnergySpentTimeStamp;
         long cts = DateTime.Now.Ticks;
+        Debug.Log("last timestamp = " + ts);
+        Debug.Log("current timestamp = " + cts);
         while (ts >= cts - energyRechargeInterval)
         {
             Debug.Log("Time spent is larger than interval");
@@ -63,7 +65,7 @@ public class Energy : MonoBehaviour
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
         if (energy == maxEnergy) return;
-        int secondsLeft = Mathf.CeilToInt((float)cts / 10000000);
+        int secondsLeft = (int) (cts / 10000000);
         Debug.Log("secondsLeft = " + secondsLeft);
         secsLeft = secondsLeft;
         if (energy == 0)
