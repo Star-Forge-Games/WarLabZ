@@ -9,7 +9,7 @@ public class EnemyZombie : MonoBehaviour
 {
 
     [SerializeField] private int moneyDropChance;
-    [SerializeField] private Animator anim;
+    [SerializeField] protected Animator anim;
     [SerializeField] protected Image healthBar;
     [SerializeField] protected TMP_Text healthAmount;
     [SerializeField] protected int maxHealth = 10;
@@ -19,7 +19,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int money;
     [SerializeField] private float slowStartZ = 35, slowEndZ = 10;
     [SerializeField] private bool boss;
-    [SerializeField] private GameObject healthCanvas;
+    [SerializeField] protected GameObject healthCanvas;
 
     [Serializable]
     public struct ColoredPart
@@ -36,7 +36,7 @@ public class EnemyZombie : MonoBehaviour
     private bool wall = false, stunned = false;
     public static Action<EnemyZombie, int> OnZombieHitWall;
     public static Action<EnemyZombie, float, int> OnZombieDie;
-    private bool dead;
+    protected bool dead;
 
     public int GetDifficulty()
     {
@@ -201,7 +201,7 @@ public class EnemyZombie : MonoBehaviour
         }
     }
 
-    private IEnumerator Die()
+    protected IEnumerator Die()
     {
         yield return new WaitForSeconds(3);
         Destroy(gameObject);

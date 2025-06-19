@@ -44,4 +44,9 @@ public class WagonSystem : MonoBehaviour
         paused = pause;
     }
 
+    public void OnDestroy()
+    {
+       PauseSystem.OnPauseStateChanged -= Pause;
+    }
+
 }
