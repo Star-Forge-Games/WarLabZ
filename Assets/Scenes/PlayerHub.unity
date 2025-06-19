@@ -7362,7 +7362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fader: {fileID: 1536986352}
   cash: {fileID: 175011629}
-  energy: {fileID: 0}
+  energy: {fileID: 783560799}
 --- !u!1 &292043015
 GameObject:
   m_ObjectHideFlags: 0
@@ -19961,7 +19961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "\u0421\u0414\u0415\u041B\u0410\u041B \u0422\u0415\u041A\u0421\u0422 \u0427\u0401\u0420\u041D\u042B\u041C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19970,8 +19970,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -19988,7 +19988,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.25
+  m_fontSize: 13.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22310,7 +22310,7 @@ GameObject:
   - component: {fileID: 783560798}
   - component: {fileID: 783560799}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22404,7 +22404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playButton: {fileID: 1519919799}
   energySlider: {fileID: 783560798}
-  energyText: {fileID: 0}
+  energyText: {fileID: 713035624}
   energyGainPerAd: 3
   maxEnergy: 15
   energyRechargeIntervalInSeconds: 300
