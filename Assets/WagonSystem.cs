@@ -7,11 +7,12 @@ public class WagonSystem : MonoBehaviour
     [SerializeField] private GameObject prefab;
     [SerializeField] private float interval;
     private float timer = 0;
-    private bool paused;
+    private bool paused = false;
 
     void Start()
     {
         PauseSystem.OnPauseStateChanged += Pause;
+        StartCoroutine(Cart());
     }
 
     private void Update()
