@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Wagon : EnemyZombie
 {
+
     public new void Update()
     {
         characterController.Move(direction * Time.deltaTime);
@@ -25,7 +26,9 @@ public class Wagon : EnemyZombie
     {
         if (hit.gameObject.CompareTag("Wall"))
         {
-            // explosion
+            WagonExplosion.instance.Explode(transform.position);
+            Wall.instance.TakeDamage(this, damage);
+            Destroy(gameObject);
         }
     }
 
@@ -38,8 +41,12 @@ public class Wagon : EnemyZombie
         }
         if (currentHealth <= 0)
         {
+            dead = true;
+            Destroy(GetComponent<CharacterController>());
+            Destroy(healthCanvas);
             OnZombieDie?.Invoke(this, 0, 0);
-            // DEATH ANIMATION
+            anim.Play("Death");
+            StartCoroutine(Die());
             Destroy(gameObject);
         }
         else
