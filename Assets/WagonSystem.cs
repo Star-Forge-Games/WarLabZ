@@ -26,7 +26,7 @@ public class WagonSystem : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(interval - timer);
-            Instantiate(prefab, new Vector3(Random.Range(-5.5f, 5.5f), 1, 60), Quaternion.Euler(0, 180, 0));
+            Instantiate(prefab, new Vector3(Random.Range(-4f, 4f), 1, 60), Quaternion.Euler(0, 180, 0));
             timer = 0;
         }
     }

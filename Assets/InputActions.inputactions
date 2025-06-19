@@ -52,9 +52,9 @@
                 },
                 {
                     "name": "TouchStart",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "20cf57a9-d26f-4cd5-9db6-9f77fc07a57f",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -314,23 +314,23 @@
                 },
                 {
                     "name": "",
-                    "id": "89c16364-c701-46ae-af85-eb9917d9bfde",
-                    "path": "<Touchscreen>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TouchStart",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a201e40d-dfc5-4eb5-a827-785c105df6a7",
                     "path": "<Touchscreen>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "TouchDelta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b88bccf-5a4b-4159-ac3b-3f52e6303ff5",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

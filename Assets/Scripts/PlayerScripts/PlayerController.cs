@@ -43,8 +43,9 @@ public class PlayerController : MonoBehaviour
         PauseSystem.OnPauseStateChanged -= action;
     }
 
-    public void OnPause()
+    public void Pause(InputAction.CallbackContext c)
     {
+        if (!c.performed) return;
         if (!paused)
         {
             PauseSystem.instance.Pause(false);
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!paused)
         {
-            if (Application.isMobilePlatform)
+            if (touchPosition.x != 0)
             {
                 movement.x = (touchPosition.x > 0? 1 : -1) * moveSpeed;
                 characterController.Move(movement * Time.deltaTime);
