@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Linq;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -111,6 +109,7 @@ public class EnemyZombie : MonoBehaviour
             if (SkillsPanel.lifesteal) Wall.instance.Lifesteal(boss);
             OnZombieDie?.Invoke(this, moneyDropChance, money);
             anim.Play("Death");
+            StartCoroutine(Die());
         } else
         {
             foreach (var part in parts)
@@ -200,8 +199,9 @@ public class EnemyZombie : MonoBehaviour
         }
     }
 
-    public void Die()
+    private IEnumerator Die()
     {
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 }
