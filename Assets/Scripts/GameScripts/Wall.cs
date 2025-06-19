@@ -92,12 +92,18 @@ public class Wall : MonoBehaviour
         {
             z.TakeDamage(damage / 2, false, false);
         }
+        if (!shaking)
+        {
+            shaking = true;
+            Debug.Log("Shake");
+            wallHpBarAnimator.Play("Shake");
+            StartCoroutine(StopShake());
+        }
         if (health <= 0)
         {
             EnemyZombie.OnZombieHitWall -= TakeDamage;
             OnWallDeath?.Invoke();
             Destroy(gameObject);
-            // death
         }
         UpdateWallHp();
     }
@@ -105,18 +111,11 @@ public class Wall : MonoBehaviour
     {
         wallHpBar.fillAmount = (float)health / maxHealth;
         healthAmount.text = $"{health}";
-        if (shaking) return;
-        else
-        {
-            shaking = true;
-            wallHpBarAnimator.Play("Shake");
-            StartCoroutine(StopShake());
-        }
     }
 
     private IEnumerator StopShake()
     {
-        yield return new WaitForSeconds(0.2f/*wallHpBarAnimator.GetCurrentAnimatorClipInfo(1).Length*/);
+        yield return new WaitForSeconds(0.3f/*wallHpBarAnimator.GetCurrentAnimatorClipInfo(1).Length*/);
         shaking = false;
     }
 

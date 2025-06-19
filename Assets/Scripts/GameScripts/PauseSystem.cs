@@ -8,7 +8,7 @@ public class PauseSystem : MonoBehaviour
     public static PauseSystem instance;
 
     [SerializeField] private GameObject pausePanel, winPanel, losePanel, skillsPanel;
-    [SerializeField] private Transform bulletContainer, enemyContainer;
+    [SerializeField] private Transform bulletContainer, enemyContainer, wagonContainer;
 
     private bool end = false;
 
@@ -68,6 +68,10 @@ public class PauseSystem : MonoBehaviour
         {
             t.GetComponent<Bullet>().SelfPause();
         }
+        foreach (Transform t in wagonContainer)
+        {
+            t.GetComponent<Wagon>().SelfPause();
+        }
        if (!end) pausePanel.SetActive(true);
     }
 
@@ -82,6 +86,10 @@ public class PauseSystem : MonoBehaviour
         foreach (Transform t in bulletContainer)
         {
             t.GetComponent<Bullet>().SelfUnpause();
+        }
+        foreach (Transform t in wagonContainer)
+        {
+            t.GetComponent<Wagon>().SelfUnpause();
         }
         pausePanel.SetActive(false);
     }

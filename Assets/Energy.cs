@@ -21,6 +21,7 @@ public class Energy : MonoBehaviour
     private void Start()
     {
         energySlider.maxValue = maxEnergy;
+        Debug.Log("Played before: " + YG2.saves.playedBefore);
         if (!YG2.saves.playedBefore)
         {
             YG2.saves.playedBefore = true;
@@ -33,6 +34,7 @@ public class Energy : MonoBehaviour
         }
         energyRechargeInterval = energyRechargeIntervalInSeconds * 10000000;
         energy = YG2.saves.energyLeft;
+        Debug.Log("Energy: " + YG2.saves.energyLeft);
         if (energy > maxEnergy)
         {
             energy = maxEnergy;
@@ -41,6 +43,7 @@ public class Energy : MonoBehaviour
         }
         if (energy == maxEnergy)
         {
+            Debug.Log("Energy = Max");
             UpdateEnergySlider(false, energy);
             playButton.interactable = true;
             return;
@@ -49,16 +52,19 @@ public class Energy : MonoBehaviour
         long cts = DateTime.Now.Ticks;
         while (ts >= cts - energyRechargeInterval)
         {
+            Debug.Log("Time spent is larger than interval");
             energy++;
             cts -= energyRechargeInterval;
             if (energy == maxEnergy) break;
         }
         YG2.saves.energyLeft = energy;
+        Debug.Log("Energy = " + energy);
         YG2.SaveProgress();
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
         if (energy == maxEnergy) return;
         int secondsLeft = Mathf.CeilToInt((float)cts / 10000000);
+        Debug.Log("secondsLeft = " + secondsLeft);
         secsLeft = secondsLeft;
         if (energy == 0)
         {
