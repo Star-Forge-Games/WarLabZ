@@ -49,22 +49,18 @@ public class Energy : MonoBehaviour
         }
         long ts = YG2.saves.lastEnergySpentTimeStamp;
         long cts = DateTime.Now.Ticks;
-        Debug.Log(cts);
-        Debug.Log(ts);
-        Debug.Log(cts - ts);
-        Debug.Log(energyRechargeInterval);
         while (ts <= cts - energyRechargeInterval)
         {
             energy++;
             cts -= energyRechargeInterval;
             if (energy == maxEnergy) break;
         }
+        if (cts > ts) cts -= ts;
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
         if (energy == maxEnergy) return;
-        Debug.Log("cts = " + cts + " . Cooldown = " + energyRechargeInterval + " . Cooldown secs = " + energyRechargeIntervalInSeconds + " . Seconds Left = " + (cts / 10000000) );
         int secondsLeft = (int) (cts / 10000000);
         Debug.Log("secondsLeft = " + secondsLeft);
         secsLeft = secondsLeft;

@@ -93,7 +93,6 @@ public class PlayerController : MonoBehaviour
 
     public void TouchStart(InputAction.CallbackContext context)
     {
-        if (context.performed) return;
         touchPosition = Vector2.zero;
     }
 
