@@ -49,11 +49,18 @@ public class PlayerController : MonoBehaviour
         if (!paused)
         {
             PauseSystem.instance.Pause(false);
-        } else
+        }
+        else
         {
             PauseSystem.instance.Unpause();
         }
     }
+
+    public void Pause()
+    {
+        PauseSystem.instance.Pause(false);
+    }
+
     public void SelfPause()
     {
         anim.speed = 0;
@@ -92,12 +99,13 @@ public class PlayerController : MonoBehaviour
         {
             if (touchPosition.x != 0)
             {
-                movement.x = (touchPosition.x > 0? 1 : -1) * moveSpeed;
+                movement.x = (touchPosition.x > 0 ? 1 : -1) * moveSpeed;
                 characterController.Move(movement * Time.deltaTime);
                 if (touchPosition.x > 0) anim.SetInteger("MoveDirection", 1);
                 else if (touchPosition.x < 0) anim.SetInteger("MoveDirection", -1);
                 else anim.SetInteger("MoveDirection", 0);
-            } else
+            }
+            else
             {
                 movement.x = moveInput.x * moveSpeed;
                 characterController.Move(movement * Time.deltaTime);
