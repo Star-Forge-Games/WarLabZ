@@ -109,6 +109,7 @@ public class EnemyZombie : MonoBehaviour
             if (SkillsPanel.lifesteal) Wall.instance.Lifesteal(boss);
             OnZombieDie?.Invoke(this, moneyDropChance, money);
             anim.Play("Death");
+            Destroy(healthBar.gameObject);
             StartCoroutine(Die());
         } else
         {
