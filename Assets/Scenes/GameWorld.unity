@@ -4110,6 +4110,8 @@ MonoBehaviour:
   damageDelay: 0.75
   enemyContainer: {fileID: 689676792}
   button: {fileID: 1026304198}
+  cooldownInSeconds: 0
+  cooldownSlider: {fileID: 0}
 --- !u!1 &1040203903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,6 +4273,8 @@ MonoBehaviour:
   bombPrefab: {fileID: 2338215394920041643, guid: a95f79ba44679e7488a35b038b0a645c, type: 3}
   bomber: {fileID: 144715526}
   button: {fileID: 1040203905}
+  cooldownInSeconds: 0
+  cooldownSlider: {fileID: 0}
 --- !u!1 &1042541392
 GameObject:
   m_ObjectHideFlags: 0
@@ -57551,6 +57555,9 @@ MonoBehaviour:
   bonusHealthPercent: 0.1
   button: {fileID: 1054330113}
   wallHpBarAnimator: {fileID: 8130714793046083283}
+  protectCooldownInSeconds: 0
+  protectCooldownSlider: {fileID: 0}
+  bladeMailDemagePercent: 0.5
 --- !u!1 &6733304795414368797
 GameObject:
   m_ObjectHideFlags: 0
