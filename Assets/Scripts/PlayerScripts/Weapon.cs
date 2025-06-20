@@ -25,21 +25,18 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject gunFireFront;
     [SerializeField] GameObject gunFireBack;
     [SerializeField] private float twinShotDistance = 0.1f;
-    private float flatRateModifier = 0, expRateModifier = 1;
+    private float flatRateModifier = 2, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
 
 
     private bool twinShot, instakill, through, bomb;
 
-    [SerializeField] private float critChance = 75, critDamageMultiplier = 1.5f;
-
-    // Weapon.instance.IncreaseDamageModifier(false, 2); x2 damage
-    // Weapon.instance.IncreaseDamageModifier(true, 1); + 1 damage
+    [SerializeField] private float critChance = 10, critDamageMultiplier = 1.5f;
 
     public static Weapon instance;
 
     private Action<bool> action;
-    private float stunChance;
+    private float stunChance = 0;
 
     private void Awake()
     {
@@ -159,7 +156,7 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseCritDamage(float value)
     {
-        critDamageMultiplier += 0.1f;
+        critDamageMultiplier += value;
     }
 
     public void SetShotgun()

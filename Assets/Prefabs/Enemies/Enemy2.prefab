@@ -396,7 +396,12 @@ MonoBehaviour:
   damage: 1
   speed: 5
   difficulty: 2
-  money: 0
+  money: 1
+  slowStartZ: 35
+  slowEndZ: 10
+  boss: 0
+  healthCanvas: {fileID: 0}
+  parts: []
 --- !u!65 &5033716229429919098
 BoxCollider:
   m_ObjectHideFlags: 0

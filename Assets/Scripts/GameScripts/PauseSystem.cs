@@ -53,6 +53,10 @@ public class PauseSystem : MonoBehaviour
         {
             t.GetComponent<Bullet>().SelfPause();
         }
+        foreach (Transform t in wagonContainer)
+        {
+            t.GetComponent<Wagon>().SelfPause();
+        }
         skillsPanel.SetActive(true);
     }
 

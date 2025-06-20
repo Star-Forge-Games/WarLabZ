@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,20 +10,54 @@ public class BombAbility : MonoBehaviour
     [SerializeField] Bomb bombPrefab;
     [SerializeField] Animator bomber;
     [SerializeField] Button button;
+    [SerializeField] int cooldownInSeconds;
+    [SerializeField] Slider cooldownSlider;
+    private bool paused = false;
+    private float cooldown = 0;
+
+    private Action<bool> action;
+
+    private void Awake()
+    {
+        action = (pause =>
+        {
+            paused = pause;
+        });
+        cooldownSlider.maxValue = cooldownInSeconds;
+        PauseSystem.OnPauseStateChanged += action;
+    }
 
     private void Start()
     {
-        if (YG2.saves.supplies[1] == 0) button.interactable = false;
+        //if (YG2.saves.supplies[1] == 0) button.interactable = false;
     }
 
     public void Fire()
     {
-        var temp = YG2.saves.supplies;
+        /*var temp = YG2.saves.supplies;
         temp[1]--;
+        if (temp[1] == 0) button.interactable = false;
         YG2.saves.supplies = temp;
-        YG2.SaveProgress();
+        YG2.SaveProgress();*/
+        button.interactable = false;
+        cooldown = cooldownInSeconds;
         bomber.Play("Fire");
         StartCoroutine(Drop());
+    }
+
+    private void Update()
+    {
+        if (paused) return;
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+            cooldownSlider.value = cooldown;
+            if (cooldown <= 0)
+            {
+                button.interactable = true;
+                cooldownSlider.value = 0;
+            }
+        }
     }
 
     private IEnumerator Drop()
@@ -45,4 +80,5 @@ public class BombAbility : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         if (YG2.saves.supplies[1] != 0) button.interactable = true;
     }
+
 }

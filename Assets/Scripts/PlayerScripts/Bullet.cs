@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject hitPrefab;
-    [SerializeField] float bombChance = 5, instaKillChance = 1.5f;
+    [SerializeField] float bombChance = 5, instaKillChance = 99f;
 
 
     private int damage;
@@ -89,9 +89,12 @@ public class Bullet : MonoBehaviour
         {
             z.TakeDamage(damage, crit, instaKill);
             Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
-            if (Random.Range(0, 100f) < stunChance)
+            if (z is not Wagon)
             {
-                z.Stun();
+                if (Random.Range(0, 100f) < stunChance)
+                {
+                    z.Stun();
+                }
             }
             if (bomb)
             {

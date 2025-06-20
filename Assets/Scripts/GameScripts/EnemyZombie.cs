@@ -56,10 +56,6 @@ public class EnemyZombie : MonoBehaviour
             parts[i].colors = (from m in smr.materials select m.color).ToArray();
         }
         direction.z = -speed;
-        if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
-        {
-            direction.z *= 0.9f;
-        }
         characterController = GetComponent<CharacterController>();
         if (boss)
         {
@@ -90,6 +86,14 @@ public class EnemyZombie : MonoBehaviour
     public void Update()
     {
         if (dead) return;
+        if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
+        {
+            direction.z = -speed * 0.6f;
+        }
+        else
+        {
+            direction.z = -speed;
+        }
         if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
     }
 
@@ -117,8 +121,10 @@ public class EnemyZombie : MonoBehaviour
             OnZombieDie?.Invoke(this, moneyDropChance, money);
             anim.Play("Death");
             StartCoroutine(Die());
+            transform.parent = null;
         } else
         {
+            StopCoroutine(nameof(StopFlash));
             foreach (var part in parts)
             {
                 foreach (var mat in part.obj.GetComponent<SkinnedMeshRenderer>().materials)
@@ -126,7 +132,7 @@ public class EnemyZombie : MonoBehaviour
                     mat.color = Color.red;
                 }
             }
-            StartCoroutine(StopFlash());
+            StartCoroutine(nameof(StopFlash));
             UpdateHealthUI(maxHealth, currentHealth);
         }
     }
@@ -189,6 +195,7 @@ public class EnemyZombie : MonoBehaviour
     internal void Stun()
     {
         if (boss) return;
+        if (stunned) return;
         stunned = true;
         anim.Play("Stun");
     }

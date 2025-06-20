@@ -12,13 +12,14 @@ public class Energy : MonoBehaviour
     [SerializeField] Slider energySlider;
     [SerializeField] TextMeshProUGUI energyText;
     [SerializeField] int energyGainPerAd = 3;
+    [SerializeField] GameObject adPanel;
     private int energy;
     [SerializeField] private int maxEnergy = 15;
     [SerializeField] private int energyRechargeIntervalInSeconds;
     private long energyRechargeInterval;
-    private int secsLeft;
+    private long secsLeft;
 
-    private void Start()
+    private void OnEnable()
     {
         energySlider.maxValue = maxEnergy;
         if (!YG2.saves.playedBefore)
@@ -59,7 +60,7 @@ public class Energy : MonoBehaviour
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
         if (energy == maxEnergy) return;
-        int secondsLeft = (int) ((energyRechargeInterval - cts) / 10000000);
+        long secondsLeft =  (energyRechargeInterval - cts) / 10000000;
         secsLeft = secondsLeft;
         if (energy == 0)
         {
@@ -74,11 +75,11 @@ public class Energy : MonoBehaviour
         StartCoroutine(RechrageEnergy(secondsLeft));
     }
 
-    private IEnumerator RechrageEnergy(int seconds)
+    private IEnumerator RechrageEnergy(long seconds)
     {
         yield return new WaitForSeconds(seconds);
-        energy++;
         StopCoroutine(nameof(TimerTick));
+        if (energy != maxEnergy) energy++;
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
         UpdateEnergySlider(false, energy);
@@ -98,7 +99,7 @@ public class Energy : MonoBehaviour
         }
     }
 
-    private void UpdateEnergySlider(bool zero, int number)
+    private void UpdateEnergySlider(bool zero, long number)
     {
         if (!zero)
         {
@@ -107,8 +108,8 @@ public class Energy : MonoBehaviour
         } else
         {
             energySlider.value = 0;
-            int m = number / 60;
-            int s = number % 60;
+            long m = number / 60;
+            long s = number % 60;
             energyText.text = (m > 9 ? m : $"0{m}") + ":" + (s > 9 ? s : $"0{s}");
         }
     }
@@ -126,9 +127,17 @@ public class Energy : MonoBehaviour
         }
     }
 
-    public void RechargeEnergyByAd()
+    public void PlayAD()
     {
         if (energy == maxEnergy) return;
+        adPanel.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    public void AddEnergyByAd()
+    {
+        adPanel.SetActive(false);
+        gameObject.SetActive(true);
         energy = Mathf.Clamp(energy + energyGainPerAd, 0, maxEnergy);
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();

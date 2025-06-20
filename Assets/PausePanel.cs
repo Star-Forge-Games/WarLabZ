@@ -12,7 +12,7 @@ public class PausePanel : MonoBehaviour
     public void AddSkill(Sprite skill)
     {
         GameObject icon = new("Skill", typeof(Image));
-        icon.transform.parent = container;
+        icon.transform.SetParent(container);
         icon.GetComponent<Image>().sprite = skill;
     }
 

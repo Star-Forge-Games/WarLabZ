@@ -15,16 +15,19 @@ public class Wall : MonoBehaviour
     [SerializeField] private float bonusHealthPercent = 0.1f;
     [SerializeField] Button button;
     [SerializeField] private Animator wallHpBarAnimator;
+    [SerializeField] int protectCooldownInSeconds;
+    [SerializeField] Slider protectCooldownSlider;
+    [SerializeField] private float bladeMailDemagePercent = 0.5f;
+
+    private int health;
+    private int maxHealth;
+    private bool paused = false;
+    private float cooldown = 0;
     private bool shaking;
-
     private bool invulnerable = false, blademail = false;
-
     private float protectedTime;
-
     public static Action OnWallDeath;
-
     private Action<bool> action;
-
     public static Wall instance;
 
     private void Awake()
@@ -36,18 +39,22 @@ public class Wall : MonoBehaviour
             else SelfPause();
         });
         PauseSystem.OnPauseStateChanged += action;
-        if (YG2.saves.supplies[0] == 0) button.interactable = false;
+        protectCooldownSlider.maxValue = protectCooldownInSeconds;
+        //if (YG2.saves.supplies[0] == 0) button.interactable = false;
     }
 
     public void Protect()
     {
-        var temp = YG2.saves.supplies;
+        /*var temp = YG2.saves.supplies;
         temp[0]--;
+        if (temp[0] == 0) button.interactable = false;
         YG2.saves.supplies = temp;
-        YG2.SaveProgress();
+        YG2.SaveProgress();*/
+        button.interactable = false;
+        cooldown = protectCooldownInSeconds;
         invulnerable = true;
-        StartCoroutine(StopProtection(protectionTime));
         WallShield.SetActive(true);
+        StartCoroutine(StopProtection(protectionTime));
     }
 
     private IEnumerator StopProtection(float time)
@@ -59,17 +66,13 @@ public class Wall : MonoBehaviour
         if (YG2.saves.supplies[0] != 0) button.interactable = true;
     }
 
-    private int health;
-    private int maxHealth;
-
-
     private void Start()
     {
-        /*  for (int i = transform.childCount - 1; i >= 0; i--)
-          {
-              if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
-              else transform.GetChild(i).gameObject.SetActive(true);
-          }*/
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
+            else transform.GetChild(i).gameObject.SetActive(true);
+        }
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;
         health = maxHealth;
@@ -82,16 +85,29 @@ public class Wall : MonoBehaviour
         {
             protectedTime += Time.deltaTime;
         }
+        if (paused) return;
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+            protectCooldownSlider.value = cooldown;
+            if (cooldown <= 0)
+            {
+                button.interactable = true;
+                protectCooldownSlider.value = 0;
+            }
+        }
     }
 
     public void TakeDamage(EnemyZombie z, int damage)
     {
-        if (invulnerable) return;
-        health -= damage;
         if (blademail)
         {
-            z.TakeDamage(damage / 2, false, false);
+            float bmDmg = damage * bladeMailDemagePercent;
+            if (bmDmg < 1) bmDmg = 1;
+            z.TakeDamage((int)bmDmg, false, false);
         }
+        if (invulnerable) return;
+        health -= damage;
         if (!shaking)
         {
             shaking = true;
@@ -129,12 +145,14 @@ public class Wall : MonoBehaviour
 
     private void SelfPause()
     {
+        paused = true;
         if (!invulnerable) return;
         StopCoroutine(nameof(StopProtection));
     }
 
     private void SelfUnpause()
     {
+        paused = false;
         if (!invulnerable) return;
         StartCoroutine(StopProtection(protectionTime - protectedTime));
     }
@@ -148,7 +166,7 @@ public class Wall : MonoBehaviour
 
     public void Lifesteal(bool boss)
     {
-        health = Mathf.Clamp(health + (int) (maxHealth * (boss ? 0.05f : 0.01f)), 0, maxHealth);
+        health = Mathf.Clamp(health + (int)(maxHealth * (boss ? 0.05f : 0.01f)), 1, maxHealth);
         UpdateWallHp();
     }
 

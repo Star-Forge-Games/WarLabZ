@@ -26,6 +26,7 @@ public class MoneySystem : MonoBehaviour
         int random = Random.Range(0, 100);
         if (random <= chance)
         {
+            if (bonusMoney) money *= 2;
             Instantiate(dollars, z.transform.position, Quaternion.identity);
             this.money += money;
             moneyText.text = "$: " + this.money;
