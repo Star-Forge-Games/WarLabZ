@@ -6357,7 +6357,7 @@ MonoBehaviour:
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}
   gunFireBack: {fileID: 7548978193842274518, guid: 5196e40357a4d7a40a37723011ee3113, type: 3}
   twinShotDistance: 0.1
-  critChance: 1.5
+  critChance: 90
   critDamageMultiplier: 2
 --- !u!1 &1426459586
 GameObject:
