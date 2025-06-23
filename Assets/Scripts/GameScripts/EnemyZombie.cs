@@ -103,14 +103,11 @@ public class EnemyZombie : MonoBehaviour
 
     public virtual void TakeDamage(int damage, bool crit, bool instaKill)
     {
-        if (instaKill)
+        if (instaKill&&!boss)
         {
-            if (!boss)
-            {
-                instaKillCanvas.SetActive(true);
-                StartCoroutine(StopCanvas(false));
-                currentHealth = 0;
-            }
+            instaKillCanvas.SetActive(true);
+            StartCoroutine(StopCanvas(false));
+            currentHealth = 0;
         }
         else
         {

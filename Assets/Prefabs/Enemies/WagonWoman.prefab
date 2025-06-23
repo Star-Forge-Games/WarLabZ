@@ -561,14 +561,14 @@ RectTransform:
   m_GameObject: {fileID: 5574135133359840504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4403690423922298258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.855, y: -0.472}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2093868825873228319
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dd83b78bd269e0f4a98bd94c5f853ddb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 538468e9bf6b6a24c9c5a85b9cb5d1c4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -719,7 +719,7 @@ MonoBehaviour:
   slowEndZ: 0
   boss: 0
   healthCanvas: {fileID: 436298163515129501}
-  critCanvas: {fileID: 0}
+  critCanvas: {fileID: 8905361534389570508}
   instaKillCanvas: {fileID: 0}
   parts:
   - obj: {fileID: 5531333014918613452}
