@@ -19,6 +19,8 @@ public class Wagon : EnemyZombie
         direction.z = -speed;
         characterController = GetComponent<CharacterController>();
         MultiplyHp(1);
+        damage = (int) (Wall.instance.maxHealth * 0.1f);
+        if (damage < 10) damage = 10;
         UpdateHealthUI(maxHealth, currentHealth);
     }
 
@@ -47,7 +49,6 @@ public class Wagon : EnemyZombie
             OnZombieDie?.Invoke(this, 0, 0);
             anim.Play("Death");
             StartCoroutine(Die());
-            Destroy(gameObject);
         }
         else
         {
