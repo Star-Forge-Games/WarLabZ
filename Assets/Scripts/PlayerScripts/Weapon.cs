@@ -25,13 +25,13 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject gunFireFront;
     [SerializeField] GameObject gunFireBack;
     [SerializeField] private float twinShotDistance = 0.1f;
-    private float flatRateModifier = 2, expRateModifier = 1;
+    private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
 
 
     private bool twinShot, instakill, through, bomb;
 
-    [SerializeField] private float critChance = 10, critDamageMultiplier = 1.5f;
+    [SerializeField] private float critChance = 2, critDamageMultiplier = 1.5f;
 
     public static Weapon instance;
 

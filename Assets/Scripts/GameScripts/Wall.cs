@@ -119,6 +119,7 @@ public class Wall : MonoBehaviour
         {
             EnemyZombie.OnZombieHitWall -= TakeDamage;
             OnWallDeath?.Invoke();
+            wallHpBar.gameObject.SetActive(false);
             Destroy(gameObject);
         }
         UpdateWallHp();
