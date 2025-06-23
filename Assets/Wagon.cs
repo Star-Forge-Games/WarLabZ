@@ -6,6 +6,7 @@ public class Wagon : EnemyZombie
 
     public new void Update()
     {
+        if(characterController != null) 
         characterController.Move(direction * Time.deltaTime);
     }
 
