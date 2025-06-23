@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] float bulletsRate;
     [SerializeField] float fireForce;
-    [SerializeField] int bulletDamage;
+    [SerializeField] public int bulletDamage;
     [SerializeField] float bulletLifeTime;
     [SerializeField] private Transform bulletContainer;
     [SerializeField] GameObject bulletPrefab;
