@@ -20,6 +20,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private float slowStartZ = 35, slowEndZ = 10;
     [SerializeField] private bool boss;
     [SerializeField] protected GameObject healthCanvas;
+    [SerializeField] protected GameObject critCanvas, instaKillCanvas;
 
     [Serializable]
     public struct ColoredPart
@@ -104,6 +105,8 @@ public class EnemyZombie : MonoBehaviour
     {
         if (instaKill)
         {
+            instaKillCanvas.SetActive(true);
+            StartCoroutine(StopCanvas(false));
             if (!boss) currentHealth = 0;
         }
         else
@@ -112,7 +115,8 @@ public class EnemyZombie : MonoBehaviour
         }
         if (crit)
         {
-            // визуал крита
+            critCanvas.SetActive(true);
+            StartCoroutine(StopCanvas(true));
         }
         if (currentHealth <= 0)
         {
@@ -150,6 +154,13 @@ public class EnemyZombie : MonoBehaviour
                 part.obj.GetComponent<SkinnedMeshRenderer>().materials[i].color = part.colors[i];
             }
         }
+    }
+
+    protected IEnumerator StopCanvas(bool crit)
+    {
+        yield return new WaitForSeconds(1.5f);
+        if (crit) critCanvas.SetActive(false);
+        else instaKillCanvas.SetActive(false);
     }
 
     public void UpdateHealthUI(int maxHealth, int currentHealth)
