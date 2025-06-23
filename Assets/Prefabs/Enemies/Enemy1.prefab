@@ -478,6 +478,8 @@ MonoBehaviour:
   slowEndZ: 10
   boss: 0
   healthCanvas: {fileID: 436298163515129501}
+  critCanvas: {fileID: 7911256655718126440}
+  instaKillCanvas: {fileID: 9062330755974472129}
   parts:
   - obj: {fileID: 1481026553156831321}
   - obj: {fileID: 8886026634582109176}

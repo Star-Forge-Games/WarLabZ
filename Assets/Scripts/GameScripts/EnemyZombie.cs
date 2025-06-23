@@ -158,7 +158,7 @@ public class EnemyZombie : MonoBehaviour
 
     protected IEnumerator StopCanvas(bool crit)
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.75f);
         if (crit) critCanvas.SetActive(false);
         else instaKillCanvas.SetActive(false);
     }
