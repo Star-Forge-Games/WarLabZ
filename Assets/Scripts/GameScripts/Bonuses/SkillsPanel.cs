@@ -8,8 +8,7 @@ using YG;
 public class SkillsPanel : MonoBehaviour
 {
 
-    //private List<int> modifiersLeft = new() {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
-    private List<int> modifiersLeft = new() { 0 };
+    private List<int> modifiersLeft = new() {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
     public static Action<int> OnTurretSkillSelect;
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
