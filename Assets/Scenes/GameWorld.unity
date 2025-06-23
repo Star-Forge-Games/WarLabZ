@@ -4992,7 +4992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7143858245785905579, guid: aebc01b30313f324b80958862c43aa67, type: 3}
-  interval: 1000
+  interval: 15
   wagonContainer: {fileID: 823084314}
 --- !u!4 &1069433147
 Transform:
@@ -6342,9 +6342,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1959370579}
-  bulletsRate: 1.25
+  bulletsRate: 1
   fireForce: 50
-  bulletDamage: 2
+  bulletDamage: 1
   bulletLifeTime: 0.5
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
