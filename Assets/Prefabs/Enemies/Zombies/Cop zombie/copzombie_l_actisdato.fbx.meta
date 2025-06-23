@@ -3,7 +3,27 @@ guid: 6662dd3048bf09349ab085b82c810654
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FuzZombie_body_diffuse
+    second: {fileID: 2800000, guid: 68996ffc11242634585eac8b439db79b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FuzZombie_diffuse
+    second: {fileID: 2800000, guid: 2a9e83b6577f01a43b3d2289e2f10f45, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FuzZombie_normal
+    second: {fileID: 2800000, guid: 8021ab82f3d6db54d8132c5a89b0e8e9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FuzZombie_specular
+    second: {fileID: 2800000, guid: 215618237968e1749ac8bbf20d94729b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
