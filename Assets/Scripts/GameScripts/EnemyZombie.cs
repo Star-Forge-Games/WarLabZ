@@ -105,9 +105,12 @@ public class EnemyZombie : MonoBehaviour
     {
         if (instaKill)
         {
-            instaKillCanvas.SetActive(true);
-            StartCoroutine(StopCanvas(false));
-            if (!boss) currentHealth = 0;
+            if (!boss)
+            {
+                instaKillCanvas.SetActive(true);
+                StartCoroutine(StopCanvas(false));
+                currentHealth = 0;
+            }
         }
         else
         {
