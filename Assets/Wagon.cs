@@ -42,7 +42,8 @@ public class Wagon : EnemyZombie
         currentHealth -= damage;
         if (crit)
         {
-            // визуал крита
+            critCanvas.SetActive(true);
+            StartCoroutine(StopCanvas(true));
         }
         if (currentHealth <= 0)
         {
