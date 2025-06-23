@@ -86,13 +86,16 @@ public class EnemyZombie : MonoBehaviour
     public void Update()
     {
         if (dead) return;
-        if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
+        if (SkillsPanel.zombieSlow)
         {
-            direction.z = -speed * 0.6f;
-        }
-        else
-        {
-            direction.z = -speed;
+            if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
+            {
+                direction.z = -speed * 0.6f;
+            }
+            else
+            {
+                direction.z = -speed;
+            }
         }
         if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
     }

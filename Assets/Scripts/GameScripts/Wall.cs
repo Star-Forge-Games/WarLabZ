@@ -20,7 +20,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private float bladeMailDemagePercent = 0.5f;
 
     private int health;
-    private int maxHealth;
+    public int maxHealth;
     private bool paused = false;
     private float cooldown = 0;
     private bool shaking;
