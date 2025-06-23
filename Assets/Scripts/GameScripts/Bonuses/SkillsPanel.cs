@@ -116,7 +116,7 @@ public class SkillsPanel : MonoBehaviour
                 zombieSlow = true;
                 break;
             case 16:
-                Weapon.instance.AddStunChance(50);
+                Weapon.instance.AddStunChance(5);
                 break;
             case 17:
                 zHealthReduction = true;
