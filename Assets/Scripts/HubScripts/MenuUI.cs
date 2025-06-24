@@ -25,6 +25,7 @@ public class MenuUI : MonoBehaviour
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[YG2.saves.localeId];
         }
+        energy.gameObject.SetActive(true);
         // user info
     }
 

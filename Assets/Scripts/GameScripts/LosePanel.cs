@@ -7,16 +7,6 @@ public class LosePanel : MonoBehaviour
 
     [SerializeField] Animator fader;
 
-    public void RestartLevel()
-    {
-        SwitchScene(-1);
-    }
-
-    public void BackToHub()
-    {
-        SwitchScene(0);
-    }
-
     public void SwitchScene(int i)
     {
         fader.Play("Fade");
@@ -26,8 +16,7 @@ public class LosePanel : MonoBehaviour
     private IEnumerator SwitchSceneCoroutine(int i)
     {
         yield return new WaitForSeconds(1.2f);
-        if (i != -1) SceneManager.LoadScene(i);
-        else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(i);
     }
 
 
