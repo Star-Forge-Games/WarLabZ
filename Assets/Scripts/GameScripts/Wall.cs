@@ -112,7 +112,6 @@ public class Wall : MonoBehaviour
         if (!shaking)
         {
             shaking = true;
-            Debug.Log("Shake");
             wallHpBarAnimator.Play("Shake");
             StartCoroutine(nameof(StopShake));
         }
@@ -133,10 +132,8 @@ public class Wall : MonoBehaviour
 
     private IEnumerator StopShake()
     {
-        Debug.Log("Start StopShake");
         yield return new WaitForSeconds(0.3f/*wallHpBarAnimator.GetCurrentAnimatorClipInfo(1).Length*/);
         shaking = false;
-        Debug.Log("NotShaking");
     }
 
     private void OnDestroy()
@@ -169,6 +166,7 @@ public class Wall : MonoBehaviour
     public void Lifesteal(bool boss)
     {
         health = Mathf.Clamp(health + (int)(maxHealth * (boss ? 0.05f : 0.01f)), 1, maxHealth);
+        if (health > maxHealth) health = maxHealth;
         UpdateWallHp();
     }
 

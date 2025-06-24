@@ -27,7 +27,7 @@ public class Turret : MonoBehaviour
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     private float flatSpeedModifier = 0, expSpeedModifier = 1;
-    private float critChance = 75, critDamageMultiplier = 2;
+    private float critChance = 1.5f, critDamageMultiplier = 2;
     private bool targeting = false;
     Vector3 targetPosition;
     private Action<bool> action;
