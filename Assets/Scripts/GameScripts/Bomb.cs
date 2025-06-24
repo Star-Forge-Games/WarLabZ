@@ -8,6 +8,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float fallSpeed;
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
+    [SerializeField] MeshRenderer mr;
     private Action<bool> action;
     public int id;
 
@@ -37,7 +38,7 @@ public class Bomb : MonoBehaviour
         PauseSystem.OnPauseStateChanged -= action;
         ExplosionTestOptimization.instance.Activate(id);
         StartCoroutine(EnqueueDamage(objects));
-        GetComponent<MeshRenderer>().enabled = false;
+        mr.enabled = false;
         GetComponent<Collider>().enabled = false;
     }
 

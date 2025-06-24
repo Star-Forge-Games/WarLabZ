@@ -932,7 +932,7 @@ GameObject:
   - component: {fileID: 144715523}
   - component: {fileID: 144715526}
   m_Layer: 0
-  m_Name: Bomber
+  m_Name: AirPlaneBombs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,8 +1000,8 @@ Transform:
   m_GameObject: {fileID: 144715521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 4, z: 15}
-  m_LocalScale: {x: 2, y: 0.5, z: 3}
+  m_LocalPosition: {x: 0.72, y: 4, z: -13.04}
+  m_LocalScale: {x: 9.788486, y: 0.5, z: 12.850144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2531,13 +2531,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348427806}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.33641866, y: -0.6804394, z: -0.6252954, w: -0.18119211}
-  m_LocalPosition: {x: 0.05722221, y: 0.12949064, z: 0.042255536}
+  m_LocalRotation: {x: 0.3361285, y: 0.68032926, z: 0.625459, w: 0.18157849}
+  m_LocalPosition: {x: 0.057000168, y: 0.12900037, z: 0.039999984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 424158277}
-  m_Father: {fileID: 1481394227}
+  m_Father: {fileID: 1842885155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &348427808
 MonoBehaviour:
@@ -3818,10 +3818,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6502182839619065283, guid: 1e589a8f7b41afc4998ab653a015a464, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 1406914552}
     - targetCorrespondingSourceObject: {fileID: 6502182839619065283, guid: 1e589a8f7b41afc4998ab653a015a464, type: 3}
-      insertIndex: 1
+      insertIndex: -1
       addedObject: {fileID: 348427807}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e589a8f7b41afc4998ab653a015a464, type: 3}
@@ -8096,14 +8096,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406914551}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.33641866, y: -0.6804394, z: -0.6252954, w: -0.18119211}
-  m_LocalPosition: {x: 0.05722221, y: 0.12949064, z: 0.042255536}
+  m_LocalRotation: {x: 0.3361285, y: 0.68032914, z: 0.6254591, w: 0.18157856}
+  m_LocalPosition: {x: 0.057, y: 0.129, z: 0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 103268934}
-  m_Father: {fileID: 1481394227}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 1842885155}
+  m_LocalEulerAnglesHint: {x: -46.8, y: 102.8, z: 90.7}
 --- !u!114 &1406914553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8774,11 +8774,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!4 &1481394227 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 1e589a8f7b41afc4998ab653a015a464, type: 3}
-  m_PrefabInstance: {fileID: 553149061}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1500902988
 GameObject:
   m_ObjectHideFlags: 0
@@ -15909,6 +15904,11 @@ Transform:
   - {fileID: 48026283}
   m_Father: {fileID: 1614503737}
   m_LocalEulerAnglesHint: {x: 22.791, y: -29.685, z: 30.496}
+--- !u!4 &1842885155 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 1e589a8f7b41afc4998ab653a015a464, type: 3}
+  m_PrefabInstance: {fileID: 553149061}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844763197
 GameObject:
   m_ObjectHideFlags: 0
@@ -16657,7 +16657,7 @@ PositionConstraint:
   m_Active: 1
   m_IsLocked: 1
   m_Sources:
-  - sourceTransform: {fileID: 1481394227}
+  - sourceTransform: {fileID: 0}
     weight: 1
 --- !u!1 &1973100309
 GameObject:
@@ -61685,7 +61685,7 @@ MonoBehaviour:
   healthAmount: {fileID: 1770473538853997195}
   wallHpBar: {fileID: 5393603743321756984}
   settings: {fileID: 11400000, guid: f23df38032bed494b8353b3c39716330, type: 2}
-  protectionTime: 10
+  protectionTime: 999999
   WallShield: {fileID: 6771473286471559929}
   bonusHealthPercent: 0.1
   button: {fileID: 1054330113}
