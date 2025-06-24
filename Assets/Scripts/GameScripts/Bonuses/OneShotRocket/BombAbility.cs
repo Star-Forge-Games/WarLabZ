@@ -62,20 +62,20 @@ public class BombAbility : MonoBehaviour
 
     private IEnumerator Drop()
     {
-        yield return new WaitForSeconds(1f);
-        Bomb b1 = Instantiate(bombPrefab, new Vector3(0, 10, 10), Quaternion.identity);
+        yield return new WaitForSeconds(0.4f);
+        Bomb b1 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 10), Quaternion.Euler(0, 0, -20));
         b1.id = 0;
         yield return new WaitForSeconds(0.2f);
-        Bomb b2 = Instantiate(bombPrefab, new Vector3(0, 10, 20), Quaternion.identity);
+        Bomb b2 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 20), Quaternion.Euler(0, 0, -20));
         b2.id = 1;
         yield return new WaitForSeconds(0.2f);
-        Bomb b3 = Instantiate(bombPrefab, new Vector3(0, 10, 30), Quaternion.identity);
+        Bomb b3 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 30), Quaternion.Euler(0, 0, -20));
         b3.id = 2;
         yield return new WaitForSeconds(0.2f);
-        Bomb b4 = Instantiate(bombPrefab, new Vector3(0, 10, 40), Quaternion.identity);
+        Bomb b4 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 40), Quaternion.Euler(0, 0, -20));
         b4.id = 3;
         yield return new WaitForSeconds(0.2f);
-        Bomb b5 = Instantiate(bombPrefab, new Vector3(0, 10, 50), Quaternion.identity);
+        Bomb b5 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 50), Quaternion.Euler(0, 0, -20));
         b5.id = 4;
         yield return new WaitForSeconds(0.2f);
         if (YG2.saves.supplies[1] != 0) button.interactable = true;

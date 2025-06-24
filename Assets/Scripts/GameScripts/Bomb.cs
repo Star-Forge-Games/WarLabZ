@@ -28,7 +28,7 @@ public class Bomb : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody>().linearVelocity = new Vector3(0, -fallSpeed, 0);
+        GetComponent<Rigidbody>().linearVelocity = -transform.up * fallSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
