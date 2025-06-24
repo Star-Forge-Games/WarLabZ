@@ -8,6 +8,7 @@ public class SkillBomb : MonoBehaviour
     [SerializeField] float fallSpeed;
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
+    [SerializeField] MeshRenderer mr;
     private Action<bool> action;
     private bool timed;
 
@@ -42,7 +43,7 @@ public class SkillBomb : MonoBehaviour
         PauseSystem.OnPauseStateChanged -= action;
         BombSystem.instance.Explode(timed);
         StartCoroutine(EnqueueDamage(objects));
-        GetComponent<MeshRenderer>().enabled = false;
+        mr.enabled = false;
         GetComponent<Collider>().enabled = false;
     }
 

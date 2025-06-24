@@ -22,7 +22,7 @@ public class Wagon : EnemyZombie
         MultiplyHp(1);
         damage = (int) (Wall.instance.maxHealth * 0.1f);
         if (damage < 10) damage = 10;
-        maxHealth = Weapon.instance.bulletDamage * 2;
+        maxHealth = Weapon.instance.bulletDamage * 3;
         currentHealth = maxHealth;
         UpdateHealthUI(maxHealth, currentHealth);
     }

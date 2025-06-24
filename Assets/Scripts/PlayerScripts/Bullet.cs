@@ -55,7 +55,9 @@ public class Bullet : MonoBehaviour
             float chance = Random.Range(0.0000001f, 100f);
             if (chance <= critChance)
             {
-                this.damage = (int)(this.damage * critMultiplier);
+                int dmg = (int)(this.damage * critMultiplier);
+                if (this.damage == dmg) this.damage++;
+                else this.damage = dmg;
                 crit = true;
                 // some other crit effect(visual maybe)
             }
