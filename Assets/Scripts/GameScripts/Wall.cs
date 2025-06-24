@@ -18,6 +18,7 @@ public class Wall : MonoBehaviour
     [SerializeField] int protectCooldownInSeconds;
     [SerializeField] Slider protectCooldownSlider;
     [SerializeField] private float bladeMailDemagePercent = 0.5f;
+    [SerializeField] private GameObject bladeMailObject;
 
     private int health;
     public int maxHealth;
@@ -174,6 +175,7 @@ public class Wall : MonoBehaviour
     public void SetBlademail()
     {
         blademail = true;
+        bladeMailObject.SetActive(true);
     }
 
 }
