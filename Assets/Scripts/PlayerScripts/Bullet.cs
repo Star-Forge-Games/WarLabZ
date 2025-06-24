@@ -95,7 +95,7 @@ public class Bullet : MonoBehaviour
             {
                 if (Random.Range(0, 100f) < stunChance)
                 {
-                    z.Stun();
+                    if (!z.IsDead()) z.Stun();
                 }
             }
             if (bomb)

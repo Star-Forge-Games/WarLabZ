@@ -165,7 +165,7 @@ public class Wall : MonoBehaviour
 
     public void Lifesteal(bool boss)
     {
-        health = Mathf.Clamp(health + (int)(maxHealth * (boss ? 0.05f : 0.01f)), 1, maxHealth);
+        health = Mathf.Clamp(health + (int)(maxHealth * (boss ? 0.05f : 0.01f)), health+1, maxHealth);
         if (health > maxHealth) health = maxHealth;
         UpdateWallHp();
     }

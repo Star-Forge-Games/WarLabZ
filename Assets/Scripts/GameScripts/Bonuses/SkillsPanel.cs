@@ -15,6 +15,7 @@ public class SkillsPanel : MonoBehaviour
     [SerializeField] PausePanel pausePanel;
     [SerializeField] private int maxSkills;
     [SerializeField] private PlayerController player;
+    [SerializeField] GameObject slowZone;
     private int skillsSelected = 0;
     public static bool zombieSlow, lifesteal, zHealthReduction, bossHealthReduction;
     private bool turretSkillsAdded = false;
@@ -114,6 +115,7 @@ public class SkillsPanel : MonoBehaviour
                 break;
             case 15:
                 zombieSlow = true;
+                slowZone.SetActive(true);
                 break;
             case 16:
                 Weapon.instance.AddStunChance(5);

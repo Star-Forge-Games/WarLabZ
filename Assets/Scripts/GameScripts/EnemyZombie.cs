@@ -124,7 +124,7 @@ public class EnemyZombie : MonoBehaviour
             Destroy(GetComponent<CharacterController>());
             Destroy(healthCanvas);
             KillsCount.kills += 1;
-            if (SkillsPanel.lifesteal) Wall.instance.Lifesteal(boss);
+            if (SkillsPanel.lifesteal == true) Wall.instance.Lifesteal(boss);
             OnZombieDie?.Invoke(this, moneyDropChance, money);
             anim.Play("Death");
             StartCoroutine(Die());
