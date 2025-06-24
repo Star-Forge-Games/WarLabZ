@@ -16,14 +16,14 @@ public class LavaAbility : MonoBehaviour
     [SerializeField] Slider cooldownSlider;
     private bool paused = false;
     private float cooldown = 0;
-    private float timeLived;
-    private float ticksPassed;
     private bool fired;
+    private int ticksPassed = 0;
+    private float timeAfterLastTick = 0;
 
 
     private Action<bool> action;
 
-    private void Awake()
+    public void Awake()
     {
         action = (pause =>
         {
@@ -31,12 +31,11 @@ public class LavaAbility : MonoBehaviour
             else SelfPause();
         });
         cooldownSlider.maxValue = cooldownInSeconds;
-
         PauseSystem.OnPauseStateChanged += action;
         //if (YG2.saves.supplies[2] == 0) button.interactable = false;
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         PauseSystem.OnPauseStateChanged -= action;
     }
@@ -50,60 +49,48 @@ public class LavaAbility : MonoBehaviour
         YG2.SaveProgress();*/
         button.interactable = false;
         cooldown = cooldownInSeconds;
-        fired = true;
         rain.SetActive(true);
+        lava.SetActive(true);
+        fired = true;
         StartCoroutine(DamageCoroutine());
-        StartCoroutine(WetFloor());
     }
 
     public IEnumerator DamageCoroutine()
     {
         for (int i = 0; i < damageTicks - ticksPassed; i++)
         {
-            yield return new WaitForSeconds(damageDelay - timeLived);
+            yield return new WaitForSeconds(damageDelay - timeAfterLastTick);
             ticksPassed++;
             foreach (Transform t in enemyContainer)
             {
                 EnemyZombie z = t.GetComponent<EnemyZombie>();
                 yield return new WaitForEndOfFrame();
-                if (z != null)
-                z.TakeDamage(damage, false, false);
+                z?.TakeDamage(damage, false, false);
             }
-            timeLived = 0;
+            timeAfterLastTick = 0;
         }
         fired = false;
         lava.SetActive(false);
         rain.SetActive(false);
-        //if (YG2.saves.supplies[2] != 0) button.interactable = true;
-        timeLived = 0;
         ticksPassed = 0;
+        timeAfterLastTick = 0;
+        //if (YG2.saves.supplies[2] != 0) button.interactable = true;
     }
 
-    private void Update()
+    public void Update()
     {
-        if (!paused)
+        if (paused) return;
+        if (cooldown > 0)
         {
-            if (cooldown > 0)
+            cooldown -= Time.deltaTime;
+            cooldownSlider.value = cooldown;
+            if (cooldown <= 0)
             {
-                cooldown -= Time.deltaTime;
-                cooldownSlider.value = cooldown;
-                if (cooldown <= 0)
-                {
-                    button.interactable = true;
-                    cooldownSlider.value = 0;
-                }
+                button.interactable = true;
+                cooldownSlider.value = 0;
             }
         }
-        if (fired)
-        {
-            timeLived += Time.deltaTime;
-        }
-    }
-
-    public IEnumerator WetFloor()
-    {
-        yield return new WaitForSeconds(1);
-        lava.SetActive(true);
+        if (fired) timeAfterLastTick += Time.deltaTime;
     }
 
     private void SelfPause()
@@ -112,6 +99,8 @@ public class LavaAbility : MonoBehaviour
         if (!fired) return;
         StopCoroutine(DamageCoroutine());
         rain.GetComponent<ParticleSystem>().Pause();
+        lava.GetComponent<Animator>().speed = 0;
+        rain.GetComponent<Animator>().speed = 0;
     }
 
     private void SelfUnpause()
@@ -120,5 +109,7 @@ public class LavaAbility : MonoBehaviour
         if (!fired) return;
         StartCoroutine(DamageCoroutine());
         rain.GetComponent<ParticleSystem>().Play();
+        lava.GetComponent<Animator>().speed = 1;
+        rain.GetComponent<Animator>().speed = 1;
     }
 }
