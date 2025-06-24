@@ -50,9 +50,11 @@ public class LavaAbility : MonoBehaviour
         button.interactable = false;
         cooldown = cooldownInSeconds;
         rain.SetActive(true);
+        rain.GetComponent<Animator>().Play("Acid");
         lava.SetActive(true);
+        lava.GetComponent<Animator>().Play("Acid");
         fired = true;
-        StartCoroutine(DamageCoroutine());
+        StartCoroutine(nameof(DamageCoroutine));
     }
 
     public IEnumerator DamageCoroutine()
@@ -97,7 +99,7 @@ public class LavaAbility : MonoBehaviour
     {
         paused = true;
         if (!fired) return;
-        StopCoroutine(DamageCoroutine());
+        StopCoroutine(nameof(DamageCoroutine));
         rain.GetComponent<ParticleSystem>().Pause();
         lava.GetComponent<Animator>().speed = 0;
         rain.GetComponent<Animator>().speed = 0;
@@ -107,7 +109,7 @@ public class LavaAbility : MonoBehaviour
     {
         paused = false;
         if (!fired) return;
-        StartCoroutine(DamageCoroutine());
+        StartCoroutine(nameof(DamageCoroutine));
         rain.GetComponent<ParticleSystem>().Play();
         lava.GetComponent<Animator>().speed = 1;
         rain.GetComponent<Animator>().speed = 1;
