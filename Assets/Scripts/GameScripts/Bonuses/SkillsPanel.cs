@@ -118,7 +118,7 @@ public class SkillsPanel : MonoBehaviour
                 slowZone.SetActive(true);
                 break;
             case 16:
-                Weapon.instance.AddStunChance(5);
+                Weapon.instance.AddStunChance(15);
                 break;
             case 17:
                 zHealthReduction = true;
