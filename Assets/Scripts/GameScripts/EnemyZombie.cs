@@ -217,6 +217,7 @@ public class EnemyZombie : MonoBehaviour
     public void Unstun()
     {
         stunned = false;
+        if (dead) return;
         if (wall)
         {
             anim.Play("Attack");
