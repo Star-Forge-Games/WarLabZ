@@ -71,10 +71,11 @@ public class LavaAbility : MonoBehaviour
             timeAfterLastTick = 0;
         }
         fired = false;
-        lava.SetActive(false);
-        rain.SetActive(false);
         ticksPassed = 0;
         timeAfterLastTick = 0;
+        yield return new WaitForSeconds(0.5f);
+        lava.SetActive(false);
+        rain.SetActive(false);
         //if (YG2.saves.supplies[2] != 0) button.interactable = true;
     }
 
