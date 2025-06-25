@@ -14,6 +14,9 @@ public class BombAbility : MonoBehaviour
     [SerializeField] Slider cooldownSlider;
     private bool paused = false;
     private float cooldown = 0;
+    private float delay;
+    private bool fired = false;
+    private int bombsDropped = 0;
 
     private Action<bool> action;
 
@@ -21,7 +24,8 @@ public class BombAbility : MonoBehaviour
     {
         action = (pause =>
         {
-            paused = pause;
+            if (pause) SelfPause();
+            else SelfUnpause();
         });
         cooldownSlider.maxValue = cooldownInSeconds;
         PauseSystem.OnPauseStateChanged += action;
@@ -41,13 +45,19 @@ public class BombAbility : MonoBehaviour
         YG2.SaveProgress();*/
         button.interactable = false;
         cooldown = cooldownInSeconds;
+        fired = true;
         bomber.Play("Fire");
-        StartCoroutine(Drop());
+        StartCoroutine(nameof(Drop), delay);
     }
 
     private void Update()
     {
         if (paused) return;
+        if (fired)
+        {
+            if (bombsDropped == 0) delay = Mathf.Clamp(delay + Time.deltaTime, 0, 1.4f);
+            else delay = Mathf.Clamp(delay + Time.deltaTime, 0, 0.2f);
+        }
         if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;
@@ -60,25 +70,76 @@ public class BombAbility : MonoBehaviour
         }
     }
 
-    private IEnumerator Drop()
+    private void SelfPause()
     {
-        yield return new WaitForSeconds(0.4f);
-        Bomb b1 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 8.5f), Quaternion.Euler(0, 0, -20));
-        b1.id = 0;
-        yield return new WaitForSeconds(0.2f);
-        Bomb b2 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 18.5f), Quaternion.Euler(0, 0, -20));
-        b2.id = 1;
-        yield return new WaitForSeconds(0.2f);
-        Bomb b3 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 28.5f), Quaternion.Euler(0, 0, -20));
-        b3.id = 2;
-        yield return new WaitForSeconds(0.2f);
-        Bomb b4 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 38.5f), Quaternion.Euler(0, 0, -20));
-        b4.id = 3;
-        yield return new WaitForSeconds(0.2f);
-        Bomb b5 = Instantiate(bombPrefab, new Vector3(3.64f, 10, 48.5f), Quaternion.Euler(0, 0, -20));
-        b5.id = 4;
-        yield return new WaitForSeconds(0.2f);
-        if (YG2.saves.supplies[1] != 0) button.interactable = true;
+        paused = true;
+        if (fired)
+        {
+            StopCoroutine(nameof(Drop));
+            bomber.speed = 0;
+        }
+    }
+
+    private void SelfUnpause()
+    {
+        paused = false;
+        if (fired)
+        {
+            bomber.speed = 1;
+            if (bombsDropped < 5)
+            {
+                StartCoroutine(nameof(Drop), delay);
+            } 
+        }
+    }
+
+    private IEnumerator Drop(float delay)
+    {
+        if (bombsDropped == 0 && delay < 1.4f) yield return new WaitForSeconds(1.4f - delay);
+        if (bombsDropped == 0)
+        {
+            while (bombsDropped < 5)
+            {
+                Bomb b = Instantiate(bombPrefab, new Vector3(3.64f, 10, 8.5f + 10 * bombsDropped), Quaternion.Euler(0, 0, -20));
+                b.id = bombsDropped;
+                bombsDropped++;
+                if (bombsDropped != 5)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                } else
+                {
+                    fired = false;
+                    bombsDropped = 0;
+                    delay = 0;
+                    break;
+                }
+            }
+        } else
+        {
+            yield return new WaitForSeconds(0.2f - delay);
+            while (bombsDropped < 5)
+            {
+                Bomb b = Instantiate(bombPrefab, new Vector3(3.64f, 10, 8.5f + 10 * bombsDropped), Quaternion.Euler(0, 0, -20));
+                b.id = bombsDropped;
+                bombsDropped++;
+                if (bombsDropped != 5)
+                {
+                    yield return new WaitForSeconds(0.2f);
+                } else
+                {
+                    fired = false;
+                    bombsDropped = 0;
+                    delay = 0;
+                    break;
+                }
+            }
+        }  
+        //if (YG2.saves.supplies[1] != 0) button.interactable = true;
+    }
+
+    private void OnDestroy()
+    {
+        PauseSystem.OnPauseStateChanged -= action;
     }
 
 }
