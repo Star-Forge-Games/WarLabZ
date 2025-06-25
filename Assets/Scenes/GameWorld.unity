@@ -12733,7 +12733,7 @@ MonoBehaviour:
   weaponId: 0
   shotgun: 0
   shots: 3
-  arc: 30
+  arc: 15
   multishots: 0
   baseAttackTimePercentage: 0.1
   gunFireFront: {fileID: 744962929051978551, guid: 9417fdd538c0eaf47af5ab456a61290c, type: 3}
@@ -13408,7 +13408,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1691d8d80248bf4ca409c5a53c96ef3, type: 2}
   - {fileID: 11400000, guid: c1691d8d80248bf4ca409c5a53c96ef3, type: 2}
   endless: 0
-  wavesPerSkill: 3
+  wavesPerSkill: 1
   endlessFirstWaveDifficulty: 5
   wave: 0
   spawnedEnemies: 0
