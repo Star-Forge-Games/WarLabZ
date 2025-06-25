@@ -44,19 +44,7 @@ public class PauseSystem : MonoBehaviour
     public void SkillSelect()
     {
         if (skillsPanel.GetComponent<SkillsPanel>().ReachedMaxSkillLimit()) return;
-        OnPauseStateChanged?.Invoke(true);
-        foreach (Transform t in enemyContainer)
-        {
-            t.GetComponent<EnemyZombie>().SelfPause();
-        }
-        foreach (Transform t in bulletContainer)
-        {
-            t.GetComponent<Bullet>().SelfPause();
-        }
-        foreach (Transform t in wagonContainer)
-        {
-            t.GetComponent<Wagon>().SelfPause();
-        }
+        Pause(false);
         skillsPanel.SetActive(true);
     }
 

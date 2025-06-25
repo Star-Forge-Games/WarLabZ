@@ -5570,7 +5570,7 @@ MonoBehaviour:
   healthAmount: {fileID: 5739539181246942191}
   maxHealth: 3
   damage: 5
-  speed: 12
+  speed: 10
   difficulty: 0
   money: 0
   slowStartZ: 0
@@ -5923,7 +5923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08331406
+      value: -0.125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 05bbddaa13a5fb64b95a435f7c377dee, type: 3}
       propertyPath: m_LocalPosition.y

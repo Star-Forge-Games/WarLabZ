@@ -88,7 +88,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void ProcessWaveSpawnsEndless()
     {
-        StartCoroutine(SpawnEnemiesEndless());
+        StartCoroutine(nameof(SpawnEnemiesEndless));
     }
 
     private IEnumerator SpawnEnemiesEndless()
@@ -109,7 +109,7 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         for (int i = 0; i < waves[wave].parts.Length; i++)
         {
-            StartCoroutine(SpawnEnemies(i, wave == 0));
+            StartCoroutine(nameof(SpawnEnemies), (i, wave == 0));
         }
     }
 
@@ -117,45 +117,45 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         for (int i = 0; i < partsProgress.Length; i++)
         {
-            StartCoroutine(ReSpawnEnemies(i, wave == 0));
+            StartCoroutine(nameof(ReSpawnEnemies), (i, wave == 0));
         }
     }
 
-    private IEnumerator ReSpawnEnemies(int index, bool first)
+    private IEnumerator ReSpawnEnemies((int index, bool first) data)
     {
-        WavePart part = partsProgress[index].part;
-        if (partsProgress[index].amountSpawned == 0)
+        WavePart part = partsProgress[data.index].part;
+        if (partsProgress[data.index].amountSpawned == 0)
         {
-            yield return new WaitForSeconds(part.delay + (first ? 0 : waves[wave - 1].nextWaveDelay) - partsProgress[index].timeSinceLastSpawn);
+            yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay) - partsProgress[data.index].timeSinceLastSpawn);
             for (int i = 0; i < part.amount; i++)
             {
-                partsProgress[index].amountSpawned++;
-                partsProgress[index].timeSinceLastSpawn = 0;
+                partsProgress[data.index].amountSpawned++;
+                partsProgress[data.index].timeSinceLastSpawn = 0;
                 SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
         else
         {
-            yield return new WaitForSeconds(part.interval - partsProgress[index].timeSinceLastSpawn);
-            for (int i = 0; i < part.amount - partsProgress[index].amountSpawned; i++)
+            yield return new WaitForSeconds(part.interval - partsProgress[data.index].timeSinceLastSpawn);
+            for (int i = 0; i < part.amount - partsProgress[data.index].amountSpawned; i++)
             {
-                partsProgress[index].amountSpawned++;
-                partsProgress[index].timeSinceLastSpawn = 0;
+                partsProgress[data.index].amountSpawned++;
+                partsProgress[data.index].timeSinceLastSpawn = 0;
                 SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
     }
 
-    private IEnumerator SpawnEnemies(int partIndex, bool first)
+    private IEnumerator SpawnEnemies((int partIndex, bool first) data)
     {
-        WavePart part = waves[wave].parts[partIndex];
-        yield return new WaitForSeconds(part.delay + (first ? 0 : waves[wave - 1].nextWaveDelay));
+        WavePart part = waves[wave].parts[data.partIndex];
+        yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay));
         for (int i = 0; i < part.amount; i++)
         {
-            partsProgress[partIndex].amountSpawned++;
-            partsProgress[partIndex].timeSinceLastSpawn = 0;
+            partsProgress[data.partIndex].amountSpawned++;
+            partsProgress[data.partIndex].timeSinceLastSpawn = 0;
             SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
             yield return new WaitForSeconds(part.interval);
         }
