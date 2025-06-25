@@ -8430,7 +8430,7 @@ GameObject:
   - component: {fileID: 304458937}
   - component: {fileID: 304458936}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BuyWallButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14779,7 +14779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.7499998, y: 0}
+  m_AnchoredPosition: {x: -0.75, y: 0}
   m_SizeDelta: {x: -1.5000005, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &524489351
@@ -20288,7 +20288,7 @@ GameObject:
   - component: {fileID: 697185284}
   - component: {fileID: 697185285}
   m_Layer: 5
-  m_Name: SkillBuyPanel
+  m_Name: SkillBuyPane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20324,10 +20324,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 697185283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78dddcd8553c172489d1d97603bf4e6c, type: 3}
+  m_Script: {fileID: 11500000, guid: 399e812d465eddb409ca32cec2ea344c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cash: {fileID: 175011629}
+  wAmount: {fileID: 524489351}
+  bAmount: {fileID: 857952006}
+  aAmount: {fileID: 1322172538}
+  wPrice: {fileID: 1629252958}
+  bPrice: {fileID: 1427269125}
+  aPrice: {fileID: 1513855530}
+  moneyText: {fileID: 175011629}
+  buyW: {fileID: 304458936}
+  buyB: {fileID: 1743798610}
+  buyA: {fileID: 1425336288}
+  priceW: 10
+  priceB: 10
+  priceA: 10
 --- !u!1 &700576911
 GameObject:
   m_ObjectHideFlags: 0
@@ -40624,7 +40636,7 @@ GameObject:
   - component: {fileID: 1322172539}
   - component: {fileID: 1322172538}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43513,7 +43525,7 @@ GameObject:
   - component: {fileID: 1425336289}
   - component: {fileID: 1425336288}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: BuyRainButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52992,7 +53004,7 @@ GameObject:
   - component: {fileID: 1743798611}
   - component: {fileID: 1743798610}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: BuyBombButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
