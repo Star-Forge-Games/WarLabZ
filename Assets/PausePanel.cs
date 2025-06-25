@@ -9,11 +9,9 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private Animator fader;
     [SerializeField] private Transform container;
 
-    public void AddSkill(Sprite skill)
+    public void AddSkill(Sprite skill, int num)
     {
-        GameObject icon = new("Skill", typeof(Image));
-        icon.transform.SetParent(container);
-        icon.GetComponent<Image>().sprite = skill;
+        container.GetChild(num).GetComponent<Image>().sprite = skill;
     }
 
     public void RestartLevel()

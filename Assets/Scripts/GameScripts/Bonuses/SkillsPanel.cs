@@ -65,7 +65,7 @@ public class SkillsPanel : MonoBehaviour
     public void Select(int id)
     {
         int i = id == 0 ? b1id : b2id;
-        pausePanel.AddSkill(id == 0 ? b1.sprite : b2.sprite);
+        pausePanel.AddSkill(id == 0 ? b1.sprite : b2.sprite, skillsSelected);
         switch (i)
         {
             case 0:
