@@ -8,6 +8,7 @@ public class WagonSystem : MonoBehaviour
     [SerializeField] private float interval;
     [SerializeField] private Transform wagonContainer;
     [SerializeField] private WagonSignal wagonSignal;
+    [SerializeField] private Transform leftSignal, midSignal, rightSignal;
     private float timer = 0;
     private bool paused = false;
 
