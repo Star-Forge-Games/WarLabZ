@@ -4,6 +4,8 @@ using UnityEngine;
 public class Wagon : EnemyZombie
 {
 
+    [SerializeField] Animator bombAnimator;
+
     public new void Update()
     {
         if(characterController != null) 
@@ -66,5 +68,19 @@ public class Wagon : EnemyZombie
             StartCoroutine(StopFlash());
             UpdateHealthUI(maxHealth, currentHealth);
         }
+    }
+
+    public override void SelfPause()
+    {
+        anim.speed = 0;
+        bombAnimator.speed = 0;
+        enabled = false;
+    }
+
+    public override void SelfUnpause()
+    {
+        anim.speed = 1;
+        bombAnimator.speed = 1;
+        enabled = true;
     }
 }

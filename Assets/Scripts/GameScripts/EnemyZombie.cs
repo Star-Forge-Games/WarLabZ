@@ -183,13 +183,13 @@ public class EnemyZombie : MonoBehaviour
         }
     }
 
-    public void SelfPause()
+    public virtual void SelfPause()
     {
         anim.speed = 0;
         enabled = false;
     }
 
-    public void SelfUnpause()
+    public virtual void SelfUnpause()
     {
         anim.speed = 1;
         enabled = true;
