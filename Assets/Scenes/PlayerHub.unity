@@ -8499,7 +8499,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 304458937}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 697185285}
+        m_TargetAssemblyTypeName: SuppliesShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &304458937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43594,7 +43606,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1425336289}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 697185285}
+        m_TargetAssemblyTypeName: SuppliesShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1425336289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53073,7 +53097,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1743798611}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 697185285}
+        m_TargetAssemblyTypeName: SuppliesShopUI, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1743798611
 MonoBehaviour:
   m_ObjectHideFlags: 0
