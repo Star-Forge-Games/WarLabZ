@@ -52,6 +52,7 @@ public class BombSystem : MonoBehaviour
         if (bombFalling) return;
         pointPS.transform.position = new Vector3(x, 0, z-1);
         SkillBomb sb = Instantiate(bomb, new Vector3(x, 10, z-1), Quaternion.identity);
+        bombFalling = true;
         sb.Setup(false);
     }
 
