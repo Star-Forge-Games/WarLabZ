@@ -134,7 +134,7 @@ public class SkillsPanel : MonoBehaviour
                 break;
         }
         modifiersLeft.Remove(i);
-        PauseSystem.instance.Unpause();
+        PauseSystem.instance.Unpause(true);
         gameObject.SetActive(false);
         skillsSelected++;
     }

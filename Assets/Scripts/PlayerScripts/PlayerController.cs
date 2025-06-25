@@ -52,18 +52,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            PauseSystem.instance.Unpause();
+            PauseSystem.instance.Unpause(false);
         }
-    }
-
-    public void Pause()
-    {
-        PauseSystem.instance.Pause(false);
-    }
-
-    public void Unpause()
-    {
-        PauseSystem.instance.Unpause();
     }
 
     public void SelfPause()

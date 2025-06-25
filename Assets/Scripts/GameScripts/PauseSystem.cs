@@ -9,6 +9,7 @@ public class PauseSystem : MonoBehaviour
 
     [SerializeField] private GameObject pausePanel, winPanel, losePanel, skillsPanel;
     [SerializeField] private Transform bulletContainer, enemyContainer, wagonContainer;
+    private bool selectingSkill;
 
     private bool end = false;
 
@@ -45,12 +46,15 @@ public class PauseSystem : MonoBehaviour
     {
         if (skillsPanel.GetComponent<SkillsPanel>().ReachedMaxSkillLimit()) return;
         Pause(false);
+        selectingSkill = true;
         skillsPanel.SetActive(true);
+        pausePanel.SetActive(false);
     }
 
     public void Pause(bool end)
     {
         if (this.end && !end) return;
+        if (selectingSkill) return;
         OnPauseStateChanged?.Invoke(true);
         foreach (Transform t in enemyContainer)
         {
@@ -67,9 +71,11 @@ public class PauseSystem : MonoBehaviour
        if (!end) pausePanel.SetActive(true);
     }
 
-    public void Unpause()
+    public void Unpause(bool fromSkillSelection)
     {
         if (end) return;
+        if (fromSkillSelection) selectingSkill = false;
+        if (selectingSkill && !fromSkillSelection) return;
         OnPauseStateChanged?.Invoke(false);
         foreach (Transform t in enemyContainer)
         {
