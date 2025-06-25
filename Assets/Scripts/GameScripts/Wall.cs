@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -19,6 +20,7 @@ public class Wall : MonoBehaviour
     [SerializeField] Slider protectCooldownSlider;
     [SerializeField] private float bladeMailDemagePercent = 0.5f;
     [SerializeField] private GameObject bladeMailObject;
+    [SerializeField] TextMeshProUGUI amount;
 
     private int health;
     public int maxHealth;
@@ -41,16 +43,16 @@ public class Wall : MonoBehaviour
         });
         PauseSystem.OnPauseStateChanged += action;
         protectCooldownSlider.maxValue = protectCooldownInSeconds;
-        //if (YG2.saves.supplies[0] == 0) button.interactable = false;
     }
 
     public void Protect()
     {
-        /*var temp = YG2.saves.supplies;
+        var temp = YG2.saves.supplies;
         temp[0]--;
         if (temp[0] == 0) button.interactable = false;
         YG2.saves.supplies = temp;
-        YG2.SaveProgress();*/
+        YG2.SaveProgress();
+        amount.text = temp[0] == 0 ? "" : $"{temp[0]}";
         button.interactable = false;
         cooldown = protectCooldownInSeconds;
         invulnerable = true;
@@ -64,7 +66,6 @@ public class Wall : MonoBehaviour
         invulnerable = false;
         protectedTime = 0;
         WallShield.SetActive(false);
-        if (YG2.saves.supplies[0] != 0) button.interactable = true;
     }
 
     private void Start()
@@ -78,6 +79,11 @@ public class Wall : MonoBehaviour
         maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;
         health = maxHealth;
         UpdateWallHp();
+        if (YG2.saves.supplies[0] == 0)
+        {
+            button.interactable = false;
+            amount.text = "";
+        }
     }
 
     private void Update()
@@ -93,7 +99,7 @@ public class Wall : MonoBehaviour
             protectCooldownSlider.value = cooldown;
             if (cooldown <= 0)
             {
-                button.interactable = true;
+                if (YG2.saves.supplies[0] != 0) button.interactable = true;
                 protectCooldownSlider.value = 0;
             }
         }

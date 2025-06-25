@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -13,6 +14,7 @@ public class LavaAbility : MonoBehaviour
     [SerializeField] Transform enemyContainer, wagonContainer;
     [SerializeField] Button button;
     [SerializeField] int cooldownInSeconds;
+    [SerializeField] TextMeshProUGUI amount;
     [SerializeField] Slider cooldownSlider;
     private bool paused = false;
     private float cooldown = 0;
@@ -32,7 +34,15 @@ public class LavaAbility : MonoBehaviour
         });
         cooldownSlider.maxValue = cooldownInSeconds;
         PauseSystem.OnPauseStateChanged += action;
-        //if (YG2.saves.supplies[2] == 0) button.interactable = false;
+    }
+
+    private void Start()
+    {
+        if (YG2.saves.supplies[2] == 0)
+        {
+            button.interactable = false;
+            amount.text = "";
+        }
     }
 
     public void OnDestroy()
@@ -42,11 +52,12 @@ public class LavaAbility : MonoBehaviour
 
     public void Fire()
     {
-        /*var temp = YG2.saves.supplies;
+        var temp = YG2.saves.supplies;
         temp[2]--;
         if (temp[2] == 0) button.interactable = false;
         YG2.saves.supplies = temp;
-        YG2.SaveProgress();*/
+        YG2.SaveProgress();
+        amount.text = temp[2] == 0 ? "" : $"{temp[2]}";
         button.interactable = false;
         cooldown = cooldownInSeconds;
         rain.SetActive(true);
@@ -79,7 +90,6 @@ public class LavaAbility : MonoBehaviour
                 }
                 timeAfterLastTick = 0;
             }
-
             fired = false;
             ticksPassed = 0;
             timeAfterLastTick = 0;
@@ -87,7 +97,9 @@ public class LavaAbility : MonoBehaviour
         }
         lava.SetActive(false);
         rain.SetActive(false);
-        //if (YG2.saves.supplies[2] != 0) button.interactable = true;
+        fired = false;
+        ticksPassed = 0;
+        timeAfterLastTick = 0;
     }
 
     public void Update()
@@ -99,7 +111,7 @@ public class LavaAbility : MonoBehaviour
             cooldownSlider.value = cooldown;
             if (cooldown <= 0)
             {
-                button.interactable = true;
+                if (YG2.saves.supplies[2] != 0) button.interactable = true;
                 cooldownSlider.value = 0;
             }
         }

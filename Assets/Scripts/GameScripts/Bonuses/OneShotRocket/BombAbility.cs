@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -12,6 +14,7 @@ public class BombAbility : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] int cooldownInSeconds;
     [SerializeField] Slider cooldownSlider;
+    [SerializeField] TextMeshProUGUI amount;
     private bool paused = false;
     private float cooldown = 0;
     private float delay;
@@ -33,16 +36,21 @@ public class BombAbility : MonoBehaviour
 
     private void Start()
     {
-        //if (YG2.saves.supplies[1] == 0) button.interactable = false;
+        if (YG2.saves.supplies[1] == 0)
+        {
+            button.interactable = false;
+            amount.text = "";
+        }
     }
 
     public void Fire()
     {
-        /*var temp = YG2.saves.supplies;
+        var temp = YG2.saves.supplies;
         temp[1]--;
         if (temp[1] == 0) button.interactable = false;
         YG2.saves.supplies = temp;
-        YG2.SaveProgress();*/
+        YG2.SaveProgress();
+        amount.text = temp[1] == 0 ? "" : $"{temp[1]}";
         button.interactable = false;
         cooldown = cooldownInSeconds;
         fired = true;
@@ -64,7 +72,7 @@ public class BombAbility : MonoBehaviour
             cooldownSlider.value = cooldown;
             if (cooldown <= 0)
             {
-                button.interactable = true;
+                if (YG2.saves.supplies[1] != 0) button.interactable = true;
                 cooldownSlider.value = 0;
             }
         }
@@ -134,7 +142,6 @@ public class BombAbility : MonoBehaviour
                 }
             }
         }  
-        //if (YG2.saves.supplies[1] != 0) button.interactable = true;
     }
 
     private void OnDestroy()
