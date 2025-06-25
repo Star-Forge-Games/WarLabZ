@@ -59,21 +59,25 @@ public class LavaAbility : MonoBehaviour
 
     public IEnumerator DamageCoroutine()
     {
-        for (int i = 0; i < damageTicks - ticksPassed; i++)
+        if (ticksPassed < damageTicks)
         {
-            yield return new WaitForSeconds(damageDelay - timeAfterLastTick);
-            ticksPassed++;
-            foreach (Transform t in enemyContainer)
+            while (ticksPassed < damageTicks)
             {
-                EnemyZombie z = t.GetComponent<EnemyZombie>();
-                z?.TakeDamage(damage, false, false);
+                yield return new WaitForSeconds(damageDelay - timeAfterLastTick);
+                ticksPassed++;
+                foreach (Transform t in enemyContainer)
+                {
+                    EnemyZombie z = t.GetComponent<EnemyZombie>();
+                    z?.TakeDamage(damage, false, false);
+                }
+                timeAfterLastTick = 0;
             }
+
+            fired = false;
+            ticksPassed = 0;
             timeAfterLastTick = 0;
+            yield return new WaitForSeconds(0.5f);
         }
-        fired = false;
-        ticksPassed = 0;
-        timeAfterLastTick = 0;
-        yield return new WaitForSeconds(0.5f);
         lava.SetActive(false);
         rain.SetActive(false);
         //if (YG2.saves.supplies[2] != 0) button.interactable = true;
