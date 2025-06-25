@@ -10,7 +10,7 @@ public class LavaAbility : MonoBehaviour
     [SerializeField] int damageTicks;
     [SerializeField] int damage;
     [SerializeField] float damageDelay;
-    [SerializeField] Transform enemyContainer;
+    [SerializeField] Transform enemyContainer, wagonContainer;
     [SerializeField] Button button;
     [SerializeField] int cooldownInSeconds;
     [SerializeField] Slider cooldownSlider;
@@ -68,6 +68,11 @@ public class LavaAbility : MonoBehaviour
                 foreach (Transform t in enemyContainer)
                 {
                     EnemyZombie z = t.GetComponent<EnemyZombie>();
+                    z?.TakeDamage(damage, false, false);
+                }
+                foreach (Transform t in wagonContainer)
+                {
+                    Wagon z = t.GetComponent<Wagon>();
                     z?.TakeDamage(damage, false, false);
                 }
                 timeAfterLastTick = 0;
