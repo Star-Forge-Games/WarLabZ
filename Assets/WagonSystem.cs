@@ -31,10 +31,10 @@ public class WagonSystem : MonoBehaviour
             float f = Random.Range(-4f, 4f);
             GameObject g = Instantiate(prefab, new Vector3(f, 1, 60), Quaternion.Euler(0, 180, 0));
             g.transform.parent = wagonContainer;
-            if (f > 0)
+            if (f >= 1)
             {
                 rightSignal.Signal();
-            } else if (f < 0)
+            } else if (f <= -1)
             {
                 leftSignal.Signal();
             } else
