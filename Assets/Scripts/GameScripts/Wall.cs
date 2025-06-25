@@ -87,7 +87,7 @@ public class Wall : MonoBehaviour
         else
         {
             button.interactable = true;
-            amount.text = $"{YG2.saves.supplies[1]}";
+            amount.text = $"{YG2.saves.supplies[0]}";
         }
     }
 
