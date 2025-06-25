@@ -21,6 +21,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private bool boss;
     [SerializeField] protected GameObject healthCanvas;
     [SerializeField] protected GameObject critCanvas, instaKillCanvas;
+    [SerializeField] private GameObject slowCanvas;
 
     [Serializable]
     public struct ColoredPart
@@ -92,10 +93,12 @@ public class EnemyZombie : MonoBehaviour
             if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
             {
                 direction.z = -speed * 0.6f;
+                slowCanvas.SetActive(true);
             }
             else
             {
                 direction.z = -speed;
+                slowCanvas.SetActive(false);
             }
         }
         if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
@@ -120,6 +123,8 @@ public class EnemyZombie : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            critCanvas.SetActive(false);
+            slowCanvas.SetActive(false);
             dead = true;
             Destroy(GetComponent<CharacterController>());
             Destroy(healthCanvas);
