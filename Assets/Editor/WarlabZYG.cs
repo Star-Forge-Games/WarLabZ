@@ -13,7 +13,7 @@ public class WarlabZYG
         //YG2.saves.keys = 0;
         //YG2.saves.donateCash = 0;
         YG2.saves.playedBefore = false;
-        YG2.saves.cash = 0;
+        YG2.saves.cash = 99;
         YG2.saves.unlockedWeapons = new int[] { 0 };
         YG2.saves.supplies = new int[] { 1, 2, 0 };
         YG2.saves.wallLevel = 0;
