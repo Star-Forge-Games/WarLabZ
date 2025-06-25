@@ -68,11 +68,13 @@ public class LavaAbility : MonoBehaviour
                 foreach (Transform t in enemyContainer)
                 {
                     EnemyZombie z = t.GetComponent<EnemyZombie>();
+                    yield return new WaitForEndOfFrame();
                     z?.TakeDamage(damage, false, false);
                 }
                 foreach (Transform t in wagonContainer)
                 {
                     Wagon z = t.GetComponent<Wagon>();
+                    yield return new WaitForEndOfFrame();
                     z?.TakeDamage(damage, false, false);
                 }
                 timeAfterLastTick = 0;
