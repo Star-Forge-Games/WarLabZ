@@ -43,6 +43,11 @@ public class LavaAbility : MonoBehaviour
             button.interactable = false;
             amount.text = "";
         }
+        else
+        {
+            button.interactable = true;
+            amount.text = $"{YG2.saves.supplies[1]}";
+        }
     }
 
     public void OnDestroy()

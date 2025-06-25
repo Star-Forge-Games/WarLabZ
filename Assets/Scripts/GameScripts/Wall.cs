@@ -84,6 +84,11 @@ public class Wall : MonoBehaviour
             button.interactable = false;
             amount.text = "";
         }
+        else
+        {
+            button.interactable = true;
+            amount.text = $"{YG2.saves.supplies[1]}";
+        }
     }
 
     private void Update()

@@ -40,6 +40,10 @@ public class BombAbility : MonoBehaviour
         {
             button.interactable = false;
             amount.text = "";
+        } else
+        {
+            button.interactable = true;
+            amount.text = $"{YG2.saves.supplies[1]}";
         }
     }
 
