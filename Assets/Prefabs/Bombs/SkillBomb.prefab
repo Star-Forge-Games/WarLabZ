@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d80a2e95808fc44b801f391df4f5bbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 8
-  explosionRadius: 4
+  fallSpeed: 12
+  explosionRadius: 3
   damage: 10
   mr: {fileID: 1980361381785943972}
 --- !u!1 &899802601787345362
