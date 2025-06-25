@@ -45,16 +45,14 @@ public class PauseSystem : MonoBehaviour
     public void SkillSelect()
     {
         if (skillsPanel.GetComponent<SkillsPanel>().ReachedMaxSkillLimit()) return;
-        Pause(false);
         selectingSkill = true;
+        Pause(false);
         skillsPanel.SetActive(true);
-        pausePanel.SetActive(false);
     }
 
     public void Pause(bool end)
     {
         if (this.end && !end) return;
-        if (selectingSkill) return;
         OnPauseStateChanged?.Invoke(true);
         foreach (Transform t in enemyContainer)
         {
@@ -68,7 +66,8 @@ public class PauseSystem : MonoBehaviour
         {
             t.GetComponent<Wagon>().SelfPause();
         }
-       if (!end) pausePanel.SetActive(true);
+        if (selectingSkill) return;
+        if (!end) pausePanel.SetActive(true);
     }
 
     public void Unpause(bool fromSkillSelection)
