@@ -5,6 +5,7 @@ public class Wagon : EnemyZombie
 {
 
     [SerializeField] Animator bombAnimator;
+    [SerializeField] ParticleSystem fire;
 
     public new void Update()
     {
@@ -74,6 +75,7 @@ public class Wagon : EnemyZombie
     {
         anim.speed = 0;
         bombAnimator.speed = 0;
+        fire.Pause();
         enabled = false;
     }
 
@@ -81,6 +83,7 @@ public class Wagon : EnemyZombie
     {
         anim.speed = 1;
         bombAnimator.speed = 1;
+        fire.Play();
         enabled = true;
     }
 }
