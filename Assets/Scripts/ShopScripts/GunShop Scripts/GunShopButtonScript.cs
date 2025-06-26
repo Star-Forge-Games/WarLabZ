@@ -13,8 +13,6 @@ public class GunShopUIScript : MonoBehaviour
 
     private void Start()
     {
-        YG2.saves.unlockedWeapons = new int[] { 0, 1, 2 };
-        YG2.SaveProgress();
         action = () =>
         {
             cash.text = $"{YG2.saves.cash} $";

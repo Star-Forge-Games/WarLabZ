@@ -11,9 +11,8 @@ namespace YG
         public int[] supplies = new int[] { 2, 1, 0 };
         public bool playedBefore = false;
         public int cash = 0;
-        public int[] unlockedWeapons = new int[] { 0 };
         public int wallLevel = 0;
-        public int[] weaponLevels = new int[] { 0, 0, 0, 0, 0 };
+        public int[] weaponLevels = new int[] { 0, -1, -1, -1, -1 };
         public int selectedWeapon = 0;
         public bool soundOn = true;
         public int localeId = -1;

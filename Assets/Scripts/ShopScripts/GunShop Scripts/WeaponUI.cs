@@ -35,7 +35,17 @@ public class WeaponUI : MonoBehaviour
             upgradeButton.interactable = false;
             upgrade.text = "MAX";
             level.text = string.Empty;
-        } else
+        }
+        else if (lvl == -1)
+        {
+            level.text = $"{settings.levels[0].cost} $";
+            WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
+            if (wslevelNext.cost > YG2.saves.cash)
+            {
+                upgradeButton.interactable = false;
+            }
+        }
+        else
         {
             level.text = $"Lv. {lvl + 1}";
             WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
@@ -48,13 +58,6 @@ public class WeaponUI : MonoBehaviour
         aspd.text = $"+{wslevel.aspdBuff}";
         crit.text = $"+{wslevel.critBuff}";
         critChance.text = $"+{wslevel.critChanceBuff}";
-        if (!YG2.saves.unlockedWeapons.Contains(id))
-        {
-            Lock();
-        } else
-        {
-            Unlock();
-        }
         if (YG2.saves.selectedWeapon == id)
         {
             Select();
@@ -67,11 +70,12 @@ public class WeaponUI : MonoBehaviour
 
     public void Select()
     {
-        bg.color = new Color(236/255f, 250/255f, 65/255f, 137/255f);
+        bg.color = new Color(236 / 255f, 250 / 255f, 65 / 255f, 137 / 255f);
     }
 
     public void SelectWeapon()
     {
+        if (YG2.saves.weaponLevels[id] == -1) return;
         YG2.saves.selectedWeapon = id;
         YG2.SaveProgress();
         RefreshWeapons.Invoke();
@@ -79,19 +83,7 @@ public class WeaponUI : MonoBehaviour
 
     public void Deselect()
     {
-        bg.color = new Color(196/255f, 178/255f, 150/255f, 137/255f);
-    }
-
-    public void Lock()
-    {
-        lockObject.SetActive(true);
-        weaponModel.SetActive(false);
-    }
-
-    public void Unlock()
-    {
-        lockObject.SetActive(false);
-        weaponModel.SetActive(true);
+        bg.color = new Color(196 / 255f, 178 / 255f, 150 / 255f, 137 / 255f);
     }
 
     public virtual void Upgrade()
