@@ -8,7 +8,7 @@ using YG;
 public class WeaponUI : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance, level, upgrade;
+    [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance, cost, upgrade, level;
     [SerializeField] Button upgradeButton;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject bonusesPanel;
@@ -33,23 +33,28 @@ public class WeaponUI : MonoBehaviour
         {
             upgradeButton.interactable = false;
             upgrade.text = "MAX";
-            level.text = string.Empty;
+            cost.text = string.Empty;
+            level.text = $"Level {lvl} / {lvl}";
             bonusesPanel.SetActive(true);
         }
         else if (lvl == -1)
         {
-            level.text = $"{settings.levels[0].cost} $";
+            upgrade.text = "Buy";
+            cost.text = $"{settings.levels[0].cost} $";
             WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
             if (wslevelNext.cost > YG2.saves.cash)
             {
                 upgradeButton.interactable = false;
             }
+            level.text = "";
             bonusesPanel.SetActive(false);
             return;
         }
         else
         {
-            level.text = $"Lv. {lvl + 1}";
+            upgrade.text = "Upgrade";
+            cost.text = $"{settings.levels[lvl + 1].cost} $";
+            level.text = $"Level {lvl + 1} / {settings.levels.Length}";
             WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
             if (wslevelNext.cost > YG2.saves.cash)
             {

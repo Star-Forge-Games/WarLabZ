@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        gameObject.AddComponent<TouchSimulation>();
         TouchSimulation.Enable();
         characterController = GetComponent<CharacterController>();
     }
@@ -112,6 +113,7 @@ public class PlayerController : MonoBehaviour
 
     private void RunAway()
     {
+        Destroy(GetComponent<TouchSimulation>());
         anim.Play("Turn");
         paused = true;
         PauseSystem.instance.Lose();
