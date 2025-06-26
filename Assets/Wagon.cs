@@ -35,7 +35,7 @@ public class Wagon : EnemyZombie
         if (hit.gameObject.CompareTag("Wall"))
         {
             WagonExplosion.instance.Explode(transform.position);
-            Wall.instance.TakeDamage(this, damage);
+            Wall.instance.TakeDamage(this, -1);
             Destroy(gameObject);
         }
     }

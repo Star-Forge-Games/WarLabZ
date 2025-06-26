@@ -112,6 +112,27 @@ public class Wall : MonoBehaviour
 
     public void TakeDamage(EnemyZombie z, int damage)
     {
+        if (damage == -1)
+        {
+            if (invulnerable) return;
+            health -= (int) (maxHealth * 0.2f);
+            if (!shaking)
+            {
+                shaking = true;
+                wallHpBarAnimator.Play("Shake");
+                StartCoroutine(nameof(StopShake));
+                if (health <= 0)
+                {
+                    EnemyZombie.OnZombieHitWall -= TakeDamage;
+                    OnWallDeath?.Invoke();
+                    wallHpBar.gameObject.SetActive(false);
+                    Destroy(gameObject);
+                    return;
+                }
+                UpdateWallHp();
+            }
+            return;
+        }
         if (blademail)
         {
             float bmDmg = damage * bladeMailDemagePercent;
@@ -132,6 +153,7 @@ public class Wall : MonoBehaviour
             OnWallDeath?.Invoke();
             wallHpBar.gameObject.SetActive(false);
             Destroy(gameObject);
+            return;
         }
         UpdateWallHp();
     }
