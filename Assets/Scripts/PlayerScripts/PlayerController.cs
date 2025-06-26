@@ -84,8 +84,9 @@ public class PlayerController : MonoBehaviour
 
     public void TouchStart(InputAction.CallbackContext context)
     {
-        Debug.Log("TouchStart, reset");
-        touchPosition = Vector2.zero;
+        if (context.started || context.canceled) {
+            touchPosition = Vector2.zero;
+        }
     }
 
 
