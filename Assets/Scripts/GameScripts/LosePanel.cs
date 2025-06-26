@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.SceneManagement;
 using YG;
 
@@ -36,6 +37,7 @@ public class LosePanel : MonoBehaviour
 
     private IEnumerator SwitchSceneCoroutine(int i)
     {
+        TouchSimulation.Disable();
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene(i);
     }
