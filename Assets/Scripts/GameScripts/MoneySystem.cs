@@ -28,8 +28,8 @@ public class MoneySystem : MonoBehaviour
         {
             if (bonusMoney) money *= 2;
             Instantiate(dollars, z.transform.position, Quaternion.identity);
-            this.money += money;
-            moneyText.text = "$: " + this.money;
+            levelMoney += money;
+            moneyText.text = "$: " + this.money + levelMoney;
         }
     }
 
