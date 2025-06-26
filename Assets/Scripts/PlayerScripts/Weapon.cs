@@ -55,10 +55,10 @@ public class Weapon : MonoBehaviour
         PauseSystem.OnPauseStateChanged += action;
         WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(weaponId);
         WeaponSettings.Level l = settings.levels[level];
-        bulletDamage += l.damageBuff;
-        critChance += l.critChanceBuff;
-        critDamageMultiplier += l.critBuff;
-        bulletsRate += l.aspdBuff;
+        bulletDamage = l.damage;
+        critChance = l.critChance;
+        critDamageMultiplier = l.crit;
+        bulletsRate = l.aspd;
     }
 
 

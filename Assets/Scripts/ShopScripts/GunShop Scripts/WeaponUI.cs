@@ -11,7 +11,7 @@ public class WeaponUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance, level, upgrade;
     [SerializeField] Button upgradeButton;
     [SerializeField] GameObject weaponModel;
-    [SerializeField] GameObject lockObject;
+    [SerializeField] GameObject bonusesPanel;
     [SerializeField] int id;
     private Image bg;
 
@@ -29,12 +29,12 @@ public class WeaponUI : MonoBehaviour
     {
         int lvl = YG2.saves.weaponLevels[id];
         WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(id);
-        WeaponSettings.Level wslevel = settings.levels[lvl];
         if (lvl == settings.levels.Length - 1)
         {
             upgradeButton.interactable = false;
             upgrade.text = "MAX";
             level.text = string.Empty;
+            bonusesPanel.SetActive(true);
         }
         else if (lvl == -1)
         {
@@ -44,6 +44,8 @@ public class WeaponUI : MonoBehaviour
             {
                 upgradeButton.interactable = false;
             }
+            bonusesPanel.SetActive(false);
+            return;
         }
         else
         {
@@ -53,11 +55,13 @@ public class WeaponUI : MonoBehaviour
             {
                 upgradeButton.interactable = false;
             }
+            bonusesPanel.SetActive(true);
         }
-        dmg.text = $"+{wslevel.damageBuff}";
-        aspd.text = $"+{wslevel.aspdBuff}";
-        crit.text = $"+{wslevel.critBuff}";
-        critChance.text = $"+{wslevel.critChanceBuff}";
+        WeaponSettings.Level wslevel = settings.levels[lvl];
+        dmg.text = $"{wslevel.damage}";
+        aspd.text = $"{wslevel.aspd}";
+        crit.text = $"{wslevel.crit}";
+        critChance.text = $"{wslevel.critChance}";
         if (YG2.saves.selectedWeapon == id)
         {
             Select();
