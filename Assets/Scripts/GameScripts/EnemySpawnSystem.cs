@@ -30,7 +30,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     public int GetTotalWave()
     {
-        return wave + endlessWave - 1;
+        return wave + endlessWave;
     }
 
     private struct PartProgress
