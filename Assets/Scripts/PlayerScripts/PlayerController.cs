@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.InputSystem.EnhancedTouch;
+using YG;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -33,7 +34,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         trans = transform;
-        TouchSimulation.Enable();
+        if (!Application.isMobilePlatform)
+        {
+            TouchSimulation.Enable();
+        }
         characterController = GetComponent<CharacterController>();
     }
 
@@ -113,7 +117,10 @@ public class PlayerController : MonoBehaviour
 
     private void RunAway()
     {
-        TouchSimulation.Disable();
+        if (!Application.isMobilePlatform)
+        {
+            TouchSimulation.Disable();
+        }
         anim.Play("Turn");
         paused = true;
         PauseSystem.instance.Lose();
