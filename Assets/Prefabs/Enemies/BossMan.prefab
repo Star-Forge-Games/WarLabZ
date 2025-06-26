@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 559977673064678048}
   - component: {fileID: 5033716229429919098}
   m_Layer: 6
-  m_Name: EnemyMan
+  m_Name: BossMan
   m_TagString: EnemyZombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,8 +824,8 @@ MonoBehaviour:
   anim: {fileID: 5327878651251781137}
   healthBar: {fileID: 7789753011265524503}
   healthAmount: {fileID: 5739539181246942191}
-  maxHealth: 8
-  damage: 1
+  maxHealth: 15
+  damage: 2
   speed: 5
   difficulty: 2
   money: 1
@@ -1051,6 +1051,18 @@ PrefabInstance:
     - target: {fileID: -8893078617153529600, guid: 782597a187e009246890a1561ddf89ea, type: 3}
       propertyPath: m_Name
       value: mixamorig:LeftHandMiddle3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 782597a187e009246890a1561ddf89ea, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 782597a187e009246890a1561ddf89ea, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 782597a187e009246890a1561ddf89ea, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 782597a187e009246890a1561ddf89ea, type: 3}
       propertyPath: m_LocalPosition.x

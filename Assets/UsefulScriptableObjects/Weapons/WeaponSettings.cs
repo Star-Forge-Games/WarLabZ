@@ -10,7 +10,7 @@ public class WeaponSettings : ScriptableObject
     {
         public int cost;
         public int damageBuff;
-        public int aspdBuff;
+        public float aspdBuff;
         public float critBuff;
         public float critChanceBuff;
     }

@@ -18157,8 +18157,10 @@ MonoBehaviour:
   upgradeButton: {fileID: 1667110327}
   wallSettings: {fileID: 11400000, guid: f23df38032bed494b8353b3c39716330, type: 2}
   descriptions:
-  - 
-  - 
+  - "\u041E\u0431\u044B\u0447\u043D\u0430\u044F \u0441\u0442\u0435\u043D\u0430 \u0438\u0437
+    \u043C\u0435\u0448\u043A\u043E\u0432 \u0441 \u043F\u0435\u0441\u043A\u043E\u043C"
+  - "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435, \u0443 \u044D\u0442\u043E\u0439
+    \u0441\u0442\u0435\u043D\u044B \u0435\u0441\u0442\u044C \u0441\u0442\u0438\u043B\u044C!"
   - 
   - 
   - 
@@ -50480,13 +50482,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 602804430}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 602804432}
+        m_TargetAssemblyTypeName: WallShopButtonScript, Assembly-CSharp
+        m_MethodName: Upgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

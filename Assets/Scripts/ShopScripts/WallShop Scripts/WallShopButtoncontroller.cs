@@ -35,6 +35,7 @@ public class WallShopButtonScript : MonoBehaviour
         YG2.saves.wallLevel = lvl;
         YG2.saves.cash -= wallSettings.wallLevels[lvl].cost;
         YG2.SaveProgress();
+        UpdateButtons();
     }
 
     private void UpdateButtons()
@@ -45,7 +46,7 @@ public class WallShopButtonScript : MonoBehaviour
         if (YG2.saves.wallLevel >= lvl)
         {
             upgradeButton.interactable = false;
-            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Улучшено"; // localize
+            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Куплено"; // localize
         } else
         {
             if (YG2.saves.cash < wallSettings.wallLevels[lvl].cost)
@@ -54,7 +55,7 @@ public class WallShopButtonScript : MonoBehaviour
                 upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Недостаточно денег"; // localize
             }
             upgradeButton.interactable = true;
-            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Улучшить\n{wallSettings.wallLevels[lvl].cost} $"; // localize
+            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Купить\n{wallSettings.wallLevels[lvl].cost} $"; // localize
         }
     }
 

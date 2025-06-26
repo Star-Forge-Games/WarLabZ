@@ -18,8 +18,18 @@ MonoBehaviour:
     aspdBuff: 0
     critBuff: 0
     critChanceBuff: 0
-  - cost: 100
+  - cost: 3
     damageBuff: 1
-    aspdBuff: 0
+    aspdBuff: 0.25
     critBuff: 0
+    critChanceBuff: 0
+  - cost: 10
+    damageBuff: 1
+    aspdBuff: 0.3
+    critBuff: 0.05
     critChanceBuff: 2
+  - cost: 20
+    damageBuff: 1
+    aspdBuff: 0.5
+    critBuff: 0.1
+    critChanceBuff: 5
