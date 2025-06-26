@@ -21,8 +21,8 @@ public class EnemySpawnSystem : MonoBehaviour
     private int endlessWave = 0;
     private bool lastZombieSpawned = false;
     private bool paused = false;
-    public int wave = 0;
-    public int spawnedEnemies = 0, waveEnemies = 0;
+    private int wave = 0;
+    private int spawnedEnemies = 0, waveEnemies = 0;
     private Action<bool> action;
     private float endlessTimer;
     private bool endlessStarted;

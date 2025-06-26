@@ -6,9 +6,9 @@ using YG;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Transform firePoint;
-    [SerializeField] float bulletsRate;
+    private float bulletsRate;
     [SerializeField] float fireForce;
-    [SerializeField] public int bulletDamage;
+    [HideInInspector] public int bulletDamage;
     [SerializeField] float bulletLifeTime;
     [SerializeField] private Transform bulletContainer;
     [SerializeField] GameObject bulletPrefab;
@@ -31,7 +31,7 @@ public class Weapon : MonoBehaviour
 
     private bool twinShot, instakill, through, bomb;
 
-    [SerializeField] private float critChance = 2, critDamageMultiplier = 1.5f;
+    private float critChance = 2, critDamageMultiplier = 1.5f;
 
     public static Weapon instance;
 
