@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] float moveSpeedWithBonus = 12f;
     [SerializeField] private Animator anim;
-    Vector2 moveInput;
-    Vector3 movement;
+    Vector2 moveInput = Vector2.zero;
+    Vector3 movement = Vector2.zero;
     private Action<bool> action;
     private bool paused;
 
@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        trans = transform;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
@@ -33,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        trans = transform;
         gameObject.AddComponent<TouchSimulation>();
         TouchSimulation.Enable();
         characterController = GetComponent<CharacterController>();
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
     }
 
-    protected Vector2 touchPosition;
+    protected Vector2 touchPosition = Vector2.zero;
 
     public void TouchDelta(InputAction.CallbackContext context)
     {
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
     public void TouchStart(InputAction.CallbackContext context)
     {
+        Debug.Log("TouchStart, reset");
         touchPosition = Vector2.zero;
     }
 
