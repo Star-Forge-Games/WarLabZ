@@ -5569,7 +5569,7 @@ MonoBehaviour:
   healthBar: {fileID: 7789753011265524503}
   healthAmount: {fileID: 5739539181246942191}
   maxHealth: 3
-  damage: 5
+  damage: -1
   speed: 10
   difficulty: 0
   money: 0
