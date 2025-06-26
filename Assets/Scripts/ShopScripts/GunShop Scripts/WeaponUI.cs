@@ -65,8 +65,8 @@ public class WeaponUI : MonoBehaviour
         WeaponSettings.Level wslevel = settings.levels[lvl];
         dmg.text = $"{wslevel.damage}";
         aspd.text = $"{wslevel.aspd}";
-        crit.text = $"{wslevel.crit}";
-        critChance.text = $"{wslevel.critChance}";
+        crit.text = $"{wslevel.crit * 100}%";
+        critChance.text = $"{wslevel.critChance}%";
         if (YG2.saves.selectedWeapon == id)
         {
             Select();
