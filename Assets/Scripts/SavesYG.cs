@@ -18,5 +18,6 @@ namespace YG
         public int localeId = -1;
         public int energyLeft;
         public long lastEnergySpentTimeStamp;
+        public int record;
     }
 }

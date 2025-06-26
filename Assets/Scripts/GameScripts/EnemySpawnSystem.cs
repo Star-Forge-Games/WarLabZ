@@ -28,6 +28,11 @@ public class EnemySpawnSystem : MonoBehaviour
     private bool endlessStarted;
     private PartProgress[] partsProgress;
 
+    public int GetTotalWave()
+    {
+        return wave + endlessWave - 1;
+    }
+
     private struct PartProgress
     {
         public WavePart part;

@@ -49,4 +49,9 @@ public class MoneySystem : MonoBehaviour
         bonusMoney = true;
     }
 
+    public int GetCollectedMoney()
+    {
+        return levelMoney * (bonusMoney ? 2 : 1);
+    }
+
 }
