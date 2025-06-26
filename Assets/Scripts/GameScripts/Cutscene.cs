@@ -15,6 +15,7 @@ public class Cutscene : MonoBehaviour
 
     private void Start()
     {
+        KillsCount.kills = 0;
         fader.Play("Unfade");
         if (instaTimer) timer.enabled = true;
     }
