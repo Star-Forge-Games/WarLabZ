@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb0dfe8e1f7c8b34db4eeec07f708e58, type: 3}
-  m_Name: ARWeaponSettingsID5
+  m_Name: RifleWeaponSettingsID4
   m_EditorClassIdentifier: 
   levels:
-  - cost: 0
+  - cost: 2500
     damageBuff: 0
     aspdBuff: 0
     critBuff: 0
