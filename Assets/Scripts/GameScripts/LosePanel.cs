@@ -9,7 +9,7 @@ public class LosePanel : MonoBehaviour
 {
 
     [SerializeField] Animator fader;
-    [SerializeField] TextMeshProUGUI record, wavesLived, money, zombiesKilled;
+    [SerializeField] TextMeshProUGUI record, wavesLived, money, zombiesKilled, bossesKilled;
     [SerializeField] EnemySpawnSystem ess;
     [SerializeField] GameObject newRecordAnimator;
 
@@ -27,6 +27,7 @@ public class LosePanel : MonoBehaviour
         wavesLived.text = $"Прожито волн: {waves}";
         money.text = $"Денег заработано: {MoneySystem.instance.GetCollectedMoney()}";
         zombiesKilled.text = $"Зомби убито: {KillsCount.kills}";
+        bossesKilled.text = $"Из них боссов: {KillsCount.bosses}";
     }
 
     public void SwitchScene(int i)
