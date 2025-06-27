@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.InputSystem.EnhancedTouch;
-using YG;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -50,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public void Pause(InputAction.CallbackContext c)
     {
         if (!c.performed) return;
+        if (!enabled) return;
         if (!paused)
         {
             PauseSystem.instance.Pause(false);
@@ -58,6 +58,17 @@ public class PlayerController : MonoBehaviour
         {
             PauseSystem.instance.Unpause(false);
         }
+    }
+
+    public void Unpause()
+    {
+        PauseSystem.instance.Unpause(false);
+    }
+
+    public void Pause()
+    {
+        if (!enabled) return;
+        PauseSystem.instance.Pause(false);
     }
 
     public void SelfPause()
@@ -87,7 +98,8 @@ public class PlayerController : MonoBehaviour
 
     public void TouchStart(InputAction.CallbackContext context)
     {
-        if (context.started || context.canceled) {
+        if (context.started || context.canceled)
+        {
             touchPosition = Vector2.zero;
         }
     }
