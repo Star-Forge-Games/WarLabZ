@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using YG;
 
 public class GunShopUIScript : MonoBehaviour

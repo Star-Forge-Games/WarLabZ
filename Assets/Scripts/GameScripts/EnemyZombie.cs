@@ -17,11 +17,11 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] protected float speed;
     [SerializeField] private int difficulty;
     [SerializeField] private int money;
-    [SerializeField] private float slowStartZ = 35, slowEndZ = 10;
+    [SerializeField] protected float slowStartZ = 35, slowEndZ = 10;
     [SerializeField] private bool boss;
     [SerializeField] protected GameObject healthCanvas;
     [SerializeField] protected GameObject critCanvas, instaKillCanvas;
-    [SerializeField] private GameObject slowCanvas;
+    [SerializeField] protected GameObject slowCanvas;
 
     [Serializable]
     public struct ColoredPart
@@ -98,6 +98,7 @@ public class EnemyZombie : MonoBehaviour
             else
             {
                 direction.z = -speed;
+                slowCanvas.SetActive(false);
             }
         } else
         {
@@ -197,7 +198,7 @@ public class EnemyZombie : MonoBehaviour
         enabled = true;
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         OnZombieHitWall?.Invoke(this, damage);
     }
