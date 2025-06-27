@@ -93,10 +93,10 @@ public class Energy : MonoBehaviour
                 energy++;
                 StopCoroutine(nameof(TimerTick));
                 YG2.saves.energyLeft = energy;
+                YG2.saves.lastEnergySpentTimeStamp = DateTime.Now.Ticks;
                 YG2.SaveProgress();
                 UpdateEnergySlider(false, energy);
                 playButton.interactable = true;
-                YG2.saves.lastEnergySpentTimeStamp = DateTime.Now.Ticks;
             }
         }
     }
