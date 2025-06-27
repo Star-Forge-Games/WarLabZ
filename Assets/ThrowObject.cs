@@ -18,8 +18,8 @@ public class ThrowObject : MonoBehaviour
         Wall.instance.TakeDamage(z, damage);
         Destroy(gameObject);
         Vector3 pos = this.transform.position;
-        pos.z = 1.5f;
-        pos.y = 1.5f;
+        pos.z = 2.66f;
+        pos.y = 1.04f;
         Instantiate(boomprefab, pos, Quaternion.identity);
     }
 
