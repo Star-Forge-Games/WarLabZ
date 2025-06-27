@@ -32,7 +32,7 @@ public class Energy : MonoBehaviour
             playButton.interactable = true;
             return;
         }
-        energyRechargeInterval = (long) energyRechargeIntervalInSeconds * 10000000;
+        energyRechargeInterval = (long)energyRechargeIntervalInSeconds * 10000000;
         energy = YG2.saves.energyLeft;
         if (energy > maxEnergy)
         {
@@ -60,14 +60,15 @@ public class Energy : MonoBehaviour
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
         if (energy == maxEnergy) return;
-        long secondsLeft =  (energyRechargeInterval - cts) / 10000000;
+        long secondsLeft = (energyRechargeInterval - cts) / 10000000;
         secsLeft = secondsLeft;
         if (energy == 0)
         {
             playButton.interactable = false;
             UpdateEnergySlider(true, secondsLeft);
             StartCoroutine(nameof(TimerTick));
-        } else
+        }
+        else
         {
             UpdateEnergySlider(false, energy);
             playButton.interactable = true;
@@ -95,6 +96,7 @@ public class Energy : MonoBehaviour
                 YG2.SaveProgress();
                 UpdateEnergySlider(false, energy);
                 playButton.interactable = true;
+                YG2.saves.lastEnergySpentTimeStamp = DateTime.Now.Ticks;
             }
         }
     }
@@ -105,7 +107,8 @@ public class Energy : MonoBehaviour
         {
             energySlider.value = number;
             energyText.text = $"{number}";
-        } else
+        }
+        else
         {
             energySlider.value = 0;
             long m = number / 60;
