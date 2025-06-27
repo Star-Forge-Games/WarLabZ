@@ -26,7 +26,7 @@ public class Thrower : EnemyZombie
         {
             slowCanvas.SetActive(false);
         }
-        if (transform.position.z <= 15)
+        if (transform.position.z <= 30)
         {
             throwing = true;
             anim.SetBool("Throwing", true);

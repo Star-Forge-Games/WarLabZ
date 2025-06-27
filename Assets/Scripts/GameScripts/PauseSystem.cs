@@ -8,11 +8,9 @@ public class PauseSystem : MonoBehaviour
     public static PauseSystem instance;
 
     [SerializeField] private GameObject pausePanel, winPanel, losePanel, skillsPanel;
-    [SerializeField] private Transform bulletContainer, enemyContainer, wagonContainer;
+    [SerializeField] private Transform bulletContainer, enemyContainer, wagonContainer, stoneContainer;
     private bool selectingSkill;
-
     private bool end = false;
-
     public static Action<bool> OnPauseStateChanged;
 
     private void Awake()
@@ -66,6 +64,10 @@ public class PauseSystem : MonoBehaviour
         {
             t.GetComponent<Wagon>().SelfPause();
         }
+        foreach (Transform t in stoneContainer)
+        {
+            t.GetComponent<Animator>().speed = 0;
+        }
         if (selectingSkill) return;
         if (!end) pausePanel.SetActive(true);
     }
@@ -87,6 +89,10 @@ public class PauseSystem : MonoBehaviour
         foreach (Transform t in wagonContainer)
         {
             t.GetComponent<Wagon>().SelfUnpause();
+        }
+        foreach (Transform t in stoneContainer)
+        {
+            t.GetComponent<Animator>().speed = 1;
         }
         pausePanel.SetActive(false);
     }
