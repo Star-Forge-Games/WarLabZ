@@ -132,7 +132,9 @@ public class Energy : MonoBehaviour
         if (energy == maxEnergy) return;
         adPanel.SetActive(true);
         gameObject.SetActive(false);
+        YG2.RewardedAdvShow("1", () => AddEnergyByAd());
     }
+
 
     public void AddEnergyByAd()
     {
