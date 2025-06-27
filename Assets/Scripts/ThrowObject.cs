@@ -15,7 +15,7 @@ public class ThrowObject : MonoBehaviour
 
     public void DoDamage()
     {
-        Wall.instance.TakeDamage(z, damage);
+        if (Wall.instance != null) Wall.instance.TakeDamage(z, damage);
         Destroy(gameObject);
         Vector3 pos = this.transform.position;
         pos.z = 2.66f;
