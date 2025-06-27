@@ -10,12 +10,12 @@ public class WallShopButtonScript : MonoBehaviour
     [SerializeField] private GameObject nextButton, previousButton;
     [SerializeField] private Button upgradeButton;
     [SerializeField] private WallSettings wallSettings;
-
     private int lvl;
     [SerializeField] private string[] descriptions;
     [SerializeField] TextMeshProUGUI wallsText;
     [SerializeField] Transform wallsTransform;
     [SerializeField] float speedRotation;
+    [SerializeField] TextMeshProUGUI moneyText;
 
 
 
@@ -40,6 +40,7 @@ public class WallShopButtonScript : MonoBehaviour
 
     private void UpdateButtons()
     {
+        moneyText.text = $"{YG2.saves.cash} $";
         nextButton.SetActive(lvl != walls.Length - 1);
         previousButton.SetActive(lvl != 0);
         wallsText.text = $"Уровень {lvl+1}\n{descriptions[lvl]}";
