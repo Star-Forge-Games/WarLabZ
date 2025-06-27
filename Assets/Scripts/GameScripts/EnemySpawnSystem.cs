@@ -179,7 +179,7 @@ public class EnemySpawnSystem : MonoBehaviour
     void Update()
     {
         if (paused) return;
-        waveText.text = $"Волна: {GetTotalWave()}";
+        waveText.text = $"Волна: {GetTotalWave() + 1}";
         if (endlessStarted)
         {
             endlessTimer += Time.deltaTime;
