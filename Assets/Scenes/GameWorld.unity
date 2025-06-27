@@ -9194,7 +9194,7 @@ GameObject:
   - component: {fileID: 1026304198}
   - component: {fileID: 1026304201}
   m_Layer: 0
-  m_Name: FloorIsLava
+  m_Name: AcidRain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9341,8 +9341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lava: {fileID: 2120661735}
   rain: {fileID: 1756097676}
-  damageTicks: 10
-  damage: 3
+  damageTicks: 5
+  damage: 1
   damageDelay: 0.75
   enemyContainer: {fileID: 689676792}
   wagonContainer: {fileID: 823084314}
@@ -9512,7 +9512,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 2338215394920041643, guid: a95f79ba44679e7488a35b038b0a645c, type: 3}
   bomber: {fileID: 144715526}
   button: {fileID: 1040203905}
-  cooldownInSeconds: 30
+  cooldownInSeconds: 40
   cooldownSlider: {fileID: 1202748183}
   amount: {fileID: 1463592768}
 --- !u!1 &1042541392
@@ -12983,7 +12983,7 @@ MonoBehaviour:
   firePoint: {fileID: 1959370579}
   fireForce: 50
   bulletDamage: 1
-  bulletLifeTime: 0.5
+  bulletLifeTime: 0.7
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 0
@@ -69799,7 +69799,7 @@ MonoBehaviour:
   healthAmount: {fileID: 1770473538853997195}
   wallHpBar: {fileID: 5393603743321756984}
   settings: {fileID: 11400000, guid: f23df38032bed494b8353b3c39716330, type: 2}
-  protectionTime: 999999
+  protectionTime: 10
   WallShield: {fileID: 6771473286471559929}
   bonusHealthPercent: 0.1
   button: {fileID: 1054330113}
