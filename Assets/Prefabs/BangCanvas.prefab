@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 7774234224557933878}
   - component: {fileID: 7398987026968449468}
   - component: {fileID: 4790308855337119407}
+  - component: {fileID: 2494008534792449271}
   m_Layer: 0
   m_Name: BangCanvas
   m_TagString: Untagged
@@ -200,3 +201,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2494008534792449271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2939080594914707271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c42d20eef35ec424b8a4925361d26918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
