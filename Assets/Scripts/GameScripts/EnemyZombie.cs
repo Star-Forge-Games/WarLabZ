@@ -98,8 +98,10 @@ public class EnemyZombie : MonoBehaviour
             else
             {
                 direction.z = -speed;
-                slowCanvas.SetActive(false);
             }
+        } else
+        {
+            slowCanvas.SetActive(false);
         }
         if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
     }
