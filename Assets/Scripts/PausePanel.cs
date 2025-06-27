@@ -26,6 +26,7 @@ public class PausePanel : MonoBehaviour
 
     public void SwitchScene(int i)
     {
+        fader.gameObject.SetActive(true);
         fader.Play("Fade");
         StartCoroutine(nameof(SwitchSceneCoroutine), i);
     }

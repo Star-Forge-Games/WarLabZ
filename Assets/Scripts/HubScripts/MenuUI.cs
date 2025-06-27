@@ -31,7 +31,8 @@ public class MenuUI : MonoBehaviour
 
     public void LoadGame()
     {
-        energy.Spend();   
+        energy.Spend();
+        fader.gameObject.SetActive(true);
         fader.Play("Fade");
         StartCoroutine(SwitchScene());
     }
