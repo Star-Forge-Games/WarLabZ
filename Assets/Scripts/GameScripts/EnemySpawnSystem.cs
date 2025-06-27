@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using static Wave;
 
@@ -16,6 +17,7 @@ public class EnemySpawnSystem : MonoBehaviour
     [SerializeField] private bool endless;
     [SerializeField] private int wavesPerSkill = 3;
     [SerializeField] private int endlessFirstWaveDifficulty = 45;
+    [SerializeField] private TextMeshProUGUI waveText;
     private GameObject[] endlessWaveZombies;
     private int endlessZombieIndex = 0;
     private int endlessWave = 0;
@@ -177,6 +179,7 @@ public class EnemySpawnSystem : MonoBehaviour
     void Update()
     {
         if (paused) return;
+        waveText.text = $"Волна: {GetTotalWave()}";
         if (endlessStarted)
         {
             endlessTimer += Time.deltaTime;
