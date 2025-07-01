@@ -19,6 +19,7 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
+        fader.gameObject.SetActive(true);
         cash.text = $"{YG2.saves.cash} $";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
         LocalizationSettings.InitializationOperation.WaitForCompletion();

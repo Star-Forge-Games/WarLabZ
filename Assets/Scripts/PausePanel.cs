@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,10 +9,12 @@ public class PausePanel : MonoBehaviour
 
     [SerializeField] private Animator fader;
     [SerializeField] private Transform container;
+    [SerializeField] private TextMeshProUGUI skillsAmount;
 
     public void AddSkill(Sprite skill, int num)
     {
         container.GetChild(num).GetComponent<Image>().sprite = skill;
+        skillsAmount.text = $"{num + 1}/15";
     }
 
     public void RestartLevel()

@@ -2,16 +2,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
+using static LocalizationHelperModule;
 
 public class SuppliesShopUI : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI wAmount, bAmount, aAmount, wPrice, bPrice, aPrice, moneyText;
+    [SerializeField] TextMeshProUGUI wAmount, bAmount, aAmount, wPrice, bPrice, aPrice, moneyText, descText;
     [SerializeField] Button buyW, buyB, buyA;
     [SerializeField] int priceW, priceB, priceA;
 
     void OnEnable()
     {
+        descText.text = Loc("suppliesdescription");
         Refresh();
     }
 
@@ -42,5 +44,10 @@ public class SuppliesShopUI : MonoBehaviour
         YG2.saves.supplies = temp;
         YG2.SaveProgress();
         Refresh();
+    }
+
+    public void SetDescText(int i)
+    {
+        descText.text = Loc(i == 0? "shielddescription" : i == 1? "bomberdescription" : "raindescription");
     }
 }

@@ -1,0 +1,269 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: warlab_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c7e39b832b46b8047a83fa415c1489e4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 54184497862242304
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184547212423168
+    m_Localized: About
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184587322552320
+    m_Localized: Weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184645438828544
+    m_Localized: Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184751093346304
+    m_Localized: Wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184872765911040
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185042853326848
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185194292867072
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185213121097728
+    m_Localized: Attack speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185283165974528
+    m_Localized: Crit damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185357501624320
+    m_Localized: Crit chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185402783330304
+    m_Localized: Purchase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185444084641792
+    m_Localized: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185539140153344
+    m_Localized: 'Developers:
+
+      SamsonovGames'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185634623483904
+    m_Localized: Unlock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185923585863680
+    m_Localized: Ad is coming...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54186574151774208
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188481465380864
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54195842594729984
+    m_Localized: Purchased
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54195921359564800
+    m_Localized: Not enough cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54199632295194624
+    m_Localized: MAX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188537673248768
+    m_Localized: Basic sandbag wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188611635605504
+    m_Localized: Look, this wall has some style!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54201841619660800
+    m_Localized: Choose skill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54202221183201280
+    m_Localized: Watch ad to reroll skills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54202390251401216
+    m_Localized: Watch ad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203130051129344
+    m_Localized: Back to lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203684416483328
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203813546520576
+    m_Localized: 'Selected skills:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206570055692288
+    m_Localized: Instant kill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206631242199040
+    m_Localized: Sharp bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206855226421248
+    m_Localized: Double shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206946666442752
+    m_Localized: Double cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207000814907392
+    m_Localized: Wall repair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207051410796544
+    m_Localized: Airstrikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207101633392640
+    m_Localized: Spiky wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207178624036864
+    m_Localized: Shotgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207301693304832
+    m_Localized: Crit chance +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207364410732544
+    m_Localized: Damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207415040176128
+    m_Localized: Attack speed +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207526382170112
+    m_Localized: Multishots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207596770979840
+    m_Localized: Crit damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207666127990784
+    m_Localized: Bombopocalypse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207724558839808
+    m_Localized: Speed +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207794163314688
+    m_Localized: Zombie slowdown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207954838712320
+    m_Localized: Stunning bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208124078878720
+    m_Localized: Zombie HP -
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208262159560704
+    m_Localized: Lifesteal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208334867820544
+    m_Localized: Boss HP -
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208392120070144
+    m_Localized: Turret double shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208466350862336
+    m_Localized: Turret crit chance +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208576640086016
+    m_Localized: Turret attack speed +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208662992416768
+    m_Localized: Turret sharp bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208745238523904
+    m_Localized: Turret multishot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208833386016768
+    m_Localized: Turret damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208889082179584
+    m_Localized: Turrect crit damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54211253197434880
+    m_Localized: New record!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222669405057024
+    m_Localized: Click on any supply to see it's description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222672433344512
+    m_Localized: Makes the wall invincible for a short time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222674123649024
+    m_Localized: Calls a heavy airstrike to clear out zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222675344191488
+    m_Localized: Calls an acid rain, which deals periodic damage to all zombies
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,10 +1,8 @@
-using System;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
-
+using static LocalizationHelperModule;
 public class WeaponUI : MonoBehaviour
 {
 
@@ -53,34 +51,34 @@ public class WeaponUI : MonoBehaviour
             weaponsTransform.GetChild(i).gameObject.SetActive(i == id);
         }
         if (lvl == -1)
-        {// localize everything
+        {
             var l = ws.levels[0];
-            buyUpgradeButtonText.text = $"Buy\n{l.cost}$";
-            dmg.text = $"Damage: {l.damage}";
-            aspd.text = $"Attack speed: {l.aspd}";
-            crit.text = $"Crit: {l.crit * 100}%";
-            critChance.text = $"Crit chance: {l.critChance}%";
+            buyUpgradeButtonText.text = $"{Loc("buy")}\n{l.cost}$";
+            dmg.text = $"{Loc("damage")}: {l.damage}";
+            aspd.text = $"{Loc("aspd")}: {l.aspd}";
+            crit.text = $"{Loc("crit")}: {l.crit * 100}%";
+            critChance.text = $"{Loc("critchance")}: {l.critChance}%";
         }
         else if (lvl == ws.levels.Length - 1)
-        {// localize everything
+        {
             var l = ws.levels[lvl];
-            buyUpgradeButtonText.text = "MAX";
+            buyUpgradeButtonText.text = Loc("max");
             buyUpgradeButton.interactable = false;
-            dmg.text = $"Damage: {l.damage}";
-            aspd.text = $"Attack speed: {l.aspd}";
-            crit.text = $"Crit: {l.crit * 100}%";
-            critChance.text = $"Crit chance: {l.critChance}%";
+            dmg.text = $"{Loc("damage")}: {l.damage}";
+            aspd.text = $"{Loc("aspd")}: {l.aspd}";
+            crit.text = $"{Loc("crit")}: {l.crit * 100}%";
+            critChance.text = $"{Loc("critchance")} {l.critChance}%";
             return;
         }
         else
         { // localize everything
-            buyUpgradeButtonText.text = $"Upgrade\n{ws.levels[lvl + 1].cost}$";
+            buyUpgradeButtonText.text = $"{Loc("upgrade")}\n{ws.levels[lvl + 1].cost}$";
             var l = ws.levels[lvl];
             var l2 = ws.levels[lvl + 1];
-            dmg.text = $"Damage: {l.damage}" + (l2.damage > l.damage ? $" (+{l2.damage - l.damage})" : "");
-            aspd.text = $"Attack speed: {l.aspd}" + (l2.aspd > l.aspd ? $" (+{(decimal)l2.aspd - (decimal)l.aspd})" : "");
-            crit.text = $"Crit: {l.crit * 100}%" + (l2.crit > l.crit ? $" (+{((decimal)l2.crit - (decimal)l.crit) * 100}%)" : "");
-            critChance.text = $"Crit chance: {l.critChance}%" + (l2.critChance > l.critChance ? $" (+{(decimal)l2.critChance - (decimal)l.critChance}%)" : "");
+            dmg.text = $"{Loc("damage")}: {l.damage}" + (l2.damage > l.damage ? $" (+{l2.damage - l.damage})" : "");
+            aspd.text = $"{Loc("aspd")}: {l.aspd}" + (l2.aspd > l.aspd ? $" (+{(decimal)l2.aspd - (decimal)l.aspd})" : "");
+            crit.text = $"{Loc("crit")}: {l.crit * 100}%" + (l2.crit > l.crit ? $" (+{((decimal)l2.crit - (decimal)l.crit) * 100}%)" : "");
+            critChance.text = $"{Loc("critchance")}: {l.critChance}%" + (l2.critChance > l.critChance ? $" (+{(decimal)l2.critChance - (decimal)l.critChance}%)" : "");
         }
         buyUpgradeButton.interactable = ws.levels[lvl + 1].cost <= YG2.saves.cash;
     }

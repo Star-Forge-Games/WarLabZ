@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
+using static LocalizationHelperModule;
 
 public class WallShopButtonScript : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class WallShopButtonScript : MonoBehaviour
     [SerializeField] private Button upgradeButton;
     [SerializeField] private WallSettings wallSettings;
     private int lvl;
-    [SerializeField] private string[] descriptions;
     [SerializeField] TextMeshProUGUI wallsText;
     [SerializeField] Transform wallsTransform;
     [SerializeField] float speedRotation;
@@ -43,20 +43,20 @@ public class WallShopButtonScript : MonoBehaviour
         moneyText.text = $"{YG2.saves.cash} $";
         nextButton.SetActive(lvl != walls.Length - 1);
         previousButton.SetActive(lvl != 0);
-        wallsText.text = $"Уровень {lvl+1}\n{descriptions[lvl]}";
+        wallsText.text = $"{Loc("level")} {lvl+1}\n{Loc($"wd{lvl}")}";
         if (YG2.saves.wallLevel >= lvl)
         {
             upgradeButton.interactable = false;
-            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Куплено"; // localize
+            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = Loc("bought");
         } else
         {
             if (YG2.saves.cash < wallSettings.wallLevels[lvl].cost)
             {
                 upgradeButton.interactable = false;
-                upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "Недостаточно денег"; // localize
+                upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = Loc("nocash");
             }
             upgradeButton.interactable = true;
-            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Купить\n{wallSettings.wallLevels[lvl].cost} $"; // localize
+            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"{Loc("buy")}\n{wallSettings.wallLevels[lvl].cost} $";
         }
     }
 

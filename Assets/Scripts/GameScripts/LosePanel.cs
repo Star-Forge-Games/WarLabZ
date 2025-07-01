@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.SceneManagement;
 using YG;
 

@@ -9,7 +9,7 @@ using YG;
 public class Wall : MonoBehaviour
 {
     [SerializeField] private TMP_Text healthAmount;
-    [SerializeField] private Image wallHpBar;
+    [SerializeField] private Slider wallHpBar;
     [SerializeField] private WallSettings settings;
     [SerializeField] private float protectionTime;
     [SerializeField] GameObject WallShield;
@@ -21,6 +21,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private float bladeMailDemagePercent = 0.5f;
     [SerializeField] private GameObject bladeMailObject;
     [SerializeField] TextMeshProUGUI amount;
+    [SerializeField] GameObject pauseButton, supPanel;
 
     private int health;
     public int maxHealth;
@@ -78,6 +79,8 @@ public class Wall : MonoBehaviour
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;
         health = maxHealth;
+        wallHpBar.value = maxHealth;
+        wallHpBar.value = health;
         UpdateWallHp();
         if (YG2.saves.supplies[0] == 0)
         {
@@ -126,6 +129,8 @@ public class Wall : MonoBehaviour
                     EnemyZombie.OnZombieHitWall -= TakeDamage;
                     OnWallDeath?.Invoke();
                     wallHpBar.gameObject.SetActive(false);
+                    pauseButton.gameObject.SetActive(false);
+                    supPanel.gameObject.SetActive(false);
                     Destroy(gameObject);
                     return;
                 }
@@ -159,7 +164,7 @@ public class Wall : MonoBehaviour
     }
     public void UpdateWallHp()
     {
-        wallHpBar.fillAmount = (float)health / maxHealth;
+        wallHpBar.value = health;
         healthAmount.text = $"{health}";
     }
 

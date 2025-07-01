@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
+using static LocalizationHelperModule;
 
 public class SkillsPanel : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SkillsPanel : MonoBehaviour
     [SerializeField] private int maxSkills;
     [SerializeField] private PlayerController player;
     [SerializeField] GameObject slowZone;
+    [SerializeField] GameObject adButton, adText, adPanel;
     private int skillsSelected = 0;
     public static bool zombieSlow, lifesteal, zHealthReduction, bossHealthReduction;
     private bool turretSkillsAdded = false;
@@ -24,13 +26,15 @@ public class SkillsPanel : MonoBehaviour
     public struct Modifier
     {
         public Sprite sprite;
-        public string text;
+        public string key;
     }
 
     private int b1id, b2id;
 
     public void OnEnable()
     {
+        adButton.SetActive(true);
+        adText.SetActive(true);
         if (!turretSkillsAdded)
         {
             turretSkillsAdded = true;
@@ -43,7 +47,7 @@ public class SkillsPanel : MonoBehaviour
         {
             b1id = modifiersLeft[UnityEngine.Random.Range(0, modifiersLeft.Count)];
             b1.sprite = modifiers[b1id].sprite;
-            b1.GetComponentInChildren<TextMeshProUGUI>().text = modifiers[b1id].text;
+            b1.GetComponentInChildren<TextMeshProUGUI>().text = Loc(modifiers[b1id].key);
             Vector3 pos = b1.rectTransform.anchoredPosition;
             pos.x = 0;
             b1.rectTransform.anchoredPosition = pos;
@@ -58,8 +62,8 @@ public class SkillsPanel : MonoBehaviour
         }
         b1.sprite = modifiers[b1id].sprite;
         b2.sprite = modifiers[b2id].sprite;
-        b1.GetComponentInChildren<TextMeshProUGUI>().text = modifiers[b1id].text;
-        b2.GetComponentInChildren<TextMeshProUGUI>().text = modifiers[b2id].text;
+        b1.GetComponentInChildren<TextMeshProUGUI>().text = Loc(modifiers[b1id].key);
+        b2.GetComponentInChildren<TextMeshProUGUI>().text = Loc(modifiers[b2id].key);
     }
 
     public void Select(int id)
@@ -142,5 +146,20 @@ public class SkillsPanel : MonoBehaviour
     public bool ReachedMaxSkillLimit()
     {
         return maxSkills == skillsSelected;
+    }
+
+    public void ShowAd()
+    {
+        adPanel.SetActive(true);
+        gameObject.SetActive(false);
+        YG2.RewardedAdvShow("2", () => Reroll());
+    }
+
+    public void Reroll()
+    {
+        gameObject.SetActive(true);
+        adButton.SetActive(false);
+        adText.SetActive(false);
+        adPanel.SetActive(false);
     }
 }

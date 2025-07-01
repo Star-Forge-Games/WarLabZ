@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using static Wave;
+using static LocalizationHelperModule;
 
 public class EnemySpawnSystem : MonoBehaviour
 {
@@ -86,11 +87,9 @@ public class EnemySpawnSystem : MonoBehaviour
             (GameObject prefab, int difficulty) zombieData = availableZombieList[UnityEngine.Random.Range(0, availableZombieList.Length)];
             totalDiff += zombieData.difficulty;
             totalZombies.Add(zombieData.prefab);
-            Debug.Log($"Difficulty is {diff}. Added new zombie {zombieData.prefab.name} with difficulty {zombieData.difficulty}. Now total diff is {totalDiff}");
         }
         endlessWaveZombies = totalZombies.ToArray();
         waveEnemies = endlessWaveZombies.Length;
-        Debug.Log($"Total zombie amount = {totalZombies.Count}");
     }
 
     private void ProcessWaveSpawnsEndless()
@@ -179,7 +178,7 @@ public class EnemySpawnSystem : MonoBehaviour
     void Update()
     {
         if (paused) return;
-        waveText.text = $"Волна: {GetTotalWave() + 1}";
+        waveText.text = $"{Loc("wave")}: {GetTotalWave() + 1}";
         if (endlessStarted)
         {
             endlessTimer += Time.deltaTime;
