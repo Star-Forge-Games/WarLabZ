@@ -8,108 +8,81 @@ using YG;
 public class WeaponUI : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance, cost, upgrade, level;
-    [SerializeField] Button upgradeButton;
-    [SerializeField] GameObject weaponModel;
-    [SerializeField] GameObject bonusesPanel;
-    [SerializeField] int id;
-    private Image bg;
+    [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance;
+    [SerializeField] Button buyUpgradeButton;
+    [SerializeField] TextMeshProUGUI buyUpgradeButtonText;
+    [SerializeField] Transform weaponsTransform;
+    [SerializeField] GunShopUIScript gunShop;
+    private int id;
+    private WeaponSettings ws;
+    private int lvl;
 
-    private void Start()
+    private static int curId;
+
+    public void Setup(int id, WeaponSettings ws)
     {
-        bg = GetComponent<Image>();
+        this.id = id;
+        this.ws = ws;
+        int lv = YG2.saves.weaponLevels[id];
+        lvl = lv;
         Refresh();
-        RefreshWeapons += Refresh;
+        curId = id;
     }
 
-    public static Action OnUpgrade;
-    public static Action RefreshWeapons;
-
-    public virtual void Refresh()
+    public static int GetCurrentId()
     {
-        int lvl = YG2.saves.weaponLevels[id];
-        WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(id);
-        if (lvl == settings.levels.Length - 1)
+        return curId;
+    }
+
+    public void BuyOrUpgrade()
+    {
+        YG2.saves.cash -= ws.levels[lvl + 1].cost;
+        lvl++;
+        var clone = YG2.saves.weaponLevels;
+        clone[id]++;
+        YG2.saves.weaponLevels = clone;
+        YG2.SaveProgress();
+        Refresh();
+        gunShop.Refresh();
+    }
+
+    private void Refresh()
+    {
+        for (int i = 0; i < weaponsTransform.childCount; i++)
         {
-            upgradeButton.interactable = false;
-            upgrade.text = "MAX";
-            cost.text = string.Empty;
-            level.text = $"Level {lvl} / {lvl}";
-            bonusesPanel.SetActive(true);
+            weaponsTransform.GetChild(i).gameObject.SetActive(i == id);
         }
-        else if (lvl == -1)
-        {
-            upgrade.text = "Buy";
-            cost.text = $"{settings.levels[0].cost} $";
-            WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
-            if (wslevelNext.cost > YG2.saves.cash)
-            {
-                upgradeButton.interactable = false;
-            }
-            level.text = "";
-            bonusesPanel.SetActive(false);
+        if (lvl == -1)
+        {// localize everything
+            var l = ws.levels[0];
+            buyUpgradeButtonText.text = $"Buy\n{l.cost}$";
+            dmg.text = $"Damage: {l.damage}";
+            aspd.text = $"Attack speed: {l.aspd}";
+            crit.text = $"Crit: {l.crit * 100}%";
+            critChance.text = $"Crit chance: {l.critChance}%";
+        }
+        else if (lvl == ws.levels.Length - 1)
+        {// localize everything
+            var l = ws.levels[lvl];
+            buyUpgradeButtonText.text = "MAX";
+            buyUpgradeButton.interactable = false;
+            dmg.text = $"Damage: {l.damage}";
+            aspd.text = $"Attack speed: {l.aspd}";
+            crit.text = $"Crit: {l.crit * 100}%";
+            critChance.text = $"Crit chance: {l.critChance}%";
             return;
         }
         else
-        {
-            upgrade.text = "Upgrade";
-            cost.text = $"{settings.levels[lvl + 1].cost} $";
-            level.text = $"Level {lvl + 1} / {settings.levels.Length}";
-            WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
-            if (wslevelNext.cost > YG2.saves.cash)
-            {
-                upgradeButton.interactable = false;
-            }
-            bonusesPanel.SetActive(true);
+        { // localize everything
+            buyUpgradeButtonText.text = $"Upgrade\n{ws.levels[lvl + 1].cost}$";
+            var l = ws.levels[lvl];
+            var l2 = ws.levels[lvl + 1];
+            dmg.text = $"Damage: {l.damage}" + (l2.damage > l.damage ? $" (+{l2.damage - l.damage})" : "");
+            aspd.text = $"Attack speed: {l.aspd}" + (l2.aspd > l.aspd ? $" (+{(decimal)l2.aspd - (decimal)l.aspd})" : "");
+            crit.text = $"Crit: {l.crit * 100}%" + (l2.crit > l.crit ? $" (+{((decimal)l2.crit - (decimal)l.crit) * 100}%)" : "");
+            critChance.text = $"Crit chance: {l.critChance}%" + (l2.critChance > l.critChance ? $" (+{(decimal)l2.critChance - (decimal)l.critChance}%)" : "");
         }
-        WeaponSettings.Level wslevel = settings.levels[lvl];
-        dmg.text = $"{wslevel.damage}";
-        aspd.text = $"{wslevel.aspd}";
-        crit.text = $"{wslevel.crit * 100}%";
-        critChance.text = $"{wslevel.critChance}%";
-        if (YG2.saves.selectedWeapon == id)
-        {
-            Select();
-        }
-        else
-        {
-            Deselect();
-        }
-    }
-
-    public void Select()
-    {
-        bg.color = new Color(236 / 255f, 250 / 255f, 65 / 255f, 137 / 255f);
-    }
-
-    public void SelectWeapon()
-    {
-        if (YG2.saves.weaponLevels[id] == -1) return;
-        YG2.saves.selectedWeapon = id;
-        YG2.SaveProgress();
-        RefreshWeapons.Invoke();
-    }
-
-    public void Deselect()
-    {
-        bg.color = new Color(196 / 255f, 178 / 255f, 150 / 255f, 137 / 255f);
-    }
-
-    public virtual void Upgrade()
-    {
-        int lvl = YG2.saves.weaponLevels[id];
-        WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(id);
-        WeaponSettings.Level wslevel = settings.levels[lvl + 1];
-        YG2.saves.cash = YG2.saves.cash - wslevel.cost;
-        var temp = YG2.saves.weaponLevels;
-        temp[id]++;
-        YG2.saves.weaponLevels = temp;
-        YG2.SaveProgress();
-        for (int i = 0; i < transform.parent.childCount; i++)
-        {
-            transform.parent.GetChild(i).GetComponent<WeaponUI>().Refresh();
-        }
-        OnUpgrade?.Invoke();
+        buyUpgradeButton.interactable = ws.levels[lvl + 1].cost <= YG2.saves.cash;
     }
 
 }

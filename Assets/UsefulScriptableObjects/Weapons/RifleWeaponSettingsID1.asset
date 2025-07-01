@@ -18,8 +18,13 @@ MonoBehaviour:
     aspd: 2.5
     crit: 0
     critChance: 0
-  - cost: 15
-    damage: 0
-    aspd: 0
-    crit: 0
-    critChance: 0
+  - cost: 200
+    damage: 2
+    aspd: 3
+    crit: 1
+    critChance: 1
+  - cost: 500
+    damage: 2
+    aspd: 3
+    crit: 2
+    critChance: 2

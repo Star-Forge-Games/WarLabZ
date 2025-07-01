@@ -6,38 +6,25 @@ using YG;
 public class Settings : MonoBehaviour
 {
     [SerializeField] private Button sound, locale;
-    [SerializeField] private Sprite[] localeSprites;
+    [SerializeField] private Sprite[] localeSprites, soundSprites;
     void OnEnable()
     {
-        if (AudioListener.volume == 0)
-        {
-            var c = sound.colors;
-            c.normalColor = Color.red;
-            sound.colors = c;
-        } else
-        {
-            var c = sound.colors;
-            c.normalColor = Color.white;
-            sound.colors = c;
-        }
+        sound.image.sprite = soundSprites[(int)AudioListener.volume];
         locale.image.sprite = localeSprites[YG2.saves.localeId];
     }
 
     public void TurnSound()
     {
-        var c = sound.colors;
         if (AudioListener.volume == 0)
         {
-            c.normalColor = Color.white;
             AudioListener.volume = 1;
             YG2.saves.soundOn = true;
         } else
         {
-            c.normalColor = Color.red;
             AudioListener.volume = 0;
             YG2.saves.soundOn = false;
         }
-        sound.colors = c;
+        sound.image.sprite = soundSprites[(int)AudioListener.volume];
         YG2.SaveProgress();
     }
 

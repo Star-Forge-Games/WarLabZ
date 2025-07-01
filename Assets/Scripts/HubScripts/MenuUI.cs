@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using YG;
 
 public class MenuUI : MonoBehaviour
@@ -11,6 +12,10 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private Animator fader;
     [SerializeField] private TextMeshProUGUI cash;
     [SerializeField] Energy energy;
+    [SerializeField] TextMeshProUGUI playerName;
+    [SerializeField] Image playerIcon;
+    [SerializeField] GameObject playerPanel;
+    public ImageLoadYG photoImageLoad;
 
     private void Start()
     {
@@ -25,9 +30,20 @@ public class MenuUI : MonoBehaviour
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[YG2.saves.localeId];
         }
+        playerName.text = YG2.player.name;
+        playerPanel.SetActive(true);
         energy.gameObject.SetActive(true);
-        // user info
+        if (photoImageLoad != null && YG2.player.auth)
+        {
+            photoImageLoad.Load(YG2.player.photo);
+        }
     }
+
+    private void OnEnable()
+    {
+        if (YG2.isSDKEnabled) cash.text = $"{YG2.saves.cash} $";
+    }
+
 
     public void LoadGame()
     {
