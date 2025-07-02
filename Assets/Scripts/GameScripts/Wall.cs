@@ -22,6 +22,7 @@ public class Wall : MonoBehaviour
     [SerializeField] private GameObject bladeMailObject;
     [SerializeField] TextMeshProUGUI amount;
     [SerializeField] GameObject pauseButton, supPanel;
+    public static Action OnWallDeath;
 
     private int health;
     public int maxHealth;
@@ -30,7 +31,6 @@ public class Wall : MonoBehaviour
     private bool shaking;
     private bool invulnerable = false, blademail = false;
     private float protectedTime;
-    public static Action OnWallDeath;
     private Action<bool> action;
     public static Wall instance;
 
