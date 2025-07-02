@@ -35,7 +35,7 @@ public class Wall : MonoBehaviour
     }
 
     private int health;
-    public int maxHealth;
+    internal int maxHealth;
     private bool paused = false;
     private float cooldown = 0;
     private bool shaking;
