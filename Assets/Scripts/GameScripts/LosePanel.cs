@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
+using static LocalizationHelperModule;
 
 public class LosePanel : MonoBehaviour
 {
@@ -22,11 +23,11 @@ public class LosePanel : MonoBehaviour
             YG2.saves.idSave = waves;
             newRecordAnimator.SetActive(true);
         }
-        record.text = $"Твой рекорд волн: {rec}";
-        wavesLived.text = $"Прожито волн: {waves}";
-        money.text = $"Денег заработано: {MoneySystem.instance.GetCollectedMoney()}";
-        zombiesKilled.text = $"Зомби убито: {KillsCount.kills}";
-        bossesKilled.text = $"Из них боссов: {KillsCount.bosses}";
+        record.text = $"{Loc("record")}: {rec} {Loc("wavesform")}";
+        wavesLived.text = $"{Loc("lived")}: {waves} {Loc("wavesform")}";
+        money.text = $"{MoneySystem.instance.GetCollectedMoney()}";
+        zombiesKilled.text = $"{KillsCount.kills}";
+        bossesKilled.text = $"{KillsCount.bosses}";
     }
 
     public void SwitchScene(int i)
