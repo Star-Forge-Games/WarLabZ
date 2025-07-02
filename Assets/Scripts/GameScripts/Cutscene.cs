@@ -20,6 +20,10 @@ public class Cutscene : MonoBehaviour
         KillsCount.bosses = 0;
         fader.gameObject.SetActive(true);
         if (instaTimer) timer.enabled = true;
+        SkillsPanel.zombieSlow = false;
+        SkillsPanel.lifesteal = false;
+        SkillsPanel.zHealthReduction = false;
+        SkillsPanel.bossHealthReduction = false;
     }
 
     public void StartGame()
