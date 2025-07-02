@@ -26,22 +26,39 @@ public class LosePanel : MonoBehaviour
             newRecordAnimator.SetActive(true);
         }
         wavesLived.text = $"{Loc("lived")} {waves}";
-        money.text = $"{MoneySystem.instance.GetCollectedMoney()}";
+        money.text = $"{MoneySystem.instance.GetCollectedMoney()}$";
         zombiesKilled.text = $"{KillsCount.kills}";
         bossesKilled.text = $"{KillsCount.bosses}";
     }
 
     public void SwitchScene(int i)
     {
-        fader.gameObject.SetActive(true);
-        fader.Play("Fade");
-        StartCoroutine(nameof(SwitchSceneCoroutine), i);
+        AudioListener.volume = 0;
+        YG2.InterstitialAdvShow();
     }
 
-    private IEnumerator SwitchSceneCoroutine(int i)
+    private void SwitchToMenu()
+    {
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
+        fader.gameObject.SetActive(true);
+        fader.Play("Fade");
+        StartCoroutine(nameof(SwitchSceneCoroutine));
+    }
+
+    private IEnumerator SwitchSceneCoroutine()
     {
         yield return new WaitForSeconds(1.2f);
-        SceneManager.LoadScene(i);
+        SceneManager.LoadScene(0);
+    }
+
+    private void Start()
+    {
+        YG2.onCloseInterAdv += SwitchToMenu;
+    }
+
+    private void OnDestroy()
+    {
+        YG2.onCloseInterAdv -= SwitchToMenu;
     }
 
 

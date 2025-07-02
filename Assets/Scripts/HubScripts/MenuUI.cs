@@ -19,6 +19,7 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
+        YG2.onCloseInterAdv += SwitchToGame;
         fader.gameObject.SetActive(true);
         cash.text = $"{YG2.saves.cash} $";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
@@ -45,19 +46,30 @@ public class MenuUI : MonoBehaviour
         if (YG2.isSDKEnabled) cash.text = $"{YG2.saves.cash} $";
     }
 
-
-    public void LoadGame()
+    public void SwitchToGame()
     {
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
         energy.Spend();
         fader.gameObject.SetActive(true);
         fader.Play("Fade");
-        StartCoroutine(SwitchScene());
+        StartCoroutine("SwitchScene");
+    }
+
+    public void LoadGame()
+    {
+        AudioListener.volume = 0;
+        YG2.InterstitialAdvShow();
     }
 
     private IEnumerator SwitchScene()
     {
         yield return new WaitForSeconds(1.2f);
         SceneManager.LoadScene("GameWorld");
+    }
+
+    private void OnDestroy()
+    {
+        YG2.onCloseInterAdv -= SwitchToGame;
     }
 
 }

@@ -135,6 +135,7 @@ public class Energy : MonoBehaviour
         if (energy == maxEnergy) return;
         adPanel.SetActive(true);
         gameObject.SetActive(false);
+        AudioListener.volume = 0;
         YG2.RewardedAdvShow("1", () => AddEnergyByAd());
     }
 
@@ -149,6 +150,7 @@ public class Energy : MonoBehaviour
         StopCoroutine(nameof(TimerTick));
         UpdateEnergySlider(false, energy);
         playButton.interactable = true;
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
     }
 
     internal void Spend()

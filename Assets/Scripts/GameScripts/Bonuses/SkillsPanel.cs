@@ -152,6 +152,7 @@ public class SkillsPanel : MonoBehaviour
     {
         adPanel.SetActive(true);
         gameObject.SetActive(false);
+        AudioListener.volume = 0;
         YG2.RewardedAdvShow("2", () => Reroll());
     }
 
@@ -161,5 +162,6 @@ public class SkillsPanel : MonoBehaviour
         adButton.SetActive(false);
         adText.SetActive(false);
         adPanel.SetActive(false);
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
     }
 }
