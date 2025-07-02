@@ -175,7 +175,7 @@ public class Wall : MonoBehaviour
     public void UpdateWallHp()
     {
         wallHpBar.value = health;
-        int percent = (int)((float)health / maxHealth);
+        int percent = (int)(((float)health / maxHealth) * 100);
         HealthLevel l = healthLevels[0];
         foreach (var hl in healthLevels)
         {
