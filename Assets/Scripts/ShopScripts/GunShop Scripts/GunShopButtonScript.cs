@@ -27,7 +27,7 @@ public class GunShopUIScript : MonoBehaviour
     public void Refresh(int id)
     {
         Refresh();
-        for (int i = 0; i < YG2.saves.weaponLevels.Length; i++)
+        for (int i = 0; i < weaponGrid.childCount; i++)
         {
             SquareWeaponUI w = weaponGrid.GetChild(i).GetComponent<SquareWeaponUI>();
             if (i != id) w.Deselect();
