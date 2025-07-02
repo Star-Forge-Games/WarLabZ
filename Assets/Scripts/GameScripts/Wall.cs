@@ -179,8 +179,8 @@ public class Wall : MonoBehaviour
         HealthLevel l = healthLevels[0];
         foreach (var hl in healthLevels)
         {
-            if (percent > l.healthPercent) continue;
-            if (hl.healthPercent <= l.healthPercent)
+            if (percent >= l.healthPercent) continue;
+            if (hl.healthPercent < l.healthPercent)
             {
                 l = hl;
             }
