@@ -89,7 +89,7 @@ public class Wall : MonoBehaviour
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;
         health = maxHealth;
-        wallHpBar.value = maxHealth;
+        wallHpBar.maxValue = maxHealth;
         wallHpBar.value = health;
         UpdateWallHp();
         if (YG2.saves.supplies[0] == 0)

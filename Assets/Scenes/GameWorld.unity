@@ -62308,7 +62308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &4770054097955637270
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -70784,7 +70784,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8271715810500157727}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a807a30ed340d9b4c958e69d57191f1b, type: 3}
   m_Name: 
@@ -70812,7 +70812,6 @@ MonoBehaviour:
   - color: {r: 1, g: 0, b: 0, a: 0}
     healthPercent: 33
   fill: {fileID: 1907957310}
-  maxHealth: 0
 --- !u!1 &6733304795414368797
 GameObject:
   m_ObjectHideFlags: 0
