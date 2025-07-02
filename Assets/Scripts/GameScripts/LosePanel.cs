@@ -23,8 +23,8 @@ public class LosePanel : MonoBehaviour
             YG2.saves.idSave = waves;
             newRecordAnimator.SetActive(true);
         }
-        record.text = $"{Loc("record")}: {rec} {Loc("wavesform")}";
-        wavesLived.text = $"{Loc("lived")}: {waves} {Loc("wavesform")}";
+        record.text = $"{Loc("record")} {rec}";
+        wavesLived.text = $"{Loc("lived")} {waves}";
         money.text = $"{MoneySystem.instance.GetCollectedMoney()}";
         zombiesKilled.text = $"{KillsCount.kills}";
         bossesKilled.text = $"{KillsCount.bosses}";
