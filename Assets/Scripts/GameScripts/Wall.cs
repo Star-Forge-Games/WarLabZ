@@ -176,17 +176,13 @@ public class Wall : MonoBehaviour
     {
         wallHpBar.value = health;
         int percent = (int)(((float)health / maxHealth) * 100);
-        HealthLevel l = healthLevels[0];
-        foreach (var hl in healthLevels)
-        {
-            if (percent >= l.healthPercent) continue;
-            if (hl.healthPercent < l.healthPercent)
-            {
-                l = hl;
-            }
-        }
-        fill.color = l.color;
         healthAmount.text = $"{health}";
+        for (int i = healthLevels.Length - 1; i >= 0; i--)
+        {
+            if (healthLevels[i].healthPercent < percent) continue;
+            fill.color = healthLevels[i].color;
+            return;
+        }
     }
 
     private IEnumerator StopShake()
