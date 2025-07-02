@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class BangDisappear : MonoBehaviour
 {
-    public void Disappear()
+
+    public void BDisappear()
     {
         Destroy(gameObject);
     }
+
 }

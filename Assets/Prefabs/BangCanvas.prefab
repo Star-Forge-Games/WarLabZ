@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7774234224557933878}
   - component: {fileID: 7398987026968449468}
   - component: {fileID: 4790308855337119407}
-  - component: {fileID: 2494008534792449271}
+  - component: {fileID: 175527255152980125}
   m_Layer: 0
   m_Name: BangCanvas
   m_TagString: Untagged
@@ -131,7 +131,7 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
+  m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
@@ -201,7 +201,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2494008534792449271
+--- !u!114 &175527255152980125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
