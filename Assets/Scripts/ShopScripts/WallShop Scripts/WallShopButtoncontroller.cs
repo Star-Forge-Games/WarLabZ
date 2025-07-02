@@ -43,7 +43,7 @@ public class WallShopButtonScript : MonoBehaviour
         moneyText.text = $"{YG2.saves.cash} $";
         nextButton.SetActive(lvl != walls.Length - 1);
         previousButton.SetActive(lvl != 0);
-        wallsText.text = $"{Loc("level")} {lvl+1}\n{Loc($"wd{lvl-1}")}";
+        wallsText.text = $"{Loc("level")} {lvl+1}\n{Loc($"wd{lvl+1}")}";
         if (YG2.saves.wallLevel >= lvl)
         {
             upgradeButton.interactable = false;
