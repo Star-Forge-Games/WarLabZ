@@ -34,7 +34,8 @@ public class LosePanel : MonoBehaviour
     public void SwitchScene(int i)
     {
         AudioListener.volume = 0;
-        YG2.InterstitialAdvShow();
+        if (YG2.isTimerAdvCompleted) YG2.InterstitialAdvShow();
+        else SwitchToMenu();
     }
 
     private void SwitchToMenu()
@@ -53,13 +54,11 @@ public class LosePanel : MonoBehaviour
 
     private void Start()
     {
-        YG2.onErrorInterAdv += SwitchToMenu;
         YG2.onCloseInterAdv += SwitchToMenu;
     }
 
     private void OnDestroy()
     {
-        YG2.onErrorInterAdv -= SwitchToMenu;
         YG2.onCloseInterAdv -= SwitchToMenu;
     }
 
