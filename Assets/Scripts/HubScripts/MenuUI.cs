@@ -20,7 +20,6 @@ public class MenuUI : MonoBehaviour
     private void Start()
     {
         YG2.onCloseInterAdv += SwitchToGame;
-        YG2.onErrorInterAdv += SwitchToGame;
         fader.gameObject.SetActive(true);
         cash.text = $"{YG2.saves.cash} $";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
@@ -59,7 +58,8 @@ public class MenuUI : MonoBehaviour
     public void LoadGame()
     {
         AudioListener.volume = 0;
-        YG2.InterstitialAdvShow();
+        if (YG2.isTimerAdvCompleted) YG2.InterstitialAdvShow();
+        else SwitchToGame();
     }
 
     private IEnumerator SwitchScene()
@@ -70,7 +70,6 @@ public class MenuUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        YG2.onErrorInterAdv -= SwitchToGame;
         YG2.onCloseInterAdv -= SwitchToGame;
     }
 
