@@ -53,11 +53,13 @@ public class LosePanel : MonoBehaviour
 
     private void Start()
     {
+        YG2.onErrorInterAdv += SwitchToMenu;
         YG2.onCloseInterAdv += SwitchToMenu;
     }
 
     private void OnDestroy()
     {
+        YG2.onErrorInterAdv -= SwitchToMenu;
         YG2.onCloseInterAdv -= SwitchToMenu;
     }
 
