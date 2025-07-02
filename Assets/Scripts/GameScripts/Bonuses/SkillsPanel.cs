@@ -31,13 +31,6 @@ public class SkillsPanel : MonoBehaviour
 
     private int b1id, b2id;
 
-    private void Start()
-    {
-        zombieSlow = false;
-        lifesteal = false;
-        zHealthReduction = false;
-        bossHealthReduction = false;
-    }
     public void OnEnable()
     {
         adButton.SetActive(true);

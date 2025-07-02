@@ -52,8 +52,10 @@ public class Energy : MonoBehaviour
         {
             energy++;
             cts -= energyRechargeInterval;
+            YG2.saves.lastEnergySpentTimeStamp += (long)energyRechargeInterval * 10000000;
             if (energy == maxEnergy) break;
         }
+        YG2.SaveProgress();
         if (cts > ts) cts -= ts;
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
