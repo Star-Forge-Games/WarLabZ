@@ -4855,6 +4855,7 @@ GameObject:
   - component: {fileID: 350896427}
   - component: {fileID: 350896426}
   - component: {fileID: 350896428}
+  - component: {fileID: 350896429}
   m_Layer: 0
   m_Name: LosePanel
   m_TagString: Untagged
@@ -4946,6 +4947,28 @@ MonoBehaviour:
   bossesKilled: {fileID: 1560999352}
   ess: {fileID: 1461915504}
   newRecordAnimator: {fileID: 2072603206}
+--- !u!95 &350896429
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350896424}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dbe67d21296ba0444bda01a92fbfce9b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &356134671
 GameObject:
   m_ObjectHideFlags: 0
@@ -12418,7 +12441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -125}
+  m_AnchoredPosition: {x: 1100, y: -125}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1313380768
@@ -14497,6 +14520,8 @@ MonoBehaviour:
   spawnZ: 60
   spawnpointWidth: 4
   waves:
+  - {fileID: 11400000, guid: 61bf9b34ccfcb8b4a9754b2a00b29f5f, type: 2}
+  - {fileID: 11400000, guid: 61bf9b34ccfcb8b4a9754b2a00b29f5f, type: 2}
   - {fileID: 11400000, guid: 61bf9b34ccfcb8b4a9754b2a00b29f5f, type: 2}
   - {fileID: 11400000, guid: 8ce25121890ef65419705e903ae27bdc, type: 2}
   - {fileID: 11400000, guid: e12936bc5da229c4688bf38a298a18d9, type: 2}
@@ -25966,7 +25991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -70805,11 +70830,11 @@ MonoBehaviour:
   pauseButton: {fileID: 1234300921}
   supPanel: {fileID: 1014149957}
   healthLevels:
-  - color: {r: 0.0018129349, g: 1, b: 0, a: 0}
+  - color: {r: 0.0018129349, g: 1, b: 0, a: 1}
     healthPercent: 100
-  - color: {r: 1, g: 0.9473457, b: 0, a: 0}
+  - color: {r: 1, g: 0.9473457, b: 0, a: 1}
     healthPercent: 67
-  - color: {r: 1, g: 0, b: 0, a: 0}
+  - color: {r: 1, g: 0, b: 0, a: 1}
     healthPercent: 33
   fill: {fileID: 1907957310}
 --- !u!1 &6733304795414368797
