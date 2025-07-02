@@ -22,7 +22,17 @@ public class Wall : MonoBehaviour
     [SerializeField] private GameObject bladeMailObject;
     [SerializeField] TextMeshProUGUI amount;
     [SerializeField] GameObject pauseButton, supPanel;
+    [SerializeField] HealthLevel[] healthLevels;
+    [SerializeField] Image fill;
     public static Action OnWallDeath;
+
+    [Serializable]
+    public struct HealthLevel
+    {
+        public Color color;
+        [Range(1, 100)]
+        public int healthPercent;
+    }
 
     private int health;
     public int maxHealth;
@@ -165,6 +175,17 @@ public class Wall : MonoBehaviour
     public void UpdateWallHp()
     {
         wallHpBar.value = health;
+        int percent = (int)((float)health / maxHealth);
+        HealthLevel l = healthLevels[0];
+        foreach (var hl in healthLevels)
+        {
+            if (percent > l.healthPercent) continue;
+            if (hl.healthPercent <= l.healthPercent)
+            {
+                l = hl;
+            }
+        }
+        fill.color = l.color;
         healthAmount.text = $"{health}";
     }
 
