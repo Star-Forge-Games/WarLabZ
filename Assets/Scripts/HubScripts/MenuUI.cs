@@ -23,21 +23,28 @@ public class MenuUI : MonoBehaviour
         fader.gameObject.SetActive(true);
         cash.text = $"{YG2.saves.cash} $";
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
-        LocalizationSettings.InitializationOperation.WaitForCompletion();
-        if (YG2.saves.localeId == -1)
-        {
-            YG2.saves.localeId = LocalizationSettings.SelectedLocale.SortOrder;
-            YG2.SaveProgress();
-        } else
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[YG2.saves.localeId];
-        }
         playerName.text = YG2.player.name;
         playerPanel.SetActive(true);
         energy.gameObject.SetActive(true);
         if (photoImageLoad != null && YG2.player.auth)
         {
             photoImageLoad.Load(YG2.player.photo);
+        }
+        Localize();
+        
+    }
+
+    private void Localize()
+    {
+        LocalizationSettings settings = LocalizationSettings.InitializationOperation.WaitForCompletion();
+        if (YG2.saves.localeId == -1)
+        {
+            YG2.saves.localeId = settings.GetSelectedLocale().SortOrder;
+            YG2.SaveProgress();
+        }
+        else
+        {
+            settings.SetSelectedLocale(settings.GetAvailableLocales().Locales[YG2.saves.localeId]);
         }
     }
 
