@@ -821,7 +821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyDropChance: 100
-  anim: {fileID: 0}
+  anim: {fileID: 7115981878679842345}
   healthBar: {fileID: 7789753011265524503}
   healthAmount: {fileID: 5739539181246942191}
   maxHealth: 15
@@ -837,7 +837,7 @@ MonoBehaviour:
   instaKillCanvas: {fileID: 3887561614707134606}
   slowCanvas: {fileID: 8724147957958935971}
   parts:
-  - obj: {fileID: 0}
+  - obj: {fileID: 6422912107708582754}
 --- !u!65 &5033716229429919098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1108,5 +1108,15 @@ PrefabInstance:
 --- !u!4 &5133396368010645841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1523723758450671076, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
+  m_PrefabInstance: {fileID: 5915520317476334773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6422912107708582754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 809208583006644183, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
+  m_PrefabInstance: {fileID: 5915520317476334773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7115981878679842345 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3519894826732241564, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
   m_PrefabInstance: {fileID: 5915520317476334773}
   m_PrefabAsset: {fileID: 0}
