@@ -577,8 +577,8 @@ GameObject:
   m_Component:
   - component: {fileID: 132710466924847441}
   - component: {fileID: 8856531992393155393}
-  - component: {fileID: 559977673064678048}
   - component: {fileID: 5033716229429919098}
+  - component: {fileID: 8998653619869682278}
   m_Layer: 6
   m_Name: EnemyWagon
   m_TagString: EnemyZombie
@@ -631,38 +631,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: -0.12, y: 0, z: 0}
---- !u!114 &559977673064678048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7143858245785905579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f48bc36b6061cd419099ac5598a844e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moneyDropChance: 100
-  anim: {fileID: 6118503654295015617}
-  healthBar: {fileID: 7789753011265524503}
-  healthAmount: {fileID: 5739539181246942191}
-  maxHealth: 3
-  damage: 1
-  speed: 10
-  difficulty: 1
-  money: 1
-  slowStartZ: 35
-  slowEndZ: 10
-  boss: 0
-  healthCanvas: {fileID: 436298163515129501}
-  critCanvas: {fileID: 7911256655718126440}
-  instaKillCanvas: {fileID: 9062330755974472129}
-  slowCanvas: {fileID: 1188563097799883261}
-  parts:
-  - obj: {fileID: 3734924729081269817}
-  - obj: {fileID: 6631890929778077080}
-  - obj: {fileID: 8286957151992266584}
 --- !u!65 &5033716229429919098
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -684,6 +652,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 0.1, z: 0.6}
   m_Center: {x: 0, y: -0.8, z: 0}
+--- !u!114 &8998653619869682278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143858245785905579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a165b8bf11589284e8e2eb68849ac27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyDropChance: 0
+  anim: {fileID: 6118503654295015617}
+  healthBar: {fileID: 7789753011265524503}
+  healthAmount: {fileID: 5739539181246942191}
+  maxHealth: 10
+  damage: 0
+  speed: 0
+  difficulty: 0
+  money: 0
+  slowStartZ: 35
+  slowEndZ: 10
+  boss: 0
+  healthCanvas: {fileID: 436298163515129501}
+  critCanvas: {fileID: 7911256655718126440}
+  instaKillCanvas: {fileID: 9062330755974472129}
+  slowCanvas: {fileID: 1188563097799883261}
+  parts:
+  - obj: {fileID: 3734924729081269817}
+  - obj: {fileID: 6631890929778077080}
+  - obj: {fileID: 8286957151992266584}
+  bombAnimator: {fileID: 2365902908102858102}
+  fire: {fileID: 0}
 --- !u!1 &7664687753805338784
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,6 +1113,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fdec4c0053bfb14f8dbb959560d5f81, type: 3}
+--- !u!95 &2365902908102858102 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7833747868694236640, guid: 3fdec4c0053bfb14f8dbb959560d5f81, type: 3}
+  m_PrefabInstance: {fileID: 5504084868221802646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6501720322334138779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1610230557300275469, guid: 3fdec4c0053bfb14f8dbb959560d5f81, type: 3}
