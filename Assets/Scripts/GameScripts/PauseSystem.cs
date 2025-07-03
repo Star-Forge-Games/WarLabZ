@@ -7,7 +7,7 @@ public class PauseSystem : MonoBehaviour
 
     public static PauseSystem instance;
 
-    [SerializeField] private GameObject pausePanel, winPanel, losePanel, skillsPanel;
+    [SerializeField] private GameObject pausePanel, losePanel, skillsPanel;
     [SerializeField] private Transform bulletContainer, enemyContainer, wagonContainer, stoneContainer;
     private bool selectingSkill;
     private bool end = false;
@@ -30,14 +30,6 @@ public class PauseSystem : MonoBehaviour
         yield return new WaitForSeconds(2);
         Pause(true);
         losePanel.SetActive(true);
-    }
-
-    public void Win()
-    {
-        MoneySystem.instance.SaveMoney();
-        end = true;
-        Pause(true);
-        winPanel.SetActive(true);
     }
 
     public void SkillSelect()

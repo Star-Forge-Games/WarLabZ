@@ -22,7 +22,10 @@ public class WallShopButtonScript : MonoBehaviour
     private void Start()
     {
         lvl = YG2.saves.wallLevel;
-        walls[lvl].gameObject.SetActive(true);
+        for (int i = 0; i < walls.Length; i++)
+        {
+            walls[i].SetActive(i == lvl);
+        }
         UpdateButtons();
     }
     private void Update()
@@ -74,5 +77,13 @@ public class WallShopButtonScript : MonoBehaviour
         lvl--;
         walls[lvl].gameObject.SetActive(true);
         UpdateButtons();
+    }
+
+    private void OnDisable()
+    {
+        foreach (GameObject wall in walls)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

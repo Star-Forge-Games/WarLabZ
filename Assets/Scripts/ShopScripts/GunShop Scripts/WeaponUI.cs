@@ -71,7 +71,7 @@ public class WeaponUI : MonoBehaviour
             return;
         }
         else
-        { // localize everything
+        {
             buyUpgradeButtonText.text = $"{Loc("upgrade")}\n{ws.levels[lvl + 1].cost}$";
             var l = ws.levels[lvl];
             var l2 = ws.levels[lvl + 1];
@@ -81,6 +81,14 @@ public class WeaponUI : MonoBehaviour
             critChance.text = $"{Loc("critchance")}: {l.critChance}%" + (l2.critChance > l.critChance ? $" (+{(decimal)l2.critChance - (decimal)l.critChance}%)" : "");
         }
         buyUpgradeButton.interactable = ws.levels[lvl + 1].cost <= YG2.saves.cash;
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < weaponsTransform.childCount; i++)
+        {
+            weaponsTransform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
 }
