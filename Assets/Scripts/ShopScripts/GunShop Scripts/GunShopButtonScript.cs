@@ -8,7 +8,7 @@ public class GunShopUIScript : MonoBehaviour
     [SerializeField] WeaponUI weaponUI;
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] Sprite selectedSprite, notSelectedSprite;
-    [SerializeField] Transform weaponGrid;
+    [SerializeField] Transform weaponGrid, handWeapons;
     public static Sprite sSprite, nsSprite;
 
     private void Awake()
@@ -30,10 +30,15 @@ public class GunShopUIScript : MonoBehaviour
         for (int i = 0; i < weaponGrid.childCount; i++)
         {
             SquareWeaponUI w = weaponGrid.GetChild(i).GetComponent<SquareWeaponUI>();
-            if (i != id) w.Deselect();
+            if (i != id)
+            {
+                w.Deselect();
+                handWeapons.transform.GetChild(i).gameObject.SetActive(false);
+            }
             else
             {
                 w.Select();
+                handWeapons.transform.GetChild(i).gameObject.SetActive(true);
                 weaponUI.Setup(id, w.weaponSettings);
             }
         }
@@ -51,6 +56,7 @@ public class GunShopUIScript : MonoBehaviour
         {
             YG2.saves.selectedWeapon = id;
             YG2.SaveProgress();
+            Refresh(id);
         }
     }
 

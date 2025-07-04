@@ -15,6 +15,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI playerName;
     [SerializeField] Image playerIcon;
     [SerializeField] GameObject playerPanel;
+    [SerializeField] Transform handWeapons;
     public ImageLoadYG photoImageLoad;
 
     private void Start()
@@ -31,7 +32,18 @@ public class MenuUI : MonoBehaviour
             photoImageLoad.Load(YG2.player.photo);
         }
         Localize();
-        
+        int id = YG2.saves.selectedWeapon;
+        for (int i = 0; i < handWeapons.childCount; i++)
+        {
+            if (i != id)
+            {
+                handWeapons.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            else
+            {
+                handWeapons.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
     }
 
     private void Localize()

@@ -85,6 +85,7 @@ public class WeaponUI : MonoBehaviour
 
     private void OnDisable()
     {
+        if (weaponsTransform != null)
         for (int i = 0; i < weaponsTransform.childCount; i++)
         {
             weaponsTransform.GetChild(i).gameObject.SetActive(false);
