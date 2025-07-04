@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -7,12 +7,12 @@ using YG;
 public class MoneySystem : MonoBehaviour
 {
 
-    [SerializeField] private GameObject dollars;
     [SerializeField] private TMP_Text moneyText;
     [SerializeField] private Animator dollarAnim;
     private int money, levelMoney;
     private bool bonusMoney;
     public static MoneySystem instance;
+    private bool shaking;
 
     private void Awake()
     {
@@ -28,10 +28,14 @@ public class MoneySystem : MonoBehaviour
         if (random <= chance)
         {
             if (bonusMoney) money *= 2;
-            Instantiate(dollars, z.transform.position, Quaternion.identity);
             levelMoney += money;
             moneyText.text = "$: " + this.money + " / " + levelMoney + " / " + (this.money + levelMoney);
-            dollarAnim.Play("MoneyAdd");
+            if (!shaking)
+            {
+                shaking = true;
+                dollarAnim.Play("MoneyAdd");
+                StartCoroutine(nameof(StopShake));
+            }
         }
     }
 
@@ -54,6 +58,12 @@ public class MoneySystem : MonoBehaviour
     public int GetCollectedMoney()
     {
         return levelMoney * (bonusMoney ? 2 : 1);
+    }
+
+    private IEnumerator StopShake()
+    {
+        yield return new WaitForSeconds(0.3f);
+        shaking = false;
     }
 
 }
