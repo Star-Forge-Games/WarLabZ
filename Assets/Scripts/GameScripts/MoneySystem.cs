@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -76,7 +75,7 @@ public class MoneySystem : MonoBehaviour
 
     private IEnumerator StopShake()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
         shaking = false;
     }
 

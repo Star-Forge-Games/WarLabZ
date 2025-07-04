@@ -12,7 +12,7 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private bool instaTimer = true;
     [SerializeField] private GameObject suppliesPanel;
     [SerializeField] private GameObject wagonSystem;
-    [SerializeField] private GameObject wallHealthBar, waveText, pauseButton; 
+    [SerializeField] private GameObject wallHealthBar, waveText, pauseButton, moneyText, moneyImage; 
 
     private void Start()
     {
@@ -30,6 +30,8 @@ public class Cutscene : MonoBehaviour
     {
         wallHealthBar.SetActive(true);
         waveText.SetActive(true);
+        moneyText.SetActive(true);
+        moneyImage.SetActive(true);
         pauseButton.SetActive(true);
         Destroy(GetComponent<Animator>());
         GetComponent<PositionConstraint>().constraintActive = true;
