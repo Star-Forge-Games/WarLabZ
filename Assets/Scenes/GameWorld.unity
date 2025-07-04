@@ -854,7 +854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &85469167
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4738,6 +4738,8 @@ MonoBehaviour:
   wallHealthBar: {fileID: 1485505120}
   waveText: {fileID: 2107624830}
   pauseButton: {fileID: 1234300921}
+  moneyText: {fileID: 700696932}
+  moneyImage: {fileID: 85469166}
 --- !u!82 &330585551
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7548,7 +7550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &700696933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7565,7 +7567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1224, y: 632.69995}
+  m_AnchoredPosition: {x: 1181, y: 632.69995}
   m_SizeDelta: {x: 400, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &700696934
