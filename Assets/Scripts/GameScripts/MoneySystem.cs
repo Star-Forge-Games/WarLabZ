@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -32,15 +33,15 @@ public class MoneySystem : MonoBehaviour
             if (levelMoney < 1000) mf = $"{levelMoney}";
             else if (levelMoney < 1000000)
             {
-                mf = $"{((double)levelMoney / 1000).ToString("00.0")}K";
+                mf = $"{((double)levelMoney / 1000).ToString("F1")}K";
             }
             else if (levelMoney < 1000000000)
             {
-                mf = $"{((double)levelMoney / 1000000).ToString("00.0")}M";
+                mf = $"{((double)levelMoney / 1000000).ToString("F1")}M";
             }
             else
             {
-                mf = $"{((double)levelMoney / 1000000000).ToString("00.0")}B";
+                mf = $"{((double)levelMoney / 1000000000).ToString("F1")}B";
             }
             moneyText.text = mf;
             if (!shaking)
