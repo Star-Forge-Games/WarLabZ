@@ -21,7 +21,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private bool boss;
     [SerializeField] protected GameObject healthCanvas;
     [SerializeField] protected GameObject critCanvas, instaKillCanvas;
-    [SerializeField] protected GameObject slowCanvas, doubleMoneyCanvas, moneyCanvas;
+    [SerializeField] protected GameObject slowCanvas;
 
     [Serializable]
     public struct ColoredPart
@@ -52,7 +52,6 @@ public class EnemyZombie : MonoBehaviour
 
     public void Start()
     {
-        MoneySystem.OnMoneyDropped += ShowMoneyCanvas;
         for (int i = 0; i < parts.Length; i++)
         {
             var smr = parts[i].obj.GetComponent<SkinnedMeshRenderer>();
@@ -214,14 +213,6 @@ public class EnemyZombie : MonoBehaviour
     private void OnDestroy()
     {
         Wall.OnWallDeath -= RunFurther;
-        MoneySystem.OnMoneyDropped -= ShowMoneyCanvas;
-    }
-
-    private void ShowMoneyCanvas(EnemyZombie z, bool doubleCash)
-    {
-        if (z != this) return;
-        if (doubleCash) doubleMoneyCanvas.SetActive(true);
-        else moneyCanvas.SetActive(true);
     }
 
     internal void Stun()

@@ -9,11 +9,10 @@ public class MoneySystem : MonoBehaviour
 
     [SerializeField] private GameObject dollars;
     [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private Animator dollarAnim;
     private int money, levelMoney;
     private bool bonusMoney;
-
     public static MoneySystem instance;
-    public static Action<EnemyZombie, bool> OnMoneyDropped;
 
     private void Awake()
     {
@@ -32,7 +31,7 @@ public class MoneySystem : MonoBehaviour
             Instantiate(dollars, z.transform.position, Quaternion.identity);
             levelMoney += money;
             moneyText.text = "$: " + this.money + " / " + levelMoney + " / " + (this.money + levelMoney);
-            OnMoneyDropped?.Invoke(z, bonusMoney);
+            dollarAnim.Play("MoneyAdd");
         }
     }
 
