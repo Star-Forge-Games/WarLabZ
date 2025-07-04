@@ -9,7 +9,7 @@ public class MoneySystem : MonoBehaviour
 
     [SerializeField] private TMP_Text moneyText;
     [SerializeField] private Animator dollarAnim;
-    private int money, levelMoney;
+    private int levelMoney;
     private bool bonusMoney;
     public static MoneySystem instance;
     private bool shaking;
@@ -18,8 +18,7 @@ public class MoneySystem : MonoBehaviour
     {
         instance = this;
         EnemyZombie.OnZombieDie += ZombieDeath;
-        money = YG2.saves.cash;
-        moneyText.text = "$: " + money;
+        moneyText.text = "0";
     }
 
     public void ZombieDeath(EnemyZombie z, float chance, int money)
@@ -29,7 +28,21 @@ public class MoneySystem : MonoBehaviour
         {
             if (bonusMoney) money *= 2;
             levelMoney += money;
-            moneyText.text = "$: " + this.money + " / " + levelMoney + " / " + (this.money + levelMoney);
+            string mf = "";
+            if (levelMoney < 1000) mf = $"{levelMoney}";
+            else if (levelMoney < 1000000)
+            {
+                mf = $"{((double)levelMoney / 1000).ToString("00.0")}K";
+            }
+            else if (levelMoney < 1000000000)
+            {
+                mf = $"{((double)levelMoney / 1000000).ToString("00.0")}M";
+            }
+            else
+            {
+                mf = $"{((double)levelMoney / 1000000000).ToString("00.0")}B";
+            }
+            moneyText.text = mf;
             if (!shaking)
             {
                 shaking = true;
@@ -41,7 +54,7 @@ public class MoneySystem : MonoBehaviour
 
     public void SaveMoney()
     {
-        YG2.saves.cash = money + levelMoney * (bonusMoney? 2 : 1);
+        YG2.saves.cash += levelMoney * (bonusMoney? 2 : 1);
         YG2.SaveProgress();
     }
 
