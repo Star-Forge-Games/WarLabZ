@@ -86,7 +86,7 @@ public class Wall : MonoBehaviour
             if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
             else
             {
-                transform.GetChild(i).gameObject.GetComponent<TurretContainer>().Setup(bulletContainer, enemyContainer);
+                if (i >= 2) transform.GetChild(i).gameObject.GetComponent<TurretContainer>().Setup(bulletContainer, enemyContainer);
                 transform.GetChild(i).gameObject.SetActive(true);
             }
         }
@@ -191,7 +191,7 @@ public class Wall : MonoBehaviour
 
     private IEnumerator StopShake()
     {
-        yield return new WaitForSeconds(0.3f/*wallHpBarAnimator.GetCurrentAnimatorClipInfo(1).Length*/);
+        yield return new WaitForSeconds(0.3f);
         shaking = false;
     }
 
