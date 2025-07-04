@@ -42,6 +42,7 @@ public class Wall : MonoBehaviour
     private float protectedTime;
     private Action<bool> action;
     public static Wall instance;
+    [SerializeField] private Transform bulletContainer, enemyContainer;
 
     private void Awake()
     {
@@ -83,7 +84,11 @@ public class Wall : MonoBehaviour
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             if (i != YG2.saves.wallLevel) transform.GetChild(i).gameObject.SetActive(false);
-            else transform.GetChild(i).gameObject.SetActive(true);
+            else
+            {
+                transform.GetChild(i).gameObject.GetComponent<TurretContainer>().Setup(bulletContainer, enemyContainer);
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
         EnemyZombie.OnZombieHitWall += TakeDamage;
         maxHealth = settings.wallLevels[YG2.saves.wallLevel].hp;

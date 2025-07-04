@@ -122,11 +122,13 @@ public class Turret : MonoBehaviour
 
     public void SelfPause()
     {
+        if (!enabled) return;
         StopCoroutine(nameof(PeriodicFireSpawn));
     }
 
     public void SelfUnpause()
     {
+        if (!enabled) return;
         StartCoroutine(nameof(PeriodicFireSpawn));
     }
 
@@ -196,5 +198,11 @@ public class Turret : MonoBehaviour
     {
         PauseSystem.OnPauseStateChanged -= action;
         SkillsPanel.OnTurretSkillSelect -= skillAction;
+    }
+
+    internal void Setup(Transform bulletContainer, Transform enemyContainer)
+    {
+        this.bulletContainer = bulletContainer;
+        this.enemyContainer = enemyContainer;
     }
 }
