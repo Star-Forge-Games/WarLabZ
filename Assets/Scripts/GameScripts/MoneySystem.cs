@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using YG;
@@ -12,6 +13,7 @@ public class MoneySystem : MonoBehaviour
     private bool bonusMoney;
 
     public static MoneySystem instance;
+    public static Action<EnemyZombie, bool> OnMoneyDropped;
 
     private void Awake()
     {
@@ -23,13 +25,14 @@ public class MoneySystem : MonoBehaviour
 
     public void ZombieDeath(EnemyZombie z, float chance, int money)
     {
-        int random = Random.Range(0, 100);
+        int random = UnityEngine.Random.Range(0, 100);
         if (random <= chance)
         {
             if (bonusMoney) money *= 2;
             Instantiate(dollars, z.transform.position, Quaternion.identity);
             levelMoney += money;
             moneyText.text = "$: " + this.money + " / " + levelMoney + " / " + (this.money + levelMoney);
+            OnMoneyDropped?.Invoke(z, bonusMoney);
         }
     }
 
