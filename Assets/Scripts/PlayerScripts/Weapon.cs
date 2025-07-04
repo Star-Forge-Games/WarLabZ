@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using YG;
+using static WeaponSettings;
 
 public class Weapon : MonoBehaviour
 {
@@ -53,6 +54,11 @@ public class Weapon : MonoBehaviour
             else SelfPause();
         });
         PauseSystem.OnPauseStateChanged += action;
+    }
+
+    private void Start()
+    {
+        int level = YG2.saves.weaponLevels[weaponId];
         WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(weaponId);
         WeaponSettings.Level l = settings.levels[level];
         bulletDamage = l.damage;
