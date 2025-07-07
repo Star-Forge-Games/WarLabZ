@@ -54,20 +54,20 @@ public class WeaponUI : MonoBehaviour
         {
             var l = ws.levels[0];
             buyUpgradeButtonText.text = $"{Loc("buy")}\n{l.cost}$";
-            dmg.text = $"{Loc("damage")}: {l.damage}";
-            aspd.text = $"{Loc("aspd")}: {l.aspd}";
-            crit.text = $"{Loc("crit")}: {l.crit * 100}%";
-            critChance.text = $"{Loc("critchance")}: {l.critChance}%";
+            dmg.text = $"<color=green>{l.damage}</color>";
+            aspd.text = $"<color=green>{l.aspd}</color>";
+            crit.text = $"<color=green>{l.crit * 100}%</color>";
+            critChance.text = $"<color=green>{l.critChance}%</color>";
         }
         else if (lvl == ws.levels.Length - 1)
         {
             var l = ws.levels[lvl];
             buyUpgradeButtonText.text = Loc("max");
             buyUpgradeButton.interactable = false;
-            dmg.text = $"{Loc("damage")}: {l.damage}";
-            aspd.text = $"{Loc("aspd")}: {l.aspd}";
-            crit.text = $"{Loc("crit")}: {l.crit * 100}%";
-            critChance.text = $"{Loc("critchance")} {l.critChance}%";
+            dmg.text = $"<color=green>{l.damage}</color>";
+            aspd.text = $"<color=green>{l.aspd}</color>";
+            crit.text = $"<color=green>{l.crit * 100}%</color>";
+            critChance.text = $"<color=green>{l.critChance}%</color>";
             return;
         }
         else
@@ -75,10 +75,10 @@ public class WeaponUI : MonoBehaviour
             buyUpgradeButtonText.text = $"{Loc("upgrade")}\n{ws.levels[lvl + 1].cost}$";
             var l = ws.levels[lvl];
             var l2 = ws.levels[lvl + 1];
-            dmg.text = $"{Loc("damage")}: {l.damage}" + (l2.damage > l.damage ? $" (+{l2.damage - l.damage})" : "");
-            aspd.text = $"{Loc("aspd")}: {l.aspd}" + (l2.aspd > l.aspd ? $" (+{(decimal)l2.aspd - (decimal)l.aspd})" : "");
-            crit.text = $"{Loc("crit")}: {l.crit * 100}%" + (l2.crit > l.crit ? $" (+{((decimal)l2.crit - (decimal)l.crit) * 100}%)" : "");
-            critChance.text = $"{Loc("critchance")}: {l.critChance}%" + (l2.critChance > l.critChance ? $" (+{(decimal)l2.critChance - (decimal)l.critChance}%)" : "");
+            dmg.text = $"<color=green>{l.damage}</color>" + (l2.damage > l.damage ? $" <color=red>(+{l2.damage - l.damage})</color>" : "");
+            aspd.text = $"<color=green>{l.aspd}</color>" + (l2.aspd > l.aspd ? $" <color=red>(+{(decimal)l2.aspd - (decimal)l.aspd})</color>" : "");
+            crit.text = $"<color=green>{l.crit * 100}%</color>" + (l2.crit > l.crit ? $" <color=red>(+{((decimal)l2.crit - (decimal)l.crit) * 100}%)</color>" : "");
+            critChance.text = $"<color=green>{l.critChance}%</color>" + (l2.critChance > l.critChance ? $" <color=red>(+{(decimal)l2.critChance - (decimal)l.critChance}%)</color>" : "");
         }
         buyUpgradeButton.interactable = ws.levels[lvl + 1].cost <= YG2.saves.cash;
     }
