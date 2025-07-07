@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -12,7 +13,9 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private bool instaTimer = true;
     [SerializeField] private GameObject suppliesPanel;
     [SerializeField] private GameObject wagonSystem;
-    [SerializeField] private GameObject wallHealthBar, waveText, pauseButton, moneyText, moneyImage; 
+    [SerializeField] private GameObject wallHealthBar, waveText, pauseButton, moneyText, moneyImage;
+    [SerializeField] private GameObject babahCube;
+    [SerializeField] private ParticleSystem babah;
 
     private void Start()
     {
@@ -24,6 +27,16 @@ public class Cutscene : MonoBehaviour
         SkillsPanel.lifesteal = false;
         SkillsPanel.zHealthReduction = false;
         SkillsPanel.bossHealthReduction = false;
+    }
+
+    public void Babah()
+    {
+        babah.Play();
+    }
+
+    public void BabahCube()
+    {
+        babahCube.SetActive(true);
     }
 
     public void StartGame()

@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &958667682573748261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870617476749090707}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870617476749090707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958667682573748261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 514902795061934252}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4226588116228472553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8928873449642353584}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8928873449642353584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226588116228472553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5322254432661468877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4808807940917028728
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +124,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 236804968038786282}
     m_Modifications:
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: range
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: fireForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: 'firePoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8928873449642353584}
     - target: {fileID: 6278149315064641739, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
       propertyPath: m_Name
       value: 2TurLeft
@@ -108,9 +186,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6281905707322848027, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8928873449642353584}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+--- !u!4 &5322254432661468877 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6281905707322848027, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+  m_PrefabInstance: {fileID: 2229771923031770582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5322254435181569251 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6281905710171971893, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
@@ -368,11 +454,35 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2TurRight
       objectReference: {fileID: 0}
+    - target: {fileID: 9051378005269673416, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+      propertyPath: range
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051378005269673416, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+      propertyPath: fireForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051378005269673416, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+      propertyPath: firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051378005269673416, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+      propertyPath: 'firePoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 870617476749090707}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7003583499700860349, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 870617476749090707}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+--- !u!4 &514902795061934252 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7003583499700860349, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}
+  m_PrefabInstance: {fileID: 7355775993701813521}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &514902797917088386 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7003583503287887763, guid: 33450bb5cf36cc4408d16ebd8eea2784, type: 3}

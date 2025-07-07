@@ -53,12 +53,7 @@ public class WallShopButtonScript : MonoBehaviour
             upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = Loc("bought");
         } else
         {
-            if (YG2.saves.cash < wallSettings.wallLevels[lvl].cost)
-            {
-                upgradeButton.interactable = false;
-                upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = Loc("nocash");
-            }
-            upgradeButton.interactable = true;
+            upgradeButton.interactable = YG2.saves.cash >= wallSettings.wallLevels[lvl].cost;
             upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"{Loc("buy")}\n{wallSettings.wallLevels[lvl].cost} $";
         }
     }

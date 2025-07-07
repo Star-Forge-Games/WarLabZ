@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &327040629720000754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744171107927018385}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744171107927018385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327040629720000754}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6630852936930478731}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4395486481498008422
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +86,68 @@ MonoBehaviour:
   turrets:
   - {fileID: 4659197967550237438}
   - {fileID: 4033562644462372760}
+--- !u!1 &4469018927569047713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2197119507664139372}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2197119507664139372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469018927569047713}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 904087777801397399}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7328420434415639830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6306770436561877487}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6306770436561877487
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7328420434415639830}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.575}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 904087778418576567}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &803974345950165392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,6 +156,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5189127002113648562}
     m_Modifications:
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: range
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: fireForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: firePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440490967489524590, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      propertyPath: 'firePoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 744171107927018385}
     - target: {fileID: 6278149315064641739, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
       propertyPath: m_Name
       value: 2TurLeft
@@ -109,7 +218,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6281905707322848027, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 744171107927018385}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
 --- !u!114 &4659197967550237438 stripped
@@ -123,6 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ec044eed896034fa2e09a64e323c9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6630852936930478731 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6281905707322848027, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
+  m_PrefabInstance: {fileID: 803974345950165392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6630852938643183781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6281905710171971893, guid: 3a4a84350e1adb043a92a9584d8c5a8e, type: 3}
@@ -428,11 +545,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8734993784124649698, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      propertyPath: range
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734993784124649698, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      propertyPath: fireForce
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734993784124649698, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      propertyPath: firePoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734993784124649698, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      propertyPath: 'firePoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2197119507664139372}
+    - target: {fileID: 8734993784124649698, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      propertyPath: 'firePoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 6306770436561877487}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4776364550294754285, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2197119507664139372}
+    - targetCorrespondingSourceObject: {fileID: 4776364551968979917, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6306770436561877487}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+--- !u!4 &904087777801397399 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4776364550294754285, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+  m_PrefabInstance: {fileID: 5675372583836039034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &904087778418576567 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4776364551968979917, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
+  m_PrefabInstance: {fileID: 5675372583836039034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &904087780256511383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4776364549462573805, guid: a7dbaeb27f350fd46a89e728424f1ab3, type: 3}
