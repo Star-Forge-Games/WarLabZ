@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using YG;
-
+using static LocalizationHelperModule;
 
 public class MoneySystem : MonoBehaviour
 {
@@ -28,21 +28,7 @@ public class MoneySystem : MonoBehaviour
         {
             if (bonusMoney) money *= 2;
             levelMoney += money;
-            string mf = "";
-            if (levelMoney < 1000) mf = $"{levelMoney}";
-            else if (levelMoney < 1000000)
-            {
-                mf = $"{((double)levelMoney / 1000).ToString("F1")}K";
-            }
-            else if (levelMoney < 1000000000)
-            {
-                mf = $"{((double)levelMoney / 1000000).ToString("F1")}M";
-            }
-            else
-            {
-                mf = $"{((double)levelMoney / 1000000000).ToString("F1")}B";
-            }
-            moneyText.text = mf;
+            moneyText.text = MoneyFormat(levelMoney);
             if (!shaking)
             {
                 shaking = true;

@@ -32,7 +32,7 @@ public class SuppliesShopUI : MonoBehaviour
         buyW.interactable = money >= priceW;
         buyB.interactable = money >= priceB;
         buyA.interactable = money >= priceA;
-        moneyText.text = $"{money} $";
+        moneyText.text = MoneyFormat(money);
     }
 
     public void Buy(int id)

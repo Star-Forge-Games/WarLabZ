@@ -43,7 +43,7 @@ public class WallShopButtonScript : MonoBehaviour
 
     private void UpdateButtons()
     {
-        moneyText.text = $"{YG2.saves.cash} $";
+        moneyText.text = MoneyFormat(YG2.saves.cash);
         nextButton.SetActive(lvl != walls.Length - 1);
         previousButton.SetActive(lvl != 0);
         wallsText.text = $"{Loc("level")} {lvl+1}\n{Loc($"wd{lvl+1}")}";

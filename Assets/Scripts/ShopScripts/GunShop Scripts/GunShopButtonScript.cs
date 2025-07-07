@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using YG;
+using static LocalizationHelperModule;
 
 public class GunShopUIScript : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class GunShopUIScript : MonoBehaviour
 
     public void Refresh()
     {
-        moneyText.text = $"{YG2.saves.cash} $";
+        moneyText.text = MoneyFormat(YG2.saves.cash);
     }
 
     private void ProcessTouch(int id, WeaponSettings ws, bool selected)

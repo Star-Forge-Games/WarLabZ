@@ -5,6 +5,7 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
+using static LocalizationHelperModule;
 
 public class MenuUI : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class MenuUI : MonoBehaviour
     {
         YG2.onCloseInterAdv += SwitchToGame;
         fader.gameObject.SetActive(true);
-        cash.text = $"{YG2.saves.cash} $";
+        cash.text = MoneyFormat(YG2.saves.cash);
         AudioListener.volume = YG2.saves.soundOn? 1 : 0;
         playerName.text = YG2.player.name;
         playerPanel.SetActive(true);
@@ -62,7 +63,7 @@ public class MenuUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (YG2.isSDKEnabled) cash.text = $"{YG2.saves.cash} $";
+        if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
     }
 
     public void SwitchToGame()
