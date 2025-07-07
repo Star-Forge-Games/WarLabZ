@@ -10,17 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3be2b46147a0a674ab01d7f7a5edacad, type: 3}
-  m_Name: Wave3
+  m_Name: Wave1 (Copy)
   m_EditorClassIdentifier: 
   parts:
   - delay: 0
     zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
-    amount: 1
-    interval: 1
+    amount: 7
+    interval: 4
     hpMultiplier: 0
-  - delay: 0
+  - delay: 5
     zombiePrefab: {fileID: 7143858245785905579, guid: 39f3c018be931aa43a84237f1d3fc2c9, type: 3}
-    amount: 1
-    interval: 1
+    amount: 7
+    interval: 4
+    hpMultiplier: 0
+  - delay: 7
+    zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
+    amount: 7
+    interval: 4
     hpMultiplier: 0
   nextWaveDelay: 0
