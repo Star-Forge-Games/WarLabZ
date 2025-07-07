@@ -13,17 +13,22 @@ MonoBehaviour:
   m_Name: RifleWeaponSettingsID3
   m_EditorClassIdentifier: 
   levels:
-  - cost: 1000
+  - cost: 2500
     damage: 6
     aspd: 7
     crit: 8
     critChance: 9
-  - cost: 2000
+  - cost: 2750
     damage: 11
     aspd: 8
     crit: 9
     critChance: 10
-  - cost: 4000
+  - cost: 3000
+    damage: 11
+    aspd: 11
+    crit: 11
+    critChance: 11
+  - cost: 3500
     damage: 11
     aspd: 11
     crit: 11
