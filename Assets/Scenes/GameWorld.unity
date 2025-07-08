@@ -29204,7 +29204,7 @@ MonoBehaviour:
   firePoint: {fileID: 1959370579}
   fireForce: 50
   bulletDamage: 1
-  bulletLifeTime: 1.5
+  bulletLifeTime: 0.8
   bulletContainer: {fileID: 506493578}
   bulletPrefab: {fileID: 3655915580099568710, guid: ad103206d396371488c47caeafef386f, type: 3}
   weaponId: 1
