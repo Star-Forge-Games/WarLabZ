@@ -17,9 +17,7 @@ public class WallShopButtonScript : MonoBehaviour
     [SerializeField] float speedRotation;
     [SerializeField] TextMeshProUGUI moneyText;
 
-
-
-    private void Start()
+    private void OnEnable()
     {
         lvl = YG2.saves.wallLevel;
         for (int i = 0; i < walls.Length; i++)
@@ -28,6 +26,7 @@ public class WallShopButtonScript : MonoBehaviour
         }
         UpdateButtons();
     }
+
     private void Update()
     {
         wallsTransform.Rotate(0, Time.deltaTime * speedRotation, 0);

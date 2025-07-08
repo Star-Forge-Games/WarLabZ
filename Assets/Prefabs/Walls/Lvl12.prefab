@@ -231,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765525373786174066, guid: 30c3f927f9a5d9946ab9ce9e07770562, type: 3}
       propertyPath: fireForce
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8765525373786174066, guid: 30c3f927f9a5d9946ab9ce9e07770562, type: 3}
       propertyPath: firePoints.Array.size
@@ -310,7 +310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3461838606260349185, guid: 0f29a82387ddb644d915c5f0c7f793e3, type: 3}
       propertyPath: fireForce
-      value: 25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8626432171262605693, guid: 0f29a82387ddb644d915c5f0c7f793e3, type: 3}
       propertyPath: m_LocalPosition.x
