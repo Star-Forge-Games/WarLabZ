@@ -24,6 +24,7 @@ public class Wall : MonoBehaviour
     [SerializeField] HealthLevel[] healthLevels;
     [SerializeField] Image fill;
     public static Action OnWallDeath;
+    private float lifestealCounter = 0;
 
     [Serializable]
     public struct HealthLevel
@@ -224,9 +225,20 @@ public class Wall : MonoBehaviour
 
     public void Lifesteal(bool boss)
     {
-        health = Mathf.Clamp(health + (int)(maxHealth * (boss ? 0.05f : 0.01f)), health+1, maxHealth);
-        if (health > maxHealth) health = maxHealth;
-        UpdateWallHp();
+        float boost = maxHealth * (boss ? 0.05f : 0.01f);
+        lifestealCounter += boost;
+        int bonus = 0;
+        while (lifestealCounter > 1)
+        {
+            bonus++;
+            lifestealCounter--;
+        }
+        if (bonus > 0)
+        {
+            if (health + bonus > maxHealth) health = maxHealth;
+            else health += bonus;
+            UpdateWallHp();
+        }
     }
 
     public void SetBlademail()
