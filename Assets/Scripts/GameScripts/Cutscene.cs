@@ -32,6 +32,7 @@ public class Cutscene : MonoBehaviour
     public void Babah()
     {
         babah.Play();
+        babah.GetComponent<AudioSource>().Play();
     }
 
     public void BabahCube()

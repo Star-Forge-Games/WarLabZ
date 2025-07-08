@@ -52,6 +52,7 @@ public class Wagon : EnemyZombie
         if (currentHealth <= 0)
         {
             dead = true;
+            
             Destroy(GetComponent<CharacterController>());
             Destroy(healthCanvas);
             Destroy(wagonCanvas);

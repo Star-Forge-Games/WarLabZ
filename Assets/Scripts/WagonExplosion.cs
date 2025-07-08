@@ -5,6 +5,9 @@ public class WagonExplosion : MonoBehaviour
 
     public static WagonExplosion instance;
 
+    [SerializeField] AudioSource sound;
+    [SerializeField] ParticleSystem ps;
+
     private void Start()
     {
         instance = this;
@@ -15,7 +18,8 @@ public class WagonExplosion : MonoBehaviour
     {
         transform.position = position;
         gameObject.SetActive(true);
-        GetComponent<ParticleSystem>().Play();
+        ps.Play();
+        sound.Play();
     }
 
 }
