@@ -131,6 +131,7 @@ public class EnemyZombie : MonoBehaviour
             g.transform.parent = transform;
             g.transform.localPosition = Vector3.zero;
             g.GetComponent<AudioSource>().clip = deathSound;
+            g.GetComponent<AudioSource>().volume = 0.3f;
             g.GetComponent<AudioSource>().Play();
             critCanvas.SetActive(false);
             slowCanvas.SetActive(false);

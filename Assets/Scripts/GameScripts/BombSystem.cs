@@ -58,10 +58,15 @@ public class BombSystem : MonoBehaviour
 
     public void Explode(bool timed)
     {
-        if (timed) timedPS.Play();
+        if (timed)
+        {
+            timedPS.Play();
+            timedPS.GetComponent<AudioSource>().Play();
+        }
         else
         {
             pointPS.Play();
+            pointPS.GetComponent<AudioSource>().Play();
             bombFalling = false;
         }
     }
