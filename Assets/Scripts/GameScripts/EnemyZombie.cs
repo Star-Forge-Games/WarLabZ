@@ -215,7 +215,7 @@ public class EnemyZombie : MonoBehaviour
     {
         stunned = false;
         wall = true;
-        anim.Play("ZombieRoar");
+        if (!dead) anim.Play("ZombieRoar");
     }
 
     private void OnDestroy()

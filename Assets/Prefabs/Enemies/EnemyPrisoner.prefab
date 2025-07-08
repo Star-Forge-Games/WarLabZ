@@ -851,11 +851,11 @@ MonoBehaviour:
   anim: {fileID: 4382421247477691617}
   healthBar: {fileID: 7789753011265524503}
   healthAmount: {fileID: 5739539181246942191}
-  maxHealth: 10
-  damage: 1
-  speed: 5
-  difficulty: 1
-  money: 1
+  maxHealth: 50
+  damage: 5
+  speed: 8
+  difficulty: 6
+  money: 4
   slowStartZ: 35
   slowEndZ: 10
   boss: 0

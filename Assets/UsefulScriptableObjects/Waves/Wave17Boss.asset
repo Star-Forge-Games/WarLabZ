@@ -10,22 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3be2b46147a0a674ab01d7f7a5edacad, type: 3}
-  m_Name: WaveTEST
+  m_Name: Wave17Boss
   m_EditorClassIdentifier: 
   parts:
   - delay: 0
-    zombiePrefab: {fileID: 7143858245785905579, guid: f3b972b22792f3d43bc109d270f87eb4, type: 3}
-    amount: 1
-    interval: 0
-    hpMultiplier: 0
-  - delay: 1
     zombiePrefab: {fileID: 7143858245785905579, guid: 61e8bda4527ed104a8652b569cfc3c3e, type: 3}
     amount: 1
-    interval: 0
-    hpMultiplier: 0
+    interval: 3
+    hpMultiplier: 2
   - delay: 2
     zombiePrefab: {fileID: 7143858245785905579, guid: d4ffa6381c41d1a4294a3f7a728fd061, type: 3}
-    amount: 1
-    interval: 0
+    amount: 4
+    interval: 3
     hpMultiplier: 0
   nextWaveDelay: 0
