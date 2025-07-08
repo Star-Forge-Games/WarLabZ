@@ -162,7 +162,7 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             partsProgress[data.partIndex].amountSpawned++;
             partsProgress[data.partIndex].timeSinceLastSpawn = 0;
-            SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
+            SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
             yield return new WaitForSeconds(part.interval);
         }
     }

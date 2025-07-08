@@ -6,6 +6,7 @@ public class Wagon : EnemyZombie
 
     [SerializeField] Animator bombAnimator;
     [SerializeField] ParticleSystem fire;
+    [SerializeField] GameObject wagonCanvas;
 
     public new void Update()
     {
@@ -53,6 +54,7 @@ public class Wagon : EnemyZombie
             dead = true;
             Destroy(GetComponent<CharacterController>());
             Destroy(healthCanvas);
+            Destroy(wagonCanvas);
             OnZombieDie?.Invoke(this, 0, 0);
             anim.Play("Death");
             StartCoroutine(Die());

@@ -207,6 +207,7 @@ public class EnemyZombie : MonoBehaviour
     private void RunFurther()
     {
         stunned = false;
+        wall = true;
         anim.Play("ZombieRoar");
     }
 
