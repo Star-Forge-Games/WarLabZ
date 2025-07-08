@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parts:
   - delay: 0
+    zombiePrefab: {fileID: 7143858245785905579, guid: ea271b05e396aca439357e3a5e09a798, type: 3}
+    amount: 5
+    interval: 8
+    hpMultiplier: 0
+  - delay: 0
     zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
     amount: 7
     interval: 4
-    hpMultiplier: 0
-  - delay: 0
-    zombiePrefab: {fileID: 7143858245785905579, guid: ea271b05e396aca439357e3a5e09a798, type: 3}
-    amount: 5
-    interval: 10
     hpMultiplier: 0
   - delay: 5
     zombiePrefab: {fileID: 7143858245785905579, guid: 39f3c018be931aa43a84237f1d3fc2c9, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
     amount: 7
     interval: 4
     hpMultiplier: 0
-  - delay: 7
+  - delay: 10
     zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
     amount: 7
     interval: 4
