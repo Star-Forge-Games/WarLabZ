@@ -62,6 +62,7 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private void CalculateEnemiesAmount()
     {
+        partsProgress = null;
         partsProgress = new PartProgress[waves[wave].parts.Length];
         for (int i = 0; i < partsProgress.Length; i++)
         {
@@ -137,18 +138,18 @@ public class EnemySpawnSystem : MonoBehaviour
             {
                 partsProgress[data.index].amountSpawned++;
                 partsProgress[data.index].timeSinceLastSpawn = 0;
-                SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
+                SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
         else
         {
-            yield return new WaitForSeconds(part.interval - partsProgress[data.index].timeSinceLastSpawn);
+            yield return new WaitForSeconds(Mathf.Clamp(part.interval - partsProgress[data.index].timeSinceLastSpawn, 0.01f, part.interval));
             for (int i = 0; i < part.amount - partsProgress[data.index].amountSpawned; i++)
             {
                 partsProgress[data.index].amountSpawned++;
                 partsProgress[data.index].timeSinceLastSpawn = 0;
-                SpawnEnemy(part.zombiePrefab, part.hpMultiplier != 0 ? part.hpMultiplier : 1);
+                SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
@@ -195,7 +196,7 @@ public class EnemySpawnSystem : MonoBehaviour
             }
             return;
         }
-        if (spawnedEnemies == waveEnemies)
+        if (spawnedEnemies >= waveEnemies)
         {
             if (enemyContainer.childCount == 0)
             {
