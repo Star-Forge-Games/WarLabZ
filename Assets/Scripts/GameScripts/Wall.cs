@@ -225,7 +225,7 @@ public class Wall : MonoBehaviour
 
     public void Lifesteal(bool boss)
     {
-        float boost = maxHealth * (boss ? 0.05f : 0.01f);
+        float boost = maxHealth * (boss ? 0.1f : 0.0125f);
         lifestealCounter += boost;
         int bonus = 0;
         while (lifestealCounter > 1)
