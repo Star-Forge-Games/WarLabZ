@@ -22,6 +22,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] protected GameObject healthCanvas;
     [SerializeField] protected GameObject critCanvas, instaKillCanvas;
     [SerializeField] protected GameObject slowCanvas;
+    [SerializeField] AudioClip deathSound;
 
     [Serializable]
     public struct ColoredPart
@@ -126,6 +127,11 @@ public class EnemyZombie : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            GameObject g = new GameObject("DeathSound", typeof(AudioSource));
+            g.transform.parent = transform;
+            g.transform.localPosition = Vector3.zero;
+            g.GetComponent<AudioSource>().clip = deathSound;
+            g.GetComponent<AudioSource>().Play();
             critCanvas.SetActive(false);
             slowCanvas.SetActive(false);
             dead = true;

@@ -889,6 +889,7 @@ MonoBehaviour:
   critCanvas: {fileID: 1597152432516253308}
   instaKillCanvas: {fileID: 3887561614707134606}
   slowCanvas: {fileID: 8724147957958935971}
+  deathSound: {fileID: 8300000, guid: ff66c65136b118d4580f0f3de5775e55, type: 3}
   parts:
   - obj: {fileID: 8220092134459263834}
   throwPosition: {fileID: 8549039879049934404}
