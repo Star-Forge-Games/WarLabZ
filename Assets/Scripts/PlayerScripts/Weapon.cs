@@ -93,6 +93,7 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
+        PlayerController.instance.Shot();
         GameObject gunFireFrontFirePoint = Instantiate(gunFireFront, firePoint.position, firePoint.rotation);
         gunFireFrontFirePoint.transform.parent = firePoint;
         Destroy(gunFireFrontFirePoint,0.03f);

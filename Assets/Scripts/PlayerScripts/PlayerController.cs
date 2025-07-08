@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = 6f;
     [SerializeField] float moveSpeedWithBonus = 12f;
     [SerializeField] private Animator anim;
+    [SerializeField] private AudioSource sound;
     Vector2 moveInput = Vector2.zero;
     Vector3 movement = Vector2.zero;
     private Action<bool> action;
@@ -19,8 +20,11 @@ public class PlayerController : MonoBehaviour
 
     public static Transform trans;
 
+    public static PlayerController instance;
+
     private void Awake()
     {
+        instance = this;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
@@ -38,6 +42,11 @@ public class PlayerController : MonoBehaviour
             TouchSimulation.Enable();
         }
         characterController = GetComponent<CharacterController>();
+    }
+
+    public void Shot()
+    {
+        sound.Play();
     }
 
     private void OnDestroy()
