@@ -145,7 +145,8 @@ public class EnemySpawnSystem : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(Mathf.Clamp(part.interval - partsProgress[data.index].timeSinceLastSpawn, 0.01f, part.interval));
-            for (int i = 0; i < part.amount - partsProgress[data.index].amountSpawned; i++)
+            int am = partsProgress[data.index].amountSpawned;
+            for (int i = 0; i < part.amount - am; i++)
             {
                 partsProgress[data.index].amountSpawned++;
                 partsProgress[data.index].timeSinceLastSpawn = 0;
