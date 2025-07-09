@@ -107,6 +107,10 @@ public class Wall : MonoBehaviour
             button.interactable = true;
             amount.text = $"{YG2.saves.supplies[0]}";
         }
+        var col = GetComponent<BoxCollider>();
+        Vector3 size = col.size;
+        size.z = settings.wallLevels[YG2.saves.wallLevel].width;
+        col.size = size;
     }
 
     private void Update()

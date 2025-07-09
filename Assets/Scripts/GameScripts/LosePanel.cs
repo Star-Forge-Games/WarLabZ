@@ -16,6 +16,10 @@ public class LosePanel : MonoBehaviour
 
     private void OnEnable()
     {
+        if (YG2.saves.playedBefore == 0)
+        {
+            YG2.saves.playedBefore = 1;
+        }
         int rec = YG2.saves.record;
         int waves = ess.GetTotalWave();
         record.text = $"{Loc("record")} {rec}";
@@ -27,10 +31,10 @@ public class LosePanel : MonoBehaviour
         {
             rec = waves;
             YG2.saves.record = waves;
-            YG2.SaveProgress();
             newRecordAnimator.SetActive(true);
             YG2.SetLeaderboard("WarLabRecords", rec);
         }
+        YG2.SaveProgress();
     }
 
     public void SwitchScene(int i)

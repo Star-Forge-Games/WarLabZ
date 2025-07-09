@@ -22,9 +22,8 @@ public class Energy : MonoBehaviour
     private void OnEnable()
     {
         energySlider.maxValue = maxEnergy;
-        if (!YG2.saves.playedBefore)
+        if (YG2.saves.playedBefore <= 0)
         {
-            YG2.saves.playedBefore = true;
             YG2.saves.energyLeft = maxEnergy;
             energy = maxEnergy;
             YG2.SaveProgress();

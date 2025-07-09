@@ -17,14 +17,15 @@ public class MenuUI : MonoBehaviour
     [SerializeField] Image playerIcon;
     [SerializeField] GameObject playerPanel;
     [SerializeField] Transform handWeapons;
+    [SerializeField] GameObject tutorial;
     public ImageLoadYG photoImageLoad;
 
     private void Start()
     {
-        YG2.onCloseInterAdv += SwitchToGame;
         fader.gameObject.SetActive(true);
+        YG2.onCloseInterAdv += SwitchToGame;
         cash.text = MoneyFormat(YG2.saves.cash);
-        AudioListener.volume = YG2.saves.soundOn? 1 : 0;
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
         playerName.text = YG2.player.name;
         playerPanel.SetActive(true);
         energy.gameObject.SetActive(true);
@@ -44,6 +45,10 @@ public class MenuUI : MonoBehaviour
             {
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
             }
+        }
+        if (YG2.saves.playedBefore == -1)
+        {
+            tutorial.SetActive(true);
         }
     }
 

@@ -9,6 +9,7 @@ public class WallSettings : ScriptableObject
     {
         public int cost;
         public int hp;
+        public float width;
     }
 
     public WallData[] wallLevels;

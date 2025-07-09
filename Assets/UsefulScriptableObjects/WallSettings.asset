@@ -15,25 +15,37 @@ MonoBehaviour:
   wallLevels:
   - cost: 0
     hp: 20
+    width: 0.53
   - cost: 30
     hp: 25
+    width: 2.15
   - cost: 150
     hp: 35
+    width: 2.15
   - cost: 600
     hp: 50
+    width: 2.15
   - cost: 1000
     hp: 70
+    width: 2.15
   - cost: 1500
     hp: 95
+    width: 2.15
   - cost: 2500
     hp: 125
+    width: 3
   - cost: 4000
     hp: 150
+    width: 3.26
   - cost: 5000
     hp: 175
+    width: 3.26
   - cost: 7500
     hp: 200
+    width: 3.26
   - cost: 10000
     hp: 250
+    width: 3.26
   - cost: 15000
     hp: 300
+    width: 3.26
