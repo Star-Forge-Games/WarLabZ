@@ -19,18 +19,18 @@ public class LosePanel : MonoBehaviour
         int rec = YG2.saves.record;
         int waves = ess.GetTotalWave();
         record.text = $"{Loc("record")} {rec}";
-        if (waves > rec)
-        {
-            rec = waves;
-            YG2.saves.record = waves;
-            YG2.SetLeaderboard("WarLabRecords", rec);
-            YG2.SaveProgress();
-            newRecordAnimator.SetActive(true);
-        }
         wavesLived.text = $"{Loc("lived")} {waves}";
         money.text = $"{MoneySystem.instance.GetCollectedMoney()}$";
         zombiesKilled.text = $"{KillsCount.kills}";
         bossesKilled.text = $"{KillsCount.bosses}";
+        if (waves > rec)
+        {
+            rec = waves;
+            YG2.saves.record = waves;
+            YG2.SaveProgress();
+            newRecordAnimator.SetActive(true);
+            YG2.SetLeaderboard("WarLabRecords", rec);
+        }
     }
 
     public void SwitchScene(int i)
