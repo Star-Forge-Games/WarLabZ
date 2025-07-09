@@ -59,7 +59,6 @@ public class Bullet : MonoBehaviour
                 if (this.damage == dmg) this.damage++;
                 else this.damage = dmg;
                 crit = true;
-                // some other crit effect(visual maybe)
             }
         }
         SelfUnpause();

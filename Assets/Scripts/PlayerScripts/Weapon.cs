@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour
 
     private bool twinShot, instakill, through, bomb;
 
-    private float critChance = 2, critDamageMultiplier = 1.5f;
+    private float critChance, critDamageMultiplier;
 
     public static Weapon instance;
 

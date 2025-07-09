@@ -44,7 +44,7 @@ public class Turret : MonoBehaviour
                     twinShot = true;
                     break;
                 case 21:
-                    critChance += 10;
+                    critChance += 7;
                     break;
                 case 22:
                     flatRateModifier += 0.5f;
@@ -59,7 +59,7 @@ public class Turret : MonoBehaviour
                     flatDamageModifier += 1;
                     break;
                 default:
-                    critDamageMultiplier += 0.1f;
+                    critDamageMultiplier += 0.5f;
                     break;
             };
         };

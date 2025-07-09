@@ -97,10 +97,10 @@ public class SkillsPanel : MonoBehaviour
                 Weapon.instance.SetShotgun();
                 break;
             case 8:
-                Weapon.instance.IncreaseCritChance(60);
+                Weapon.instance.IncreaseCritChance(2f);
                 break;
             case 9:
-                Weapon.instance.IncreaseDamageModifier(true, 2);
+                Weapon.instance.IncreaseDamageModifier(true, 1);
                 break;
             case 10:
                 Weapon.instance.IncreaseRateModifier(true, 0.5f);
@@ -109,7 +109,7 @@ public class SkillsPanel : MonoBehaviour
                 Weapon.instance.SetMultiShot();
                 break;
             case 12:
-                Weapon.instance.IncreaseCritDamage(1.5f);
+                Weapon.instance.IncreaseCritDamage(0.5f);
                 break;
             case 13:
                 Weapon.instance.SetBomb();
@@ -122,7 +122,7 @@ public class SkillsPanel : MonoBehaviour
                 slowZone.SetActive(true);
                 break;
             case 16:
-                Weapon.instance.AddStunChance(15);
+                Weapon.instance.AddStunChance(7);
                 break;
             case 17:
                 zHealthReduction = true;
