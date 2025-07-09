@@ -34,6 +34,7 @@ public class WagonSystem : MonoBehaviour
             var pos = signalCanvas.transform.position;
             pos.x = f;
             signalCanvas.transform.position = pos;
+            signalCanvas.Signal();
             timer = 0;
         }
     }
