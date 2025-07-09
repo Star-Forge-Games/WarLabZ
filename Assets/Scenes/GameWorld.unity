@@ -5443,7 +5443,7 @@ GameObject:
   - component: {fileID: 415624285}
   - component: {fileID: 415624284}
   m_Layer: 0
-  m_Name: MeteoriteSystem
+  m_Name: BombSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5461,7 +5461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e665fdc6ffcc0478d63f52fb007b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 5
+  interval: 7
   timedPS: {fileID: 1099626949}
   pointPS: {fileID: 1568573477}
   bomb: {fileID: -7922614534930217302, guid: a71e062d04800a6469c5284934b98b3d, type: 3}
@@ -46480,7 +46480,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: f23df38032bed494b8353b3c39716330, type: 2}
   protectionTime: 10
   WallShield: {fileID: 6771473286471559929}
-  bonusHealthPercent: 0.1
+  bonusHealthPercent: 0.2
   button: {fileID: 1054330113}
   wallHpBarAnimator: {fileID: 1485505123}
   protectCooldownInSeconds: 20

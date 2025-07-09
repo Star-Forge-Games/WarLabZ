@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPrefab: {fileID: 8074670755323419438, guid: c153c3b4d77cdac4ea14976b8886063f, type: 3}
-  bombChance: 7.5
-  instaKillChance: 5
+  bombChance: 3
+  instaKillChance: 1.5
 --- !u!114 &1342963482235923507
 MonoBehaviour:
   m_ObjectHideFlags: 0
