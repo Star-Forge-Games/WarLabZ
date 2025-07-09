@@ -32,10 +32,10 @@ MonoBehaviour:
     zombiePrefab: {fileID: 7143858245785905579, guid: 32abc0af9059f5140861fff5ef2f95a2, type: 3}
     amount: 6
     interval: 6
-    hpMultiplier: 2
+    hpMultiplier: 2.5
   - delay: 5
     zombiePrefab: {fileID: 7143858245785905579, guid: c44307c494345fc4a9f8a20a6f6d6ceb, type: 3}
     amount: 6
     interval: 4
-    hpMultiplier: 1.25
+    hpMultiplier: 1.5
   nextWaveDelay: 0

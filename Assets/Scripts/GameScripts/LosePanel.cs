@@ -1,3 +1,4 @@
+
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class LosePanel : MonoBehaviour
         {
             rec = waves;
             YG2.saves.record = waves;
+            YG2.SetLeaderboard("WarLabRecords", rec);
             YG2.SaveProgress();
             newRecordAnimator.SetActive(true);
         }
