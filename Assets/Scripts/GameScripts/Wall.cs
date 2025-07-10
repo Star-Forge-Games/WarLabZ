@@ -148,8 +148,8 @@ public class Wall : MonoBehaviour
                     EnemyZombie.OnZombieHitWall -= TakeDamage;
                     OnWallDeath?.Invoke();
                     wallHpBar.gameObject.SetActive(false);
-                    pauseButton.gameObject.SetActive(false);
-                    supPanel.gameObject.SetActive(false);
+                    pauseButton.SetActive(false);
+                    supPanel.SetActive(false);
                     Destroy(gameObject);
                     return;
                 }

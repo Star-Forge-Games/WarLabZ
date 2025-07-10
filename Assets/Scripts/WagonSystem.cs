@@ -29,12 +29,15 @@ public class WagonSystem : MonoBehaviour
         {
             yield return new WaitForSeconds(interval - timer);
             float f = Random.Range(-4f, 4f);
-            GameObject g = Instantiate(prefab, new Vector3(f, 1, 60), Quaternion.Euler(0, 180, 0));
-            g.transform.parent = wagonContainer;
-            var pos = signalCanvas.transform.position;
-            pos.x = f;
-            signalCanvas.transform.position = pos;
-            signalCanvas.Signal();
+            if (signalCanvas != null)
+            {
+                GameObject g = Instantiate(prefab, new Vector3(f, 1, 60), Quaternion.Euler(0, 180, 0));
+                g.transform.parent = wagonContainer;
+                var pos = signalCanvas.transform.position;
+                pos.x = f;
+                signalCanvas.transform.position = pos;
+                signalCanvas.Signal();
+            }
             timer = 0;
         }
     }
