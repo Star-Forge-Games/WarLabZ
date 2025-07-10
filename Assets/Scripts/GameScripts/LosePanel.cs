@@ -13,6 +13,8 @@ public class LosePanel : MonoBehaviour
     [SerializeField] TextMeshProUGUI record, wavesLived, money, zombiesKilled, bossesKilled;
     [SerializeField] EnemySpawnSystem ess;
     [SerializeField] GameObject newRecordAnimator;
+    [SerializeField] GameObject recommendPanel;
+    [SerializeField] TextMeshProUGUI recText;
 
     private void OnEnable()
     {
@@ -35,6 +37,31 @@ public class LosePanel : MonoBehaviour
             YG2.SetLeaderboard("WarLabRecords", rec);
         }
         YG2.SaveProgress();
+    }
+
+    public void Recommend()
+    {
+        if (!YG2.reviewCanShow) return;
+        YG2.ReviewShow();
+    }
+
+    private void ProcessRecommendation(bool result)
+    {
+        if (!result) return;
+        YG2.reviewCanShow = false;
+        int m = MoneySystem.instance.GetCollectedMoney();
+        int rm = Mathf.CeilToInt(Mathf.Clamp(m / 2f, 100, m));
+        rm -= rm % 50;
+        YG2.saves.cash += rm;
+        YG2.SaveProgress();
+        recText.text = $"{Loc("review")} <color=green>{rm}$</color>.";
+        recommendPanel.SetActive(true);
+
+    }
+
+    public void DestroyReview()
+    {
+        recommendPanel.SetActive(false);
     }
 
     public void SwitchScene(int i)
@@ -61,11 +88,13 @@ public class LosePanel : MonoBehaviour
     private void Start()
     {
         YG2.onCloseInterAdv += SwitchToMenu;
+        YG2.onReviewSent += ProcessRecommendation;
     }
 
     private void OnDestroy()
     {
         YG2.onCloseInterAdv -= SwitchToMenu;
+        YG2.onReviewSent -= ProcessRecommendation;
     }
 
 

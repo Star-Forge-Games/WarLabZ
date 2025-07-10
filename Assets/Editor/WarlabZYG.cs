@@ -18,6 +18,7 @@ public class WarlabZYG
         YG2.saves.lastEnergySpentTimeStamp = 0;
         YG2.saves.record = 0;
         YG2.saves.idSave = 0;
+        YG2.saves.hasLabel = false;
         YG2.SaveProgress();
     }
 

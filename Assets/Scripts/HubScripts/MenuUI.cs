@@ -46,7 +46,31 @@ public class MenuUI : MonoBehaviour
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
+        YG2.onGameLabelFail += LabelNo;
+        YG2.onGameLabelSuccess += LabelYes;
+        if (YG2.saves.hasLabel) return;
+        if (YG2.saves.playedBefore != 1) return;
+        if (YG2.gameLabelCanShow)
+        {
+            AudioListener.volume = 0;
+            YG2.gameLabelCanShow = false;
+            YG2.GameLabelShowDialog();
+        }
     }
+
+    private void LabelNo()
+    {
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
+    }
+
+    private void LabelYes()
+    {
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
+        YG2.saves.hasLabel = true;
+        YG2.SaveProgress();
+    }
+
+
 
     private void Localize()
     {
@@ -68,6 +92,10 @@ public class MenuUI : MonoBehaviour
         if (YG2.saves.playedBefore == -1)
         {
             tutorial.SetActive(true);
+        }
+        if (YG2.saves.playedBefore == 0)
+        {
+            SceneManager.LoadScene("GameWorld");
         }
     }
 
@@ -96,6 +124,8 @@ public class MenuUI : MonoBehaviour
     private void OnDestroy()
     {
         YG2.onCloseInterAdv -= SwitchToGame;
+        YG2.onGameLabelFail -= LabelNo;
+        YG2.onGameLabelSuccess -= LabelYes;
     }
 
 }

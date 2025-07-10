@@ -105,7 +105,13 @@ public class EnemyZombie : MonoBehaviour
         {
             slowCanvas.SetActive(false);
         }
-        if (!wall && !stunned) characterController.Move(direction * Time.deltaTime);
+        if (!wall && !stunned)
+        {
+            characterController.Move(direction * Time.deltaTime);
+            Vector3 pos = transform.position;
+            pos.y = 1;
+            transform.position = pos;
+        }
     }
 
     public virtual void TakeDamage(int damage, bool crit, bool instaKill)

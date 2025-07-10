@@ -130,26 +130,27 @@ public class EnemySpawnSystem : MonoBehaviour
 
     private IEnumerator ReSpawnEnemies((int index, bool first) data)
     {
-        WavePart part = partsProgress[data.index].part;
-        if (partsProgress[data.index].amountSpawned == 0)
+        PartProgress pp = partsProgress[data.index];
+        WavePart part = pp.part;
+        if (pp.amountSpawned == 0)
         {
-            yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay) - partsProgress[data.index].timeSinceLastSpawn);
+            yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay) - pp.timeSinceLastSpawn);
             for (int i = 0; i < part.amount; i++)
             {
-                partsProgress[data.index].amountSpawned++;
-                partsProgress[data.index].timeSinceLastSpawn = 0;
+                pp.amountSpawned++;
+                pp.timeSinceLastSpawn = 0;
                 SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
         else
         {
-            yield return new WaitForSeconds(Mathf.Clamp(part.interval - partsProgress[data.index].timeSinceLastSpawn, 0.01f, part.interval));
-            int am = partsProgress[data.index].amountSpawned;
+            yield return new WaitForSeconds(Mathf.Clamp(part.interval - pp.timeSinceLastSpawn, 0.01f, part.interval));
+            int am = pp.amountSpawned;
             for (int i = 0; i < part.amount - am; i++)
             {
-                partsProgress[data.index].amountSpawned++;
-                partsProgress[data.index].timeSinceLastSpawn = 0;
+                pp.amountSpawned++;
+                pp.timeSinceLastSpawn = 0;
                 SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
