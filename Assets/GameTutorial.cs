@@ -46,6 +46,12 @@ public class GameTutorial : MonoBehaviour
     public void Next()
     {
         text.text = Loc("zombieboom");
+        StartCoroutine(StartAnim());
+    }
+
+    private IEnumerator StartAnim()
+    {
+        yield return new WaitForSeconds(5f);
         cs.StartAnim();
     }
 

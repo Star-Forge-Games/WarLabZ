@@ -24,7 +24,7 @@ public class Wall : MonoBehaviour
     [SerializeField] HealthLevel[] healthLevels;
     [SerializeField] Image fill;
     public static Action OnWallDeath;
-    private int lifestealCounter = 0;
+    private float lifestealCounter = 0;
 
     [Serializable]
     public struct HealthLevel
@@ -229,19 +229,18 @@ public class Wall : MonoBehaviour
 
     public void Lifesteal(bool boss)
     {
-        int boost = boss ? 25 : 1;
+        float boost = boss ? 5 : 0.2f;
         lifestealCounter += boost;
         int bonus = 0;
-        while (lifestealCounter > 5)
+        while (lifestealCounter > 1)
         {
             bonus++;
             lifestealCounter-=5;
         }
         if (bonus > 0)
         {
-            bonus *= (int) (maxHealth / 100f);
-            if (health + (int) bonus > maxHealth) health = maxHealth;
-            else health += (int) bonus;
+            if (health + bonus > maxHealth) health = maxHealth;
+            else health += bonus;
             UpdateWallHp();
         }
     }

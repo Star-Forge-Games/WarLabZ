@@ -129,7 +129,10 @@ public class Turret : MonoBehaviour
     public void SelfUnpause()
     {
         if (!enabled) return;
-        StartCoroutine(nameof(PeriodicFireSpawn));
+        if (targeting)
+        {
+            StartCoroutine(nameof(PeriodicFireSpawn));
+        }
     }
 
     private IEnumerator PeriodicFireSpawn()
