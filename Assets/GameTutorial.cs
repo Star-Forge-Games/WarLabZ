@@ -8,7 +8,8 @@ using static LocalizationHelperModule;
 public class GameTutorial : MonoBehaviour
 {
 
-    [SerializeField] private Button textBox;
+    [SerializeField] private Button contButton;
+    [SerializeField] private GameObject textBox;
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Cutscene cs;
     [SerializeField] private Image bg;
@@ -37,27 +38,30 @@ public class GameTutorial : MonoBehaviour
     private IEnumerator TutorialText()
     {
         yield return new WaitForSeconds(2f);
-        textBox.gameObject.SetActive(true);
+        textBox.SetActive(true);
         yield return new WaitForSeconds(1f);
         text.text = Loc("zombieactivity");
-        textBox.interactable = true;
+        contButton.interactable = true;
     }
 
     public void Next()
     {
         text.text = Loc("zombieboom");
         StartCoroutine(StartAnim());
+        Destroy(contButton.gameObject);
     }
 
     private IEnumerator StartAnim()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         cs.StartAnim();
+        yield return new WaitForSeconds(1f);
+        textBox.SetActive(false);
+        
     }
 
     public void StartButtonTutorial()
     {
-        textBox.gameObject.SetActive(false);
         bg.gameObject.SetActive(true);
         pageText.text = $"<color=red>{Loc(pages[0].titleKey)}</color>\n{Loc(pages[0].textKey)}";
     }
