@@ -42,13 +42,14 @@ public class LosePanel : MonoBehaviour
     public void Recommend()
     {
         if (!YG2.reviewCanShow) return;
-        YG2.ReviewShow();
+        if (!YG2.saves.reviewed) YG2.ReviewShow();
     }
 
     private void ProcessRecommendation(bool result)
     {
         if (!result) return;
         YG2.reviewCanShow = false;
+        YG2.saves.reviewed = true;
         int m = MoneySystem.instance.GetCollectedMoney();
         int rm = Mathf.CeilToInt(Mathf.Clamp(m / 2f, 100, m));
         rm -= rm % 50;
