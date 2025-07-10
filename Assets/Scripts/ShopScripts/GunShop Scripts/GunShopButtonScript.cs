@@ -40,7 +40,7 @@ public class GunShopUIScript : MonoBehaviour
             {
                 w.Select();
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
-                weaponUI.Setup(id, w.weaponSettings);
+                weaponUI.Setup(id, w.weaponSettings, true);
             }
         }
     }
@@ -52,7 +52,7 @@ public class GunShopUIScript : MonoBehaviour
 
     private void ProcessTouch(int id, WeaponSettings ws, bool selected)
     {
-        weaponUI.Setup(id, ws);
+        weaponUI.Setup(id, ws, id == 0 ? true : (weaponGrid.GetChild(id-1).GetComponent<SquareWeaponUI>().weaponSettings.levels.Length - 1 == YG2.saves.weaponLevels[id-1]));
         if (selected)
         {
             YG2.saves.selectedWeapon = id;

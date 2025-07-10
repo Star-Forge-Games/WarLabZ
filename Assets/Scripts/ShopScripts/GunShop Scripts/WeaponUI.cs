@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -14,15 +15,17 @@ public class WeaponUI : MonoBehaviour
     private int id;
     private WeaponSettings ws;
     private int lvl;
+    private bool prevFull;
 
     private static int curId;
 
-    public void Setup(int id, WeaponSettings ws)
+    public void Setup(int id, WeaponSettings ws, bool prevFull)
     {
         this.id = id;
         this.ws = ws;
         int lv = YG2.saves.weaponLevels[id];
         lvl = lv;
+        this.prevFull = prevFull;
         Refresh();
         curId = id;
     }
@@ -53,11 +56,17 @@ public class WeaponUI : MonoBehaviour
         if (lvl == -1)
         {
             var l = ws.levels[0];
-            buyUpgradeButtonText.text = $"{Loc("buy")}\n{l.cost}$";
             dmg.text = $"<color=green>{l.damage}</color>";
             aspd.text = $"<color=green>{l.aspd}</color>";
             crit.text = $"<color=green>{l.crit * 100}%</color>";
             critChance.text = $"<color=green>{l.critChance}%</color>";
+            if (!prevFull)
+            {
+                buyUpgradeButtonText.text = $"{Loc("buyprevwall")}\n{l.cost}$";
+                buyUpgradeButton.interactable = false;
+                return;
+            }
+            buyUpgradeButtonText.text = $"{Loc("buy")}\n{l.cost}$";
         }
         else if (lvl == ws.levels.Length - 1)
         {
