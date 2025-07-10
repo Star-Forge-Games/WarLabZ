@@ -14,5 +14,6 @@ namespace YG
         public long lastEnergySpentTimeStamp;
         public int record;
         public bool hasLabel;
+        public bool reviewed;
     }
 }
