@@ -46,10 +46,6 @@ public class MenuUI : MonoBehaviour
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-        if (YG2.saves.playedBefore == -1)
-        {
-            tutorial.SetActive(true);
-        }
     }
 
     private void Localize()
@@ -69,6 +65,10 @@ public class MenuUI : MonoBehaviour
     private void OnEnable()
     {
         if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
+        if (YG2.saves.playedBefore == -1)
+        {
+            tutorial.SetActive(true);
+        }
     }
 
     public void SwitchToGame()

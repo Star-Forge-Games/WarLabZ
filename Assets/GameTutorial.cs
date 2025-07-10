@@ -15,7 +15,7 @@ public class GameTutorial : MonoBehaviour
     [SerializeField] private Page[] pages;
     [SerializeField] private TextMeshProUGUI pageText;
     [SerializeField] private Transform finger;
-    private int page;
+    private int page = 0;
     private Color enabledColor, disabledColor;
 
     [Serializable]
@@ -60,11 +60,11 @@ public class GameTutorial : MonoBehaviour
     {
         Page p = pages[page];
         Vector2 pos = p.fingerPosition;
-        if (text.enabled)
+        if (pageText.enabled)
         {
             if (pos != Vector2.zero)
             {
-                text.enabled = false;
+                pageText.enabled = false;
                 bg.color = disabledColor;
                 finger.gameObject.SetActive(true);
                 float rot = p.fingerRotationZ;
@@ -73,14 +73,16 @@ public class GameTutorial : MonoBehaviour
             }
             else
             {
+                Debug.Log(page);
                 page++;
+                Debug.Log(page);
                 if (page == pages.Length)
                 {
                     gameObject.SetActive(false);
                     cs.StartTutorialGame();
                     return;
                 }
-                text.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
+                pageText.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
             }
         }
         else
@@ -88,8 +90,8 @@ public class GameTutorial : MonoBehaviour
             bg.color = enabledColor;
             finger.gameObject.SetActive(false);
             page++;
-            text.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
-            text.enabled = true;
+            pageText.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
+            pageText.enabled = true;
         }
     }
 }

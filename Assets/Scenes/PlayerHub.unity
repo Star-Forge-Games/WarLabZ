@@ -3912,6 +3912,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1481243642}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &505232723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8730,6 +8742,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1481243642}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1708271837}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -12419,6 +12443,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1481243642}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 400714401}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -13620,6 +13656,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1481243642}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1462058682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13795,7 +13843,6 @@ MonoBehaviour:
   - {fileID: 847388999}
   - {fileID: 1994134257}
   - {fileID: 1274281429}
-  - {fileID: 1519919799}
   - {fileID: 1462058681}
   - {fileID: 505232722}
   pages:
@@ -13804,56 +13851,67 @@ MonoBehaviour:
     fingerPosition: {x: 0, y: 0}
     fingerRotationZ: 0
     buttonId: -1
+    enableButton: 0
   - titleKey: hideoutpage
     textKey: hideouttext
     fingerPosition: {x: 0, y: 0}
     fingerRotationZ: 0
     buttonId: -1
+    enableButton: 0
   - titleKey: arsenalpage
     textKey: arsenaltext
     fingerPosition: {x: -75, y: 285}
     fingerRotationZ: 90
     buttonId: 0
+    enableButton: 1
   - titleKey: suppliespage
     textKey: suppliestext
     fingerPosition: {x: -75, y: -65}
     fingerRotationZ: 90
     buttonId: 1
+    enableButton: 1
   - titleKey: wallpage
     textKey: walltext
     fingerPosition: {x: -75, y: -415}
     fingerRotationZ: 90
     buttonId: 2
-  - titleKey: playpage
-    textKey: playtext
-    fingerPosition: {x: 0, y: -560}
-    fingerRotationZ: 180
-    buttonId: 3
+    enableButton: 1
   - titleKey: settingspage
     textKey: settingstext
     fingerPosition: {x: 365, y: 365}
     fingerRotationZ: 0
-    buttonId: 4
+    buttonId: 3
+    enableButton: 1
   - titleKey: aboutpage
     textKey: abouttext
     fingerPosition: {x: 75, y: 285}
     fingerRotationZ: -90
-    buttonId: 5
+    buttonId: 4
+    enableButton: 1
   - titleKey: energypage
     textKey: energytext
-    fingerPosition: {x: 0, y: 650}
+    fingerPosition: {x: 0, y: 0}
     fingerRotationZ: 0
     buttonId: -1
+    enableButton: 0
   - titleKey: playerpage
     textKey: playertext
-    fingerPosition: {x: -90, y: 270}
+    fingerPosition: {x: 0, y: 0}
     fingerRotationZ: 0
     buttonId: -1
+    enableButton: 0
+  - titleKey: playpage
+    textKey: playtext
+    fingerPosition: {x: 0, y: 0}
+    fingerRotationZ: 180
+    buttonId: -1
+    enableButton: 0
   - titleKey: gamedescpage
     textKey: gamedesctext
     fingerPosition: {x: 0, y: 0}
     fingerRotationZ: 0
     buttonId: -1
+    enableButton: 0
   bg: {fileID: 1490844525}
 --- !u!222 &1481243645
 CanvasRenderer:
@@ -17417,6 +17475,18 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 531720336}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1481243642}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6

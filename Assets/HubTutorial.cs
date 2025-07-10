@@ -23,19 +23,29 @@ public class HubTutorial : MonoBehaviour
         public Vector2 fingerPosition;
         public float fingerRotationZ;
         public int buttonId;
+        public bool enableButton;
     }
-    private int page;
+    private int page = 0;
 
     private void OnEnable()
     {
+        if (page != 0)
+        {
+            page++;
+            text.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
+            bg.enabled = true;
+            bg.gameObject.SetActive(true);
+            bg.color = enabledColor;
+            text.enabled = true;
+            finger.gameObject.SetActive(false);
+            return;
+        }
         enabledColor = bg.color;
         disabledColor = bg.color;
         disabledColor.a = 0;
-        page = 0;
         text.text = $"<color=red>{Loc(pages[0].titleKey)}</color>\n{Loc(pages[0].textKey)}";
         foreach (var b in buttons)
         {
-            b.interactable = false;
             b.gameObject.SetActive(false);
         }
     }
@@ -45,17 +55,27 @@ public class HubTutorial : MonoBehaviour
         Page p = pages[page];
         int bid = p.buttonId;
         Vector2 pos = p.fingerPosition;
+        foreach (var b in buttons)
+        {
+            b.interactable = false;
+        }
         if (text.enabled)
         {
             if (pos != Vector2.zero)
             {
                 text.enabled = false;
                 bg.color = disabledColor;
+                bg.gameObject.SetActive(false);
                 finger.gameObject.SetActive(true);
                 float rot = p.fingerRotationZ;
                 finger.transform.localEulerAngles = new Vector3(0, 0, rot);
                 ((RectTransform)finger.transform).anchoredPosition = pos;
-                if (bid != -1) buttons[bid].gameObject.SetActive(true);
+                if (bid != -1)
+                {
+                    buttons[bid].gameObject.SetActive(true);
+                    if (p.enableButton) buttons[bid].interactable = true;
+                    else bg.gameObject.SetActive(true);
+                }
             }
             else
             {

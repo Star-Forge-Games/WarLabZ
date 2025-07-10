@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoints: []
-  bulletsRate: 5
+  bulletsRate: 4.5
   fireForce: 50
   bulletDamage: 5
   bulletLifeTime: 5
@@ -225,7 +225,7 @@ MonoBehaviour:
   multishots: 0
   baseAttackTimePercentage: 0.1
   enemyContainer: {fileID: 0}
-  rotationSpeed: 15
+  rotationSpeed: 45
   twinShotDistance: 0.1
 --- !u!1 &7080050395792233152
 GameObject:
