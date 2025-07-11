@@ -17,7 +17,6 @@ public class GameTutorial : MonoBehaviour
     [SerializeField] private TextMeshProUGUI pageText;
     [SerializeField] private Transform finger;
     private int page = 0;
-    private Color enabledColor, disabledColor;
 
     [Serializable]
     public struct Page
@@ -29,9 +28,6 @@ public class GameTutorial : MonoBehaviour
 
     public void Start()
     {
-        enabledColor = bg.color;
-        disabledColor = bg.color;
-        disabledColor.a = 0;
         StartCoroutine(nameof(TutorialText));
     }
 
@@ -57,51 +53,42 @@ public class GameTutorial : MonoBehaviour
         cs.StartAnim();
         yield return new WaitForSeconds(1f);
         textBox.SetActive(false);
-        
+
     }
 
     public void StartButtonTutorial()
     {
         bg.gameObject.SetActive(true);
-        pageText.text = $"<color=red>{Loc(pages[0].titleKey)}</color>\n{Loc(pages[0].textKey)}";
+        ShowPage();
+    }
+
+    public void ShowPage()
+    {
+        Page p = pages[page];
+        Vector2 pos = p.fingerPosition;
+        pageText.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
+        if (pos != Vector2.zero)
+        {
+            finger.gameObject.SetActive(true);
+            float rot = p.fingerRotationZ;
+            finger.transform.localEulerAngles = new Vector3(0, 0, rot);
+            ((RectTransform)finger.transform).anchoredPosition = pos;
+        }
+        else
+        {
+            finger.gameObject.SetActive(false);
+        }
     }
 
     public void NextPage()
     {
-        Page p = pages[page];
-        Vector2 pos = p.fingerPosition;
-        if (pageText.enabled)
+        page++;
+        if (page == pages.Length)
         {
-            if (pos != Vector2.zero)
-            {
-                pageText.enabled = false;
-                bg.color = disabledColor;
-                finger.gameObject.SetActive(true);
-                float rot = p.fingerRotationZ;
-                finger.transform.localEulerAngles = new Vector3(0, 0, rot);
-                ((RectTransform)finger.transform).anchoredPosition = pos;
-            }
-            else
-            {
-                Debug.Log(page);
-                page++;
-                Debug.Log(page);
-                if (page == pages.Length)
-                {
-                    gameObject.SetActive(false);
-                    cs.StartTutorialGame();
-                    return;
-                }
-                pageText.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
-            }
+            gameObject.SetActive(false);
+            cs.StartTutorialGame();
+            return;
         }
-        else
-        {
-            bg.color = enabledColor;
-            finger.gameObject.SetActive(false);
-            page++;
-            pageText.text = $"<color=red>{Loc(pages[page].titleKey)}</color>\n{Loc(pages[page].textKey)}";
-            pageText.enabled = true;
-        }
+        ShowPage();
     }
 }

@@ -11,7 +11,6 @@ public class WagonSignal : MonoBehaviour
 
     private void Start()
     {
-
         anim = GetComponent<Animator>();
         gameObject.SetActive(false);
         action = p =>

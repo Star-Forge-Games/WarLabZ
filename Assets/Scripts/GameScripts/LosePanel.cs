@@ -18,10 +18,6 @@ public class LosePanel : MonoBehaviour
 
     private void OnEnable()
     {
-        if (YG2.saves.playedBefore == 0)
-        {
-            YG2.saves.playedBefore = 1;
-        }
         int rec = YG2.saves.record;
         int waves = ess.GetTotalWave();
         record.text = $"{Loc("record")} {rec}";
@@ -42,6 +38,9 @@ public class LosePanel : MonoBehaviour
     public void Recommend()
     {
         if (!YG2.reviewCanShow) return;
+        if (YG2.saves.playedBefore != 1) return;
+        YG2.saves.playedBefore = 1;
+        YG2.SaveProgress();
         if (!YG2.saves.reviewed) YG2.ReviewShow();
     }
 
