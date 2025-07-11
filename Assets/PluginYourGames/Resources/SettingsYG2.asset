@@ -13,13 +13,18 @@ MonoBehaviour:
   m_Name: SettingsYG2
   m_EditorClassIdentifier: 
   Authorization:
-    scopes: 1
     playerPhotoSize: 1
     authorized: 1
     playerName: Player current
     uniqueID: 000
     playerPhoto: demo image
     payingStatus: 0
+  InterstitialAdv:
+    showFirstAdv: 1
+    interAdvInterval: 60
+    postponeCallByFail: 0
+    postponeCallTimer: 10
+    labelAdvSimLabel: 0
   Leaderboards:
     enable: 1
     saveScoreAnonymousPlayers: 1
@@ -175,10 +180,27 @@ MonoBehaviour:
         rank: 5
         score: 127000
         extraData: 
+  Payments:
+    durationPayPanel: 1
+    testBuyFail: 0
+    purshases:
+    - id: buymoney0
+      title: 350$
+      description: "350$ \u0434\u043B\u044F \u043F\u043E\u043A\u0443\u043F\u043A\u0438
+        \u043E\u0440\u0443\u0436\u0438\u044F"
+      imageURI: demo image
+      price: 9 YAN
+      priceValue: 9
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+  RewardedAdv:
+    rewardedAfterClosing: 1
+    skipInterAdvAfterReward: 1
+    labelAdvSimLabel: 0
   Storage:
     saveLocal: 0
     saveCloud: 1
-    saveCloudInterval: 0
     flush: 0
   Basic:
     platform: {fileID: 11400000, guid: c2a303d33a9fd394bae4c4b88b9a1c44, type: 2}
@@ -217,7 +239,10 @@ MonoBehaviour:
       color2: {r: 1, g: 0.831, b: 0.149, a: 0.7}
     fixedAspectRatio: 1
     aspectRatio: 9/16
+    disableForMobile: 1
     fillBackground: 1
+    imageBackground: 0
+    imageName: background.jpg
     gradientBackgroundByAspectRatio:
       radial: 0
       angleInclination: 140
@@ -229,6 +254,10 @@ MonoBehaviour:
   platformInfo:
     ownHost: 0
   platformToggles:
+    showFirstAdv: 0
+    interAdvInterval: 0
+    postponeCallByFail: 0
+    skipInterAdvAfterReward: 0
     saveLocal: 0
     saveCloud: 0
     selectWebGLTemplate: 1
