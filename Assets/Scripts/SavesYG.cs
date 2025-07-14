@@ -11,7 +11,7 @@ namespace YG
         public bool soundOn = true;
         public int localeId = -1;
         public int energyLeft;
-        public long lastEnergySpentTimeStamp;
+        public long nextEnergyRechargeTimeStamp;
         public int record;
         public bool hasLabel;
         public bool reviewed;

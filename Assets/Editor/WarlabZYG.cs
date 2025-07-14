@@ -15,7 +15,7 @@ public class WarlabZYG
         YG2.saves.soundOn = true;
         YG2.saves.localeId = -1;
         YG2.saves.energyLeft = 0;
-        YG2.saves.lastEnergySpentTimeStamp = 0;
+        YG2.saves.nextEnergyRechargeTimeStamp = 0;
         YG2.saves.record = 0;
         YG2.saves.idSave = 0;
         YG2.saves.hasLabel = false;

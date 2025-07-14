@@ -13,10 +13,8 @@ public class Energy : MonoBehaviour
     [SerializeField] TextMeshProUGUI energyText;
     [SerializeField] int energyGainPerAd = 3;
     [SerializeField] GameObject adPanel;
-    private int energy;
     [SerializeField] private int maxEnergy = 15;
     [SerializeField] private int energyRechargeIntervalInSeconds;
-    private long energyRechargeInterval;
     private long secsLeft;
 
     private void OnEnable()
@@ -25,115 +23,104 @@ public class Energy : MonoBehaviour
         if (YG2.saves.playedBefore <= 0)
         {
             YG2.saves.energyLeft = maxEnergy;
-            energy = maxEnergy;
+            YG2.saves.nextEnergyRechargeTimeStamp = 0;
             YG2.SaveProgress();
-            UpdateEnergySlider(false, energy);
+            UpdateEnergySlider(false, maxEnergy);
             playButton.interactable = true;
             return;
         }
-        energyRechargeInterval = (long)energyRechargeIntervalInSeconds * 10000000;
-        energy = YG2.saves.energyLeft;
-        if (energy > maxEnergy)
+        if (YG2.saves.energyLeft >= maxEnergy)
         {
-            energy = maxEnergy;
-            YG2.saves.energyLeft = energy;
+            YG2.saves.energyLeft = maxEnergy;
+            YG2.saves.nextEnergyRechargeTimeStamp = 0;
             YG2.SaveProgress();
-        }
-        if (energy == maxEnergy)
-        {
-            UpdateEnergySlider(false, energy);
+            UpdateEnergySlider(false, maxEnergy);
             playButton.interactable = true;
             return;
         }
-        long ts = YG2.saves.lastEnergySpentTimeStamp;
-        long cts = DateTime.Now.Ticks;
-        while (ts <= cts - energyRechargeInterval)
-        {
-            energy++;
-            cts -= energyRechargeInterval;
-            YG2.saves.lastEnergySpentTimeStamp += (long)energyRechargeInterval * 10000000;
-            if (energy == maxEnergy) break;
-        }
-        YG2.SaveProgress();
-        if (cts > ts) cts -= ts;
-        YG2.saves.energyLeft = energy;
-        YG2.SaveProgress();
-        UpdateEnergySlider(false, energy);
-        playButton.interactable = true;
-        if (energy == maxEnergy) return;
-        long secondsLeft = (energyRechargeInterval - cts) / 10000000;
-        secsLeft = secondsLeft;
-        if (energy == 0)
-        {
-            playButton.interactable = false;
-            UpdateEnergySlider(true, secondsLeft);
-            StartCoroutine(nameof(TimerTick));
-        }
-        else
-        {
-            UpdateEnergySlider(false, energy);
-            playButton.interactable = true;
-        }
-        StartCoroutine(RechrageEnergy(secondsLeft));
+        StartupRecharge();
     }
 
-    private IEnumerator RechrageEnergy(long seconds)
+    private void StartupRecharge()
     {
-        yield return new WaitForSeconds(seconds);
-        StopCoroutine(nameof(TimerTick));
-        if (energy != maxEnergy) energy++;
-        YG2.saves.energyLeft = energy;
-        YG2.SaveProgress();
-        UpdateEnergySlider(false, energy);
-        playButton.interactable = true;
-        while (true)
+        long erInMillis = (long)energyRechargeIntervalInSeconds * 1000;
+        long ts = YG2.saves.nextEnergyRechargeTimeStamp;
+        long cts = YG2.ServerTime();
+        int energy = YG2.saves.energyLeft;
+        if (energy >= maxEnergy)
         {
-            yield return new WaitForSeconds(energyRechargeIntervalInSeconds);
-            if (energy != maxEnergy)
+            YG2.saves.nextEnergyRechargeTimeStamp = 0;
+            YG2.SaveProgress();
+            UpdateEnergySlider(false, maxEnergy);
+            playButton.interactable = true;
+            return;
+        }
+        if (cts < ts)
+        {
+            if (energy == 0)
             {
-                energy++;
-                StopCoroutine(nameof(TimerTick));
-                YG2.saves.energyLeft = energy;
-                YG2.saves.lastEnergySpentTimeStamp = DateTime.Now.Ticks;
-                YG2.SaveProgress();
+                UpdateEnergySlider(true, (YG2.saves.nextEnergyRechargeTimeStamp - YG2.ServerTime()) / 1000);
+                playButton.interactable = false;
+            }
+            else
+            {
                 UpdateEnergySlider(false, energy);
                 playButton.interactable = true;
             }
+            return;
         }
+        int tsplus = 0;
+        while (cts >= ts - erInMillis)
+        {
+            energy++;
+            cts += erInMillis;
+            tsplus++;
+        }
+        if (energy >= maxEnergy)
+        {
+            YG2.saves.nextEnergyRechargeTimeStamp = 0;
+            YG2.SaveProgress();
+            UpdateEnergySlider(false, maxEnergy);
+            playButton.interactable = true;
+            return;
+        }
+        YG2.saves.nextEnergyRechargeTimeStamp += erInMillis * (tsplus + 1);
+        YG2.saves.energyLeft = energy;
+        YG2.SaveProgress();
+        UpdateEnergySlider(false, energy);
     }
 
-    private void UpdateEnergySlider(bool zero, long number)
+    private void Update()
+    {
+        int energy = YG2.saves.energyLeft;
+        if (energy == maxEnergy) return;
+        if (energy == 0)
+        {
+            UpdateEnergySlider(true, (YG2.saves.nextEnergyRechargeTimeStamp - YG2.ServerTime()) / 1000);
+            return;
+        }
+        UpdateEnergySlider(false, energy);
+    }
+
+    private void UpdateEnergySlider(bool zero, decimal number)
     {
         if (!zero)
         {
-            energySlider.value = number;
-            energyText.text = $"{number}";
+            energySlider.value = (int)number;
+            energyText.text = $"{(int)number}";
         }
         else
         {
             energySlider.value = 0;
-            long m = number / 60;
-            long s = number % 60;
+            long m = (long)number / 60;
+            long s = (long)number % 60;
             energyText.text = (m > 9 ? m : $"0{m}") + ":" + (s > 9 ? s : $"0{s}");
-        }
-    }
-
-    private IEnumerator TimerTick()
-    {
-        while (secsLeft > 0)
-        {
-            yield return new WaitForSeconds(1);
-            secsLeft--;
-            if (secsLeft > 0)
-            {
-                UpdateEnergySlider(true, secsLeft);
-            }
         }
     }
 
     public void PlayAD()
     {
-        if (energy == maxEnergy) return;
+        if (YG2.saves.energyLeft == maxEnergy) return;
         adPanel.SetActive(true);
         gameObject.SetActive(false);
         AudioListener.volume = 0;
@@ -145,23 +132,20 @@ public class Energy : MonoBehaviour
     {
         adPanel.SetActive(false);
         gameObject.SetActive(true);
-        energy = Mathf.Clamp(energy + energyGainPerAd, 0, maxEnergy);
-        YG2.saves.energyLeft = energy;
+        YG2.saves.energyLeft = Mathf.Clamp(YG2.saves.energyLeft + energyGainPerAd, 1, maxEnergy);
         YG2.SaveProgress();
-        StopCoroutine(nameof(TimerTick));
-        UpdateEnergySlider(false, energy);
+        UpdateEnergySlider(false, YG2.saves.energyLeft);
         playButton.interactable = true;
         AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
     }
 
     internal void Spend()
     {
-        if (energy == maxEnergy)
+        if (YG2.saves.energyLeft == maxEnergy)
         {
-            YG2.saves.lastEnergySpentTimeStamp = DateTime.Now.Ticks;
+            YG2.saves.nextEnergyRechargeTimeStamp = YG2.ServerTime() + energyRechargeIntervalInSeconds * 1000;
         }
-        energy--;
-        YG2.saves.energyLeft = energy;
+        YG2.saves.energyLeft--;
         YG2.SaveProgress();
     }
 }
