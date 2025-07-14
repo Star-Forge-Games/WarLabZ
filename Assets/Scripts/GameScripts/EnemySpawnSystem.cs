@@ -160,11 +160,12 @@ public class EnemySpawnSystem : MonoBehaviour
     private IEnumerator SpawnEnemies((int partIndex, bool first) data)
     {
         WavePart part = waves[wave].parts[data.partIndex];
+        PartProgress pp = partsProgress[data.partIndex];
         yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay));
         for (int i = 0; i < part.amount; i++)
         {
-            partsProgress[data.partIndex].amountSpawned++;
-            partsProgress[data.partIndex].timeSinceLastSpawn = 0;
+            pp.amountSpawned++;
+            pp.timeSinceLastSpawn = 0;
             SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
             yield return new WaitForSeconds(part.interval);
         }
