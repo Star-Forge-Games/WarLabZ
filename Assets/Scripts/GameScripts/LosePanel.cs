@@ -53,7 +53,7 @@ public class LosePanel : MonoBehaviour
         YG2.reviewCanShow = false;
         YG2.saves.reviewed = true;
         int m = MoneySystem.instance.GetCollectedMoney();
-        int rm = Mathf.CeilToInt(Mathf.Clamp(m / 2f, 100, m));
+        int rm = Mathf.CeilToInt(Mathf.Clamp(m / 2f, 50, m));
         rm -= rm % 50;
         YG2.saves.cash += rm;
         YG2.SaveProgress();
