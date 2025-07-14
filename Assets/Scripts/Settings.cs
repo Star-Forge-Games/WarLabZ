@@ -10,6 +10,11 @@ public class Settings : MonoBehaviour
     void OnEnable()
     {
         sound.image.sprite = soundSprites[(int)AudioListener.volume];
+        if (YG2.saves.localeId == -1)
+        {
+            YG2.saves.localeId = LocalizationSettings.SelectedLocale.SortOrder;
+            YG2.SaveProgress();
+        }
         locale.image.sprite = localeSprites[YG2.saves.localeId];
     }
 

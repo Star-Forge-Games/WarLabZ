@@ -40,7 +40,7 @@ public class MoneySystem : MonoBehaviour
 
     public void SaveMoney()
     {
-        YG2.saves.cash += levelMoney * (bonusMoney? 2 : 1);
+        YG2.saves.cash += levelMoney;
         YG2.SaveProgress();
     }
 
@@ -56,7 +56,7 @@ public class MoneySystem : MonoBehaviour
 
     public int GetCollectedMoney()
     {
-        return levelMoney * (bonusMoney ? 2 : 1);
+        return levelMoney;
     }
 
     private IEnumerator StopShake()
