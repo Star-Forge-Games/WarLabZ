@@ -15,7 +15,6 @@ public class Energy : MonoBehaviour
     [SerializeField] GameObject adPanel;
     [SerializeField] private int maxEnergy = 15;
     [SerializeField] private int energyRechargeIntervalInSeconds;
-    private long secsLeft;
 
     private void OnEnable()
     {
@@ -69,12 +68,10 @@ public class Energy : MonoBehaviour
             }
             return;
         }
-        int tsplus = 0;
         while (cts >= ts - erInMillis)
         {
             energy++;
-            cts += erInMillis;
-            tsplus++;
+            ts += erInMillis;
         }
         if (energy >= maxEnergy)
         {
@@ -84,7 +81,7 @@ public class Energy : MonoBehaviour
             playButton.interactable = true;
             return;
         }
-        YG2.saves.nextEnergyRechargeTimeStamp += erInMillis * (tsplus + 1);
+        YG2.saves.nextEnergyRechargeTimeStamp += ts;
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
         UpdateEnergySlider(false, energy);
