@@ -15,7 +15,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] Energy energy;
     [SerializeField] TextMeshProUGUI playerName;
     [SerializeField] Image playerIcon;
-    [SerializeField] GameObject playerPanel;
+    [SerializeField] GameObject playerPanel, playButton;
     [SerializeField] Transform handWeapons;
     [SerializeField] GameObject tutorial;
     [SerializeField] Button playerDonateButton;
@@ -49,8 +49,9 @@ public class MenuUI : MonoBehaviour
         }
         YG2.onGameLabelFail += LabelNo;
         YG2.onGameLabelSuccess += LabelYes;
-        if (YG2.saves.hasLabel) return;
         if (YG2.saves.playedBefore != 1) return;
+        playButton.SetActive(true);
+        if (YG2.saves.hasLabel) return;
         if (YG2.gameLabelCanShow)
         {
             AudioListener.volume = 0;
