@@ -2,6 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
@@ -23,6 +25,7 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
+        ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
         fader.gameObject.SetActive(true);
         YG2.onCloseInterAdv += SwitchToGame;
         cash.text = MoneyFormat(YG2.saves.cash);

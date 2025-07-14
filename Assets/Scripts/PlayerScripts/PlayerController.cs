@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using YG;
 
 
@@ -18,6 +20,9 @@ public class PlayerController : MonoBehaviour
     Vector3 movement = Vector2.zero;
     private Action<bool> action;
     private bool paused;
+
+    private float avgFps;
+    private int fpsCounter;
 
     public static Transform trans;
 
@@ -116,6 +121,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        float fps = 1 / Time.deltaTime;
+        fpsCounter++;
+        avgFps = avgFps + fps / 2;
+        if (fpsCounter == 100)
+        {
+            fpsCounter = 0;
+            avgFps = fps;
+            if (avgFps < 60)
+            {
+                if (avgFps <= 30) ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 0.5f;
+                else ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = avgFps / 60f;
+            } else
+            {
+                ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
+            }
+        }
         if (!paused)
         {
             if (touchPosition.x != 0)
