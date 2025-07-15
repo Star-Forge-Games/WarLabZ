@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
         float fps = 1 / Time.deltaTime;
         fpsCounter++;
         avgFps = (avgFps + fps) / 2;
-        if (fpsCounter == 100)
+        if (fpsCounter == 150)
         {
             if (avgFps -5 < 60)
             {
