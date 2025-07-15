@@ -1,12 +1,16 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 using YG;
+using static LocalizationHelperModule;
 
 public class Settings : MonoBehaviour
 {
     [SerializeField] private Button sound, locale;
     [SerializeField] private Sprite[] localeSprites, soundSprites;
+    [SerializeField] private TextMeshProUGUI graphicsText;
+    [SerializeField] private Light lightSource;
     void OnEnable()
     {
         sound.image.sprite = soundSprites[(int)AudioListener.volume];
@@ -16,6 +20,13 @@ public class Settings : MonoBehaviour
             YG2.SaveProgress();
         }
         locale.image.sprite = localeSprites[YG2.saves.localeId];
+        if (YG2.saves.shadows)
+        {
+            graphicsText.text = Loc("high");
+        } else
+        {
+            graphicsText.text = Loc("low");
+        }
     }
 
     public void TurnSound()
@@ -31,6 +42,21 @@ public class Settings : MonoBehaviour
         }
         sound.image.sprite = soundSprites[(int)AudioListener.volume];
         YG2.SaveProgress();
+    }
+
+    public void TurnGraphics()
+    {
+        YG2.saves.shadows = !YG2.saves.shadows;
+        YG2.SaveProgress();
+        if (YG2.saves.shadows)
+        {
+            graphicsText.text = Loc("high");
+            lightSource.shadows = LightShadows.Hard;
+        } else
+        {
+            graphicsText.text = Loc("low");
+            lightSource.shadows = LightShadows.None;
+        }
     }
 
     public void NextLocale()

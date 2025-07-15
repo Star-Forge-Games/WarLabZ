@@ -18,9 +18,18 @@ public class Cutscene : MonoBehaviour
     [SerializeField] private GameObject babahCube;
     [SerializeField] private ParticleSystem babah;
     [SerializeField] private GameTutorial tutorial;
+    [SerializeField] private Light lightSource;
 
     private void Start()
     {
+        if (YG2.saves.shadows)
+        {
+            lightSource.shadows = LightShadows.Hard;
+        }
+        else
+        {
+            lightSource.shadows = LightShadows.None;
+        }
         fader.gameObject.SetActive(true);
         KillsCount.kills = 0;
         KillsCount.bosses = 0;

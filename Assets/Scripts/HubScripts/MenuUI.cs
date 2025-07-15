@@ -22,6 +22,7 @@ public class MenuUI : MonoBehaviour
     [SerializeField] GameObject tutorial;
     [SerializeField] Button playerDonateButton;
     public ImageLoadYG photoImageLoad;
+    [SerializeField] Light lightSource;
 
     private void Start()
     {
@@ -93,7 +94,16 @@ public class MenuUI : MonoBehaviour
 
     private void OnEnable()
     {
+        if (YG2.saves.shadows)
+        {
+            lightSource.shadows = LightShadows.Hard;
+        }
+        else
+        {
+            lightSource.shadows = LightShadows.None;
+        }
         if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
+        //YG2.SetDefaultSaves();
         playerDonateButton.interactable = YG2.saves.playedBefore == 1;
         if (YG2.saves.playedBefore == -1)
         {
