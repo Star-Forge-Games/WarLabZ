@@ -54,7 +54,7 @@ public class WallShopButtonScript : MonoBehaviour
         else if (lvl > YG2.saves.wallLevel + 1)
         {
             upgradeButton.interactable = false;
-            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = Loc("buyprevwall");
+            upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = Loc("buyprevgun");
         }
         else
         {
