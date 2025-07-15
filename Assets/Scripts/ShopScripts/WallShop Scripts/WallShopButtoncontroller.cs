@@ -12,7 +12,7 @@ public class WallShopButtonScript : MonoBehaviour
     [SerializeField] private Button upgradeButton;
     [SerializeField] private WallSettings wallSettings;
     private int lvl;
-    [SerializeField] TextMeshProUGUI wallsText;
+    [SerializeField] TextMeshProUGUI wallsText, healthText;
     [SerializeField] Transform wallsTransform;
     [SerializeField] float speedRotation;
     [SerializeField] TextMeshProUGUI moneyText;
@@ -61,6 +61,7 @@ public class WallShopButtonScript : MonoBehaviour
             upgradeButton.interactable = YG2.saves.cash >= wallSettings.wallLevels[lvl].cost;
             upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = $"{Loc("buy")}\n{wallSettings.wallLevels[lvl].cost} $";
         }
+        healthText.text = $"{Loc("wallhp")} {wallSettings.wallLevels[lvl].hp}";
     }
 
     public void Next()
