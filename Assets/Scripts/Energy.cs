@@ -81,7 +81,7 @@ public class Energy : MonoBehaviour
             playButton.interactable = true;
             return;
         }
-        YG2.saves.nextEnergyRechargeTimeStamp += ts;
+        YG2.saves.nextEnergyRechargeTimeStamp = ts;
         YG2.saves.energyLeft = energy;
         YG2.SaveProgress();
         UpdateEnergySlider(energy);

@@ -128,29 +128,28 @@ public class EnemySpawnSystem : MonoBehaviour
         }
     }
 
-    private IEnumerator ReSpawnEnemies((int index, bool first) data)
+    private IEnumerator ReSpawnEnemies((int partIndex, bool first) data)
     {
-        PartProgress pp = partsProgress[data.index];
-        WavePart part = pp.part;
-        if (pp.amountSpawned == 0)
+        WavePart part = partsProgress[data.partIndex].part;
+        if (partsProgress[data.partIndex].amountSpawned == 0)
         {
-            yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay) - pp.timeSinceLastSpawn);
+            yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay));
             for (int i = 0; i < part.amount; i++)
             {
-                pp.amountSpawned++;
-                pp.timeSinceLastSpawn = 0;
+                partsProgress[data.partIndex].amountSpawned++;
+                partsProgress[data.partIndex].timeSinceLastSpawn = 0;
                 SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
         else
         {
-            yield return new WaitForSeconds(Mathf.Clamp(part.interval - pp.timeSinceLastSpawn, 0.01f, part.interval));
-            int am = pp.amountSpawned;
+            yield return new WaitForSeconds(Mathf.Clamp(part.interval - partsProgress[data.partIndex].timeSinceLastSpawn, 0.01f, part.interval));
+            int am = partsProgress[data.partIndex].amountSpawned;
             for (int i = 0; i < part.amount - am; i++)
             {
-                pp.amountSpawned++;
-                pp.timeSinceLastSpawn = 0;
+                partsProgress[data.partIndex].amountSpawned++;
+                partsProgress[data.partIndex].timeSinceLastSpawn = 0;
                 SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
                 yield return new WaitForSeconds(part.interval);
             }
@@ -160,12 +159,12 @@ public class EnemySpawnSystem : MonoBehaviour
     private IEnumerator SpawnEnemies((int partIndex, bool first) data)
     {
         WavePart part = waves[wave].parts[data.partIndex];
-        PartProgress pp = partsProgress[data.partIndex];
         yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay));
         for (int i = 0; i < part.amount; i++)
         {
-            pp.amountSpawned++;
-            pp.timeSinceLastSpawn = 0;
+            partsProgress[data.partIndex].amountSpawned++;
+            partsProgress[data.partIndex].timeSinceLastSpawn = 0;
+            Debug.Log("Wave " + wave + " part " + data.partIndex + " amount spawned " + partsProgress[data.partIndex].amountSpawned);
             SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
             yield return new WaitForSeconds(part.interval);
         }
@@ -217,6 +216,7 @@ public class EnemySpawnSystem : MonoBehaviour
                 }
                 else
                 {
+                    StopCoroutine(nameof(ReSpawnEnemies));
                     CalculateEnemiesAmount();
                     ProcessWaveSpawns();
                 }

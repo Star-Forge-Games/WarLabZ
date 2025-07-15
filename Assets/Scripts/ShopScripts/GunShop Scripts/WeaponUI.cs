@@ -62,7 +62,7 @@ public class WeaponUI : MonoBehaviour
             critChance.text = $"<color=green>{l.critChance}%</color>";
             if (!prevFull)
             {
-                buyUpgradeButtonText.text = $"{Loc("buyprevwall")}";
+                buyUpgradeButtonText.text = $"{Loc("buyprevgun")}";
                 buyUpgradeButton.interactable = false;
                 return;
             }
