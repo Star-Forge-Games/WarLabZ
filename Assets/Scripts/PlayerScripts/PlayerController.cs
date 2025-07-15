@@ -43,10 +43,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         trans = transform;
-        if (!YG2.envir.isMobile)
-        {
-            TouchSimulation.Enable();
-        }
         characterController = GetComponent<CharacterController>();
     }
 
