@@ -931,6 +931,10 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7538754609087558613, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 33a935d8884f54a49804fac096d0b80e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

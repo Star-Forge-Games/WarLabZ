@@ -42,7 +42,6 @@ public class Energy : MonoBehaviour
 
     private void StartupRecharge()
     {
-        Debug.Log(Time() + " " + YG2.saves.nextEnergyRechargeTimeStamp);
         long erInMillis = energyRechargeIntervalInSeconds * 1000;
         long ts = YG2.saves.nextEnergyRechargeTimeStamp;
         long cts = Time();

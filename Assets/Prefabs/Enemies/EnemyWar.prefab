@@ -1089,6 +1089,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warzombie F Pedroso
       objectReference: {fileID: 0}
+    - target: {fileID: 1974243983493711947, guid: 6f94b960cdca0cb459a2f03bd90b7311, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: f494d230002794b44baeb30106e282e4, type: 2}
+    - target: {fileID: 1974243983493711947, guid: 6f94b960cdca0cb459a2f03bd90b7311, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

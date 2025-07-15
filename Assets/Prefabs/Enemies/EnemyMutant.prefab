@@ -1089,6 +1089,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Parasite L Starkie
       objectReference: {fileID: 0}
+    - target: {fileID: 7312207170140720799, guid: 40895d9a29a6dcd489e286c641772ed9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 4d13e7bbb8397bc47a8199b0f3fb7918, type: 2}
+    - target: {fileID: 7312207170140720799, guid: 40895d9a29a6dcd489e286c641772ed9, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

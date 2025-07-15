@@ -13,9 +13,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AYellowpaper.SerializedColl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaughtyAttributes.Editor", "NaughtyAttributes.Editor.csproj", "{B70B8F0C-1065-8652-980E-776D8E5AC106}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whinarn.UnityMeshSimplifier.Runtime", "Whinarn.UnityMeshSimplifier.Runtime.csproj", "{D725ED0D-0550-8D05-FDFA-17879B1DE99F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whinarn.UnityMeshSimplifier.Editor.Tests", "Whinarn.UnityMeshSimplifier.Editor.Tests.csproj", "{3148380B-C085-CECD-9375-A0FF9DE28251}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AYellowpaper.SerializedCollections.Editor", "AYellowpaper.SerializedCollections.Editor.csproj", "{7BCBEC3C-DC84-69E3-D68D-9C0B6AF9E0B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{ABA855BF-D31F-41C9-49D8-2D6CABC99503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Whinarn.UnityMeshSimplifier.Editor", "Whinarn.UnityMeshSimplifier.Editor.csproj", "{F6E3AC67-35AF-80EA-5453-50FA19059306}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,14 @@ Global
 		{B70B8F0C-1065-8652-980E-776D8E5AC106}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B70B8F0C-1065-8652-980E-776D8E5AC106}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B70B8F0C-1065-8652-980E-776D8E5AC106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D725ED0D-0550-8D05-FDFA-17879B1DE99F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D725ED0D-0550-8D05-FDFA-17879B1DE99F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D725ED0D-0550-8D05-FDFA-17879B1DE99F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D725ED0D-0550-8D05-FDFA-17879B1DE99F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3148380B-C085-CECD-9375-A0FF9DE28251}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3148380B-C085-CECD-9375-A0FF9DE28251}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3148380B-C085-CECD-9375-A0FF9DE28251}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3148380B-C085-CECD-9375-A0FF9DE28251}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BCBEC3C-DC84-69E3-D68D-9C0B6AF9E0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BCBEC3C-DC84-69E3-D68D-9C0B6AF9E0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BCBEC3C-DC84-69E3-D68D-9C0B6AF9E0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +69,10 @@ Global
 		{ABA855BF-D31F-41C9-49D8-2D6CABC99503}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABA855BF-D31F-41C9-49D8-2D6CABC99503}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABA855BF-D31F-41C9-49D8-2D6CABC99503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E3AC67-35AF-80EA-5453-50FA19059306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E3AC67-35AF-80EA-5453-50FA19059306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E3AC67-35AF-80EA-5453-50FA19059306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E3AC67-35AF-80EA-5453-50FA19059306}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
