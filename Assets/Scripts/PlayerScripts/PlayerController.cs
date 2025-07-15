@@ -119,15 +119,16 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateRenderScale()
     {
-        if (fpsCounter > 100) return;
-        float fps = 1 / Time.deltaTime;
+        if (fpsCounter > 150) return;
         fpsCounter++;
+        if (fpsCounter < 50) return;
+        float fps = 1 / Time.deltaTime;
         avgFps = (avgFps + fps) / 2;
         if (fpsCounter == 150)
         {
-            if (avgFps -5 < 60)
+            if (avgFps - 5 < 60)
             {
-                if (avgFps -5 <= 30) ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 0.5f;
+                if (avgFps - 5 <= 30) ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 0.5f;
                 else ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = avgFps / 60f;
             }
             else
