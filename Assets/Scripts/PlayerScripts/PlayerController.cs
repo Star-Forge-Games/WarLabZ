@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     Vector3 movement = Vector2.zero;
     private Action<bool> action;
     private bool paused;
-
+    private bool touching;
     private float avgFps;
     private int fpsCounter;
 
@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
     public void TouchDelta(InputAction.CallbackContext context)
     {
+        if (!touching) return;
         Vector2 delta = context.ReadValue<Vector2>();
         touchPosition += delta;
     }
@@ -113,6 +114,7 @@ public class PlayerController : MonoBehaviour
         {
             touchPosition = Vector2.zero;
         }
+        touching = !context.canceled;
     }
 
     private void UpdateRenderScale()
