@@ -229,7 +229,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 54208662992416768
-    m_Localized: Turret sharp bullets
+    m_Localized: Turret shots through zombies
     m_Metadata:
       m_Items: []
   - m_Id: 54208745238523904
@@ -542,6 +542,114 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 59613302521163776
     m_Localized: Equipped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664345444491264
+    m_Localized: 'The Gun fires two bullets at once '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664768528130048
+    m_Localized: The Gun fires two bullets in succession
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664803366019072
+    m_Localized: Increases weapon critical damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664823125385216
+    m_Localized: Increases weapon damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664841592905728
+    m_Localized: Increases weapon fire rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664871028531200
+    m_Localized: Increases weapon critical strike chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664896525705216
+    m_Localized: The Gun fires two additional shots in different directions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664969628229632
+    m_Localized: Shots go throgh zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665006651351040
+    m_Localized: Adds chance to stun zombie for a short time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665032312102912
+    m_Localized: 'Reduces bosses health amout '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665049760407552
+    m_Localized: Adds chance to  instantly kill zombies(except Bosses)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666256310673408
+    m_Localized: Bombs periodically fall from the sky, dealing damage to zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666266293116928
+    m_Localized: "The wall reflects part of the zombie\u2019s damage back"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666288741031936
+    m_Localized: Adds chance to cause bomb drop when hit by bullet on zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666327609647104
+    m_Localized: Speeds the player up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666343455727616
+    m_Localized: Creates an ice fied that slows downl zombies (except Bomber)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666376787861504
+    m_Localized: 'Reduces zombies health amout '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666406412230656
+    m_Localized: 'The wall repairs itself when player kills zombies and bosses '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666436959346688
+    m_Localized: Doubles the zombie kill reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666455305232384
+    m_Localized: Instantly restores part of the wall health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666472980029440
+    m_Localized: 'Turrets fire two bullets at once '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666484241735680
+    m_Localized: Turrets fire two bullets in succession
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666504709939200
+    m_Localized: Increases Turrets fire rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666549551243264
+    m_Localized: Increases Turrets critical chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666573618159616
+    m_Localized: Increases Turrets damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666645915377664
+    m_Localized: Turret Shots go throgh zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666706753757184
+    m_Localized: Increases Turrets critical damage
     m_Metadata:
       m_Items: []
   references:
