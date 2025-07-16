@@ -196,7 +196,7 @@ MonoBehaviour:
       consumed: 1
   RewardedAdv:
     rewardedAfterClosing: 1
-    skipInterAdvAfterReward: 1
+    skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
   ServerTime:
     serverTime: 1721202417353
