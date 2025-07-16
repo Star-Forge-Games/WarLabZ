@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -9,6 +10,7 @@ public class SquareWeaponUI : MonoBehaviour
     private bool selected;
     [SerializeField] private int id;
     public WeaponSettings weaponSettings;
+    [SerializeField] private TextMeshProUGUI equipText;
 
     private void Awake()
     {
@@ -42,12 +44,14 @@ public class SquareWeaponUI : MonoBehaviour
     {
         selected = true;
         GetComponent<Image>().sprite = GunShopUIScript.sSprite;
+        equipText.gameObject.SetActive(true);
     }
 
     public void Deselect()
     {
         selected = false;
         GetComponent<Image>().sprite = GunShopUIScript.nsSprite;
+        equipText.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
