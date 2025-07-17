@@ -8,6 +8,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float fallSpeed;
     [SerializeField] float explosionRadius;
     [SerializeField] int damage;
+    [SerializeField] MeshRenderer mr;
     private Action<bool> action;
     public int id;
 
@@ -28,7 +29,7 @@ public class Bomb : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Rigidbody>().linearVelocity = new Vector3(0, -fallSpeed, 0);
+        GetComponent<Rigidbody>().linearVelocity = -transform.up * fallSpeed;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,7 +38,7 @@ public class Bomb : MonoBehaviour
         PauseSystem.OnPauseStateChanged -= action;
         ExplosionTestOptimization.instance.Activate(id);
         StartCoroutine(EnqueueDamage(objects));
-        GetComponent<MeshRenderer>().enabled = false;
+        mr.enabled = false;
         GetComponent<Collider>().enabled = false;
     }
 
@@ -46,7 +47,7 @@ public class Bomb : MonoBehaviour
         foreach (EnemyZombie z in zombies)
         {
             yield return new WaitForEndOfFrame();
-            if (z != null) z.TakeDamage(damage, false);
+            if (z != null) z.TakeDamage(damage, false, false);
         }
         Destroy(gameObject);
     }

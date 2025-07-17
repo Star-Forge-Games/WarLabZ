@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using NaughtyAttributes;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -28,7 +27,7 @@ public class Turret : MonoBehaviour
     private float flatRateModifier = 0, expRateModifier = 1;
     private float flatDamageModifier = 0, expDamageModifier = 1;
     private float flatSpeedModifier = 0, expSpeedModifier = 1;
-    private float critChance = 75, critDamageMultiplier = 2;
+    private float critChance = 1.5f, critDamageMultiplier = 2;
     private bool targeting = false;
     Vector3 targetPosition;
     private Action<bool> action;
@@ -41,35 +40,26 @@ public class Turret : MonoBehaviour
         {
             switch (id)
             {
-                case 16:
+                case 20:
                     twinShot = true;
                     break;
-                case 17:
-                    shotgun = true;
-                    break;
-                case 18:
-                    critChance += 10;
-                    break;
-                case 19:
-                    expRateModifier += 1;
-                    break;
-                case 20:
-                    flatRateModifier += 1;
-                    break;
                 case 21:
-                    through = true;
+                    critChance += 7;
                     break;
                 case 22:
-                    multishots = 1;
+                    flatRateModifier += 0.5f;
                     break;
                 case 23:
-                    expDamageModifier += 1;
+                    through = true;
                     break;
                 case 24:
+                    multishots = 1;
+                    break;
+                case 25:
                     flatDamageModifier += 1;
                     break;
                 default:
-                    critDamageMultiplier += 1;
+                    critDamageMultiplier += 0.5f;
                     break;
             };
         };
@@ -88,6 +78,7 @@ public class Turret : MonoBehaviour
         float min = range;
         foreach (Transform t in enemyContainer)
         {
+            if (t.gameObject.GetComponent<EnemyZombie>().IsDead()) continue;
             if (t.position.z < range)
             {
                 if (t.position.z < min)
@@ -131,12 +122,17 @@ public class Turret : MonoBehaviour
 
     public void SelfPause()
     {
+        if (!enabled) return;
         StopCoroutine(nameof(PeriodicFireSpawn));
     }
 
     public void SelfUnpause()
     {
-        StartCoroutine(nameof(PeriodicFireSpawn));
+        if (!enabled) return;
+        if (targeting)
+        {
+            StartCoroutine(nameof(PeriodicFireSpawn));
+        }
     }
 
     private IEnumerator PeriodicFireSpawn()
@@ -173,18 +169,18 @@ public class Turret : MonoBehaviour
                     Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                     b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b1.transform.parent = bulletContainer;
-                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    b1.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                     Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                     b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     b2.transform.parent = bulletContainer;
-                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    b2.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                 }
                 else
                 {
                     Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                     bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                 }
             }
             else
@@ -195,7 +191,7 @@ public class Turret : MonoBehaviour
                     bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                     bullet.transform.Rotate(0, -(arc / 2) + (arc / (shots - 1)) * i, 0);
                     bullet.transform.parent = bulletContainer;
-                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false);
+                    bullet.Setup((fireForce + flatSpeedModifier) * expSpeedModifier, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, false, 0);
                 }
             }
         }
@@ -205,5 +201,11 @@ public class Turret : MonoBehaviour
     {
         PauseSystem.OnPauseStateChanged -= action;
         SkillsPanel.OnTurretSkillSelect -= skillAction;
+    }
+
+    internal void Setup(Transform bulletContainer, Transform enemyContainer)
+    {
+        this.bulletContainer = bulletContainer;
+        this.enemyContainer = enemyContainer;
     }
 }

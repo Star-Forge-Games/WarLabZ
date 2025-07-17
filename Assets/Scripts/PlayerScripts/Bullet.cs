@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject hitPrefab;
-    [SerializeField] float bombChance = 5, instaKillChance = 1.5f;
+    [SerializeField] float bombChance = 5, instaKillChance = 99f;
 
 
     private int damage;
@@ -16,6 +16,8 @@ public class Bullet : MonoBehaviour
     private bool crit;
     private bool through;
     private bool bomb;
+    private float stunChance;
+    private bool instaKill;
 
     private void Start()
     {
@@ -27,7 +29,7 @@ public class Bullet : MonoBehaviour
         if (!paused) timeLived += Time.deltaTime;
     }
 
-    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through, bool bomb)
+    public void Setup(float speed, int damage, float bulletLifeTime, float critChance, float critMultiplier, bool instakill, bool through, bool bomb, float stunChance)
     {
         if (bomb)
         {
@@ -40,11 +42,12 @@ public class Bullet : MonoBehaviour
         this.damage = damage;
         this.bulletLifeTime = bulletLifeTime;
         this.through = through;
+        this.stunChance = stunChance;
         if (instakill)
         {
             if (Random.Range(0, 100f) < instaKillChance)
             {
-                this.damage = 99999;
+                this.instaKill = true;
             }
         }
         else
@@ -52,9 +55,10 @@ public class Bullet : MonoBehaviour
             float chance = Random.Range(0.0000001f, 100f);
             if (chance <= critChance)
             {
-                this.damage = (int)(this.damage * critMultiplier);
+                int dmg = (int)(this.damage * critMultiplier);
+                if (this.damage == dmg) this.damage++;
+                else this.damage = dmg;
                 crit = true;
-                // some other crit effect(visual maybe)
             }
         }
         SelfUnpause();
@@ -84,8 +88,15 @@ public class Bullet : MonoBehaviour
     {
         if (other.TryGetComponent<EnemyZombie>(out EnemyZombie z))
         {
-            z.TakeDamage(damage, crit);
+            z.TakeDamage(damage, crit, instaKill);
             Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
+            if (z is not Wagon)
+            {
+                if (Random.Range(0, 100f) < stunChance)
+                {
+                    if (!z.IsDead()) z.Stun();
+                }
+            }
             if (bomb)
             {
                 BombSystem.instance.ThrowAt(transform.position.x, transform.position.z);

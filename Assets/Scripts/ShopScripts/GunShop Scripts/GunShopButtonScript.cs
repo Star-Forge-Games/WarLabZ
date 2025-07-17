@@ -1,30 +1,68 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using YG;
+using static LocalizationHelperModule;
 
 public class GunShopUIScript : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshProUGUI cash;
-    private Action action;
+    [SerializeField] WeaponUI weaponUI;
+    [SerializeField] TextMeshProUGUI moneyText;
+    [SerializeField] Sprite selectedSprite, notSelectedSprite;
+    [SerializeField] Transform weaponGrid, handWeapons;
+    public static Sprite sSprite, nsSprite;
 
-
-    private void Start()
+    private void Awake()
     {
-        YG2.saves.unlockedWeapons = new int[] { 0, 1, 2 };
-        YG2.SaveProgress();
-        action = () =>
+        SquareWeaponUI.WeaponTouched += ProcessTouch;
+    }
+
+    private void OnEnable()
+    {
+        sSprite = selectedSprite;
+        nsSprite = notSelectedSprite;
+        int weapon = YG2.saves.selectedWeapon;
+        Refresh(weapon);
+    }
+
+    public void Refresh(int id)
+    {
+        Refresh();
+        for (int i = 0; i < weaponGrid.childCount; i++)
         {
-            cash.text = $"{YG2.saves.cash} $";
-        };
-        WeaponUI.OnUpgrade += action;
+            SquareWeaponUI w = weaponGrid.GetChild(i).GetComponent<SquareWeaponUI>();
+            if (i != id)
+            {
+                w.Deselect();
+                handWeapons.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            else
+            {
+                w.Select();
+                handWeapons.transform.GetChild(i).gameObject.SetActive(true);
+                weaponUI.Setup(id, w.weaponSettings, true);
+            }
+        }
+    }
+
+    public void Refresh()
+    {
+        moneyText.text = MoneyFormat(YG2.saves.cash);
+    }
+
+    private void ProcessTouch(int id, WeaponSettings ws, bool selected)
+    {
+        weaponUI.Setup(id, ws, id == 0 ? true : (weaponGrid.GetChild(id-1).GetComponent<SquareWeaponUI>().weaponSettings.levels.Length - 1 == YG2.saves.weaponLevels[id-1]));
+        if (selected)
+        {
+            YG2.saves.selectedWeapon = id;
+            YG2.SaveProgress();
+            Refresh(id);
+        }
     }
 
     private void OnDestroy()
     {
-        WeaponUI.OnUpgrade -= action;
+        SquareWeaponUI.WeaponTouched -= ProcessTouch;
     }
-
 }

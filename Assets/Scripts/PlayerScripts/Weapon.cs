@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 using YG;
+using static WeaponSettings;
 
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Transform firePoint;
-    [SerializeField] float bulletsRate;
+    private float bulletsRate;
     [SerializeField] float fireForce;
-    [SerializeField] int bulletDamage;
+    [HideInInspector] public int bulletDamage;
     [SerializeField] float bulletLifeTime;
     [SerializeField] private Transform bulletContainer;
     [SerializeField] GameObject bulletPrefab;
@@ -31,14 +32,12 @@ public class Weapon : MonoBehaviour
 
     private bool twinShot, instakill, through, bomb;
 
-    [SerializeField] private float critChance = 75, critDamageMultiplier = 1.5f;
-
-    // Weapon.instance.IncreaseDamageModifier(false, 2); x2 damage
-    // Weapon.instance.IncreaseDamageModifier(true, 1); + 1 damage
+    private float critChance, critDamageMultiplier;
 
     public static Weapon instance;
 
     private Action<bool> action;
+    private float stunChance = 0;
 
     private void Awake()
     {
@@ -55,12 +54,17 @@ public class Weapon : MonoBehaviour
             else SelfPause();
         });
         PauseSystem.OnPauseStateChanged += action;
+    }
+
+    private void Start()
+    {
+        int level = YG2.saves.weaponLevels[weaponId];
         WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(weaponId);
         WeaponSettings.Level l = settings.levels[level];
-        bulletDamage += l.damageBuff;
-        critChance += l.critChanceBuff;
-        critDamageMultiplier += l.critBuff;
-        bulletsRate += l.aspdBuff;
+        bulletDamage = l.damage;
+        critChance = l.critChance;
+        critDamageMultiplier = l.crit;
+        bulletsRate = l.aspd;
     }
 
 
@@ -89,6 +93,7 @@ public class Weapon : MonoBehaviour
 
     private void Fire()
     {
+        PlayerController.instance.Shot();
         GameObject gunFireFrontFirePoint = Instantiate(gunFireFront, firePoint.position, firePoint.rotation);
         gunFireFrontFirePoint.transform.parent = firePoint;
         Destroy(gunFireFrontFirePoint,0.03f);
@@ -102,17 +107,17 @@ public class Weapon : MonoBehaviour
                 Bullet b1 = Instantiate(bulletPrefab, firePoint.position - firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                 b1.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b1.transform.parent = bulletContainer;
-                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                b1.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
                 Bullet b2 = Instantiate(bulletPrefab, firePoint.position + firePoint.right * twinShotDistance, firePoint.rotation).GetComponent<Bullet>();
                 b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b2.transform.parent = bulletContainer;
-                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             } else
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             }
         } else
         {
@@ -124,7 +129,7 @@ public class Weapon : MonoBehaviour
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.Rotate(0, -(arc / 2) + (arc/(mShots-1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
-                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb);
+                bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             }
         }
     }
@@ -158,7 +163,7 @@ public class Weapon : MonoBehaviour
 
     public void IncreaseCritDamage(float value)
     {
-        critDamageMultiplier += 0.1f;
+        critDamageMultiplier += value;
     }
 
     public void SetShotgun()
@@ -196,4 +201,8 @@ public class Weapon : MonoBehaviour
         if (action != null) PauseSystem.OnPauseStateChanged -= action;
     }
 
+    internal void AddStunChance(float v)
+    {
+        stunChance += v;
+    }
 }

@@ -14,12 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - cost: 0
-    damageBuff: 0
-    aspdBuff: 0
-    critBuff: 0
-    critChanceBuff: 0
-  - cost: 100
-    damageBuff: 1
-    aspdBuff: 0
-    critBuff: 0
-    critChanceBuff: 2
+    damage: 1
+    aspd: 2
+    crit: 1.5
+    critChance: 2
+  - cost: 15
+    damage: 2
+    aspd: 2.25
+    crit: 1.5
+    critChance: 2
+  - cost: 60
+    damage: 2
+    aspd: 2.5
+    crit: 1.55
+    critChance: 2
+  - cost: 125
+    damage: 2
+    aspd: 2.5
+    crit: 1.6
+    critChance: 3
+  - cost: 350
+    damage: 3
+    aspd: 2.7
+    crit: 1.65
+    critChance: 3.5

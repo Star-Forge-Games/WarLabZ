@@ -1,6 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
+using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using YG;
 
 
 [RequireComponent(typeof(CharacterController))]
@@ -9,17 +13,24 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     [SerializeField] float moveSpeed = 6f;
+    [SerializeField] float moveSpeedWithBonus = 12f;
     [SerializeField] private Animator anim;
-    Vector2 moveInput;
-    Vector3 movement;
+    [SerializeField] private AudioSource sound;
+    Vector2 moveInput = Vector2.zero;
+    Vector3 movement = Vector2.zero;
     private Action<bool> action;
     private bool paused;
+    private bool touching;
+    private float avgFps;
+    private int fpsCounter;
 
     public static Transform trans;
 
+    public static PlayerController instance;
+
     private void Awake()
     {
-        trans = transform;
+        instance = this;
         action = (pause =>
         {
             if (!pause) SelfUnpause();
@@ -31,7 +42,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        trans = transform;
         characterController = GetComponent<CharacterController>();
+    }
+
+    public void Shot()
+    {
+        sound.Play();
     }
 
     private void OnDestroy()
@@ -40,16 +57,31 @@ public class PlayerController : MonoBehaviour
         PauseSystem.OnPauseStateChanged -= action;
     }
 
-    public void OnPause()
+    public void Pause(InputAction.CallbackContext c)
     {
+        if (!c.performed) return;
+        if (!enabled) return;
         if (!paused)
         {
             PauseSystem.instance.Pause(false);
-        } else
+        }
+        else
         {
-            PauseSystem.instance.Unpause();
+            PauseSystem.instance.Unpause(false);
         }
     }
+
+    public void Unpause()
+    {
+        PauseSystem.instance.Unpause(false);
+    }
+
+    public void Pause()
+    {
+        if (!enabled) return;
+        PauseSystem.instance.Pause(false);
+    }
+
     public void SelfPause()
     {
         anim.speed = 0;
@@ -62,32 +94,87 @@ public class PlayerController : MonoBehaviour
         paused = false;
     }
 
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = value.Get<Vector2>();
+        moveInput = context.ReadValue<Vector2>();
     }
 
+    protected Vector2 touchPosition = Vector2.zero;
 
-    private void FixedUpdate()
+    public void TouchDelta(InputAction.CallbackContext context)
     {
+        if (!touching) return;
+        Vector2 delta = context.ReadValue<Vector2>();
+        touchPosition += delta;
+    }
+
+    public void TouchStart(InputAction.CallbackContext context)
+    {
+        if (context.started || context.canceled)
+        {
+            touchPosition = Vector2.zero;
+        }
+        touching = !context.canceled;
+    }
+
+    private void UpdateRenderScale()
+    {
+        if (fpsCounter > 150) return;
+        fpsCounter++;
+        if (fpsCounter < 50) return;
+        float fps = 1 / Time.deltaTime;
+        avgFps = (avgFps + fps) / 2;
+        if (fpsCounter == 150)
+        {
+            if (avgFps - 5 < 60)
+            {
+                if (avgFps - 5 <= 30) ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 0.5f;
+                else ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = avgFps / 60f;
+            }
+            else
+            {
+                ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        UpdateRenderScale();
         if (!paused)
         {
-            movement.x = moveInput.x * moveSpeed;
-            characterController.Move(movement * Time.fixedDeltaTime);
-            if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
-            else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
-            else anim.SetInteger("MoveDirection", 0);   
+            if (touchPosition.x != 0)
+            {
+                movement.x = (touchPosition.x > 0 ? 1 : -1) * moveSpeed;
+                characterController.Move(movement * Time.deltaTime);
+                if (touchPosition.x > 0) anim.SetInteger("MoveDirection", 1);
+                else if (touchPosition.x < 0) anim.SetInteger("MoveDirection", -1);
+                else anim.SetInteger("MoveDirection", 0);
+            }
+            else
+            {
+                movement.x = moveInput.x * moveSpeed;
+                characterController.Move(movement * Time.deltaTime);
+                if (moveInput.x > 0) anim.SetInteger("MoveDirection", 1);
+                else if (moveInput.x < 0) anim.SetInteger("MoveDirection", -1);
+                else anim.SetInteger("MoveDirection", 0);
+            }
         }
     }
 
     private void RunAway()
     {
+        if (!YG2.envir.isMobile)
+        {
+            TouchSimulation.Disable();
+        }
         anim.Play("Turn");
         paused = true;
         PauseSystem.instance.Lose();
     }
 
-
-
-
+    internal void IncreaseSpeed()
+    {
+        moveSpeed = moveSpeedWithBonus;
+    }
 }

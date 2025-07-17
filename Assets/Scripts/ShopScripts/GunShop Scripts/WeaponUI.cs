@@ -1,114 +1,104 @@
-using System;
-using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
-
+using static LocalizationHelperModule;
 public class WeaponUI : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance, level, upgrade;
-    [SerializeField] Button upgradeButton;
-    [SerializeField] GameObject weaponModel;
-    [SerializeField] GameObject lockObject;
-    [SerializeField] int id;
-    private Image bg;
+    [SerializeField] TextMeshProUGUI dmg, aspd, crit, critChance;
+    [SerializeField] Button buyUpgradeButton;
+    [SerializeField] TextMeshProUGUI buyUpgradeButtonText;
+    [SerializeField] Transform weaponsTransform;
+    [SerializeField] GunShopUIScript gunShop;
+    private int id;
+    private WeaponSettings ws;
+    private int lvl;
+    private bool prevFull;
 
-    private void Start()
+    private static int curId;
+
+    public void Setup(int id, WeaponSettings ws, bool prevFull)
     {
-        bg = GetComponent<Image>();
+        this.id = id;
+        this.ws = ws;
+        int lv = YG2.saves.weaponLevels[id];
+        lvl = lv;
+        this.prevFull = prevFull;
         Refresh();
-        RefreshWeapons += Refresh;
+        curId = id;
     }
 
-    public static Action OnUpgrade;
-    public static Action RefreshWeapons;
-
-    public virtual void Refresh()
+    public static int GetCurrentId()
     {
-        int lvl = YG2.saves.weaponLevels[id];
-        WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(id);
-        WeaponSettings.Level wslevel = settings.levels[lvl];
-        if (lvl == settings.levels.Length - 1)
+        return curId;
+    }
+
+    public void BuyOrUpgrade()
+    {
+        YG2.saves.cash -= ws.levels[lvl + 1].cost;
+        lvl++;
+        var clone = YG2.saves.weaponLevels;
+        clone[id]++;
+        YG2.saves.weaponLevels = clone;
+        YG2.SaveProgress();
+        Refresh();
+        gunShop.Refresh();
+    }
+
+    private void Refresh()
+    {
+        for (int i = 0; i < weaponsTransform.childCount; i++)
         {
-            upgradeButton.interactable = false;
-            upgrade.text = "MAX";
-            level.text = string.Empty;
-        } else
+            weaponsTransform.GetChild(i).gameObject.SetActive(i == id);
+        }
+        if (lvl == -1)
         {
-            level.text = $"Lv. {lvl + 1}";
-            WeaponSettings.Level wslevelNext = settings.levels[lvl + 1];
-            if (wslevelNext.cost > YG2.saves.cash)
+            var l = ws.levels[0];
+            dmg.text = $"<color=green>{l.damage}</color>";
+            aspd.text = $"<color=green>{l.aspd}</color>";
+            crit.text = $"<color=green>{l.crit * 100}%</color>";
+            critChance.text = $"<color=green>{l.critChance}%</color>";
+            if (!prevFull)
             {
-                upgradeButton.interactable = false;
+                buyUpgradeButtonText.text = $"{Loc("buyprevgun")}";
+                buyUpgradeButton.interactable = false;
+                return;
             }
+            buyUpgradeButtonText.text = $"{Loc("buy")}\n{l.cost}$";
         }
-        dmg.text = $"+{wslevel.damageBuff}";
-        aspd.text = $"+{wslevel.aspdBuff}";
-        crit.text = $"+{wslevel.critBuff}";
-        critChance.text = $"+{wslevel.critChanceBuff}";
-        if (!YG2.saves.unlockedWeapons.Contains(id))
+        else if (lvl == ws.levels.Length - 1)
         {
-            Lock();
-        } else
-        {
-            Unlock();
-        }
-        if (YG2.saves.selectedWeapon == id)
-        {
-            Select();
+            var l = ws.levels[lvl];
+            buyUpgradeButtonText.text = Loc("max");
+            buyUpgradeButton.interactable = false;
+            dmg.text = $"<color=green>{l.damage}</color>";
+            aspd.text = $"<color=green>{l.aspd}</color>";
+            crit.text = $"<color=green>{l.crit * 100}%</color>";
+            critChance.text = $"<color=green>{l.critChance}%</color>";
+            return;
         }
         else
         {
-            Deselect();
+            buyUpgradeButtonText.text = $"{Loc("upgrade")}\n{ws.levels[lvl + 1].cost}$";
+            var l = ws.levels[lvl];
+            var l2 = ws.levels[lvl + 1];
+            dmg.text = $"<color=green>{l.damage}</color>" + (l2.damage > l.damage ? $" <color=red>(+{l2.damage - l.damage})</color>" : "");
+            aspd.text = $"<color=green>{l.aspd}</color>" + (l2.aspd > l.aspd ? $" <color=red>(+{(decimal)l2.aspd - (decimal)l.aspd})</color>" : "");
+            crit.text = $"<color=green>{l.crit * 100}%</color>" + (l2.crit > l.crit ? $" <color=red>(+{((decimal)l2.crit - (decimal)l.crit) * 100}%)</color>" : "");
+            critChance.text = $"<color=green>{l.critChance}%</color>" + (l2.critChance > l.critChance ? $" <color=red>(+{(decimal)l2.critChance - (decimal)l.critChance}%)</color>" : "");
         }
+        buyUpgradeButton.interactable = ws.levels[lvl + 1].cost <= YG2.saves.cash;
     }
 
-    public void Select()
+    private void OnDisable()
     {
-        bg.color = new Color(236/255f, 250/255f, 65/255f, 137/255f);
-    }
-
-    public void SelectWeapon()
-    {
-        YG2.saves.selectedWeapon = id;
-        YG2.SaveProgress();
-        RefreshWeapons.Invoke();
-    }
-
-    public void Deselect()
-    {
-        bg.color = new Color(196/255f, 178/255f, 150/255f, 137/255f);
-    }
-
-    public void Lock()
-    {
-        lockObject.SetActive(true);
-        weaponModel.SetActive(false);
-    }
-
-    public void Unlock()
-    {
-        lockObject.SetActive(false);
-        weaponModel.SetActive(true);
-    }
-
-    public virtual void Upgrade()
-    {
-        int lvl = YG2.saves.weaponLevels[id];
-        WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(id);
-        WeaponSettings.Level wslevel = settings.levels[lvl + 1];
-        YG2.saves.cash = YG2.saves.cash - wslevel.cost;
-        var temp = YG2.saves.weaponLevels;
-        temp[id]++;
-        YG2.saves.weaponLevels = temp;
-        YG2.SaveProgress();
-        for (int i = 0; i < transform.parent.childCount; i++)
+        if (weaponsTransform != null)
+        for (int i = 0; i < weaponsTransform.childCount; i++)
         {
-            transform.parent.GetChild(i).GetComponent<WeaponUI>().Refresh();
+            weaponsTransform.GetChild(i).gameObject.SetActive(false);
         }
-        OnUpgrade?.Invoke();
     }
 
 }

@@ -1,40 +1,46 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using YG;
-
+using static LocalizationHelperModule;
 
 public class MoneySystem : MonoBehaviour
 {
 
-    [SerializeField] private GameObject dollars;
     [SerializeField] private TMP_Text moneyText;
-    private int money, levelMoney;
+    [SerializeField] private Animator dollarAnim;
+    private int levelMoney;
     private bool bonusMoney;
-
     public static MoneySystem instance;
+    private bool shaking;
 
     private void Awake()
     {
         instance = this;
         EnemyZombie.OnZombieDie += ZombieDeath;
-        money = YG2.saves.cash;
-        moneyText.text = "$: " + money;
+        moneyText.text = "0";
     }
 
-    public void ZombieDeath(EnemyZombie z, float chance)
+    public void ZombieDeath(EnemyZombie z, float chance, int money)
     {
-        int random = Random.Range(0, 100);
+        int random = UnityEngine.Random.Range(0, 100);
         if (random <= chance)
         {
-            Instantiate(dollars, z.transform.position, Quaternion.identity);
-            money += 1;
-            moneyText.text = "$: " + money;
+            if (bonusMoney) money *= 2;
+            levelMoney += money;
+            moneyText.text = MoneyFormat(levelMoney);
+            if (!shaking)
+            {
+                shaking = true;
+                dollarAnim.Play("MoneyAdd");
+                StartCoroutine(nameof(StopShake));
+            }
         }
     }
 
     public void SaveMoney()
     {
-        YG2.saves.cash = money + levelMoney * (bonusMoney? 2 : 1);
+        YG2.saves.cash += levelMoney;
         YG2.SaveProgress();
     }
 
@@ -46,6 +52,17 @@ public class MoneySystem : MonoBehaviour
     public void SetBonus()
     {
         bonusMoney = true;
+    }
+
+    public int GetCollectedMoney()
+    {
+        return levelMoney;
+    }
+
+    private IEnumerator StopShake()
+    {
+        yield return new WaitForSeconds(0.1f);
+        shaking = false;
     }
 
 }

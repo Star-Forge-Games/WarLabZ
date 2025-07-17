@@ -1,0 +1,640 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: warlab Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: warlab
+  m_TableCollectionNameGuidString: c7e39b832b46b8047a83fa415c1489e4
+  m_Entries:
+  - m_Id: 54184497862242304
+    m_Key: settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184547212423168
+    m_Key: about
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184587322552320
+    m_Key: gunshop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184645438828544
+    m_Key: supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184751093346304
+    m_Key: wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184872765911040
+    m_Key: sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185042853326848
+    m_Key: locale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185194292867072
+    m_Key: damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185213121097728
+    m_Key: aspd
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185283165974528
+    m_Key: crit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185357501624320
+    m_Key: critchance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185402783330304
+    m_Key: buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185444084641792
+    m_Key: upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185539140153344
+    m_Key: devs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185634623483904
+    m_Key: unlock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185923585863680
+    m_Key: ad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54186574151774208
+    m_Key: play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188481465380864
+    m_Key: level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188537673248768
+    m_Key: wd1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188611635605504
+    m_Key: wd2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188665402388480
+    m_Key: wd3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188674885709824
+    m_Key: wd4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188687510564864
+    m_Key: wd5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188697883078656
+    m_Key: wd6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188707701944320
+    m_Key: wd7
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188717424340992
+    m_Key: wd8
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188728124010496
+    m_Key: wd9
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188740505595904
+    m_Key: wd10
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188751444340736
+    m_Key: wd11
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54189016817954816
+    m_Key: wd12
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54195842594729984
+    m_Key: bought
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54195921359564800
+    m_Key: nocash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54199632295194624
+    m_Key: max
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54201841619660800
+    m_Key: chooseskill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54202221183201280
+    m_Key: adReroll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54202390251401216
+    m_Key: adButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203130051129344
+    m_Key: tohub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203684416483328
+    m_Key: resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203813546520576
+    m_Key: selectedskills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206570055692288
+    m_Key: instakill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206631242199040
+    m_Key: sharpbullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206855226421248
+    m_Key: doubleshot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206946666442752
+    m_Key: doublecash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207000814907392
+    m_Key: wallrepair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207051410796544
+    m_Key: airstrikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207101633392640
+    m_Key: blademail
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207178624036864
+    m_Key: shotgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207301693304832
+    m_Key: critchanceplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207364410732544
+    m_Key: damageplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207415040176128
+    m_Key: aspdplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207526382170112
+    m_Key: multishot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207596770979840
+    m_Key: critplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207666127990784
+    m_Key: bulletbomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207724558839808
+    m_Key: speedup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207794163314688
+    m_Key: zspeed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207954838712320
+    m_Key: stun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208124078878720
+    m_Key: zhealth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208262159560704
+    m_Key: lifesteal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208334867820544
+    m_Key: bhealth
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208392120070144
+    m_Key: tdoubleshot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208466350862336
+    m_Key: tcritchanceplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208576640086016
+    m_Key: taspdplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208662992416768
+    m_Key: tsharpbullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208745238523904
+    m_Key: tmultishot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208833386016768
+    m_Key: tdamageplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208889082179584
+    m_Key: tcritplus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54211253197434880
+    m_Key: newrecord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222669405057024
+    m_Key: suppliesdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222672433344512
+    m_Key: shielddescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222674123649024
+    m_Key: bomberdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222675344191488
+    m_Key: raindescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54497555532836864
+    m_Key: wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54519254592614400
+    m_Key: record
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54519311991664640
+    m_Key: lived
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57097632503918592
+    m_Key: hideoutpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57097733704085504
+    m_Key: hideouttext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098338539499520
+    m_Key: arsenalpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098371951325184
+    m_Key: arsenaltext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098949708312576
+    m_Key: suppliespage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098972118478848
+    m_Key: suppliestext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099427951243264
+    m_Key: wallpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099470267576320
+    m_Key: walltext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099776959279104
+    m_Key: playpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099795632320512
+    m_Key: playtext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100181617340416
+    m_Key: settingspage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100206502146048
+    m_Key: settingstext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100498245349376
+    m_Key: aboutpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100548451168256
+    m_Key: abouttext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100944968085504
+    m_Key: energypage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100964815532032
+    m_Key: energytext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57101541125484544
+    m_Key: gamedescpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57101547328860160
+    m_Key: gamedesctext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57106435072946176
+    m_Key: welcomepage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57106451241988096
+    m_Key: welcometext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57117200764989440
+    m_Key: playerpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57117217953247232
+    m_Key: playertext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57119063895797760
+    m_Key: lasttuttext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57125456220614656
+    m_Key: zombieactivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57125894403747840
+    m_Key: zombieboom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134497156132864
+    m_Key: battlemodepage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134604844888064
+    m_Key: battlemodetext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134860173144064
+    m_Key: wavepage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134902753718272
+    m_Key: wavetext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135157830316032
+    m_Key: wallhppage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135181150646272
+    m_Key: wallhptext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135511867322368
+    m_Key: shooterpage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135545069432832
+    m_Key: shootertext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136018035929088
+    m_Key: skillspage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136046230040576
+    m_Key: skillstext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136407607078912
+    m_Key: pausepage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136447478132736
+    m_Key: pausetext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136824038551552
+    m_Key: supplies123page
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136872147218432
+    m_Key: supplies123text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57137278252314624
+    m_Key: moneypage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57137304508657664
+    m_Key: moneytext
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57447437222637568
+    m_Key: buyprevwall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57493613439447040
+    m_Key: review
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57500995784646656
+    m_Key: buyMoney
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57791907340316672
+    m_Key: rubles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59205728663597056
+    m_Key: wallhp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59206650034745344
+    m_Key: buyprevgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59271349136879616
+    m_Key: graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59274018664574976
+    m_Key: high
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59274029666234368
+    m_Key: low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59613302521163776
+    m_Key: weapequipped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664345444491264
+    m_Key: doubleshotdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664768528130048
+    m_Key: multishotdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664803366019072
+    m_Key: critplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664823125385216
+    m_Key: damageplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664841592905728
+    m_Key: aspdplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664871028531200
+    m_Key: critchanceplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664896525705216
+    m_Key: shotgundescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664969628229632
+    m_Key: sharpbulletsdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665006651351040
+    m_Key: stundescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665032312102912
+    m_Key: bhealthdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665049760407552
+    m_Key: instakilldescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666256310673408
+    m_Key: airstrikesdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666266293116928
+    m_Key: blademaildescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666288741031936
+    m_Key: bulletbombdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666327609647104
+    m_Key: speedupdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666343455727616
+    m_Key: zspeeddescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666376787861504
+    m_Key: zhealthdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666406412230656
+    m_Key: lifestealdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666436959346688
+    m_Key: doublecashdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666455305232384
+    m_Key: wallrepairdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666472980029440
+    m_Key: tdoubleshotdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666484241735680
+    m_Key: tmultishotdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666504709939200
+    m_Key: taspdplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666549551243264
+    m_Key: tcritchanceplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666573618159616
+    m_Key: tdamageplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666645915377664
+    m_Key: tsharpbulletsdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666706753757184
+    m_Key: tcritplusdescription
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59708508973133824
+    m_Key: help
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 3603183211698716924
+  references:
+    version: 2
+    RefIds:
+    - rid: 3603183211698716924
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1738452533014

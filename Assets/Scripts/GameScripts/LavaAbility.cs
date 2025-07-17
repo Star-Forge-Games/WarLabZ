@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -10,27 +11,46 @@ public class LavaAbility : MonoBehaviour
     [SerializeField] int damageTicks;
     [SerializeField] int damage;
     [SerializeField] float damageDelay;
-    [SerializeField] Transform enemyContainer;
+    [SerializeField] Transform enemyContainer, wagonContainer;
     [SerializeField] Button button;
-
-    private float timeLived;
-    private float ticksPassed;
+    [SerializeField] int cooldownInSeconds;
+    [SerializeField] TextMeshProUGUI amount;
+    [SerializeField] Slider cooldownSlider;
+    private bool paused = false;
+    private float cooldown = 0;
     private bool fired;
+    private int ticksPassed = 0;
+    private float timeAfterLastTick = 0;
+
 
     private Action<bool> action;
 
-    private void Awake()
+    public void Awake()
     {
         action = (pause =>
         {
             if (!pause) SelfUnpause();
             else SelfPause();
         });
+        cooldownSlider.maxValue = cooldownInSeconds;
         PauseSystem.OnPauseStateChanged += action;
-        if (YG2.saves.supplies[2] == 0) button.interactable = false;
     }
 
-    private void OnDestroy()
+    private void Start()
+    {
+        if (YG2.saves.supplies[2] == 0)
+        {
+            button.interactable = false;
+            amount.text = "";
+        }
+        else
+        {
+            button.interactable = true;
+            amount.text = $"{YG2.saves.supplies[2]}";
+        }
+    }
+
+    public void OnDestroy()
     {
         PauseSystem.OnPauseStateChanged -= action;
     }
@@ -39,62 +59,87 @@ public class LavaAbility : MonoBehaviour
     {
         var temp = YG2.saves.supplies;
         temp[2]--;
+        if (temp[2] == 0) button.interactable = false;
         YG2.saves.supplies = temp;
         YG2.SaveProgress();
-        fired = true;
+        amount.text = temp[2] == 0 ? "" : $"{temp[2]}";
+        button.interactable = false;
+        cooldown = cooldownInSeconds;
         rain.SetActive(true);
-        StartCoroutine(DamageCoroutine());
-        StartCoroutine(WetFloor());
+        rain.GetComponent<Animator>().Play("Acid");
+        lava.SetActive(true);
+        lava.GetComponent<Animator>().Play("Acid");
+        fired = true;
+        StartCoroutine(nameof(DamageCoroutine));
     }
 
     public IEnumerator DamageCoroutine()
     {
-        for (int i = 0; i < damageTicks - ticksPassed; i++)
+        if (ticksPassed < damageTicks)
         {
-            yield return new WaitForSeconds(damageDelay - timeLived);
-            ticksPassed++;
-            foreach (Transform t in enemyContainer)
+            while (ticksPassed < damageTicks)
             {
-                EnemyZombie z = t.GetComponent<EnemyZombie>();
-                yield return new WaitForEndOfFrame();
-                if (z != null)
-                z.TakeDamage(damage, false);
+                yield return new WaitForSeconds(damageDelay - timeAfterLastTick);
+                ticksPassed++;
+                foreach (Transform t in enemyContainer)
+                {
+                    EnemyZombie z = t.GetComponent<EnemyZombie>();
+                    yield return new WaitForEndOfFrame();
+                    z?.TakeDamage(damage, false, false);
+                }
+                foreach (Transform t in wagonContainer)
+                {
+                    Wagon z = t.GetComponent<Wagon>();
+                    yield return new WaitForEndOfFrame();
+                    z?.TakeDamage(damage, false, false);
+                }
+                timeAfterLastTick = 0;
             }
-            timeLived = 0;
+            fired = false;
+            ticksPassed = 0;
+            timeAfterLastTick = 0;
+            yield return new WaitForSeconds(0.5f);
         }
-        fired = false;
         lava.SetActive(false);
         rain.SetActive(false);
-        if (YG2.saves.supplies[2] != 0) button.interactable = true;
-        timeLived = 0;
+        fired = false;
         ticksPassed = 0;
+        timeAfterLastTick = 0;
     }
 
-    private void Update()
+    public void Update()
     {
-        if (fired)
+        if (paused) return;
+        if (cooldown > 0)
         {
-            timeLived += Time.deltaTime;
+            cooldown -= Time.deltaTime;
+            cooldownSlider.value = cooldown;
+            if (cooldown <= 0)
+            {
+                if (YG2.saves.supplies[2] != 0) button.interactable = true;
+                cooldownSlider.value = 0;
+            }
         }
-    }
-
-    public IEnumerator WetFloor()
-    {
-        yield return new WaitForSeconds(1);
-        lava.SetActive(true);
+        if (fired) timeAfterLastTick += Time.deltaTime;
     }
 
     private void SelfPause()
     {
+        paused = true;
         if (!fired) return;
-        StopCoroutine(DamageCoroutine());
+        StopCoroutine(nameof(DamageCoroutine));
         rain.GetComponent<ParticleSystem>().Pause();
+        lava.GetComponent<Animator>().speed = 0;
+        rain.GetComponent<Animator>().speed = 0;
     }
 
     private void SelfUnpause()
     {
+        paused = false;
         if (!fired) return;
-        StartCoroutine(DamageCoroutine());
+        StartCoroutine(nameof(DamageCoroutine));
         rain.GetComponent<ParticleSystem>().Play();
+        lava.GetComponent<Animator>().speed = 1;
+        rain.GetComponent<Animator>().speed = 1;
     }
 }

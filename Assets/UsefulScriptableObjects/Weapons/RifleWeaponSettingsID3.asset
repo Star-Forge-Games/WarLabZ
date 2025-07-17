@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0dfe8e1f7c8b34db4eeec07f708e58, type: 3}
+  m_Name: RifleWeaponSettingsID3
+  m_EditorClassIdentifier: 
+  levels:
+  - cost: 2500
+    damage: 6
+    aspd: 7
+    crit: 8
+    critChance: 9
+  - cost: 2500
+    damage: 11
+    aspd: 8
+    crit: 9
+    critChance: 10
+  - cost: 3000
+    damage: 11
+    aspd: 11
+    crit: 11
+    critChance: 11
+  - cost: 3500
+    damage: 11
+    aspd: 11
+    crit: 11
+    critChance: 11

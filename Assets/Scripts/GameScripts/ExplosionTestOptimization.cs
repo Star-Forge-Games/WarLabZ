@@ -13,5 +13,6 @@ public class ExplosionTestOptimization : MonoBehaviour
     public void Activate(int index)
     {
         explosions[index].Play();
+        explosions[index].GetComponent<AudioSource>().Play();
     }
 }

@@ -1,0 +1,661 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: warlab_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c7e39b832b46b8047a83fa415c1489e4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 54184497862242304
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184547212423168
+    m_Localized: About
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184587322552320
+    m_Localized: Weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184645438828544
+    m_Localized: Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184751093346304
+    m_Localized: Wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54184872765911040
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185042853326848
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185194292867072
+    m_Localized: 'Damage:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185213121097728
+    m_Localized: 'Attack speed:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185283165974528
+    m_Localized: 'Crit damage:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185357501624320
+    m_Localized: 'Crit chance:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185402783330304
+    m_Localized: Purchase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185444084641792
+    m_Localized: Upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185539140153344
+    m_Localized: 'Developers:
+
+      SamsonovGames'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185634623483904
+    m_Localized: Unlock
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54185923585863680
+    m_Localized: Ad is coming...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54186574151774208
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188481465380864
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54195842594729984
+    m_Localized: Purchased
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54195921359564800
+    m_Localized: Not enough cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54199632295194624
+    m_Localized: MAX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188537673248768
+    m_Localized: Basic sandbag wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188611635605504
+    m_Localized: Sandbags and wooden caltrops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54201841619660800
+    m_Localized: Choose skill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54202221183201280
+    m_Localized: Watch ad to reroll skills
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54202390251401216
+    m_Localized: Watch ad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203130051129344
+    m_Localized: Back to lobby
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203684416483328
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54203813546520576
+    m_Localized: 'Selected skills:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206570055692288
+    m_Localized: Instant kill chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206631242199040
+    m_Localized: Sharp bullets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206855226421248
+    m_Localized: Double shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54206946666442752
+    m_Localized: Double cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207000814907392
+    m_Localized: Wall repair
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207051410796544
+    m_Localized: Airstrikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207101633392640
+    m_Localized: Spiky wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207178624036864
+    m_Localized: Shotgun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207301693304832
+    m_Localized: Crit chance +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207364410732544
+    m_Localized: Damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207415040176128
+    m_Localized: Attack speed +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207526382170112
+    m_Localized: Multishots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207596770979840
+    m_Localized: Crit damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207666127990784
+    m_Localized: Bullet bomb chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207724558839808
+    m_Localized: Player speed +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207794163314688
+    m_Localized: Zombie slowdown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54207954838712320
+    m_Localized: Chance to stun zombie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208124078878720
+    m_Localized: Zombie HP -
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208262159560704
+    m_Localized: Repair with zombie parts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208334867820544
+    m_Localized: Boss HP -
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208392120070144
+    m_Localized: Turret double shot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208466350862336
+    m_Localized: Turret crit chance +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208576640086016
+    m_Localized: Turret attack speed +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208662992416768
+    m_Localized: Turret shots through zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208745238523904
+    m_Localized: Turret multishot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208833386016768
+    m_Localized: Turret damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54208889082179584
+    m_Localized: Turrect crit damage +
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54211253197434880
+    m_Localized: New record!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222669405057024
+    m_Localized: Click on any supply to see it's description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222672433344512
+    m_Localized: Makes the wall invincible for a short time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222674123649024
+    m_Localized: Calls a heavy airstrike to clear out zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54222675344191488
+    m_Localized: Calls an acid rain, which deals periodic damage to all zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54497555532836864
+    m_Localized: Wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54519254592614400
+    m_Localized: 'Record:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54519311991664640
+    m_Localized: 'Lived:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54526988525346816
+    m_Localized: New Record!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188665402388480
+    m_Localized: Sandbags, caltrops, and a small <color=red>turret</color> to help
+      overcoming zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188674885709824
+    m_Localized: Barbed wire and a new <color=red>turret</color> are always welcome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188687510564864
+    m_Localized: New turret and durable concrete slabs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188697883078656
+    m_Localized: Reinforced barbed wire and two upgraded turrets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188707701944320
+    m_Localized: Iron frame and a new turret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188717424340992
+    m_Localized: Two boosted turrets and reinforced frame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188728124010496
+    m_Localized: Steel caltrops and high-tech turret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188740505595904
+    m_Localized: Two high-tech turrets and new steel caltrops
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54188751444340736
+    m_Localized: Ultimate turret and complete caltrop upgrade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 54189016817954816
+    m_Localized: Two ultimate turrets. Absoulte defence...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57097632503918592
+    m_Localized: Hideout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57097733704085504
+    m_Localized: 'Hideout is a safe place where you can prepare for your battles.
+
+      Let''s
+      see what you can do here.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098338539499520
+    m_Localized: Weapons
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098371951325184
+    m_Localized: Use weapon shop to buy and upgrade weapons.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098949708312576
+    m_Localized: Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57098972118478848
+    m_Localized: Use supplies shop to buy powerful supplies to beat waves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099427951243264
+    m_Localized: Wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099470267576320
+    m_Localized: Use wall shop to upgrade your wall.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099776959279104
+    m_Localized: Battle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57099795632320512
+    m_Localized: When you are ready, go to the battlefield and protect humanity from
+      zombies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100181617340416
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100206502146048
+    m_Localized: You can change language and toggle sound in settings panel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100498245349376
+    m_Localized: About
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100548451168256
+    m_Localized: If you want to know more about the game, press the button to open
+      the information panel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100944968085504
+    m_Localized: Energy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57100964815532032
+    m_Localized: Every battle takes 1 energy. Energy is restored over time. If you
+      don't want to wait, watch an ad.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57101541125484544
+    m_Localized: The end
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57101547328860160
+    m_Localized: Great job, soldier! Now you can navigate the shelter. Let's move
+      on to the battlefield and complete your training!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57106435072946176
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57106451241988096
+    m_Localized: Welcome, soldier! It's time for a brief tutorial.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57117200764989440
+    m_Localized: Player card
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57117217953247232
+    m_Localized: "The player card displays your name and current balance. If you\u2019re
+      short on funds, tap it."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57119063895797760
+    m_Localized: 'Now you are ready to fight for humanity.
+
+      Good Luck, soldier.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57125456220614656
+    m_Localized: We received a signal from the scouts about suspicious activity at
+      another exit from the war lab.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57125894403747840
+    m_Localized: We anticipate that the zombies are about to break through and start
+      fighting. Everyone, get ready!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134497156132864
+    m_Localized: Battle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134604844888064
+    m_Localized: The zombies have broken free. They are attacking in waves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134860173144064
+    m_Localized: Waves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57134902753718272
+    m_Localized: The wave counter is displayed at the top of the screen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135157830316032
+    m_Localized: Wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135181150646272
+    m_Localized: The wall has a margin of safety. If the wall breaks, the retreat
+      begins.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135511867322368
+    m_Localized: Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57135545069432832
+    m_Localized: Move the character to the sides to shoot in the desired direction.
+      Clear out as many zombies as possible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136018035929088
+    m_Localized: "\u0421\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u0438"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136046230040576
+    m_Localized: Sometimes bosses run out of the lab. After defeating them, you can
+      choose unique abilities.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136407607078912
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136447478132736
+    m_Localized: Tired? Pause the game. You can also view your selected abilities
+      in the pause menu.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136824038551552
+    m_Localized: Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57136872147218432
+    m_Localized: You start with three different supplies. Use them wisely - their
+      price is high.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57137278252314624
+    m_Localized: Cash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57137304508657664
+    m_Localized: When you clear zombies, you get money! Survive as long as possible
+      and take it with you to the shelter.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57447437222637568
+    m_Localized: Not available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57493613439447040
+    m_Localized: 'Thank you for leaving a review. As a token of appreciation take
+      a bonus cash: '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57500995784646656
+    m_Localized: Get money
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57791907340316672
+    m_Localized: rub.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59205728663597056
+    m_Localized: 'HP:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59206650034745344
+    m_Localized: Upgrade previous weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59271349136879616
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59274018664574976
+    m_Localized: High
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59274029666234368
+    m_Localized: Low
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59613302521163776
+    m_Localized: Equipped
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664345444491264
+    m_Localized: 'The Gun fires two bullets at once '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664768528130048
+    m_Localized: The Gun fires two bullets in succession
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664803366019072
+    m_Localized: Increases weapon critical damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664823125385216
+    m_Localized: Increases weapon damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664841592905728
+    m_Localized: Increases weapon fire rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664871028531200
+    m_Localized: Increases weapon critical strike chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664896525705216
+    m_Localized: The Gun fires two additional shots in different directions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59664969628229632
+    m_Localized: Shots go throgh zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665006651351040
+    m_Localized: Adds chance to stun zombie for a short time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665032312102912
+    m_Localized: 'Reduces bosses health amout '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59665049760407552
+    m_Localized: Adds chance to  instantly kill zombies(except Bosses)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666256310673408
+    m_Localized: Bombs periodically fall from the sky, dealing damage to zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666266293116928
+    m_Localized: "The wall reflects part of the zombie\u2019s damage back"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666288741031936
+    m_Localized: Adds chance to cause bomb drop when hit by bullet on zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666327609647104
+    m_Localized: Speeds the player up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666343455727616
+    m_Localized: Creates an ice fied that slows downl zombies (except Bomber)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666376787861504
+    m_Localized: 'Reduces zombies health amout '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666406412230656
+    m_Localized: 'The wall repairs itself when player kills zombies and bosses '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666436959346688
+    m_Localized: Doubles the zombie kill reward
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666455305232384
+    m_Localized: Instantly restores part of the wall health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666472980029440
+    m_Localized: 'Turrets fire two bullets at once '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666484241735680
+    m_Localized: Turrets fire two bullets in succession
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666504709939200
+    m_Localized: Increases Turrets fire rate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666549551243264
+    m_Localized: Increases Turrets critical chance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666573618159616
+    m_Localized: Increases Turrets damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666645915377664
+    m_Localized: Turret Shots go throgh zombies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59666706753757184
+    m_Localized: Increases Turrets critical damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 59708508973133824
+    m_Localized: Help
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

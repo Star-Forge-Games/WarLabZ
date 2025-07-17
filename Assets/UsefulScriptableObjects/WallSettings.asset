@@ -14,26 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallLevels:
   - cost: 0
-    hp: 100
-  - cost: 100
+    hp: 20
+    width: 0.43
+  - cost: 50
+    hp: 25
+    width: 2.15
+  - cost: 150
+    hp: 35
+    width: 2.15
+  - cost: 250
+    hp: 50
+    width: 2.15
+  - cost: 400
+    hp: 70
+    width: 2.15
+  - cost: 600
+    hp: 95
+    width: 2.15
+  - cost: 800
+    hp: 125
+    width: 3
+  - cost: 1000
+    hp: 150
+    width: 3.26
+  - cost: 1500
+    hp: 175
+    width: 3.26
+  - cost: 2000
     hp: 200
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
-  - cost: 0
-    hp: 0
+    width: 3.26
+  - cost: 3000
+    hp: 250
+    width: 3.26
+  - cost: 4000
+    hp: 300
+    width: 3.26

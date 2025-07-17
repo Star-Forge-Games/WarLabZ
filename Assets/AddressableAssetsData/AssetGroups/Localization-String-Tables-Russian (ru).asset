@@ -16,10 +16,11 @@ MonoBehaviour:
   m_GUID: e54086eef3bbfd9458f4067dc69f2f6d
   m_SerializeEntries:
   - m_GUID: 70a995809e55b1e47bcfe76877110a85
-    m_Address: UITableCollection_ru
+    m_Address: warlab_ru
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ru
+    - Preload
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 06da873e887367940943981bb06f5504, type: 2}

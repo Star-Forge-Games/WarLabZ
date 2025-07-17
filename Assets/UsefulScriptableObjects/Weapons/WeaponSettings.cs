@@ -9,10 +9,10 @@ public class WeaponSettings : ScriptableObject
     public struct Level
     {
         public int cost;
-        public int damageBuff;
-        public int aspdBuff;
-        public float critBuff;
-        public float critChanceBuff;
+        public int damage;
+        public float aspd;
+        public float crit;
+        public float critChance;
     }
     public Level[] levels;
 }

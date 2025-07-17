@@ -40,8 +40,8 @@ public class BombSystem : MonoBehaviour
 
     public void Throw()
     {
-        int z = Random.Range(1, 6) * 10;
-        int x = Random.Range(-5, 5);
+        float z = Random.Range(1, 4.5f) * 10;
+        float x = Random.Range(-4.5f, 4.5f);
         timedPS.transform.position = new Vector3(x, 0, z);
         SkillBomb sb = Instantiate(bomb, new Vector3(x, 10, z), Quaternion.identity);
         sb.Setup(true);
@@ -52,15 +52,21 @@ public class BombSystem : MonoBehaviour
         if (bombFalling) return;
         pointPS.transform.position = new Vector3(x, 0, z-1);
         SkillBomb sb = Instantiate(bomb, new Vector3(x, 10, z-1), Quaternion.identity);
+        bombFalling = true;
         sb.Setup(false);
     }
 
     public void Explode(bool timed)
     {
-        if (timed) timedPS.Play();
+        if (timed)
+        {
+            timedPS.Play();
+            timedPS.GetComponent<AudioSource>().Play();
+        }
         else
         {
             pointPS.Play();
+            pointPS.GetComponent<AudioSource>().Play();
             bombFalling = false;
         }
     }

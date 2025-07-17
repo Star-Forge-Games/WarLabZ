@@ -1,30 +1,81 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
 using System;
+using System.Collections;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyZombie : MonoBehaviour
 {
 
     [SerializeField] private int moneyDropChance;
-    [SerializeField] private Animator anim;
-    [SerializeField] private Image healthBar;
-    [SerializeField] private TMP_Text healthAmount;
-    [SerializeField] private int maxHealth = 10;
-    [SerializeField] private int damage;
-    [SerializeField] private float speed;
+    [SerializeField] protected Animator anim;
+    [SerializeField] protected Image healthBar;
+    [SerializeField] protected TMP_Text healthAmount;
+    [SerializeField] protected int maxHealth = 10;
+    [SerializeField] protected int damage;
+    [SerializeField] protected float speed;
+    [SerializeField] private int difficulty;
+    [SerializeField] private int money;
+    [SerializeField] protected float slowStartZ = 35, slowEndZ = 10;
+    [SerializeField] private bool boss;
+    [SerializeField] protected GameObject healthCanvas;
+    [SerializeField] protected GameObject critCanvas, instaKillCanvas;
+    [SerializeField] protected GameObject slowCanvas;
+    [SerializeField] AudioClip deathSound;
 
-    private int currentHealth;
-    private Vector3 direction = Vector3.zero;
-    private CharacterController characterController;
-    private bool wall = false;
+    [Serializable]
+    public struct ColoredPart
+    {
+        public GameObject obj;
+        internal Color[] colors;
+    }
+
+    [SerializeField] protected ColoredPart[] parts;
+
+    protected int currentHealth;
+    protected Vector3 direction = Vector3.zero;
+    protected CharacterController characterController;
+    private bool wall = false, stunned = false;
     public static Action<EnemyZombie, int> OnZombieHitWall;
-    public static Action<EnemyZombie, float> OnZombieDie;
+    public static Action<EnemyZombie, float, int> OnZombieDie;
+    protected bool dead;
+
+    public bool IsDead()
+    {
+        return dead;
+    }
+
+    public int GetDifficulty()
+    {
+        return difficulty;
+    }
 
     public void Start()
     {
+        for (int i = 0; i < parts.Length; i++)
+        {
+            var smr = parts[i].obj.GetComponent<SkinnedMeshRenderer>();
+            parts[i].colors = (from m in smr.materials select m.color).ToArray();
+        }
         direction.z = -speed;
         characterController = GetComponent<CharacterController>();
+        if (boss)
+        {
+            if (SkillsPanel.bossHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.95f);
+                currentHealth = maxHealth;
+            }
+        }
+        else
+        {
+            if (SkillsPanel.zHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.975f);
+                currentHealth = maxHealth;
+            }
+        }
         UpdateHealthUI(maxHealth, currentHealth);
         Wall.OnWallDeath += RunFurther;
     }
@@ -35,27 +86,103 @@ public class EnemyZombie : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void Update()
+    public void Update()
     {
-        if (!wall) characterController.Move(direction * Time.deltaTime);
+        if (dead) return;
+        if (SkillsPanel.zombieSlow)
+        {
+            if (transform.position.z <= slowStartZ && transform.position.z >= slowEndZ)
+            {
+                direction.z = -speed * 0.6f;
+                slowCanvas.SetActive(true);
+            }
+            else
+            {
+                direction.z = -speed;
+                slowCanvas.SetActive(false);
+            }
+        } else
+        {
+            slowCanvas.SetActive(false);
+        }
+        if (!wall && !stunned)
+        {
+            characterController.Move(direction * Time.deltaTime);
+            Vector3 pos = transform.position;
+            pos.y = 1;
+            transform.position = pos;
+        }
     }
 
-    public void TakeDamage(int damage, bool crit)
+    public virtual void TakeDamage(int damage, bool crit, bool instaKill)
     {
-        currentHealth -= damage;
+        if (instaKill&&!boss)
+        {
+            instaKillCanvas.SetActive(true);
+            StartCoroutine(StopCanvas(false));
+            currentHealth = 0;
+        }
+        else
+        {
+            currentHealth -= damage;
+        }
         if (crit)
         {
-            // визуал крита
+            critCanvas.SetActive(true);
+            StartCoroutine(StopCanvas(true));
         }
         if (currentHealth <= 0)
         {
-            KillsCount.kills += 1;
-            OnZombieDie?.Invoke(this, moneyDropChance);
-            // DEATH ANIMATION
-            Destroy(gameObject);
-            return;
+            GameObject g = new GameObject("DeathSound", typeof(AudioSource));
+            g.transform.parent = transform;
+            g.transform.localPosition = Vector3.zero;
+            g.GetComponent<AudioSource>().clip = deathSound;
+            g.GetComponent<AudioSource>().volume = 0.025f;
+            g.GetComponent<AudioSource>().Play();
+            critCanvas.SetActive(false);
+            slowCanvas.SetActive(false);
+            dead = true;
+            Destroy(GetComponent<CharacterController>());
+            Destroy(healthCanvas);
+            KillsCount.kills++;
+            if (boss) KillsCount.bosses++;
+            if (SkillsPanel.lifesteal == true) Wall.instance.Lifesteal(boss);
+            OnZombieDie?.Invoke(this, moneyDropChance, money);
+            anim.Play("Death");
+            StartCoroutine(Die());
+            transform.parent = null;
+        } else
+        {
+            StopCoroutine(nameof(StopFlash));
+            foreach (var part in parts)
+            {
+                foreach (var mat in part.obj.GetComponent<SkinnedMeshRenderer>().materials)
+                {
+                    mat.color = Color.red;
+                }
+            }
+            StartCoroutine(nameof(StopFlash));
+            UpdateHealthUI(maxHealth, currentHealth);
         }
-        UpdateHealthUI(maxHealth, currentHealth);
+    }
+
+    protected IEnumerator StopFlash()
+    {
+        yield return new WaitForSeconds(0.2f);
+        foreach (var part in parts)
+        {
+            for (int i = 0; i < part.obj.GetComponent<SkinnedMeshRenderer>().materials.Length; i++)
+            {
+                part.obj.GetComponent<SkinnedMeshRenderer>().materials[i].color = part.colors[i];
+            }
+        }
+    }
+
+    protected IEnumerator StopCanvas(bool crit)
+    {
+        yield return new WaitForSeconds(0.75f);
+        if (crit) critCanvas.SetActive(false);
+        else instaKillCanvas.SetActive(false);
     }
 
     public void UpdateHealthUI(int maxHealth, int currentHealth)
@@ -64,7 +191,7 @@ public class EnemyZombie : MonoBehaviour
         healthAmount.text = $"{currentHealth}";
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public virtual void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.gameObject.CompareTag("Wall"))
         {
@@ -73,26 +200,28 @@ public class EnemyZombie : MonoBehaviour
         }
     }
 
-    public void SelfPause()
+    public virtual void SelfPause()
     {
         anim.speed = 0;
         enabled = false;
     }
 
-    public void SelfUnpause()
+    public virtual void SelfUnpause()
     {
         anim.speed = 1;
         enabled = true;
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         OnZombieHitWall?.Invoke(this, damage);
     }
 
     private void RunFurther()
     {
-        wall = false;
+        stunned = false;
+        wall = true;
+        if (!dead) anim.Play("ZombieRoar");
     }
 
     private void OnDestroy()
@@ -100,4 +229,31 @@ public class EnemyZombie : MonoBehaviour
         Wall.OnWallDeath -= RunFurther;
     }
 
+    internal void Stun()
+    {
+        if (boss) return;
+        if (stunned) return;
+        stunned = true;
+        anim.Play("Stun");
+    }
+
+    public void Unstun()
+    {
+        stunned = false;
+        if (dead) return;
+        if (wall)
+        {
+            anim.Play("Attack");
+        }
+        else
+        {
+            anim.Play("Walk");
+        }
+    }
+
+    protected IEnumerator Die()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
+    }
 }
