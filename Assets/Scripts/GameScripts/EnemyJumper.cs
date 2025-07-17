@@ -12,6 +12,7 @@ public class EnemyJumper : EnemyZombie
         if (dead) return;
         if (stunned) return;
         if (wall) return;
+        if (!invincible) return;
         characterController.Move(direction * Time.deltaTime);
     }
 
