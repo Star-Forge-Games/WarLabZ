@@ -36,7 +36,7 @@ public class EnemyZombie : MonoBehaviour
     protected int currentHealth;
     protected Vector3 direction = Vector3.zero;
     protected CharacterController characterController;
-    private bool wall = false, stunned = false;
+    protected bool wall = false, stunned = false;
     public static Action<EnemyZombie, int> OnZombieHitWall;
     public static Action<EnemyZombie, float, int> OnZombieDie;
     protected bool dead;
