@@ -105,7 +105,8 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             GameObject enemy = Instantiate(endlessWaveZombies[i], GeneratePoint(), Quaternion.Euler(0, 180, 0));
             enemy.transform.parent = enemyContainer;
-            enemy.GetComponent<EnemyZombie>().MultiplyHp(1);
+            // modifiers for endless by diff
+            enemy.GetComponent<EnemyZombie>().Setup(1, 1, 1, 1);
             endlessZombieIndex++;
             endlessTimer = 0;
             yield return new WaitForSeconds(randomSpawnInterval);
@@ -116,7 +117,7 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         for (int i = 0; i < waves[wave].parts.Length; i++)
         {
-            StartCoroutine(nameof(SpawnEnemies), (i, wave == 0));
+            StartCoroutine(nameof(SpawnEnemies), (i, wave == 0, waves[wave].damageModifier, waves[wave].moneyMultiplier, waves[wave].speedMultiplier));
         }
     }
 
@@ -124,11 +125,11 @@ public class EnemySpawnSystem : MonoBehaviour
     {
         for (int i = 0; i < partsProgress.Length; i++)
         {
-            StartCoroutine(nameof(ReSpawnEnemies), (i, wave == 0));
+            StartCoroutine(nameof(ReSpawnEnemies), (i, wave == 0, waves[wave].damageModifier, waves[wave].moneyMultiplier, waves[wave].speedMultiplier));
         }
     }
 
-    private IEnumerator ReSpawnEnemies((int partIndex, bool first) data)
+    private IEnumerator ReSpawnEnemies((int partIndex, bool first, float dm, float mm, float sm) data)
     {
         WavePart part = partsProgress[data.partIndex].part;
         if (partsProgress[data.partIndex].amountSpawned == 0)
@@ -138,7 +139,7 @@ public class EnemySpawnSystem : MonoBehaviour
             {
                 partsProgress[data.partIndex].amountSpawned++;
                 partsProgress[data.partIndex].timeSinceLastSpawn = 0;
-                SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
+                SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1, data.dm > 1 ? data.dm : 1, data.mm == 0 ? 1 : data.mm, data.sm > 1? data.sm : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
@@ -150,13 +151,13 @@ public class EnemySpawnSystem : MonoBehaviour
             {
                 partsProgress[data.partIndex].amountSpawned++;
                 partsProgress[data.partIndex].timeSinceLastSpawn = 0;
-                SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
+                SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1, data.dm > 1 ? data.dm : 1, data.mm == 0 ? 1 : data.mm, data.sm > 1 ? data.sm : 1);
                 yield return new WaitForSeconds(part.interval);
             }
         }
     }
 
-    private IEnumerator SpawnEnemies((int partIndex, bool first) data)
+    private IEnumerator SpawnEnemies((int partIndex, bool first, float dm, float mm, float sm) data)
     {
         WavePart part = waves[wave].parts[data.partIndex];
         yield return new WaitForSeconds(part.delay + (data.first ? 0 : waves[wave - 1].nextWaveDelay));
@@ -164,17 +165,17 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             partsProgress[data.partIndex].amountSpawned++;
             partsProgress[data.partIndex].timeSinceLastSpawn = 0;
-            SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
+            SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1, data.dm > 1? data.dm : 1, data.mm == 0? 1 : data.mm, data.sm > 1 ? data.sm : 1);
             yield return new WaitForSeconds(part.interval);
         }
     }
 
-    private void SpawnEnemy(GameObject prefab, float mult)
+    private void SpawnEnemy(GameObject prefab, float hpm, float dm, float mm, float sm)
     {
         spawnedEnemies++;
         GameObject enemy = Instantiate(prefab, GeneratePoint(), Quaternion.Euler(0, 180, 0));
         enemy.transform.parent = enemyContainer;
-        enemy.GetComponent<EnemyZombie>().MultiplyHp(mult);
+        enemy.GetComponent<EnemyZombie>().Setup(hpm, dm, mm, sm);
     }
 
     void Update()

@@ -13,24 +13,29 @@ MonoBehaviour:
   m_Name: Wave13
   m_EditorClassIdentifier: 
   parts:
+  - delay: 1
+    zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
+    amount: 10
+    interval: 0.75
+    hpMultiplier: 6
   - delay: 0
     zombiePrefab: {fileID: 7143858245785905579, guid: 39f3c018be931aa43a84237f1d3fc2c9, type: 3}
-    amount: 15
+    amount: 10
     interval: 1
     hpMultiplier: 4
   - delay: 1
     zombiePrefab: {fileID: 7143858245785905579, guid: ea271b05e396aca439357e3a5e09a798, type: 3}
-    amount: 8
+    amount: 6
     interval: 2
     hpMultiplier: 2
   - delay: 2
     zombiePrefab: {fileID: 7143858245785905579, guid: 32abc0af9059f5140861fff5ef2f95a2, type: 3}
-    amount: 10
+    amount: 7
     interval: 3
     hpMultiplier: 3
   - delay: 3
     zombiePrefab: {fileID: 7143858245785905579, guid: c44307c494345fc4a9f8a20a6f6d6ceb, type: 3}
-    amount: 5
+    amount: 4
     interval: 4
     hpMultiplier: 2
   - delay: 8
@@ -39,12 +44,7 @@ MonoBehaviour:
     interval: 5
     hpMultiplier: 1
   - delay: 1
-    zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
-    amount: 12
-    interval: 0.75
-    hpMultiplier: 6
-  - delay: 1
-    zombiePrefab: {fileID: 7143858245785905579, guid: c6f48070e5821414f88362de7387c59d, type: 3}
+    zombiePrefab: {fileID: 7143858245785905579, guid: 1b2c5cfa7478b3746a632e2f6bf7357b, type: 3}
     amount: 3
     interval: 1
     hpMultiplier: 2

@@ -15,6 +15,9 @@ public class Wave : ScriptableObject
     }
 
     public WavePart[] parts;
+    public float moneyMultiplier;
+    public float damageModifier;
+    public float speedMultiplier;
     public float nextWaveDelay;
 
-}//
+}

@@ -80,12 +80,6 @@ public class EnemyZombie : MonoBehaviour
         Wall.OnWallDeath += RunFurther;
     }
 
-    public void MultiplyHp(float health)
-    {
-        maxHealth = (int)(health * maxHealth);
-        currentHealth = maxHealth;
-    }
-
     public void Update()
     {
         if (dead) return;
@@ -255,5 +249,14 @@ public class EnemyZombie : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
+    }
+
+    internal void Setup(float hpm, float dm, float mm, float sm)
+    {
+        maxHealth = Mathf.Clamp((int)(hpm * maxHealth), maxHealth + 1, int.MaxValue);
+        currentHealth = maxHealth;
+        damage = Mathf.Clamp((int)(dm * damage), damage + 1, int.MaxValue);
+        moneyDropChance = (int)(moneyDropChance * mm);
+        speed = Mathf.Clamp((int)(sm * speed), speed, speed * 0.25f);
     }
 }
