@@ -40,4 +40,4 @@ public class PausePanel : MonoBehaviour
         if (i != -1) SceneManager.LoadScene(i);
         else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-}
+}//

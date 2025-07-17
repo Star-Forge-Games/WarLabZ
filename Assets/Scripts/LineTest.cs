@@ -27,4 +27,4 @@ public class LineTest : MonoBehaviour
         float b = Mathf.Log(0.2f) / Mathf.Log(100);
         threshold = 3 * (Mathf.Pow(rate, b));
     }
-}
+}//

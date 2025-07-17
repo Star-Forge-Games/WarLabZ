@@ -71,4 +71,4 @@ public class Settings : MonoBehaviour
         YG2.SaveProgress();
         locale.image.sprite = localeSprites[nextIndex];
     }
-}
+}//
