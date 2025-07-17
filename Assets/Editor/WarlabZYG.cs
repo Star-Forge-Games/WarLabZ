@@ -20,6 +20,7 @@ public class WarlabZYG
         YG2.saves.idSave = 0;
         YG2.saves.hasLabel = false;
         YG2.saves.reviewed = false;
+        YG2.saves.shadows = true;
         YG2.SaveProgress();
     }
 
