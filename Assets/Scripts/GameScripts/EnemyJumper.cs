@@ -53,6 +53,12 @@ public class EnemyJumper : EnemyZombie
         }
     }
 
+    public override void TakeDamage(int damage, bool crit, bool instaKill)
+    {
+        if (invincible) return;
+        base.TakeDamage(damage, crit, instaKill);
+    }
+
     public void JumpAttack()
     {
         if (!wall) return;
