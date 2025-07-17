@@ -52,6 +52,7 @@ public class EnemyJumper : EnemyZombie
 
     public void JumpAttack()
     {
+        if (!wall) return;
         anim.Play("Attack");
     }
 
