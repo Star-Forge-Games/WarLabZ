@@ -18,4 +18,9 @@ public class AnimUtility : MonoBehaviour
     {
         ((EnemyJumper)z).JumpAttack();
     }
+
+    public void TurnInvincible()
+    {
+        ((EnemyJumper)z).TurnInvincible();
+    }
 }

@@ -1,8 +1,11 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class EnemyJumper : EnemyZombie
 {
+
+    private bool invincible;
 
     public new void Update()
     {
@@ -54,6 +57,11 @@ public class EnemyJumper : EnemyZombie
     {
         if (!wall) return;
         anim.Play("Attack");
+        invincible = false;
     }
 
+    internal void TurnInvincible()
+    {
+        invincible = !invincible;
+    }
 }
