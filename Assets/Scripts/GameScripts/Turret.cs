@@ -41,21 +41,15 @@ public class Turret : MonoBehaviour
             switch (id)
             {
                 case 20:
-                    twinShot = true;
-                    break;
-                case 21:
                     critChance += 7;
                     break;
-                case 22:
+                case 21:
                     flatRateModifier += 0.5f;
                     break;
-                case 23:
-                    through = true;
-                    break;
-                case 24:
+                case 22:
                     multishots = 1;
                     break;
-                case 25:
+                case 23:
                     flatDamageModifier += 1;
                     break;
                 default:

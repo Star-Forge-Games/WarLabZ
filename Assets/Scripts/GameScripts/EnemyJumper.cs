@@ -67,6 +67,11 @@ public class EnemyJumper : EnemyZombie
         invincible = false;
     }
 
+    public override void Stun()
+    {
+        return;
+    }
+
     internal void TurnInvincible()
     {
         invincible = !invincible;

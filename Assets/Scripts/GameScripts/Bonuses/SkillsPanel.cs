@@ -40,7 +40,7 @@ public class SkillsPanel : MonoBehaviour
             turretSkillsAdded = true;
             if (YG2.saves.wallLevel >= 2)
             {
-                modifiersLeft.AddRange(new int[] { 20, 21, 22, 23, 24, 25, 26 });
+                modifiersLeft.AddRange(new int[] { 20, 21, 22, 23, 24 });
             }
         }
         if (modifiersLeft.Count == 1)

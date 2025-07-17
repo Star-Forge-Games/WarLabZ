@@ -164,7 +164,6 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             partsProgress[data.partIndex].amountSpawned++;
             partsProgress[data.partIndex].timeSinceLastSpawn = 0;
-            Debug.Log("Wave " + wave + " part " + data.partIndex + " amount spawned " + partsProgress[data.partIndex].amountSpawned);
             SpawnEnemy(part.zombiePrefab, part.hpMultiplier > 1 ? part.hpMultiplier : 1);
             yield return new WaitForSeconds(part.interval);
         }

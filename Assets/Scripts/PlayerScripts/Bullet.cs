@@ -90,12 +90,9 @@ public class Bullet : MonoBehaviour
         {
             z.TakeDamage(damage, crit, instaKill);
             Instantiate(hitPrefab, transform.position - transform.forward * 1.2f, Quaternion.identity);
-            if (z is not Wagon)
+            if (Random.Range(0, 100f) < stunChance)
             {
-                if (Random.Range(0, 100f) < stunChance)
-                {
-                    if (!z.IsDead()) z.Stun();
-                }
+                if (!z.IsDead()) z.Stun();
             }
             if (bomb)
             {

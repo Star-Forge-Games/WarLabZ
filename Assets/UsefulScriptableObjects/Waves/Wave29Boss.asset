@@ -10,22 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3be2b46147a0a674ab01d7f7a5edacad, type: 3}
-  m_Name: Wave20Boss
+  m_Name: Wave29Boss
   m_EditorClassIdentifier: 
   parts:
   - delay: 0
     zombiePrefab: {fileID: 7143858245785905579, guid: 61e8bda4527ed104a8652b569cfc3c3e, type: 3}
-    amount: 2
-    interval: 3
+    amount: 10
+    interval: 4
     hpMultiplier: 5
   - delay: 2
     zombiePrefab: {fileID: 7143858245785905579, guid: d4ffa6381c41d1a4294a3f7a728fd061, type: 3}
-    amount: 5
-    interval: 3
-    hpMultiplier: 3
+    amount: 10
+    interval: 5
+    hpMultiplier: 2
   - delay: 5
     zombiePrefab: {fileID: 7143858245785905579, guid: 7285228fcba16334db9bd60a040fd62e, type: 3}
-    amount: 5
-    interval: 1
-    hpMultiplier: 6
+    amount: 10
+    interval: 3
+    hpMultiplier: 10
+  - delay: 3
+    zombiePrefab: {fileID: 7143858245785905579, guid: 1b2c5cfa7478b3746a632e2f6bf7357b, type: 3}
+    amount: 15
+    interval: 4
+    hpMultiplier: 3
+  - delay: 5
+    zombiePrefab: {fileID: 7143858245785905579, guid: ea271b05e396aca439357e3a5e09a798, type: 3}
+    amount: 10
+    interval: 5
+    hpMultiplier: 3
   nextWaveDelay: 0

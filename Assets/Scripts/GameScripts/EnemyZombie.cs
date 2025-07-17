@@ -180,7 +180,7 @@ public class EnemyZombie : MonoBehaviour
 
     protected IEnumerator StopCanvas(bool crit)
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.25f);
         if (crit) critCanvas.SetActive(false);
         else instaKillCanvas.SetActive(false);
     }
@@ -229,7 +229,7 @@ public class EnemyZombie : MonoBehaviour
         Wall.OnWallDeath -= RunFurther;
     }
 
-    internal void Stun()
+    public virtual void Stun()
     {
         if (boss) return;
         if (stunned) return;

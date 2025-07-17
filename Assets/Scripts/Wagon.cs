@@ -74,6 +74,11 @@ public class Wagon : EnemyZombie
         }
     }
 
+    public override void Stun()
+    {
+        return;
+    }
+
     public override void SelfPause()
     {
         anim.speed = 0;
