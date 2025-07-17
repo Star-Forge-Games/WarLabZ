@@ -18,7 +18,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] private int difficulty;
     [SerializeField] private int money;
     [SerializeField] protected float slowStartZ = 35, slowEndZ = 10;
-    [SerializeField] private bool boss;
+    [SerializeField] protected bool boss;
     [SerializeField] protected GameObject healthCanvas;
     [SerializeField] protected GameObject critCanvas, instaKillCanvas;
     [SerializeField] protected GameObject slowCanvas;
@@ -217,7 +217,7 @@ public class EnemyZombie : MonoBehaviour
         OnZombieHitWall?.Invoke(this, damage);
     }
 
-    private void RunFurther()
+    protected void RunFurther()
     {
         stunned = false;
         wall = true;

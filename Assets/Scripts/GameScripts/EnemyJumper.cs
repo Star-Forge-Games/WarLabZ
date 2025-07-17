@@ -1,20 +1,58 @@
+using System.Linq;
 using UnityEngine;
 
 public class EnemyJumper : EnemyZombie
 {
+
     public new void Update()
     {
         if (dead) return;
         if (stunned) return;
         if (wall) return;
-        if (transform.position.z >= slowStartZ)
+        characterController.Move(direction * Time.deltaTime);
+    }
+
+    public new void Start()
+    {
+        for (int i = 0; i < parts.Length; i++)
         {
-            wall = true;
-            anim.Play("ZombieJump");
+            var smr = parts[i].obj.GetComponent<SkinnedMeshRenderer>();
+            parts[i].colors = (from m in smr.materials select m.color).ToArray();
+        }
+        direction.z = -speed;
+        characterController = GetComponent<CharacterController>();
+        if (boss)
+        {
+            if (SkillsPanel.bossHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.95f);
+                currentHealth = maxHealth;
+            }
         }
         else
         {
-            characterController.Move(direction * Time.deltaTime);
+            if (SkillsPanel.zHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.975f);
+                currentHealth = maxHealth;
+            }
+        }
+        UpdateHealthUI(maxHealth, currentHealth);
+        Wall.OnWallDeath += RunFurther;
+        anim.Play("ZombieJump");
+    }
+
+    public override void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Wall"))
+        {
+            wall = true;
         }
     }
+
+    public void JumpAttack()
+    {
+        anim.Play("Attack");
+    }
+
 }

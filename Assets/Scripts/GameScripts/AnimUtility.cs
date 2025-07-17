@@ -13,4 +13,9 @@ public class AnimUtility : MonoBehaviour
     {
         z.Attack();
     }
+
+    public void JumpAttack()
+    {
+        ((EnemyJumper)z).JumpAttack();
+    }
 }
