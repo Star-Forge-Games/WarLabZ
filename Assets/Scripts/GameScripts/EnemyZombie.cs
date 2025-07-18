@@ -253,10 +253,10 @@ public class EnemyZombie : MonoBehaviour
 
     internal void Setup(float hpm, float dm, float mm, float sm)
     {
-        maxHealth = Mathf.Clamp((int)(hpm * maxHealth), maxHealth + 1, int.MaxValue);
+        if (hpm != 1) maxHealth = Mathf.Clamp((int)(hpm * maxHealth), maxHealth + 1, int.MaxValue);
         currentHealth = maxHealth;
-        damage = Mathf.Clamp((int)(dm * damage), damage + 1, int.MaxValue);
+        if (dm != 1) damage = Mathf.Clamp((int)(dm * damage), damage + 1, int.MaxValue);
         moneyDropChance = (int)(moneyDropChance * mm);
-        speed = Mathf.Clamp((int)(sm * speed), speed, speed * 0.25f);
+        speed = Mathf.Clamp((int)(sm * speed), speed, speed * 1.25f);
     }
 }

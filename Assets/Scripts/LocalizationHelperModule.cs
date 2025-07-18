@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.Localization.Settings;
 
 public static class LocalizationHelperModule

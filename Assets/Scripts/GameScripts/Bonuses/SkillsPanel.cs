@@ -9,7 +9,7 @@ using static LocalizationHelperModule;
 public class SkillsPanel : MonoBehaviour
 {
 
-    private List<int> modifiersLeft = new() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 };
+    private List<int> modifiersLeft = new() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
     public static Action<int> OnTurretSkillSelect;
     [SerializeField] Image b1, b2;
     [SerializeField] Modifier[] modifiers;
@@ -40,7 +40,7 @@ public class SkillsPanel : MonoBehaviour
             turretSkillsAdded = true;
             if (YG2.saves.wallLevel >= 2)
             {
-                modifiersLeft.AddRange(new int[] { 20, 21, 22, 23, 24 });
+                modifiersLeft.AddRange(new int[] { 19, 20, 21, 22, 23 });
             }
         }
         if (modifiersLeft.Count == 1)
@@ -73,65 +73,62 @@ public class SkillsPanel : MonoBehaviour
         switch (i)
         {
             case 0:
-                Weapon.instance.SetInstaKill();
-                break;
-            case 1:
-                Weapon.instance.SetThrough();
-                break;
-            case 2:
-                Weapon.instance.SetTwinShot();
-                break;
-            case 3:
-                MoneySystem.instance.SetBonus();
-                break;
-            case 4:
-                Wall.instance.Heal();
-                break;
-            case 5:
-                BombSystem.instance.Enable();
-                break;
-            case 6:
-                Wall.instance.SetBlademail();
-                break;
-            case 7:
-                Weapon.instance.SetShotgun();
-                break;
-            case 8:
-                Weapon.instance.IncreaseCritChance(2f);
-                break;
-            case 9:
-                Weapon.instance.IncreaseDamageModifier(true, 1);
-                break;
-            case 10:
-                Weapon.instance.IncreaseRateModifier(true, 0.5f);
-                break;
-            case 11:
                 Weapon.instance.SetMultiShot();
                 break;
-            case 12:
+            case 1:
                 Weapon.instance.IncreaseCritDamage(0.5f);
                 break;
-            case 13:
+            case 2:
+                Weapon.instance.IncreaseDamageModifier(true, 1);
+                break;
+            case 3:
+                Weapon.instance.IncreaseRateModifier(true, 0.5f);
+                break;
+            case 4:
+                Weapon.instance.IncreaseCritChance(2f);
+                break;
+            case 5:
+                Weapon.instance.SetShotgun();
+                break;
+            case 6:
+                Weapon.instance.SetThrough();
+                break;
+            case 7:
+                Weapon.instance.AddStunChance(7);
+                break;
+            case 8:
+                bossHealthReduction = true;
+                break;
+            case 9:
+                Weapon.instance.SetInstaKill();
+                break;
+            case 10:
+                BombSystem.instance.Enable();
+                break;
+            case 11:
+                Wall.instance.SetBlademail();
+                break;
+            case 12:
                 Weapon.instance.SetBomb();
                 break;
-            case 14:
+            case 13:
                 player.IncreaseSpeed();
                 break;
-            case 15:
+            case 14:
                 zombieSlow = true;
                 slowZone.SetActive(true);
                 break;
-            case 16:
-                Weapon.instance.AddStunChance(7);
-                break;
-            case 17:
+            case 15:
                 zHealthReduction = true;
                 break;
-            case 18:
+            case 16:
                 lifesteal = true;
                 break;
-            case 19:
-                bossHealthReduction = true;
+            case 17:
+                MoneySystem.instance.SetBonus();
+                break;
+            case 18:
+                Wall.instance.Heal();
                 break;
             default:
                 OnTurretSkillSelect?.Invoke(i);

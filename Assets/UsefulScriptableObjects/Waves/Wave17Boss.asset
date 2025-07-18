@@ -15,12 +15,15 @@ MonoBehaviour:
   parts:
   - delay: 0
     zombiePrefab: {fileID: 7143858245785905579, guid: 61e8bda4527ed104a8652b569cfc3c3e, type: 3}
-    amount: 1
-    interval: 3
+    amount: 2
+    interval: 1.5
     hpMultiplier: 5
   - delay: 2
     zombiePrefab: {fileID: 7143858245785905579, guid: d4ffa6381c41d1a4294a3f7a728fd061, type: 3}
     amount: 4
-    interval: 3
+    interval: 2.5
     hpMultiplier: 3
+  moneyMultiplier: 1
+  damageModifier: 1
+  speedMultiplier: 1.2
   nextWaveDelay: 0

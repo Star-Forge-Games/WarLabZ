@@ -40,7 +40,7 @@ public class SkillInfoUI : MonoBehaviour
             nextButton.SetActive(true);
         }
 
-        else if (page == 6)
+        else if (page * 4 + 4 >= skills.Length)
         {
             prevButton.SetActive(true);
             nextButton.SetActive(false);

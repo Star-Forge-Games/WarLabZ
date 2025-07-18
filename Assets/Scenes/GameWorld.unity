@@ -5891,52 +5891,50 @@ MonoBehaviour:
   b1: {fileID: 1849623757}
   b2: {fileID: 1331156468}
   modifiers:
-  - sprite: {fileID: 21300000, guid: 1b09bf8ad7da4ee44921a5f253ffd1a3, type: 3}
-    key: instakill
-  - sprite: {fileID: 21300000, guid: ffc9e154b58f0664b9250fa178d554c1, type: 3}
-    key: sharpbullets
-  - sprite: {fileID: 21300000, guid: c5be88777521ee34d9c6aca44c250f86, type: 3}
-    key: doubleshot
-  - sprite: {fileID: 21300000, guid: 14a0de330d5cc3840ae363719f24c3e1, type: 3}
-    key: doublecash
-  - sprite: {fileID: 21300000, guid: 0243e60dd0de7834ab5d73ebbfa228e0, type: 3}
-    key: wallrepair
-  - sprite: {fileID: 21300000, guid: 3f4cdad60f519fb4d989fac6b3f4eacf, type: 3}
-    key: airstrikes
-  - sprite: {fileID: 21300000, guid: 6be01eb44b29f9b4e9ddea5b43d8b3d1, type: 3}
-    key: blademail
-  - sprite: {fileID: 21300000, guid: dff7ae6004d06b44ea749254fb00caad, type: 3}
-    key: shotgun
-  - sprite: {fileID: 21300000, guid: dd83b78bd269e0f4a98bd94c5f853ddb, type: 3}
-    key: critchanceplus
-  - sprite: {fileID: 21300000, guid: ee02861b0e2793141b45bd482d4169d6, type: 3}
-    key: damageplus
-  - sprite: {fileID: 21300000, guid: c169b7a0e590e9f4fbdea3f35a4d9f22, type: 3}
-    key: aspdplus
   - sprite: {fileID: 21300000, guid: ef7267d61a5431d4caedd6259cedbe41, type: 3}
     key: multishot
   - sprite: {fileID: 21300000, guid: 732f6c84ddc1135498ae22fdf637b215, type: 3}
     key: critplus
+  - sprite: {fileID: 21300000, guid: ee02861b0e2793141b45bd482d4169d6, type: 3}
+    key: damageplus
+  - sprite: {fileID: 21300000, guid: c169b7a0e590e9f4fbdea3f35a4d9f22, type: 3}
+    key: aspdplus
+  - sprite: {fileID: 21300000, guid: dd83b78bd269e0f4a98bd94c5f853ddb, type: 3}
+    key: critchanceplus
+  - sprite: {fileID: 21300000, guid: dff7ae6004d06b44ea749254fb00caad, type: 3}
+    key: shotgun
+  - sprite: {fileID: 21300000, guid: ffc9e154b58f0664b9250fa178d554c1, type: 3}
+    key: sharpbullets
+  - sprite: {fileID: 21300000, guid: 2981980b2cec5bf4b8dd11f52afd7249, type: 3}
+    key: stun
+  - sprite: {fileID: 21300000, guid: bb3bcc037087b0f4b82301f62695dcda, type: 3}
+    key: bhealth
+  - sprite: {fileID: 21300000, guid: 1b09bf8ad7da4ee44921a5f253ffd1a3, type: 3}
+    key: instakill
+  - sprite: {fileID: 21300000, guid: 3f4cdad60f519fb4d989fac6b3f4eacf, type: 3}
+    key: airstrikes
+  - sprite: {fileID: 21300000, guid: 6be01eb44b29f9b4e9ddea5b43d8b3d1, type: 3}
+    key: blademail
   - sprite: {fileID: 21300000, guid: 558918d749bb152419b6c0ae1538ed81, type: 3}
     key: bulletbomb
   - sprite: {fileID: 21300000, guid: 051aabb3af988314f8820a1df3f9cd7b, type: 3}
     key: speedup
   - sprite: {fileID: 21300000, guid: fe0500d00a29a3547b0dbe65dbf252fa, type: 3}
     key: zspeed
-  - sprite: {fileID: 21300000, guid: 2981980b2cec5bf4b8dd11f52afd7249, type: 3}
-    key: stun
   - sprite: {fileID: 21300000, guid: 45f514d7956448849942df11745bcfb7, type: 3}
     key: zhealth
   - sprite: {fileID: 21300000, guid: 1530e5d51b1b72648ad43b71ac55c1b9, type: 3}
     key: lifesteal
-  - sprite: {fileID: 21300000, guid: bb3bcc037087b0f4b82301f62695dcda, type: 3}
-    key: bhealth
-  - sprite: {fileID: 21300000, guid: 14ecd511c11f65e4498cf97cc5791286, type: 3}
-    key: tcritchanceplus
-  - sprite: {fileID: 21300000, guid: 76cb664d46de2ff4bbffc46266e12ee7, type: 3}
-    key: taspdplus
+  - sprite: {fileID: 21300000, guid: 14a0de330d5cc3840ae363719f24c3e1, type: 3}
+    key: doublecash
+  - sprite: {fileID: 21300000, guid: 0243e60dd0de7834ab5d73ebbfa228e0, type: 3}
+    key: wallrepair
   - sprite: {fileID: 21300000, guid: 4cd512df5a44b6b49aca00852378ec34, type: 3}
     key: tmultishot
+  - sprite: {fileID: 21300000, guid: 76cb664d46de2ff4bbffc46266e12ee7, type: 3}
+    key: taspdplus
+  - sprite: {fileID: 21300000, guid: 14ecd511c11f65e4498cf97cc5791286, type: 3}
+    key: tcritchanceplus
   - sprite: {fileID: 21300000, guid: e9381d061355da3459eef3c9e1709916, type: 3}
     key: tdamageplus
   - sprite: {fileID: 21300000, guid: 8b375aae89c800d4c8007d070f6a6f8a, type: 3}

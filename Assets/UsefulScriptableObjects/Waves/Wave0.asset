@@ -28,4 +28,7 @@ MonoBehaviour:
     amount: 4
     interval: 3
     hpMultiplier: 0
+  moneyMultiplier: 1
+  damageModifier: 1
+  speedMultiplier: 1
   nextWaveDelay: 0

@@ -40,16 +40,16 @@ public class Turret : MonoBehaviour
         {
             switch (id)
             {
-                case 20:
-                    critChance += 7;
-                    break;
-                case 21:
-                    flatRateModifier += 0.5f;
-                    break;
-                case 22:
+                case 19:
                     multishots = 1;
                     break;
-                case 23:
+                case 20:
+                    flatRateModifier += 0.5f;
+                    break;
+                case 21:
+                    critChance += 7;
+                    break;
+                case 22:
                     flatDamageModifier += 1;
                     break;
                 default:
