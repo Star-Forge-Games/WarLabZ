@@ -68,7 +68,7 @@ public class Energy : MonoBehaviour
             }
             return;
         }
-        while (cts >= ts - erInMillis)
+        while (cts >= ts)
         {
             energy++;
             ts += erInMillis;

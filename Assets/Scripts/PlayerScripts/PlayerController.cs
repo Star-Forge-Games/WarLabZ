@@ -119,23 +119,24 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateRenderScale()
     {
-        if (fpsCounter > 150) return;
         fpsCounter++;
-        if (fpsCounter < 50) return;
         float fps = 1 / Time.deltaTime;
-        avgFps = (avgFps + fps) / 2;
-        if (fpsCounter == 150)
+        if (fpsCounter == 30)
         {
-            if (avgFps - 5 < 60)
+            var urp = (UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline;
+            fpsCounter = 0;
+            avgFps -= 5;
+            if (avgFps >= 60)
             {
-                if (avgFps - 5 <= 30) ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 0.5f;
-                else ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = avgFps / 60f;
-            }
-            else
+                urp.renderScale = Mathf.Clamp(urp.renderScale + 0.05f, 0.5f, 1f);
+            } else
             {
-                ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
+                urp.renderScale = Mathf.Clamp(urp.renderScale - 0.05f, 0.5f, 1f);
             }
+            avgFps = fps;
+            return;
         }
+        avgFps = (avgFps + fps) / 2;
     }
 
     private void Update()
