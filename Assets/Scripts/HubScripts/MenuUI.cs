@@ -62,6 +62,25 @@ public class MenuUI : MonoBehaviour
             YG2.gameLabelCanShow = false;
             YG2.GameLabelShowDialog();
         }
+        if (YG2.saves.shadows)
+        {
+            lightSource.shadows = LightShadows.Hard;
+        }
+        else
+        {
+            lightSource.shadows = LightShadows.None;
+        }
+        if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
+        //YG2.SetDefaultSaves();
+        playerDonateButton.interactable = YG2.saves.playedBefore == 1;
+        if (YG2.saves.playedBefore == -1)
+        {
+            tutorial.SetActive(true);
+        }
+        else if (YG2.saves.playedBefore == 0)
+        {
+            SceneManager.LoadScene("GameWorld");
+        }
     }
 
     private void LabelNo()
@@ -94,24 +113,27 @@ public class MenuUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (YG2.saves.shadows)
+        if (YG2.isSDKEnabled)
         {
-            lightSource.shadows = LightShadows.Hard;
-        }
-        else
-        {
-            lightSource.shadows = LightShadows.None;
-        }
-        if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
-        //YG2.SetDefaultSaves();
-        playerDonateButton.interactable = YG2.saves.playedBefore == 1;
-        if (YG2.saves.playedBefore == -1)
-        {
-            tutorial.SetActive(true);
-        }
-        else if (YG2.saves.playedBefore == 0)
-        {
-            SceneManager.LoadScene("GameWorld");
+            if (YG2.saves.shadows)
+            {
+                lightSource.shadows = LightShadows.Hard;
+            }
+            else
+            {
+                lightSource.shadows = LightShadows.None;
+            }
+            if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
+            //YG2.SetDefaultSaves();
+            playerDonateButton.interactable = YG2.saves.playedBefore == 1;
+            if (YG2.saves.playedBefore == -1)
+            {
+                tutorial.SetActive(true);
+            }
+            else if (YG2.saves.playedBefore == 0)
+            {
+                SceneManager.LoadScene("GameWorld");
+            }
         }
     }
 
