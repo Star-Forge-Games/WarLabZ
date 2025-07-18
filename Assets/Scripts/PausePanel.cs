@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 public class PausePanel : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class PausePanel : MonoBehaviour
 
     public void BackToHub()
     {
+        if (YG2.saves.playedBefore != 1)
+        {
+            YG2.saves.playedBefore = 1;
+            YG2.SaveProgress();
+        }
         SwitchScene(0);
     }
 

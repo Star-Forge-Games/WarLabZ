@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
     {
         fpsCounter++;
         float fps = 1 / Time.deltaTime;
-        if (fpsCounter == 30)
+        if (fpsCounter == 100)
         {
             var urp = (UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline;
             fpsCounter = 0;
