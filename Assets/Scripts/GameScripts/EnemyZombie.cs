@@ -24,6 +24,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] protected GameObject slowCanvas;
     [SerializeField] AudioClip deathSound;
     [SerializeField] protected float eHpMult, eDmgMult, eHpMultAddPerWave, eDmgMultAddPerWave;
+    public float endlessDelayToNextZombie;
 
     [Serializable]
     public struct ColoredPart

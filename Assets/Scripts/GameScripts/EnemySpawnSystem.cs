@@ -108,7 +108,7 @@ public class EnemySpawnSystem : MonoBehaviour
             enemy.GetComponent<EnemyZombie>().Setup(1, 1, 1, 1, endlessWave);
             endlessZombieIndex++;
             endlessTimer = 0;
-            yield return new WaitForSeconds(randomSpawnInterval);
+            yield return new WaitForSeconds(enemy.GetComponent<EnemyZombie>().endlessDelayToNextZombie);
         }
     }
 

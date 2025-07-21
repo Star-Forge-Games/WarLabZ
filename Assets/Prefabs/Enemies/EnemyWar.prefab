@@ -1103,6 +1103,7 @@ MonoBehaviour:
   eDmgMult: 1
   eHpMultAddPerWave: 0.1
   eDmgMultAddPerWave: 0.075
+  endlessDelayToNextZombie: 0.4
   parts:
   - obj: {fileID: 4813602773955841350}
 --- !u!65 &5033716229429919098

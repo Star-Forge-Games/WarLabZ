@@ -1050,6 +1050,7 @@ MonoBehaviour:
   eDmgMult: 2
   eHpMultAddPerWave: 0.05
   eDmgMultAddPerWave: 0.1
+  endlessDelayToNextZombie: 0.5
   parts:
   - obj: {fileID: 8220092134459263834}
   throwPosition: {fileID: 8549039879049934404}
