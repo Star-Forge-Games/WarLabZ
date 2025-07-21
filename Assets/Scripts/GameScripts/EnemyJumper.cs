@@ -54,6 +54,7 @@ public class EnemyJumper : EnemyZombie
             if (invincible)
             {
                 Wall.instance.TakeDamage(this, damage);
+                invincible = false;
             }
         }
     }
