@@ -258,15 +258,15 @@ public class EnemyZombie : MonoBehaviour
         {
             float hpmult = eHpMult + eHpMultAddPerWave * (endlessWave+1);
             float dmult = eDmgMult + eDmgMultAddPerWave * (endlessWave+1);
-            maxHealth = Mathf.Clamp((int)(hpmult * maxHealth), maxHealth + 1, int.MaxValue);
-            damage = Mathf.Clamp((int)(dmult * damage), damage + 1, int.MaxValue);
+            maxHealth = (int) Mathf.Clamp((hpmult * maxHealth), maxHealth + 1, int.MaxValue);
+            damage = (int) Mathf.Clamp((dmult * damage), damage + 1, int.MaxValue);
             speed = speed * 1.25f;
             moneyDropChance = 1;
+            currentHealth = maxHealth;
             return;
         }
-        if (hpm != 1) maxHealth = Mathf.Clamp((int)(hpm * maxHealth), maxHealth + 1, int.MaxValue);
-        currentHealth = maxHealth;
-        if (dm != 1) damage = Mathf.Clamp((int)(dm * damage), damage + 1, int.MaxValue);
+        if (hpm != 1) maxHealth = (int) Mathf.Clamp((hpm * maxHealth), maxHealth + 1, int.MaxValue);
+        if (dm != 1) damage = (int) Mathf.Clamp((dm * damage), damage + 1, int.MaxValue);
         moneyDropChance = (int)(moneyDropChance * mm);
         speed = Mathf.Clamp((int)(sm * speed), speed, speed * 1.25f);
     }
