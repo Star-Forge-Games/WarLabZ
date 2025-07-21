@@ -51,6 +51,10 @@ public class EnemyJumper : EnemyZombie
         if (hit.gameObject.CompareTag("Wall"))
         {
             wall = true;
+            if (invincible)
+            {
+                Wall.instance.TakeDamage(this, damage);
+            }
         }
     }
 

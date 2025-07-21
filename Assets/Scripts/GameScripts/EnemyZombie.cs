@@ -61,22 +61,7 @@ public class EnemyZombie : MonoBehaviour
         }
         direction.z = -speed;
         characterController = GetComponent<CharacterController>();
-        if (boss)
-        {
-            if (SkillsPanel.bossHealthReduction)
-            {
-                maxHealth = (int)(maxHealth * 0.95f);
-                currentHealth = maxHealth;
-            }
-        }
-        else
-        {
-            if (SkillsPanel.zHealthReduction)
-            {
-                maxHealth = (int)(maxHealth * 0.975f);
-                currentHealth = maxHealth;
-            }
-        }
+        
         UpdateHealthUI(maxHealth, currentHealth);
         Wall.OnWallDeath += RunFurther;
     }
@@ -254,20 +239,38 @@ public class EnemyZombie : MonoBehaviour
 
     internal void Setup(float hpm, float dm, float mm, float sm, int endlessWave)
     {
-        if(endlessWave >= 0)
+        if (endlessWave >= 0)
         {
-            float hpmult = eHpMult + eHpMultAddPerWave * (endlessWave+1);
-            float dmult = eDmgMult + eDmgMultAddPerWave * (endlessWave+1);
-            maxHealth = (int) Mathf.Clamp((hpmult * maxHealth), maxHealth + 1, int.MaxValue);
-            damage = (int) Mathf.Clamp((dmult * damage), damage + 1, int.MaxValue);
+            float hpmult = eHpMult + eHpMultAddPerWave * (endlessWave + 1);
+            float dmult = eDmgMult + eDmgMultAddPerWave * (endlessWave + 1);
+            maxHealth = (int)Mathf.Clamp((hpmult * maxHealth), maxHealth + 1, int.MaxValue);
+            damage = (int)Mathf.Clamp((dmult * damage), damage + 1, int.MaxValue);
             speed = speed * 1.25f;
             moneyDropChance = 1;
-            return;
         }
-        if (hpm != 1) maxHealth = (int) Mathf.Clamp((hpm * maxHealth), maxHealth + 1, int.MaxValue);
-        if (dm != 1) damage = (int) Mathf.Clamp((dm * damage), damage + 1, int.MaxValue);
-        moneyDropChance = (int)(moneyDropChance * mm);
-        speed = Mathf.Clamp((int)(sm * speed), speed, speed * 1.25f);
+        else
+        {
+            if (hpm != 1) maxHealth = (int)Mathf.Clamp((hpm * maxHealth), maxHealth + 1, int.MaxValue);
+            if (dm != 1) damage = (int)Mathf.Clamp((dm * damage), damage + 1, int.MaxValue);
+            moneyDropChance = (int)(moneyDropChance * mm);
+            speed = Mathf.Clamp((int)(sm * speed), speed, speed * 1.25f);
+        }
         currentHealth = maxHealth;
+        if (boss)
+        {
+            if (SkillsPanel.bossHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.95f);
+                currentHealth = maxHealth;
+            }
+        }
+        else
+        {
+            if (SkillsPanel.zHealthReduction)
+            {
+                maxHealth = (int)(maxHealth * 0.975f);
+                currentHealth = maxHealth;
+            }
+        }
     }
 }
