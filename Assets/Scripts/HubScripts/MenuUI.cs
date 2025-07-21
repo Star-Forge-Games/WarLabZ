@@ -52,19 +52,6 @@ public class MenuUI : MonoBehaviour
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-        if (!YG2.saves.hasLabel)
-        {
-            YG2.onGameLabelFail += LabelNo;
-            YG2.onGameLabelSuccess += LabelYes;
-            Debug.Log("Time to show label");
-            if (YG2.gameLabelCanShow)
-            {
-                Debug.Log("Showing Label");
-                AudioListener.volume = 0;
-                YG2.gameLabelCanShow = false;
-                YG2.GameLabelShowDialog();
-            }
-        }
         if (YG2.saves.shadows)
         {
             lightSource.shadows = LightShadows.Hard;
@@ -77,7 +64,6 @@ public class MenuUI : MonoBehaviour
         playerDonateButton.interactable = YG2.saves.playedBefore == 1;
         if (YG2.saves.playedBefore == -1)
         {
-            YG2.gameLabelCanShow = true;
             tutorial.SetActive(true);
             playButton.SetActive(false);
         }
