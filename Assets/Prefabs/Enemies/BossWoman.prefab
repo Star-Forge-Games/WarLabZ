@@ -814,7 +814,7 @@ MonoBehaviour:
   damage: 3
   speed: 8
   difficulty: 5
-  money: 25
+  money: 20
   slowStartZ: 35
   slowEndZ: 10
   boss: 1
@@ -1029,14 +1029,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 132710466924847441}
     m_Modifications:
-    - target: {fileID: 3925400563875572246, guid: 62ab7f13b246dd640a431b6459d424cd, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: d9af5016ed68db74a8443f0e86612e91, type: 2}
-    - target: {fileID: 3925400563875572246, guid: 62ab7f13b246dd640a431b6459d424cd, type: 3}
-      propertyPath: m_CullingMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 44774452914884208, guid: 647dcf5299637404880ecfdffaf6f3f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -16.451185
@@ -1412,6 +1404,14 @@ PrefabInstance:
     - target: {fileID: 8853759347681395406, guid: 647dcf5299637404880ecfdffaf6f3f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.1627203
+      objectReference: {fileID: 0}
+    - target: {fileID: 3925400563875572246, guid: 62ab7f13b246dd640a431b6459d424cd, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d9af5016ed68db74a8443f0e86612e91, type: 2}
+    - target: {fileID: 3925400563875572246, guid: 62ab7f13b246dd640a431b6459d424cd, type: 3}
+      propertyPath: m_CullingMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

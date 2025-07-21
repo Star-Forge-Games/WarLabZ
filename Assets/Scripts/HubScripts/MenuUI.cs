@@ -79,10 +79,12 @@ public class MenuUI : MonoBehaviour
         {
             YG2.gameLabelCanShow = true;
             tutorial.SetActive(true);
+            playButton.SetActive(false);
         }
         else if (YG2.saves.playedBefore == 0)
         {
             SceneManager.LoadScene("GameWorld");
+            playButton.SetActive(true);
         } else
         {
             playButton.SetActive(true);
