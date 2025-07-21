@@ -26,6 +26,7 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
+        //YG2.SetDefaultSaves();
         ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
         fader.gameObject.SetActive(true);
         YG2.onCloseInterAdv += SwitchToGame;
@@ -51,16 +52,18 @@ public class MenuUI : MonoBehaviour
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-        YG2.onGameLabelFail += LabelNo;
-        YG2.onGameLabelSuccess += LabelYes;
-        if (YG2.saves.playedBefore != 1) return;
-        playButton.SetActive(true);
-        if (YG2.saves.hasLabel) return;
-        if (YG2.gameLabelCanShow)
+        if (!YG2.saves.hasLabel)
         {
-            AudioListener.volume = 0;
-            YG2.gameLabelCanShow = false;
-            YG2.GameLabelShowDialog();
+            YG2.onGameLabelFail += LabelNo;
+            YG2.onGameLabelSuccess += LabelYes;
+            Debug.Log("Time to show label");
+            if (YG2.gameLabelCanShow)
+            {
+                Debug.Log("Showing Label");
+                AudioListener.volume = 0;
+                YG2.gameLabelCanShow = false;
+                YG2.GameLabelShowDialog();
+            }
         }
         if (YG2.saves.shadows)
         {
@@ -70,16 +73,19 @@ public class MenuUI : MonoBehaviour
         {
             lightSource.shadows = LightShadows.None;
         }
-        if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
-        //YG2.SetDefaultSaves();
+        cash.text = MoneyFormat(YG2.saves.cash);
         playerDonateButton.interactable = YG2.saves.playedBefore == 1;
         if (YG2.saves.playedBefore == -1)
         {
+            YG2.gameLabelCanShow = true;
             tutorial.SetActive(true);
         }
         else if (YG2.saves.playedBefore == 0)
         {
             SceneManager.LoadScene("GameWorld");
+        } else
+        {
+            playButton.SetActive(true);
         }
     }
 
@@ -94,8 +100,6 @@ public class MenuUI : MonoBehaviour
         YG2.saves.hasLabel = true;
         YG2.SaveProgress();
     }
-
-
 
     private void Localize()
     {
@@ -123,7 +127,7 @@ public class MenuUI : MonoBehaviour
             {
                 lightSource.shadows = LightShadows.None;
             }
-            if (YG2.isSDKEnabled) cash.text = MoneyFormat(YG2.saves.cash);
+            cash.text = MoneyFormat(YG2.saves.cash);
             //YG2.SetDefaultSaves();
             playerDonateButton.interactable = YG2.saves.playedBefore == 1;
             if (YG2.saves.playedBefore == -1)
@@ -133,6 +137,9 @@ public class MenuUI : MonoBehaviour
             else if (YG2.saves.playedBefore == 0)
             {
                 SceneManager.LoadScene("GameWorld");
+            } else
+            {
+                playButton.SetActive(true);
             }
         }
     }

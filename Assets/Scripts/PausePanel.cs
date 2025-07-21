@@ -11,6 +11,7 @@ public class PausePanel : MonoBehaviour
     [SerializeField] private Animator fader;
     [SerializeField] private Transform container;
     [SerializeField] private TextMeshProUGUI skillsAmount;
+    [SerializeField] private GameObject settingsPanel;
 
     public void AddSkill(Sprite skill, int num)
     {
@@ -45,5 +46,10 @@ public class PausePanel : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         if (i != -1) SceneManager.LoadScene(i);
         else SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void OnDisable()
+    {
+        settingsPanel.SetActive(false);
     }
 }//
