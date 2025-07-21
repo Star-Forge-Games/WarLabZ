@@ -47,7 +47,7 @@ MonoBehaviour:
     zombiePrefab: {fileID: 7143858245785905579, guid: 1b2c5cfa7478b3746a632e2f6bf7357b, type: 3}
     amount: 4
     interval: 5
-    hpMultiplier: 1
+    hpMultiplier: 2
   moneyMultiplier: 0.6
   damageModifier: 1.15
   speedMultiplier: 1.1
