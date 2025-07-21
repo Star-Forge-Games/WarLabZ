@@ -27,7 +27,6 @@ public class MenuUI : MonoBehaviour
     private void Start()
     {
         //YG2.SetDefaultSaves();
-        ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
         fader.gameObject.SetActive(true);
         YG2.onCloseInterAdv += SwitchToGame;
         cash.text = MoneyFormat(YG2.saves.cash);
@@ -39,7 +38,6 @@ public class MenuUI : MonoBehaviour
         {
             photoImageLoad.Load(YG2.player.photo);
         }
-        Localize();
         int id = YG2.saves.selectedWeapon;
         for (int i = 0; i < handWeapons.childCount; i++)
         {
@@ -50,6 +48,17 @@ public class MenuUI : MonoBehaviour
             else
             {
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+        if (!YG2.saves.hasLabel)
+        {
+            YG2.onGameLabelFail += LabelNo;
+            YG2.onGameLabelSuccess += LabelYes;
+            if (YG2.gameLabelCanShow)
+            {
+                AudioListener.volume = 0;
+                YG2.gameLabelCanShow = false;
+                YG2.GameLabelShowDialog();
             }
         }
         if (YG2.saves.shadows)
@@ -64,6 +73,7 @@ public class MenuUI : MonoBehaviour
         playerDonateButton.interactable = YG2.saves.playedBefore == 1;
         if (YG2.saves.playedBefore == -1)
         {
+            YG2.gameLabelCanShow = true;
             tutorial.SetActive(true);
             playButton.SetActive(false);
         }
@@ -75,6 +85,8 @@ public class MenuUI : MonoBehaviour
         {
             playButton.SetActive(true);
         }
+        Localize();
+        ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
     }
 
     private void LabelNo()
