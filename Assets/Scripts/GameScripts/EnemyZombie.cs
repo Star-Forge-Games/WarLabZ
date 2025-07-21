@@ -23,6 +23,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] protected GameObject critCanvas, instaKillCanvas;
     [SerializeField] protected GameObject slowCanvas;
     [SerializeField] AudioClip deathSound;
+    [SerializeField] protected float eHpMult, eDmgMult, eHpMultAddPerWave, eDmgMultAddPerWave;
 
     [Serializable]
     public struct ColoredPart
@@ -251,14 +252,14 @@ public class EnemyZombie : MonoBehaviour
         Destroy(gameObject);
     }
 
-    internal void Setup(float hpm, float dm, float mm, float sm)
+    internal void Setup(float hpm, float dm, float mm, float sm, int endlessWave)
     {
-
-        if(hpm < 0)
+        if(endlessWave >= 0)
         {
-            int diff = (int) -hpm;
-            // maxHealth = Mathf.Clamp((int)(diff * maxHealth), maxHealth + 1, int.MaxValue);
-            // damage = Mathf.Clamp((int)(dm * damage), damage + 1, int.MaxValue);
+            float hpmult = eHpMult + eHpMultAddPerWave * (endlessWave+1);
+            float dmult = eDmgMult + eDmgMultAddPerWave * (endlessWave+1);
+            maxHealth = Mathf.Clamp((int)(hpmult * maxHealth), maxHealth + 1, int.MaxValue);
+            damage = Mathf.Clamp((int)(dmult * damage), damage + 1, int.MaxValue);
             speed = speed * 1.25f;
             moneyDropChance = 1;
             return;

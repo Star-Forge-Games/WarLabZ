@@ -864,6 +864,10 @@ MonoBehaviour:
   instaKillCanvas: {fileID: 3887561614707134606}
   slowCanvas: {fileID: 5098318052548474255}
   deathSound: {fileID: 8300000, guid: ff66c65136b118d4580f0f3de5775e55, type: 3}
+  eHpMult: 5.5
+  eDmgMult: 1.1
+  eHpMultAddPerWave: 0.08
+  eDmgMultAddPerWave: 0.05
   parts:
   - obj: {fileID: 6715303534518645250}
   - obj: {fileID: 1793790581719543758}

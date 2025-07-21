@@ -105,7 +105,7 @@ public class EnemySpawnSystem : MonoBehaviour
         {
             GameObject enemy = Instantiate(endlessWaveZombies[i], GeneratePoint(), Quaternion.Euler(0, 180, 0));
             enemy.transform.parent = enemyContainer;
-            enemy.GetComponent<EnemyZombie>().Setup(-(endlessFirstWaveDifficulty + endlessWave), 1, 1, 1);
+            enemy.GetComponent<EnemyZombie>().Setup(1, 1, 1, 1, endlessWave);
             endlessZombieIndex++;
             endlessTimer = 0;
             yield return new WaitForSeconds(randomSpawnInterval);
@@ -174,7 +174,7 @@ public class EnemySpawnSystem : MonoBehaviour
         spawnedEnemies++;
         GameObject enemy = Instantiate(prefab, GeneratePoint(), Quaternion.Euler(0, 180, 0));
         enemy.transform.parent = enemyContainer;
-        enemy.GetComponent<EnemyZombie>().Setup(hpm, dm, mm, sm);
+        enemy.GetComponent<EnemyZombie>().Setup(hpm, dm, mm, sm, -1);
     }
 
     void Update()

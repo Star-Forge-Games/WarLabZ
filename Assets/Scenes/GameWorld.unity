@@ -5416,7 +5416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &350896425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20327,7 +20327,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1188c07132d72a4f83ba771fa81e29a, type: 2}
   endless: 1
   wavesPerSkill: 3
-  endlessFirstWaveDifficulty: 5
+  endlessFirstWaveDifficulty: 497
   waveText: {fileID: 2107624831}
   wave: 0
   spawnedEnemies: 0
@@ -33771,7 +33771,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1959370579}
-  - component: {fileID: 1959370580}
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
@@ -33788,32 +33787,12 @@ Transform:
   m_GameObject: {fileID: 1959370578}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000045626123, y: -0.00000007078049, z: 0.00000007018927, w: 1}
-  m_LocalPosition: {x: 0.100000076, y: 0.39999986, z: 1.0660006}
-  m_LocalScale: {x: 0.045009997, y: 0.09300999, z: 1}
+  m_LocalPosition: {x: 0.1, y: 0.4, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 931904792}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1818360608 &1959370580
-PositionConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1959370578}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Weight: 1
-  m_TranslationAtRest: {x: 0.100000076, y: 0.39999986, z: 1.0660006}
-  m_TranslationOffset: {x: 0.102304034, y: 0.038259745, z: 0.5629182}
-  m_AffectTranslationX: 1
-  m_AffectTranslationY: 1
-  m_AffectTranslationZ: 1
-  m_Active: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1
 --- !u!1 &1968133163
 GameObject:
   m_ObjectHideFlags: 0

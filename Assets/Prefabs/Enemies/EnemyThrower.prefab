@@ -1046,6 +1046,10 @@ MonoBehaviour:
   instaKillCanvas: {fileID: 3887561614707134606}
   slowCanvas: {fileID: 8724147957958935971}
   deathSound: {fileID: 8300000, guid: ff66c65136b118d4580f0f3de5775e55, type: 3}
+  eHpMult: 2.5
+  eDmgMult: 2
+  eHpMultAddPerWave: 0.05
+  eDmgMultAddPerWave: 0.1
   parts:
   - obj: {fileID: 8220092134459263834}
   throwPosition: {fileID: 8549039879049934404}
@@ -1338,6 +1342,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 132710466924847441}
     m_Modifications:
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192841818175317854, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_Name
+      value: Zombie1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192841818175317854, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 83483154391618291, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -1659,50 +1707,6 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8857463628290561215, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192841818175317854, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
-      propertyPath: m_Name
-      value: Zombie1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192841818175317854, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}

@@ -819,6 +819,10 @@ MonoBehaviour:
   instaKillCanvas: {fileID: 0}
   slowCanvas: {fileID: 8724147957958935971}
   deathSound: {fileID: 8300000, guid: ff66c65136b118d4580f0f3de5775e55, type: 3}
+  eHpMult: 5
+  eDmgMult: 1.1
+  eHpMultAddPerWave: 0.025
+  eDmgMultAddPerWave: 0.05
   parts:
   - obj: {fileID: 6422912107708582754}
 --- !u!65 &5033716229429919098
@@ -1027,18 +1031,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 132710466924847441}
     m_Modifications:
-    - target: {fileID: 3519894826732241564, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 0b8eba08b0b77f845a952a838eca15d4, type: 2}
-    - target: {fileID: 3519894826732241564, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
-      propertyPath: m_CullingMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7538754609087558613, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 33a935d8884f54a49804fac096d0b80e, type: 2}
     - target: {fileID: 1523723758450671076, guid: 334368a8ce807f341985dd8a37bf4c52, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -1087,6 +1079,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3519894826732241564, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0b8eba08b0b77f845a952a838eca15d4, type: 2}
+    - target: {fileID: 3519894826732241564, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
+      propertyPath: m_CullingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538754609087558613, guid: f2af54593c8bedd44824c1c0a79fc71a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 33a935d8884f54a49804fac096d0b80e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
