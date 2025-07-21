@@ -13958,7 +13958,7 @@ MonoBehaviour:
   lava: {fileID: 2120661735}
   rain: {fileID: 1756097676}
   damageTicks: 5
-  damage: 1
+  damagePercent: 10
   damageDelay: 0.75
   enemyContainer: {fileID: 689676792}
   wagonContainer: {fileID: 823084314}

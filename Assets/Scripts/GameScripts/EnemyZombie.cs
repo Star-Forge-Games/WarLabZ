@@ -12,7 +12,7 @@ public class EnemyZombie : MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Image healthBar;
     [SerializeField] protected TMP_Text healthAmount;
-    [SerializeField] protected int maxHealth = 10;
+    public int maxHealth = 10;
     [SerializeField] protected int damage;
     [SerializeField] protected float speed;
     [SerializeField] private int difficulty;

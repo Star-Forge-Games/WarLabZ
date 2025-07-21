@@ -9,7 +9,7 @@ public class LavaAbility : MonoBehaviour
 {
     [SerializeField] GameObject lava, rain;
     [SerializeField] int damageTicks;
-    [SerializeField] int damage;
+    [SerializeField] float damagePercent;
     [SerializeField] float damageDelay;
     [SerializeField] Transform enemyContainer, wagonContainer;
     [SerializeField] Button button;
@@ -85,13 +85,13 @@ public class LavaAbility : MonoBehaviour
                 {
                     EnemyZombie z = t.GetComponent<EnemyZombie>();
                     yield return new WaitForEndOfFrame();
-                    z?.TakeDamage(damage, false, false);
+                    z?.TakeDamage((int) Mathf.Clamp(z.maxHealth * (damagePercent / 100), 1, z.maxHealth), false, false);
                 }
                 foreach (Transform t in wagonContainer)
                 {
                     Wagon z = t.GetComponent<Wagon>();
                     yield return new WaitForEndOfFrame();
-                    z?.TakeDamage(damage, false, false);
+                    z?.TakeDamage((int) Mathf.Clamp(z.maxHealth * (damagePercent / 100), 1, z.maxHealth), false, false);
                 }
                 timeAfterLastTick = 0;
             }
