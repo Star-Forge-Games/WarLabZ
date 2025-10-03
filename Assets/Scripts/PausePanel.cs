@@ -16,7 +16,7 @@ public class PausePanel : MonoBehaviour
     public void AddSkill(Sprite skill, int num)
     {
         container.GetChild(num).GetComponent<Image>().sprite = skill;
-        skillsAmount.text = $"{num + 1}/15";
+        skillsAmount.text = $"{num + 1}/10";
     }
 
     public void RestartLevel()

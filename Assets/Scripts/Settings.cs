@@ -11,15 +11,34 @@ public class Settings : MonoBehaviour
     [SerializeField] private Sprite[] localeSprites, soundSprites;
     [SerializeField] private TextMeshProUGUI graphicsText;
     [SerializeField] private Light lightSource;
+
+    private void Start()
+    {
+        YG2.onCorrectLang += ExternalLocalize;
+    }
+
+    private void ExternalLocalize(string lang)
+    {
+        if (lang == "ru")
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+            locale.image.sprite = localeSprites[1];
+        }
+        else if (lang != "en")
+        {
+            YG2.SwitchLanguage("en");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+            locale.image.sprite = localeSprites[0];
+        } else
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+            locale.image.sprite = localeSprites[0];
+        }
+    }
     void OnEnable()
     {
         sound.image.sprite = soundSprites[(int)AudioListener.volume];
-        if (YG2.saves.localeId == -1)
-        {
-            YG2.saves.localeId = LocalizationSettings.SelectedLocale.SortOrder;
-            YG2.SaveProgress();
-        }
-        locale.image.sprite = localeSprites[YG2.saves.localeId];
+        locale.image.sprite = localeSprites[YG2.lang == "ru"? 1 : 0];
         if (YG2.saves.shadows)
         {
             graphicsText.text = Loc("high");
@@ -61,14 +80,21 @@ public class Settings : MonoBehaviour
 
     public void NextLocale()
     {
-        int nextIndex = YG2.saves.localeId + 1;
-        if (nextIndex >= LocalizationSettings.AvailableLocales.Locales.Count)
+        if (YG2.lang == "ru")
         {
-            nextIndex = 0;
+            YG2.SwitchLanguage("en");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+            locale.image.sprite = localeSprites[0];
+        } else
+        {
+            YG2.SwitchLanguage("ru");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+            locale.image.sprite = localeSprites[1];
         }
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[nextIndex];
-        YG2.saves.localeId = nextIndex;
-        YG2.SaveProgress();
-        locale.image.sprite = localeSprites[nextIndex];
     }
-}//
+
+    private void OnDestroy()
+    {
+        YG2.onCorrectLang -= ExternalLocalize;
+    }
+}

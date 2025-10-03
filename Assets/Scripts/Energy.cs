@@ -162,4 +162,22 @@ public class Energy : MonoBehaviour
         YG2.saves.energyLeft--;
         YG2.SaveProgress();
     }
+    private void OnDestroy()
+    {
+        YG2.onErrorRewardedAdv -= CloseAdWindow;
+    }
+
+    private void Start()
+    {
+        YG2.onErrorRewardedAdv += CloseAdWindow;
+    }
+
+    private void CloseAdWindow()
+    {
+        adPanel.SetActive(false);
+        gameObject.SetActive(true);
+        UpdateEnergySlider(YG2.saves.energyLeft);
+        playButton.interactable = true;
+        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
+    }
 }

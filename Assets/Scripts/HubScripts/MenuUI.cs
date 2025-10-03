@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -26,12 +27,14 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
+        YG2.onCorrectLang += ExternalLocalize;
+        YG2.ConsumePurchases();
         //YG2.SetDefaultSaves();
         fader.gameObject.SetActive(true);
         YG2.onCloseInterAdv += SwitchToGame;
         cash.text = MoneyFormat(YG2.saves.cash);
         AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
-        playerName.text = YG2.player.name;
+        playerName.text = (YG2.player.auth? YG2.player.name : Loc("unauthorized"));
         playerPanel.SetActive(true);
         energy.gameObject.SetActive(true);
         if (photoImageLoad != null && YG2.player.auth)
@@ -50,17 +53,6 @@ public class MenuUI : MonoBehaviour
                 handWeapons.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-        if (!YG2.saves.hasLabel)
-        {
-            YG2.onGameLabelFail += LabelNo;
-            YG2.onGameLabelSuccess += LabelYes;
-            if (YG2.gameLabelCanShow)
-            {
-                AudioListener.volume = 0;
-                YG2.gameLabelCanShow = false;
-                YG2.GameLabelShowDialog();
-            }
-        }
         if (YG2.saves.shadows)
         {
             lightSource.shadows = LightShadows.Hard;
@@ -71,6 +63,7 @@ public class MenuUI : MonoBehaviour
         }
         cash.text = MoneyFormat(YG2.saves.cash);
         playerDonateButton.interactable = YG2.saves.playedBefore == 1;
+        Localize();
         if (YG2.saves.playedBefore == -1)
         {
             YG2.gameLabelCanShow = true;
@@ -84,8 +77,18 @@ public class MenuUI : MonoBehaviour
         } else
         {
             playButton.SetActive(true);
+            if (!YG2.saves.hasLabel)
+            {
+                YG2.onGameLabelFail += LabelNo;
+                YG2.onGameLabelSuccess += LabelYes;
+                if (YG2.gameLabelCanShow)
+                {
+                    AudioListener.volume = 0;
+                    YG2.gameLabelCanShow = false;
+                    YG2.GameLabelShowDialog();
+                }
+            }
         }
-        Localize();
         ((UniversalRenderPipelineAsset)GraphicsSettings.currentRenderPipeline).renderScale = 1;
     }
 
@@ -104,14 +107,28 @@ public class MenuUI : MonoBehaviour
     private void Localize()
     {
         LocalizationSettings settings = LocalizationSettings.InitializationOperation.WaitForCompletion();
-        if (YG2.saves.localeId == -1)
+        if (YG2.lang == "ru")
         {
-            YG2.saves.localeId = settings.GetSelectedLocale().SortOrder;
-            YG2.SaveProgress();
+            settings.SetSelectedLocale(settings.GetAvailableLocales().Locales[1]);
         }
         else
         {
-            settings.SetSelectedLocale(settings.GetAvailableLocales().Locales[YG2.saves.localeId]);
+            settings.SetSelectedLocale(settings.GetAvailableLocales().Locales[0]);
+        }
+    }
+
+    private void ExternalLocalize(string lang)
+    {
+        if (lang == "ru")
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
+        } else if (lang != "en")
+        {
+            YG2.SwitchLanguage("en");
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
+        } else
+        {
+            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         }
     }
 
@@ -130,6 +147,7 @@ public class MenuUI : MonoBehaviour
             cash.text = MoneyFormat(YG2.saves.cash);
             //YG2.SetDefaultSaves();
             playerDonateButton.interactable = YG2.saves.playedBefore == 1;
+            Localize();
             if (YG2.saves.playedBefore == -1)
             {
                 tutorial.SetActive(true);
@@ -171,6 +189,7 @@ public class MenuUI : MonoBehaviour
         YG2.onCloseInterAdv -= SwitchToGame;
         YG2.onGameLabelFail -= LabelNo;
         YG2.onGameLabelSuccess -= LabelYes;
+        YG2.onCorrectLang -= ExternalLocalize;
     }
 
 }

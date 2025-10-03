@@ -14,7 +14,7 @@ public class DonateUI : MonoBehaviour
 
     private void OnEnable()
     {
-        if (priceText != null) priceText.text = $"{price} {Loc("rubles")}";
+        if (priceText != null) priceText.text = $"{price}";
         rewardText.text = $"{reward}$";
         moneyText.text = MoneyFormat(YG2.saves.cash);
     }

@@ -13,7 +13,6 @@ public class WarlabZYG
         YG2.saves.weaponLevels = new int[] { 0, -1, -1, -1, -1 };
         YG2.saves.selectedWeapon = 0;
         YG2.saves.soundOn = true;
-        YG2.saves.localeId = -1;
         YG2.saves.energyLeft = 0;
         YG2.saves.nextEnergyRechargeTimeStamp = 0;
         YG2.saves.record = 0;
