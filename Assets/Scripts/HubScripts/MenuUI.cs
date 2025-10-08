@@ -27,65 +27,68 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
-        YG2.onCorrectLang += ExternalLocalize;
-        YG2.ConsumePurchases();
-        //YG2.SetDefaultSaves();
-        fader.gameObject.SetActive(true);
-        YG2.onCloseInterAdv += SwitchToGame;
-        cash.text = MoneyFormat(YG2.saves.cash);
-        AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
-        playerName.text = (YG2.player.auth? YG2.player.name : Loc("unauthorized"));
-        playerPanel.SetActive(true);
-        energy.gameObject.SetActive(true);
-        if (photoImageLoad != null && YG2.player.auth)
+        if (YG2.isSDKEnabled)
         {
-            photoImageLoad.Load(YG2.player.photo);
-        }
-        int id = YG2.saves.selectedWeapon;
-        for (int i = 0; i < handWeapons.childCount; i++)
-        {
-            if (i != id)
+            YG2.onSwitchLang += ExternalLocalize;
+            YG2.ConsumePurchases();
+            YG2.onCloseInterAdv += SwitchToGame;
+            cash.text = MoneyFormat(YG2.saves.cash);
+            AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
+            playerName.text = (YG2.player.auth ? YG2.player.name : Loc("unauthorized"));
+            int id = YG2.saves.selectedWeapon;
+            for (int i = 0; i < handWeapons.childCount; i++)
             {
-                handWeapons.transform.GetChild(i).gameObject.SetActive(false);
+                if (i != id)
+                {
+                    handWeapons.transform.GetChild(i).gameObject.SetActive(false);
+                }
+                else
+                {
+                    handWeapons.transform.GetChild(i).gameObject.SetActive(true);
+                }
+            }
+            if (YG2.saves.shadows)
+            {
+                lightSource.shadows = LightShadows.Hard;
             }
             else
             {
-                handWeapons.transform.GetChild(i).gameObject.SetActive(true);
+                lightSource.shadows = LightShadows.None;
             }
-        }
-        if (YG2.saves.shadows)
-        {
-            lightSource.shadows = LightShadows.Hard;
-        }
-        else
-        {
-            lightSource.shadows = LightShadows.None;
-        }
-        cash.text = MoneyFormat(YG2.saves.cash);
-        playerDonateButton.interactable = YG2.saves.playedBefore == 1;
-        Localize();
-        if (YG2.saves.playedBefore == -1)
-        {
-            YG2.gameLabelCanShow = true;
-            tutorial.SetActive(true);
-            playButton.SetActive(false);
-        }
-        else if (YG2.saves.playedBefore == 0)
-        {
-            SceneManager.LoadScene("GameWorld");
-            playButton.SetActive(true);
-        } else
-        {
-            playButton.SetActive(true);
-            if (!YG2.saves.hasLabel)
+            cash.text = MoneyFormat(YG2.saves.cash);
+            playerDonateButton.interactable = YG2.saves.playedBefore == 1;
+            fader.gameObject.SetActive(true);
+            playerPanel.SetActive(true);
+            if (photoImageLoad != null && YG2.player.auth)
             {
-                YG2.onGameLabelFail += LabelNo;
-                YG2.onGameLabelSuccess += LabelYes;
-                if (YG2.gameLabelCanShow)
+                photoImageLoad.Load(YG2.player.photo);
+            }
+            energy.gameObject.SetActive(true);
+            Localize();
+            if (YG2.saves.playedBefore == -1)
+            {
+                YG2.gameLabelCanShow = true;
+                tutorial.SetActive(true);
+                playButton.SetActive(false);
+            }
+            else if (YG2.saves.playedBefore == 0)
+            {
+                SceneManager.LoadScene("GameWorld");
+                playButton.SetActive(true);
+            }
+            else
+            {
+                playButton.SetActive(true);
+                if (!YG2.saves.hasLabel)
                 {
-                    AudioListener.volume = 0;
-                    YG2.gameLabelCanShow = false;
-                    YG2.GameLabelShowDialog();
+                    YG2.onGameLabelFail += LabelNo;
+                    YG2.onGameLabelSuccess += LabelYes;
+                    if (YG2.gameLabelCanShow)
+                    {
+                        AudioListener.volume = 0;
+                        YG2.gameLabelCanShow = false;
+                        YG2.GameLabelShowDialog();
+                    }
                 }
             }
         }
@@ -106,25 +109,24 @@ public class MenuUI : MonoBehaviour
 
     private void Localize()
     {
-        LocalizationSettings settings = LocalizationSettings.InitializationOperation.WaitForCompletion();
-        if (YG2.lang == "ru")
+        if (YG2.lang.ToLower() == "ru")
         {
-            settings.SetSelectedLocale(settings.GetAvailableLocales().Locales[1]);
+            LocalizationSettings.Instance.SetSelectedLocale(LocalizationSettings.Instance.GetAvailableLocales().Locales[1]);
         }
         else
         {
-            settings.SetSelectedLocale(settings.GetAvailableLocales().Locales[0]);
+            LocalizationSettings.Instance.SetSelectedLocale(LocalizationSettings.Instance.GetAvailableLocales().Locales[0]);
         }
     }
 
     private void ExternalLocalize(string lang)
     {
-        if (lang == "ru")
+        if (lang.ToLower() == "ru")
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
-        } else if (lang != "en")
+        } else if (lang.ToLower() != "en")
         {
-            YG2.SwitchLanguage("en");
+            YG2.SwitchLanguage("En");
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         } else
         {
@@ -145,7 +147,6 @@ public class MenuUI : MonoBehaviour
                 lightSource.shadows = LightShadows.None;
             }
             cash.text = MoneyFormat(YG2.saves.cash);
-            //YG2.SetDefaultSaves();
             playerDonateButton.interactable = YG2.saves.playedBefore == 1;
             Localize();
             if (YG2.saves.playedBefore == -1)
@@ -189,7 +190,7 @@ public class MenuUI : MonoBehaviour
         YG2.onCloseInterAdv -= SwitchToGame;
         YG2.onGameLabelFail -= LabelNo;
         YG2.onGameLabelSuccess -= LabelYes;
-        YG2.onCorrectLang -= ExternalLocalize;
+        YG2.onSwitchLang -= ExternalLocalize;
     }
 
 }

@@ -14,17 +14,17 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        YG2.onCorrectLang += ExternalLocalize;
+        YG2.onSwitchLang += ExternalLocalize;
     }
 
     private void ExternalLocalize(string lang)
     {
-        if (lang == "ru")
+        if (lang.ToLower() == "ru")
         {
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
             locale.image.sprite = localeSprites[1];
         }
-        else if (lang != "en")
+        else if (lang.ToLower() != "en")
         {
             YG2.SwitchLanguage("en");
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
@@ -38,7 +38,7 @@ public class Settings : MonoBehaviour
     void OnEnable()
     {
         sound.image.sprite = soundSprites[(int)AudioListener.volume];
-        locale.image.sprite = localeSprites[YG2.lang == "ru"? 1 : 0];
+        locale.image.sprite = localeSprites[YG2.lang.ToLower() == "ru"? 1 : 0];
         if (YG2.saves.shadows)
         {
             graphicsText.text = Loc("high");
@@ -80,14 +80,14 @@ public class Settings : MonoBehaviour
 
     public void NextLocale()
     {
-        if (YG2.lang == "ru")
+        if (YG2.lang.ToLower() == "ru")
         {
-            YG2.SwitchLanguage("en");
+            YG2.SwitchLanguage("En");
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
             locale.image.sprite = localeSprites[0];
         } else
         {
-            YG2.SwitchLanguage("ru");
+            YG2.SwitchLanguage("Ru");
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
             locale.image.sprite = localeSprites[1];
         }
@@ -95,6 +95,6 @@ public class Settings : MonoBehaviour
 
     private void OnDestroy()
     {
-        YG2.onCorrectLang -= ExternalLocalize;
+        YG2.onSwitchLang -= ExternalLocalize;
     }
 }
