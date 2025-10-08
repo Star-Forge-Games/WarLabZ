@@ -8,8 +8,8 @@ public class DonateUI : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI rewardText;
     [SerializeField] private TextMeshProUGUI priceText;
-    [SerializeField] private int price, reward;
-    [SerializeField] private int id;
+    [SerializeField] private int price;
+    public int reward, id;
     [SerializeField] private TextMeshProUGUI moneyText;
 
     private void OnEnable()

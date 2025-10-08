@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using YG;
 using static LocalizationHelperModule;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class MenuUI : MonoBehaviour
 {
@@ -24,13 +25,14 @@ public class MenuUI : MonoBehaviour
     [SerializeField] Button playerDonateButton;
     public ImageLoadYG photoImageLoad;
     [SerializeField] Light lightSource;
+    [SerializeField] DonateUI[] purchases;
 
     private void Start()
     {
         if (YG2.isSDKEnabled)
         {
-            YG2.onSwitchLang += ExternalLocalize;
-            YG2.ConsumePurchases();
+            YG2.onPurchaseSuccess += ProcessPurchase;
+            YG2.ConsumePurchases(true);
             YG2.onCloseInterAdv += SwitchToGame;
             cash.text = MoneyFormat(YG2.saves.cash);
             AudioListener.volume = YG2.saves.soundOn ? 1 : 0;
@@ -119,21 +121,6 @@ public class MenuUI : MonoBehaviour
         }
     }
 
-    private void ExternalLocalize(string lang)
-    {
-        if (lang.ToLower() == "ru")
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[1];
-        } else if (lang.ToLower() != "en")
-        {
-            YG2.SwitchLanguage("En");
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
-        } else
-        {
-            LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
-        }
-    }
-
     private void OnEnable()
     {
         if (YG2.isSDKEnabled)
@@ -190,7 +177,21 @@ public class MenuUI : MonoBehaviour
         YG2.onCloseInterAdv -= SwitchToGame;
         YG2.onGameLabelFail -= LabelNo;
         YG2.onGameLabelSuccess -= LabelYes;
-        YG2.onSwitchLang -= ExternalLocalize;
+        YG2.onPurchaseSuccess -= ProcessPurchase;
+    }
+
+
+
+    private void ProcessPurchase(string id)
+    {
+        foreach (DonateUI purchase in purchases)
+        {
+            if ($"buymoney{purchase.id}" != id) continue;
+            YG2.saves.cash += purchase.reward;
+            YG2.SaveProgress();
+            cash.text = MoneyFormat(YG2.saves.cash);
+            return;
+        }
     }
 
 }
