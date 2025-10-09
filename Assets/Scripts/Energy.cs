@@ -165,11 +165,13 @@ public class Energy : MonoBehaviour
     private void OnDestroy()
     {
         YG2.onErrorRewardedAdv -= CloseAdWindow;
+        YG2.onCloseRewardedAdv += CloseAdWindow;
     }
 
     private void Start()
     {
         YG2.onErrorRewardedAdv += CloseAdWindow;
+        YG2.onCloseRewardedAdv -= CloseAdWindow;
     }
 
     private void CloseAdWindow()
