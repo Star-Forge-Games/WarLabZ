@@ -39,6 +39,25 @@ public class Weapon : MonoBehaviour
     private Action<bool> action;
     private float stunChance = 0;
 
+    private (int dmg, decimal aspd, decimal crit, int chance) CalculateValues(int boost)
+    {
+        int dmg = 8;
+        decimal aspd = 7;
+        decimal crit = 3;
+        int critChance = 8;
+        for (int i = 0; i < boost; i++)
+        {
+            aspd += (decimal)0.1;
+            crit += (decimal)0.1;
+            critChance++;
+            if (i % 2 == 1)
+            {
+                dmg++;
+            }
+        }
+        return (dmg, aspd, crit, critChance);
+    }
+
     private void Awake()
     {
         if (YG2.saves.selectedWeapon != weaponId)
@@ -60,11 +79,22 @@ public class Weapon : MonoBehaviour
     {
         int level = YG2.saves.weaponLevels[weaponId];
         WeaponSettings settings = WeaponDataStorage.instance.GetWeaponSettings(weaponId);
-        WeaponSettings.Level l = settings.levels[level];
-        bulletDamage = l.damage;
-        critChance = l.critChance;
-        critDamageMultiplier = l.crit;
-        bulletsRate = l.aspd;
+        if (level < 3)
+        {
+            WeaponSettings.Level l = settings.levels[level];
+            bulletDamage = l.damage;
+            critChance = l.critChance;
+            critDamageMultiplier = l.crit;
+            bulletsRate = l.aspd;
+        }
+        else if (weaponId == 4)
+        {
+            var data = CalculateValues(level - 3);
+            bulletDamage = data.dmg;
+            critChance = data.chance;
+            critDamageMultiplier = (float)data.crit;
+            bulletsRate = (float)data.aspd;
+        }
     }
 
 
@@ -75,7 +105,7 @@ public class Weapon : MonoBehaviour
             if (multishots > 0)
             {
                 float rate = 1f / ((bulletsRate + flatRateModifier) * expRateModifier);
-                yield return new WaitForSeconds(rate * (1-baseAttackTimePercentage * multishots));
+                yield return new WaitForSeconds(rate * (1 - baseAttackTimePercentage * multishots));
                 Fire();
                 for (int i = 0; i < multishots; i++)
                 {
@@ -96,7 +126,7 @@ public class Weapon : MonoBehaviour
         PlayerController.instance.Shot();
         GameObject gunFireFrontFirePoint = Instantiate(gunFireFront, firePoint.position, firePoint.rotation);
         gunFireFrontFirePoint.transform.parent = firePoint;
-        Destroy(gunFireFrontFirePoint,0.03f);
+        Destroy(gunFireFrontFirePoint, 0.03f);
         GameObject gunFireBackFirePoint = Instantiate(gunFireBack, firePoint.position, firePoint.rotation);
         gunFireBackFirePoint.transform.parent = firePoint;
         Destroy(gunFireBackFirePoint, 0.03f);
@@ -112,14 +142,16 @@ public class Weapon : MonoBehaviour
                 b2.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 b2.transform.parent = bulletContainer;
                 b2.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
-            } else
+            }
+            else
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
                 bullet.transform.parent = bulletContainer;
                 bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             }
-        } else
+        }
+        else
         {
             int mShots = shots;
             if (twinShot) mShots *= 2;
@@ -127,7 +159,7 @@ public class Weapon : MonoBehaviour
             {
                 Bullet bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).GetComponent<Bullet>();
                 bullet.GetComponent<LineTest>().Setup((bulletsRate + flatRateModifier) * expRateModifier);
-                bullet.transform.Rotate(0, -(arc / 2) + (arc/(mShots-1)) * i, 0);
+                bullet.transform.Rotate(0, -(arc / 2) + (arc / (mShots - 1)) * i, 0);
                 bullet.transform.parent = bulletContainer;
                 bullet.Setup(fireForce, (int)((bulletDamage + flatDamageModifier) * expDamageModifier), bulletLifeTime, critChance, critDamageMultiplier, instakill, through, bomb, stunChance);
             }
@@ -141,7 +173,7 @@ public class Weapon : MonoBehaviour
 
     public void SelfUnpause()
     {
-        StartCoroutine(nameof(PeriodicFireSpawn));   
+        StartCoroutine(nameof(PeriodicFireSpawn));
     }
 
     public void IncreaseRateModifier(bool flat, float value)

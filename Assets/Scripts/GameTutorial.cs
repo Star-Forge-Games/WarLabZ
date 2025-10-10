@@ -10,7 +10,7 @@ public class GameTutorial : MonoBehaviour
 
     [SerializeField] private Button contButton;
     [SerializeField] private GameObject textBox;
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI text, waveText;
     [SerializeField] private Cutscene cs;
     [SerializeField] private Image bg;
     [SerializeField] private Page[] pages;
@@ -28,6 +28,7 @@ public class GameTutorial : MonoBehaviour
 
     public void Start()
     {
+        waveText.text = Loc("wave0");
         StartCoroutine(nameof(TutorialText));
     }
 

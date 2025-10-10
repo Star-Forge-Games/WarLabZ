@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,8 +17,26 @@ public class WeaponUI : MonoBehaviour
     private WeaponSettings ws;
     private int lvl;
     private bool prevFull;
-
     private static int curId;
+
+    private (int dmg, decimal aspd, decimal crit, int chance) CalculateValues(int boost)
+    {
+        int dmg = 8;
+        decimal aspd = 7;
+        decimal crit = 3;
+        int critChance = 8;
+        for (int i = 0; i < boost; i++)
+        {
+            aspd += (decimal)0.1;
+            crit += (decimal)0.1;
+            critChance++;
+            if (i % 2 == 1)
+            {
+                dmg++;
+            }
+        }
+        return (dmg, aspd, crit, critChance);
+    }
 
     public void Setup(int id, WeaponSettings ws, bool prevFull)
     {
@@ -37,8 +56,20 @@ public class WeaponUI : MonoBehaviour
 
     public void BuyOrUpgrade()
     {
-        YG2.saves.cash -= ws.levels[lvl + 1].cost;
-        lvl++;
+        if (id != 4)
+        {
+            YG2.saves.cash -= ws.levels[lvl + 1].cost;
+        } else
+        {
+            if (lvl >= 3)
+            {
+                YG2.saves.cash -= 5000;
+            } else
+            {
+                YG2.saves.cash -= ws.levels[lvl + 1].cost;
+            }
+        }
+            lvl++;
         var clone = YG2.saves.weaponLevels;
         clone[id]++;
         YG2.saves.weaponLevels = clone;
@@ -70,6 +101,18 @@ public class WeaponUI : MonoBehaviour
         }
         else if (lvl == ws.levels.Length - 1)
         {
+            if (id==4)
+            {
+                var data = CalculateValues(lvl - 3);
+                var nData = CalculateValues(lvl - 2);
+                dmg.text = $"<color=green>{data.dmg}</color>" + (nData.dmg > data.dmg ? $" <color=red>(+1)</color>" : "");
+                aspd.text = $"<color=green>{(float) data.aspd}</color>" + $" <color=red>(+0.1)</color>";
+                crit.text = $"<color=green>{(float)(data.crit * 100)}%</color>" + $" <color=red>(+10%)</color>";
+                critChance.text = $"<color=green>{data.chance}%</color>" + $" <color=red>(+1%)</color>";
+                buyUpgradeButton.interactable = 5000 <= YG2.saves.cash;
+                buyUpgradeButtonText.text = $"{Loc("upgrade")}\n{5000}$";
+                return;
+            }
             var l = ws.levels[lvl];
             buyUpgradeButtonText.text = Loc("max");
             buyUpgradeButton.interactable = false;
@@ -77,6 +120,18 @@ public class WeaponUI : MonoBehaviour
             aspd.text = $"<color=green>{l.aspd}</color>";
             crit.text = $"<color=green>{l.crit * 100}%</color>";
             critChance.text = $"<color=green>{l.critChance}%</color>";
+            return;
+        }
+        else if (lvl > ws.levels.Length - 1 && id==4)
+        {
+            var data = CalculateValues(lvl - 3);
+            var nData = CalculateValues(lvl - 2);
+            dmg.text = $"<color=green>{data.dmg}</color>" + (nData.dmg > data.dmg ? $" <color=red>(+1)</color>" : "");
+            aspd.text = $"<color=green>{(float)data.aspd}</color>" + $" <color=red>(+0.1)</color>";
+            crit.text = $"<color=green>{(float)(data.crit * 100)}%</color>" + $" <color=red>(+10%)</color>";
+            critChance.text = $"<color=green>{data.chance}%</color>" + $" <color=red>(+1%)</color>";
+            buyUpgradeButton.interactable = 5000 <= YG2.saves.cash;
+            buyUpgradeButtonText.text = $"{Loc("upgrade")}\n{5000}$";
             return;
         }
         else
